@@ -45,9 +45,9 @@ export const Footer = () => {
             </button>
           </form>
           <p className="text-sm text-white mt-8">
-            I consent to receive promotional emails from Explores and understand
-            that the personal data I provide will be used for this purpose in
-            accordance with the{" "}
+            I consent to receive promotional emails from WingsOfEscape and
+            understand that the personal data I provide will be used for this
+            purpose in accordance with the{" "}
             <a href="#" className="underline">
               Privacy Policy
             </a>
@@ -120,7 +120,7 @@ export const Footer = () => {
             </li>
             <li>
               <a href="#" className="hover:underline">
-                Why Explores
+                Why WingsOfEscape
               </a>
             </li>
             <li>
