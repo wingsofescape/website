@@ -1,6 +1,7 @@
 // EnquireNow.tsx
-import React, { useState } from "react";
-
+"use client";
+import { submitFormData } from "@/lib/actions/query.actions";
+import React, { useState, useActionState } from "react";
 const months = [
   "Any month",
   "January",
@@ -54,6 +55,8 @@ export default function EnquireNow() {
     message: "",
   });
 
+  const [state, formAction] = useActionState(submitFormData, { message: "" });
+
   const handleFollowUpChange = (type: string) => {
     setFollowUp({
       ...followUp,
@@ -62,7 +65,19 @@ export default function EnquireNow() {
   };
 
   return (
-    <form className="bg-[#f7f7f5] p-8  max-w-3xl mx-auto my-12 enquire-form">
+    <form
+      className="bg-[#f7f7f5] p-8  max-w-3xl mx-auto my-12 enquire-form"
+      action={formAction}
+    >
+      {/* Hidden inputs for state values */}
+      <input type="hidden" name="adults" value={adults} />
+      <input type="hidden" name="children" value={children} />
+      <input type="hidden" name="month" value={details.month} />
+      <input type="hidden" name="year" value={details.year} />
+      <input type="hidden" name="budget" value={details.budget} />
+      <input type="hidden" name="availability" value={details.availability} />
+      <input type="hidden" name="message" value={details.message} />
+
       {/* Top Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         <div>
@@ -81,7 +96,9 @@ export default function EnquireNow() {
             }
           >
             {destinations.map((d) => (
-              <option key={d}>{d}</option>
+              <option key={d} value={d}>
+                {d}
+              </option>
             ))}
           </select>
         </div>
@@ -143,22 +160,28 @@ export default function EnquireNow() {
           <div className="flex gap-2">
             <select
               className="border rounded px-3 py-2 w-1/2"
+              name="month"
               value={details.month}
               onChange={(e) =>
                 setDetails({ ...details, month: e.target.value })
               }
             >
               {months.map((m) => (
-                <option key={m}>{m}</option>
+                <option key={m} value={m}>
+                  {m}
+                </option>
               ))}
             </select>
             <select
               className="border rounded px-3 py-2 w-1/2"
+              name="year"
               value={details.year}
               onChange={(e) => setDetails({ ...details, year: e.target.value })}
             >
               {years.map((y) => (
-                <option key={y}>{y}</option>
+                <option key={y} value={y}>
+                  {y}
+                </option>
               ))}
             </select>
           </div>
@@ -169,11 +192,14 @@ export default function EnquireNow() {
           </label>
           <select
             className="w-full border rounded px-3 py-2"
+            name="budget"
             value={details.budget}
             onChange={(e) => setDetails({ ...details, budget: e.target.value })}
           >
             {budgets.map((b) => (
-              <option key={b}>{b}</option>
+              <option key={b} value={b}>
+                {b}
+              </option>
             ))}
           </select>
         </div>
@@ -195,7 +221,7 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, firstName: e.target.value })
             }
-            required
+            // required
           />
           <input
             name="lastName"
@@ -205,7 +231,7 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, lastName: e.target.value })
             }
-            required
+            // required
           />
           <div className="flex">
             <select className="border rounded-l px-2 py-2 bg-gray-100 text-gray-700">
@@ -230,7 +256,7 @@ export default function EnquireNow() {
               onChange={(e) =>
                 setDetails({ ...details, phone: e.target.value })
               }
-              required
+              // required
               type="tel"
             />
           </div>
@@ -240,7 +266,7 @@ export default function EnquireNow() {
             placeholder="Email address *"
             value={details.email}
             onChange={(e) => setDetails({ ...details, email: e.target.value })}
-            required
+            // required
             type="email"
             autoComplete=""
           />
@@ -289,13 +315,16 @@ export default function EnquireNow() {
             </label>
             <select
               className="w-full border rounded px-3 py-2"
+              name="availability"
               value={details.availability}
               onChange={(e) =>
                 setDetails({ ...details, availability: e.target.value })
               }
             >
               {availabilities.map((a) => (
-                <option key={a}>{a}</option>
+                <option key={a} value={a}>
+                  {a}
+                </option>
               ))}
             </select>
             <div className="text-xs text-gray-600 mt-1">
@@ -318,6 +347,7 @@ export default function EnquireNow() {
         </p>
         <textarea
           className="border rounded px-3 py-2 w-full h-32 resize-vertical"
+          name="message"
           maxLength={1000}
           placeholder="Have you seen any hotels you would like to stay in, or tours that you would like to experience? Do you have any set dates or room requirements? Are you unsure of where to start planning? Let our Travel Specialists know so that they can help you plan a trip of a lifetime."
           value={details.message}
@@ -329,14 +359,26 @@ export default function EnquireNow() {
       </div>
       {/* Submit button could go here */}
 
-      <div className="mt-8 flex justify-start ">
+      <div className="mt-8 flex flex-col md:flex-row justify-start items-start gap-4">
         <button
           type="submit"
           className="bg-[#004236] text-white font-bold px-8 py-3 rounded hover:bg-[#00664f] transition-colors"
         >
-          Submit
+          Submit Form
         </button>
-        <div className="ml-6 text-xs text-gray-600 max-w-lg">
+        {state?.message && (
+          <div
+            className={`text-sm px-4 py-2 rounded ${
+              state.message.includes("successfully") ||
+              state.message.includes("Thank you")
+                ? "bg-green-100 text-green-800 border border-green-200"
+                : "bg-red-100 text-red-800 border border-red-200"
+            }`}
+          >
+            {state.message}
+          </div>
+        )}
+        <div className="text-xs text-gray-600 max-w-lg">
           By proceeding, I understand that the personal data I provide will be
           used to deal with my request in accordance with the privacy policy.
         </div>

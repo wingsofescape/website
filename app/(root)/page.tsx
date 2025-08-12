@@ -1,6 +1,7 @@
 import Footer from "@/components/footer";
+import { HeroBanner } from "@/components/landingPage/HeroBanner";
 import Header from "@/components/shared/header";
-import HeroCarousal2 from "@/public/images/HeroCarousal2.jpg";
+
 import Background1 from "@/public/images/bg1.jpg";
 import Background2 from "@/public/images/bg2.jpg";
 export default function HomePage() {
@@ -8,42 +9,7 @@ export default function HomePage() {
     <>
       <Header />
       <main className="bg-beige p-0">
-        <section
-          className="relative h-[480px] flex items-center"
-          style={{
-            backgroundImage: `url(${HeroCarousal2.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="relative z-10 max-w-5xl mx-auto px-8">
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg">
-              Let us help you plan
-              <br />
-              your luxury trip
-            </h2>
-            <p className="text-2xl md:text-3xl text-white font-semibold mb-8 drop-shadow">
-              Wherever you want to go, our Travel Specialists can design
-              <br />
-              your perfect holiday.
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-                FOR FAMILIES
-              </button>
-              <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-                FOR COUPLES
-              </button>
-              <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-                HOW WE WORK
-              </button>
-              <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-                UNIQUE TRIPS
-              </button>
-            </div>
-          </div>
-        </section>
+        <HeroBanner />
         <section className="bg-white py-10 flex flex-nowrap">
           <div className="mx-auto px-8 grid md:grid-cols-4 gap-4">
             <div className="flex flex-col items-center text-center ">
@@ -323,7 +289,7 @@ export default function HomePage() {
           >
             <div className="bg-[#00332a]/75 p-12 rounded-none md:rounded-sm max-w-xl w-full mx-8 text-center flex flex-col items-center">
               <h2 className="text-4xl md:text-5xl font-bold text-white font-sans mb-8">
-                Explorers Clubs
+                Traveler&apos;s Clubs
               </h2>
               <p className="text-lg text-white mb-10">
                 Dreaming of a holiday but not sure where to go? Look no further
