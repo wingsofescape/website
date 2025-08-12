@@ -5,8 +5,6 @@ import prisma from "@/db/prisma";
 // Adjust path as needed
 
 export async function submitFormData(prevState: any, formData: FormData) {
-  console.log("Action called with formData:", formData);
-
   // Extract all form fields
   const formFields = {
     firstName: formData.get("firstName")?.toString() || "",
@@ -46,8 +44,6 @@ export async function submitFormData(prevState: any, formData: FormData) {
   }
 
   try {
-    console.log("Form submission data:", formFields);
-
     // Here you would save to database
     await prisma.userQuery.create({
       data: {

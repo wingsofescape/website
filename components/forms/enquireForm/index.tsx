@@ -35,7 +35,6 @@ const destinations = [
 const availabilities = ["Any time", "Morning", "Afternoon", "Evening"];
 
 export default function EnquireNow() {
-  console.log("Loaded");
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [followUp, setFollowUp] = useState({
@@ -59,8 +58,6 @@ export default function EnquireNow() {
   const [state, formAction] = useActionState(submitFormData, { message: "" });
 
   const handleFollowUpChange = (type: string) => {
-    console.log("Followup changed:", type, new Date().toISOString());
-
     setFollowUp({
       ...followUp,
       [type]: !followUp[type as keyof typeof followUp],
