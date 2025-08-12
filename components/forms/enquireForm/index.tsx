@@ -367,7 +367,7 @@ export default function EnquireNow() {
           type="submit"
           className="bg-[#004236] text-white font-bold px-8 py-3 rounded hover:bg-[#00664f] transition-colors"
         >
-          Submit
+          Submit Form
         </button>
         {state?.message && (
           <div
