@@ -1,4 +1,17 @@
+# WingsOfEscape - Premium Travel & Exploration Platform
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+WingsOfEscape is a sophisticated travel platform designed to help users discover and explore extraordinary destinations with elegance and style.
+
+## Features
+
+- 🌍 Interactive destination exploration
+- 📱 Fully responsive design with mobile-first approach
+- 🎯 Feature flag system for A/B testing
+- 📝 JSON-based CMS for content management
+- 🎨 Elegant typography with serif fonts and gradient effects
+- 📞 Contact form with server-side actions
 
 ## Getting Started
 
