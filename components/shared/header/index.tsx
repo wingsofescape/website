@@ -77,10 +77,10 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-amber-700 text-white">
+    <header className="bg-slate-800 text-white">
       {/* Top Banner - Hidden on mobile */}
       <div
-        className="hidden md:flex top-0 left-0 w-full bg-amber-900 text-white text-sm justify-between items-center px-6 py-1 z-10"
+        className="hidden md:flex top-0 left-0 w-full bg-slate-900 text-white text-sm justify-between items-center px-6 py-1 z-10"
         id="banner"
       >
         <div
@@ -150,7 +150,7 @@ const Header = () => {
             <input
               type="text"
               placeholder={headerData.searchBar.placeholder}
-              className="rounded-full px-4 py-2 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500 w-30 text-gray-800"
+              className="rounded-full px-4 py-2 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500 w-30 text-white"
             />
           </form>
         </nav>

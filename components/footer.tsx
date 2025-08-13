@@ -174,6 +174,12 @@ export const Footer = () => {
           Luxury Italy Holidays 2025/2026
         </a>
       </div>
+      {/* Version */}
+      <div className="max-w-7xl mx-auto px-6 mt-6 pt-4 border-t border-[#1a4d43] text-center">
+        <span className="text-sm text-gray-300">
+          Version {process.env.NEXT_PUBLIC_APP_VERSION || "1.0.0"}
+        </span>
+      </div>
       {/* Accessibility Icon */}
       {/* <button
         className="fixed left-6 bottom-6 bg-[#FFB6A3] w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-50"
