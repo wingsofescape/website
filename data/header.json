@@ -2,7 +2,7 @@
   "topBanner": {
     "countrySelector": {
       "label": "Country:",
-      "options": ["USA", "Canada", "UK", "Australia"]
+      "options": ["USA", "Canada", "UK", "Australia", "India"]
     },
     "currencySelector": {
       "label": "Currency:",
@@ -27,7 +27,8 @@
         { "name": "Japan", "href": "/destinations/japan" },
         { "name": "Vietnam", "href": "/destinations/vietnam" },
         { "name": "Africa", "href": "/destinations/africa" },
-        { "name": "Europe", "href": "/destinations/europe" }
+        { "name": "Europe", "href": "/destinations/europe" },
+        { "name": "India", "href": "/destinations/india" }
       ]
     },
     "holidayIdeas": {
