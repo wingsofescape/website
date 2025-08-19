@@ -1,13 +1,10 @@
-import Footer from "@/components/footer";
 import { HeroBanner } from "@/components/landingPage/HeroBanner";
-import Header from "@/components/shared/header";
 
 import Background1 from "@/public/images/bg1.jpg";
 import Background2 from "@/public/images/bg2.jpg";
 export default function HomePage() {
   return (
     <>
-      <Header />
       <main className="bg-beige p-0">
         <HeroBanner />
         <section className="bg-white py-10 flex flex-nowrap">
@@ -322,7 +319,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }
