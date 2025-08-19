@@ -3,76 +3,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import sriLanka from "@/data/countries/SriLanka/sriLanka.json"; // Adjust the import based on your data structure
-import { IDestination } from "@/app/models/destinations";
 
-const Destination = ({ params }: { params: { destinationName: string } }) => {
+const Destination = () => {
   // This would typi
   // cally come from your CMS or API
   const [activeTab, setActiveTab] = useState(0);
-  // const destinationData = {
-  //   india: {
-  //     title: "Luxury India Holidays 2025/2026",
-  //     description:
-  //       "From the high Himalayas to the backwaters of Kerala, India offers spectacular natural beauty in every shape and form, ensuring a luxury holiday to India is something you will not forget.",
-  //     heroImage: "/images/destinations/india/heroBannerRight.jpg",
-  //     breadcrumbs: [
-  //       { label: "Home", href: "/" },
-  //       { label: "Indian Subcontinent", href: "/regions/indian-subcontinent" },
-  //       { label: "India Holidays", href: "/destination/india" },
-  //     ],
-  //     tabs: {
-  //       "india-holidays": {
-  //         title: "India Holidays",
-  //         content: {
-  //           description:
-  //             "India cannot be easily described or summed up. It's a beautiful mix of people and places, a patchwork quilt of a thousand polarised traditions and cultures brought together into one colourful expression.",
-  //           paragraphs: [
-  //             "A luxury holiday in India is something that will exceed your expectations. Explore India's rural heartlands to see the Royal Bengal Tiger and sample India's authentic village life. Watch history come to life in the remaining colonial and Mughal architecture, as well as the palaces of Rajasthan. Whether you are searching for your perfect honeymoon, want an in-depth luxury cultural tour, or a family wanting to create life-changing memories on a family adventure, we'll tailor a private tour that is just right for you.",
-  //             "Everything we do is customised - our itinerary suggestions are simply starting points to get the ideas flowing, as we always start with a blank piece of paper and build your ideal journey from there. We use the very best staff in India, from expert private guides to amazing drivers using the best vehicles, ensuring your holiday to India runs seamlessly.",
-  //             "Between the team at Scott Dunn, we have spent many years living, working and travelling through India. India is a place where specialist knowledge of the destination is essential when planning a tour to the subcontinent, and that's where Scott Dunn comes in. We love India, and we simply want you to love it too.",
-  //           ],
-  //         },
-  //       },
-  //       "tour-ideas": {
-  //         title: "Tour Ideas",
-  //         content: {
-  //           description:
-  //             "Discover our handpicked selection of tour ideas designed to showcase the very best of India's diverse landscapes and rich cultural heritage.",
-  //           paragraphs: [
-  //             "From the iconic Golden Triangle featuring Delhi, Agra, and Jaipur, to the serene backwaters of Kerala, our tour ideas are crafted to provide authentic and unforgettable experiences.",
-  //             "Explore the royal palaces of Rajasthan, embark on wildlife safaris in search of the magnificent Bengal Tiger, or discover the spiritual heart of India in Varanasi and Rishikesh.",
-  //             "Each tour idea serves as inspiration for your perfect Indian adventure, which we'll customize completely to match your interests, travel style, and preferences.",
-  //           ],
-  //         },
-  //       },
-  //       "things-to-do": {
-  //         title: "Things to Do",
-  //         content: {
-  //           description:
-  //             "Experience the extraordinary diversity of activities and adventures that India has to offer, from cultural immersion to wildlife encounters.",
-  //           paragraphs: [
-  //             "Take a sunrise boat ride along the sacred Ganges River in Varanasi, witness the grandeur of the Taj Mahal at dawn, or enjoy a private cooking class with a local family in rural Rajasthan.",
-  //             "Embark on thrilling tiger safaris in Ranthambore or Bandhavgarh National Parks, explore the bustling markets of Old Delhi, or relax on pristine beaches in Goa.",
-  //             "For the adventurous, consider hot air ballooning over Jaipur, white-water rafting in Rishikesh, or trekking in the foothills of the Himalayas in Himachal Pradesh.",
-  //           ],
-  //         },
-  //       },
-  //       "places-to-visit": {
-  //         title: "Places to Visit",
-  //         content: {
-  //           description:
-  //             "Discover India's most captivating destinations, each offering unique experiences and unforgettable memories.",
-  //           paragraphs: [
-  //             "The Golden Triangle of Delhi, Agra, and Jaipur showcases India's imperial history, from Mughal monuments to Rajput palaces. Rajasthan's desert cities of Jodhpur and Jaisalmer offer stunning architecture and desert adventures.",
-  //             "Kerala's backwaters provide tranquil houseboat experiences, while the hill stations of Munnar and Thekkady offer cool respites and spice plantations. The beaches of Goa provide the perfect tropical finale to any Indian journey.",
-  //             "For wildlife enthusiasts, the national parks of Madhya Pradesh and Rajasthan offer some of the best tiger viewing opportunities in the world, while the Himalayas provide breathtaking mountain scenery and spiritual experiences.",
-  //           ],
-  //         },
-  //       },
-  //     },
-  //   },
-  // };
-
   const destination = sriLanka;
 
   const getActiveTabContent = () => {
