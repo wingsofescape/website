@@ -1,13 +1,10 @@
 "use client";
-import Footer from "@/components/footer";
 import EnquireNow from "@/components/forms/enquireForm";
-import Header from "@/components/shared/header";
 import React from "react";
 
 const EnquireNowPage = () => {
   return (
     <>
-      <Header />
       <section
         className="relative w-full h-48 flex items-center"
         style={{
@@ -30,7 +27,6 @@ const EnquireNowPage = () => {
       <div className="w-max flex justify-center mx-auto mt-8">
         <EnquireNow />
       </div>
-      <Footer />
     </>
   );
 };
