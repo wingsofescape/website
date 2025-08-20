@@ -200,16 +200,16 @@ export const HeroBanner = () => {
             your perfect holiday.
           </p>
           <div className="flex flex-wrap gap-6">
-            <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
+            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
               FOR FAMILIES
             </button>
-            <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
+            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
               FOR COUPLES
             </button>
-            <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
+            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
               HOW WE WORK
             </button>
-            <button className="bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
+            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
               UNIQUE TRIPS
             </button>
           </div>

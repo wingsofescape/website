@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import sriLanka from "@/data/countries/SriLanka/sriLanka.json"; // Adjust the import based on your data structure
+import { TopTours } from "@/components/topTours";
 
 const Destination = () => {
   // This would typi
@@ -20,7 +21,7 @@ const Destination = () => {
         {/* Mobile-First Design */}
         <div className="lg:hidden">
           {/* Mobile Breadcrumbs */}
-          <nav className="bg-[#00332a] px-4 py-3">
+          <nav className="bg-theme-primary-dark px-4 py-3">
             <div className="flex items-center space-x-2 text-sm">
               {destination.breadcrumbs.map((crumb, index) => (
                 <React.Fragment key={index}>
@@ -51,7 +52,7 @@ const Destination = () => {
           </div>
 
           {/* Mobile Content */}
-          <div className="bg-[#00332a] text-white px-4 py-8">
+          <div className="bg-theme-primary-dark text-white px-4 py-8">
             <h1 className="text-2xl md:text-3xl font-bold mb-4 font-serif">
               {destination.heroBanner.title}
             </h1>
@@ -67,9 +68,9 @@ const Destination = () => {
           <div className="relative ">
             <div className="inset-0 grid grid-cols-2">
               {/* Left Half - Content */}
-              <div className="bg-[#00332a] text-white flex flex-col items-left px-30 py-5">
+              <div className="bg-theme-primary-dark text-white flex flex-col items-left px-30 py-5">
                 {/* Desktop Breadcrumbs */}
-                <nav className="bg-[#00332a] pt-4">
+                <nav className="bg-theme-primary-dark pt-4">
                   <div className="max-w-7xl mx-auto">
                     <div className="flex items-center space-x-3 text-xs">
                       {destination.breadcrumbs.map((crumb, index) => (
@@ -116,14 +117,7 @@ const Destination = () => {
       </section>
 
       {/* Rest of the destination page content would go here */}
-      {/* <section className="py-16 px-4 lg:px-12">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8 text-[#00332a] font-serif">
-            Explore {params.destinationName} Packages
-          </h2>
-          Add your destination packages, itineraries, etc. here
-        </div>
-      </section> */}
+
       <section className="py-8 px-4 lg:px-12 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           {/* Tab Navigation */}
@@ -174,7 +168,7 @@ const Destination = () => {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
                     href="/enquire"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-[#00332a] text-white font-semibold rounded-lg hover:bg-[#004236] transition-colors duration-300"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-theme-primary-dark text-white font-semibold rounded-lg hover:bg-[#004236] transition-colors duration-300"
                   >
                     Plan Your Journey
                     <svg
@@ -193,7 +187,7 @@ const Destination = () => {
                   </Link>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center px-6 py-3 border-2 border-[#00332a] text-[#00332a] font-semibold rounded-lg hover:bg-[#00332a] hover:text-white transition-all duration-300"
+                    className="inline-flex items-center justify-center px-6 py-3 border-2 border-[#00332a] text-[#00332a] font-semibold rounded-lg hover:bg-theme-primary-dark hover:text-white transition-all duration-300"
                   >
                     Speak to an Expert
                   </Link>
@@ -203,6 +197,9 @@ const Destination = () => {
           </div>
         </div>
       </section>
+
+      {/* Rest of the destination page content would go here */}
+      <TopTours />
     </div>
   );
 };
