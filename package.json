@@ -12,10 +12,17 @@
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",
     "@prisma/adapter-neon": "^6.13.0",
+    "@sanity/client": "^7.8.2",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^4.5.0",
     "next": "15.3.5",
+    "next-sanity": "^10.0.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "ws": "^8.18.3"
+    "sanity": "^4.5.0",
+    "styled-components": "^6.1.19",
+    "ws": "^8.18.3",
+    "dotenv": "^17.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -25,6 +32,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/ws": "^8.18.1",
+    "autoprefixer": "^10.4.21",
     "bufferutil": "^4.0.9",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
