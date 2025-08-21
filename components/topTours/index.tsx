@@ -112,16 +112,6 @@ export const TopTours = () => {
 
 // Tour Card Component
 const TourCard = ({ tour }: { tour: Tour }) => {
-  // Placeholder for when images aren't available
-  const PlaceholderImage = ({ title }: { title: string }) => (
-    <div className="w-full h-full bg-gradient-to-br from-emerald-600 via-teal-500 to-blue-500 flex items-center justify-center">
-      <div className="text-center text-white p-4">
-        <div className="text-4xl mb-2">🏝️</div>
-        <div className="text-sm font-medium">{title.split(":")[0]}</div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="bg-white -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
       {/* Tour Image */}
@@ -131,8 +121,6 @@ const TourCard = ({ tour }: { tour: Tour }) => {
           backgroundImage: `url(${tour.image})`,
         }}
       >
-        {/* <PlaceholderImage title={tour.title} /> */}
-
         {/* Nights Badge */}
         <div className="absolute top-4 left-0 bg-theme-primary-light text-white p-2 text-sm font-bold rounded-tr-sm rounded-br-sm">
           <div className="text-xl leading-none">{tour.nights}</div>
