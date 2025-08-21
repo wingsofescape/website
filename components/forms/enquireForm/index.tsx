@@ -83,7 +83,7 @@ export default function EnquireNow() {
         <div>
           <label
             id="destinationLabel"
-            className="block font-bold text-[#004236] mb-2 text-lg"
+            className="block font-bold test-white mb-2 text-lg"
           >
             Where would you like to go?
           </label>
@@ -103,7 +103,7 @@ export default function EnquireNow() {
           </select>
         </div>
         <div>
-          <label className="block font-bold text-[#004236] mb-2 text-lg">
+          <label className="block font-bold test-white mb-2 text-lg">
             Guests
           </label>
           <div className="flex items-center gap-6">
@@ -154,7 +154,7 @@ export default function EnquireNow() {
           </div>
         </div>
         <div>
-          <label className="block font-bold text-[#004236] mb-2 text-lg">
+          <label className="block font-bold test-white mb-2 text-lg">
             When would you like to go?
           </label>
           <div className="flex gap-2">
@@ -187,7 +187,7 @@ export default function EnquireNow() {
           </div>
         </div>
         <div>
-          <label className="block font-bold text-[#004236] mb-2 text-lg">
+          <label className="block font-bold test-white mb-2 text-lg">
             How much are you looking to spend? *
           </label>
           <select
@@ -207,7 +207,7 @@ export default function EnquireNow() {
 
       {/* Your Details */}
       <div className="bg-[#ededed] -mx-8 px-8 py-6 mb-8">
-        <h2 className="text-2xl font-bold text-[#004236] mb-2">Your Details</h2>
+        <h2 className="text-2xl font-bold test-white mb-2">Your Details</h2>
         <p className="mb-6 text-gray-700">
           Please add a few details below and we will call you to discuss your
           plans.
@@ -340,7 +340,7 @@ export default function EnquireNow() {
 
       {/* Tell Us More */}
       <div>
-        <h2 className="text-2xl font-bold text-[#004236] mb-2">Tell Us More</h2>
+        <h2 className="text-2xl font-bold test-white mb-2">Tell Us More</h2>
         <p className="mb-2 text-gray-700">
           Please share your ideas and initial plans for your trip below so our
           travel specialists can help you bring them to life.

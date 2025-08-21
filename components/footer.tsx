@@ -2,7 +2,7 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#00332a] text-white pt-14 pb-7">
+    <footer className="bg-theme-primary-dark text-white pt-14 pb-7">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
         {/* Newsletter */}
         <div>
@@ -39,7 +39,7 @@ export const Footer = () => {
             </div>
             <button
               type="submit"
-              className="w-1/2 bg-[#FFB6A3] hover:bg-[#ff9e85] text-black font-medium py-3 rounded transition-all duration-200 text-base"
+              className="w-1/2 bg-theme-primary-light hover:bg-theme-primary text-white font-medium py-3 rounded transition-all duration-200 text-base"
             >
               SIGN UP
             </button>
@@ -182,7 +182,7 @@ export const Footer = () => {
       </div>
       {/* Accessibility Icon */}
       {/* <button
-        className="fixed left-6 bottom-6 bg-[#FFB6A3] w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-50"
+        className="fixed left-6 bottom-6 bg-theme-primary-light w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-50"
         aria-label="Accessibility"
       >
         <svg
