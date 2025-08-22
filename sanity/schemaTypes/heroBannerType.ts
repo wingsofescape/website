@@ -17,16 +17,23 @@ export const heroBannerType = defineType({
       name: "heroBannerButtons",
       type: "array",
       of: [
-        defineField({
-          name: "heroBannerButton",
-          type: "object",
-          fields: [
-            defineField({
-              name: "link",
-              type: "url",
-            }),
-          ],
-        }),
+       {
+              type: 'object', // This indicates an object within the array
+              name: 'buttnos', // A unique name for this object type
+              fields: [
+                {
+                  name: 'title',
+                  title: 'Title',
+                  type: 'string',
+                },
+                {
+                  name: 'link',
+                  title: 'Link',
+                  type: 'url',
+                },
+                // Add more fields for your object as needed
+              ],
+            },
       ],
     }),
     defineField({
