@@ -36,9 +36,11 @@ export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursCon
           <div className="w-full lg:w-7/12">
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
               {recommendedTours.length && recommendedTours.map((tour) => (
-                <div className="w-full sm:w-[calc(50%-0.5rem)] flex-grow" key={tour.id}>
-                  <TourCard  tour={tour.recommendedContent} />
-                </div>
+                tour.recommendedContent ? (
+                  <div className="w-full sm:w-[calc(50%-0.5rem)] flex-grow" key={tour.id}>
+                    <TourCard tour={tour.recommendedContent} />
+                  </div>
+                ) : null
               ))}
             </div>
           </div>
