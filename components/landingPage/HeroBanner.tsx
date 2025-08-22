@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import HeroCarousal2 from "@/public/images/HeroCarousal.jpg";
 import { type SanityDocument } from "next-sanity";
@@ -54,9 +54,7 @@ export const HeroBanner = () => {
         {/* CSS Blob Background */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-20 left-20 w-53 h-52 md:w-48 md:h-48 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full opacity-20 blob-animation"></div>
-          {/* <div className="absolute top-20 right-16 w-24 h-24 md:w-36 md:h-36 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-15 blob-animation-delay"></div> */}
-          {/* <div className="absolute bottom-16 left-1/4 w-28 h-28 md:w-40 md:h-40 bg-gradient-to-r from-green-400 to-teal-500 rounded-full opacity-18 blob-animation-slow"></div> */}
-          {/* <div className="absolute bottom-32 right-10 w-20 h-20 md:w-32 md:h-32 bg-gradient-to-r from-pink-400 to-red-500 rounded-full opacity-12 blob-animation-reverse"></div> */}
+          
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
