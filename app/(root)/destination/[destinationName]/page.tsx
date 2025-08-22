@@ -1,19 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { Usable, use, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import sriLanka from "@/data/countries/SriLanka/sriLanka.json"; // Adjust the import based on your data structure
+import {allDestination, allTours} from  "@/data/countries";
 import { TopTours } from "@/components/topTours";
+import { IBreadcrumb, ITabbedSection } from "@/app/models/destinations";
 
-const Destination = () => {
-  // This would typi
-  // cally come from your CMS or API
+const Destination = ({ params } : {params: Usable<{ destinationName: string; }>}) => {
+  const {destinationName} = use<{destinationName: string}>(params)
   const [activeTab, setActiveTab] = useState(0);
-  const destination = sriLanka;
+  
+  const destination = allDestination[destinationName as keyof typeof allDestination];
+  const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
 
   const getActiveTabContent = () => {
     return destination.tabbedSection[activeTab] || destination.tabbedSection[0];
   };
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       {/* Hero Banner Section */}
@@ -23,7 +26,7 @@ const Destination = () => {
           {/* Mobile Breadcrumbs */}
           <nav className="bg-theme-primary-dark px-4 py-3">
             <div className="flex items-center space-x-2 text-sm">
-              {destination.breadcrumbs.map((crumb, index) => (
+              {destination.breadcrumbs.map((crumb : IBreadcrumb, index : number) => (
                 <React.Fragment key={index}>
                   <Link
                     href={crumb.href}
@@ -44,9 +47,10 @@ const Destination = () => {
             <Image
               src={destination.heroBanner.heroImage}
               alt={destination.heroBanner.title}
-              fill
-              className="object-cover"
               priority
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           </div>
@@ -66,14 +70,14 @@ const Destination = () => {
         <div className="hidden lg:block">
           {/* Desktop Hero Section - Half and Half */}
           <div className="relative ">
-            <div className="inset-0 grid grid-cols-2">
+            <div className="inset-0 flex">
               {/* Left Half - Content */}
-              <div className="bg-theme-primary-dark text-white flex flex-col items-left px-30 py-5">
+              <div className="bg-theme-primary-dark text-white flex flex-col items-left px-30 py-5 w-1/2">
                 {/* Desktop Breadcrumbs */}
                 <nav className="bg-theme-primary-dark pt-4">
                   <div className="max-w-7xl mx-auto">
                     <div className="flex items-center space-x-3 text-xs">
-                      {destination.breadcrumbs.map((crumb, index) => (
+                      {destination.breadcrumbs.map((crumb : IBreadcrumb, index:number) => (
                         <React.Fragment key={index}>
                           <Link
                             href={crumb.href}
@@ -100,11 +104,12 @@ const Destination = () => {
               </div>
 
               {/* Right Half - Image */}
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden flex-1 w-1/2">
                 <Image
                   src={destination.heroBanner.heroImage}
                   alt={destination.heroBanner.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover object-bottom hover:scale-105 transition-transform duration-700"
                   priority
                 />
@@ -123,7 +128,7 @@ const Destination = () => {
           {/* Tab Navigation */}
           <div className="mb-8">
             <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200">
-              {destination.tabbedSection.map((tab, index) => (
+              {destination.tabbedSection.map((tab : ITabbedSection, index: number) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(index)}
@@ -152,7 +157,7 @@ const Destination = () => {
                 </p>
                 {getActiveTabContent().content?.paragraphs &&
                   getActiveTabContent().content?.paragraphs.map(
-                    (paragraph, index) => (
+                    (paragraph : string, index: number) => (
                       <p
                         key={index}
                         className="text-gray-700 leading-relaxed mb-6"
@@ -162,44 +167,13 @@ const Destination = () => {
                     )
                   )}
               </div>
-
-              {/* Call-to-Action */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link
-                    href="/enquire"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-theme-primary-dark text-white font-semibold rounded-lg hover:bg-[#004236] transition-colors duration-300"
-                  >
-                    Plan Your Journey
-                    <svg
-                      className="ml-2 w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center px-6 py-3 border-2 border-[#00332a] text-[#00332a] font-semibold rounded-lg hover:bg-theme-primary-dark hover:text-white transition-all duration-300"
-                  >
-                    Speak to an Expert
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Rest of the destination page content would go here */}
-      <TopTours />
+     <TopTours tours={tours}   />
     </div>
   );
 };

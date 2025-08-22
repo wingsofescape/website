@@ -238,8 +238,8 @@ export const HeroBanner = () => {
              {content?.heroBannerSubHeading}
              </p>
           <div className="flex flex-wrap gap-6">
-            {content?.heroBannerButtons && content?.heroBannerButtons.map((button) => (
-              <Link key={button?.title} className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200" href={button.link}>
+            {content?.heroBannerButtons && content?.heroBannerButtons.map((button, index) => (
+              <Link key={button?.title+index} className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200" href={button.link}>
                 {button?.title}
               </Link>
             ))}

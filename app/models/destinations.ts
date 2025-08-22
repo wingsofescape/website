@@ -1,10 +1,10 @@
 export interface IDestination {
-  heroBanner: HeroBanner;
-  tabbedSection: TabbedSection[];
-  breadcrumbs: Breadcrumb[];
+  heroBanner: IHeroBanner;
+  tabbedSection: ITabbedSection[];
+  breadcrumbs: IBreadcrumb[];
 }
 
-export interface HeroBanner {
+export interface IHeroBanner {
   name: string;
   title: string;
   slug: string;
@@ -12,45 +12,50 @@ export interface HeroBanner {
   heroImage: string;
 }
 
-export interface Breadcrumb {
+export interface IBreadcrumb {
   label: string;
   href: string;
 }
 
-export interface TabbedSection {
+export interface ITabbedSection {
   id: string;
   title: string;
-  content: Content;
+  content: IContent;
 }
 
-export interface Content {
+export interface IContent {
   description: string;
   paragraphs?: string[];
-  recommendedTours?: RecommendedTours;
-  tours?: Tour[];
+  toursSection?: ITourSection;
 }
-
-export interface RecommendedTours {
+export interface ITourSection {
+  recommendedToursContent: IRecommendedToursContent;
+  tours: ITour[];
+}
+export interface IRecommendedToursContent {
   title: string;
   description: string;
 }
 
-export interface Tour {
+export interface ITour {
   id: string;
   title: string;
-  duration: string;
+  duration?: string;
   itineraryName: string;
   description: string;
   image: string;
-  href: string;
-  recommended?: boolean;
-  recommendedContent?: RecommendedContent;
+  href?: string;
+  recommended: boolean;
+  recommendedContent?: IRecommendedContent;
 }
 
-export interface RecommendedContent {
-  id: string;
+export interface IRecommendedContent {
+  id: number;
   title: string;
-  duration: string;
+  duration?: string;
   image: string;
-  href: string;
+  href?: string;
+  nights : number;
+  price: number;
+  slug: string;
 }
