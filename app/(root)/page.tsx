@@ -1,4 +1,5 @@
 import { HeroBanner } from "@/components/landingPage/HeroBanner";
+import Testimonials from "@/components/testimonials";
 
 import Background1 from "@/public/images/bg1.jpg";
 import Background2 from "@/public/images/bg2.jpg";
@@ -276,6 +277,10 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Testimonials Section */}
+        <Testimonials />
+
         <section className="flex flex-col md:flex-row w-full h-[600px]">
           {/* Left Block */}
           <div
