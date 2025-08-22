@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursContent: IRecommendedToursContent }}) => {
   const { tours, recommendedToursContent } = props.tours;
   if(tours.length === 0) return null;
-  const recommendedTours  = tours.filter((tour: any) => tour.recommended);
+  const recommendedTours  = tours.filter((tour : ITour) => tour.recommended);
   return (
     <section className="py-8 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -49,7 +49,7 @@ export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursCon
 };
 
 // Tour Card Component
-const TourCard = ({ tour } ) => {
+const TourCard = ({ tour } : { tour: ITour }) => {
   const destinationName  = usePathname().split("/")[2];
   return (
     <div className="bg-white -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
