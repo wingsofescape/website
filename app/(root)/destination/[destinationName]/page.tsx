@@ -1,12 +1,12 @@
 "use client";
-import React, { Usable, use, useState } from "react";
+import React, { use, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {allDestination, allTours} from  "@/data/countries";
 import { TopTours } from "@/components/topTours";
 import { IBreadcrumb, ITabbedSection } from "@/app/models/destinations";
 
-const Destination = ({ params } : {params: Usable<{ destinationName: string; }>}) => {
+const Destination = ({ params } : {params: Promise<{ destinationName: string; }>}) => {
   const {destinationName} = use<{destinationName: string}>(params)
   const [activeTab, setActiveTab] = useState(0);
   
