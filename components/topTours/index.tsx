@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import {  IRecommendedToursContent, ITour } from "@/app/models/destinations";
-import { usePathname } from "next/navigation";
+import {  IRecommendedContent, IRecommendedToursContent, ITour } from "@/app/models/destinations";
+import Image from 'next/image'
 
 export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursContent: IRecommendedToursContent }}) => {
   const { tours, recommendedToursContent } = props.tours;
@@ -49,8 +49,7 @@ export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursCon
 };
 
 // Tour Card Component
-const TourCard = ({ tour } : { tour: ITour }) => {
-  const destinationName  = usePathname().split("/")[2];
+const TourCard = ({ tour } : { tour: IRecommendedContent }) => {
   return (
     <div className="bg-white -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
       {/* Tour Image */}
@@ -58,15 +57,12 @@ const TourCard = ({ tour } : { tour: ITour }) => {
         className={`relative h-60 overflow-hidden bg-cover bg-center bg-no-repeat hover:scale-101 flex flex-col`}
       >
         {/* Tour Image with fallback */}
-        <img
+        <Image
           src={tour.image}
           alt={tour.title}
           className="absolute inset-0 w-full h-full object-cover"
-          onError={(e) => {
-            e.preventDefault();
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = `/images/destinations/${destinationName}/fallbackRecommendedTour.jpg`; // Replace with your fallback image path
-          }}
+          width={400}
+          height={240}
         />
 
         {/* Nights Badge */}
