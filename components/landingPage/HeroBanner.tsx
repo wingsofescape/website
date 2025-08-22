@@ -1,9 +1,52 @@
 "use client";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import HeroCarousal2 from "@/public/images/HeroCarousal2.jpg";
+import HeroCarousal2 from "@/public/images/HeroCarousal.jpg";
+import { type SanityDocument } from "next-sanity";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "@/sanity/lib/client";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+
+const data = {
+  "_id": "66065ac2-cdc3-45a3-adbf-ffaf90b5cbbe",
+  "heroBannerButtons": [{
+    "link": "https://www.wingsofescape.com/",
+    "title": "For Families"
+  }],
+  "heroBannerHeading": "Let us help you plan your next luxury trip",
+  "heroBannerImage": {
+    "_type": "image",
+    "asset": {
+      "_ref": "image-1d76dc844c9df7e064439417602c4491dd2e017f-6000x4000-jpg",
+      "_type": "reference"
+    }
+  },
+  "heroBannerSubHeading": "Wherever you want to go, our Travel Specialists can design a perfect holiday for you"
+}
+
+const POSTS_QUERY = `*[
+  _type == "heroBanner"
+]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`;
+const { projectId, dataset } = client.config();
+const options = { next: { revalidate: 30000 } };
+
+const urlFor = (source: SanityImageSource) =>
+  projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    : null;
 
 export const HeroBanner = () => {
+  const [content, setContent] = useState(data);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options)
+      setContent(JSON.parse(JSON.stringify(data[0])));
+    }
+  fetchData();
+  }, []);
+  
+  const image = content.heroBannerImage ? urlFor(content.heroBannerImage.asset)?.url() : HeroCarousal2.src;
   return (
     <>
       {/* Mobile Version - New responsive design with CSS blobs */}
@@ -179,10 +222,11 @@ export const HeroBanner = () => {
       </section>
 
       {/* Desktop Version - Original design with background image */}
+      
       <section
         className="hidden lg:flex relative h-[600px] items-center"
         style={{
-          backgroundImage: `url(${HeroCarousal2.src})`,
+          backgroundImage: `url(${image?.toString()})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -190,28 +234,19 @@ export const HeroBanner = () => {
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 max-w-5xl mx-auto px-8">
           <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg font-serif">
-            Let us help you plan
-            <br />
-            your luxury trip
+            {content?.heroBannerHeading}
           </h2>
           <p className="text-2xl lg:text-3xl text-white font-semibold mb-8 drop-shadow">
-            Wherever you want to go, our Travel Specialists can design
-            <br />
-            your perfect holiday.
-          </p>
+             {content?.heroBannerSubHeading}
+             </p>
           <div className="flex flex-wrap gap-6">
-            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-              FOR FAMILIES
-            </button>
-            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-              FOR COUPLES
-            </button>
-            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-              HOW WE WORK
-            </button>
-            <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200">
-              UNIQUE TRIPS
-            </button>
+            {content?.heroBannerButtons && content?.heroBannerButtons.map((button) => (
+              <Link key={button?.title} className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200" href={button.link}>
+                {button?.title}
+              </Link>
+            ))}
+            
+            
           </div>
         </div>
       </section>
