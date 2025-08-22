@@ -27,8 +27,8 @@
         { "name": "Japan", "href": "/destination/japan" },
         { "name": "Vietnam", "href": "/destination/vietnam" },
         { "name": "Africa", "href": "/destination/africa" },
-        { "name": "Europe", "href": "/destination/europe" },
-        { "name": "India", "href": "/destination/india" }
+        { "name": "India", "href": "/destination/india" },
+         { "name": "Sri Lanka", "href": "/destination/srilanka" }
       ]
     },
     "holidayIdeas": {
