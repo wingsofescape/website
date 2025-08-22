@@ -1,6 +1,11 @@
 {
-  "tours": {
-    "sri-lanka-uncovered": {
+  "recommendedToursContent": {
+            "title": "Recommended Tours in Sri Lanka",
+            "description": "Ready to get to know Sri Lanka's Hill Country or discover the Cultural Triangle's top highlights? Whether you want to spend your time visiting the tea plantations of Nuwara Eliya or riding through Colombo on a tuk-tuk, our destination experts will plan a bespoke tour to help make your luxury Sri Lanka holiday truly memorable."
+          },
+  "tours": [
+    {
+      "id": "sri-lanka-uncovered",
       "title": "Sri Lanka Uncovered: Heritage, Nature & Shores",
       "duration": "10 Nights",
       "itineraryName": "2N Kandy | 2N Dambulla | 2N Nuwara Eliya | 2N Galle | 2N Colombo",
@@ -12,25 +17,18 @@
           "Tea plantation experiences in Nuwara Eliya",
           "Colonial heritage in Galle Fort",
           "Urban exploration in vibrant Colombo"
-        ],
-        "imageArray": [
-          "ArrivalImage1",
-          "ArrivalImage2",
-          "KandyImage3",
-          "KandyImage4",
-          "LeizurImage5",
-          "LeizurImage6",
-          "LeizurImage7",
-          "LeizurImage8",
-          "LeizurImage9",
-          "LeizurImage10",
-          "LeizurImage11",
-          "LeizurImage12",
-          "LaosImage1",
-          "LaosImage2",
-          "FerryWheel1"
         ]
       },
+      "recommended": true,
+      "recommendedContent": {
+        "id": 1,
+        "title": "The Best of Sri Lanka: Culture, Wildlife & Coast",
+        "nights": 14,
+        "price": 7800,
+        "image": "/images/destinations/sriLanka/recommendedTour1.jpg",
+        "slug": "best-of-sri-lanka"
+      },
+
       "itinerary": [
         {
           "day": 1,
@@ -84,7 +82,8 @@
         }
       ]
     },
-    "mystic-sri-lanka": {
+    {
+      "id": "mystic-sri-lanka",
       "title": "Mystic Sri Lanka: Legends, Landscapes & Lost Shores",
       "duration": "8 Nights",
       "itineraryName": "2N Galle | 2N Nuwara Eliya | 3N Kandy | 1N Colombo",
@@ -96,22 +95,16 @@
           "Tea plantation visits in Nuwara Eliya",
           "Sigiriya Rock Fortress exploration",
           "Elephant encounters at Pinnawala"
-        ],
-        "imageArray": [
-          "City1Image3",
-          "City1Image4",
-          "LeizurImage1",
-          "LeizurImage2",
-          "LaosImage1",
-          "LaosImage2",
-          "LeizurImage7",
-          "LeizurImage8",
-          "KandyImage1",
-          "KandyImage2",
-          "LeizurImage10",
-          "LeizurImage11",
-          "LeizurImage12"
         ]
+      },
+      "recommended": true,
+      "recommendedContent": {
+        "id": 4,
+        "title": "Sri Lanka Raw & Real: Heritage, Highlands & Hidden Coves",
+        "nights": 10,
+        "price": 4500,
+        "image": "/images/destinations/sriLanka/recommendedTour3.jpg",
+        "slug": "best-of-sri-lanka"
       },
       "itinerary": [
         {
@@ -156,7 +149,8 @@
         }
       ]
     },
-    "wilderness-heritage-luxe": {
+    {
+      "id": "wilderness-heritage-luxe",
       "title": "Wilderness & Heritage Luxe",
       "duration": "6 Nights",
       "itineraryName": "2N Yala | 3N Bentota | 1N Colombo",
@@ -169,6 +163,15 @@
           "Colonial exploration in Galle",
           "Urban discoveries in Colombo"
         ]
+      },
+      "recommended": true,
+      "recommendedContent": {
+        "id": 11,
+        "title": "Sri Lanka Raw & Real: Heritage, Highlands & Hidden Coves",
+        "nights": 10,
+        "price": 4500,
+        "image": "/images/destinations/sriLanka/recommendedTour4.jpg",
+        "slug": "best-of-sri-lanka"
       },
       "itinerary": [
         {
@@ -203,7 +206,8 @@
         }
       ]
     },
-    "luxe-secrets-lanka": {
+    {
+      "id": "luxe-secrets-lanka",
       "title": "Luxe Secrets of Lanka",
       "duration": "4 Nights",
       "itineraryName": "1N Colombo | 3N Nuwara Eliya",
@@ -216,6 +220,15 @@
           "Gregory Lake sunset experiences",
           "Colonial tea plantation visits"
         ]
+      },
+      "recommended": false,
+      "recommendedContent": {
+        "id": 2,
+        "title": "Treasures of the Tropics: Sri Lanka",
+        "nights": 10,
+        "price": 5600,
+        "image": "/images/destinations/sriLanka/recommendedTour2.jpg",
+        "slug": "best-of-sri-lanka"
       },
       "itinerary": [
         {
@@ -240,5 +253,5 @@
         }
       ]
     }
-  }
+  ]
 }

@@ -4,12 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import headerData from "@/data/header.json";
 import { getConfig } from "@/config/featureFlags";
-
+import { useRouter } from "next/navigation";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isCountrySelectorVisible = getConfig("showCountrySelector");
   const isCurrencySelectorVisible = getConfig("showCurrencySelector");
+  const router = useRouter();
 
+  const handleDestinationClick = (destinationLink: string) => {
+    router.push(destinationLink);
+  };
   const renderDropdown = (section: {
     label: string;
     items: { name: string; href: string }[];
@@ -21,8 +25,11 @@ const Header = () => {
           <li
             key={item.name}
             className="px-4 py-2 hover:bg-amber-100 hover:rounded cursor-pointer text-xs font-semibold"
+            onClick={() => {
+              handleDestinationClick(item.href);
+            }}
           >
-            <Link href={item.href}>{item.name}</Link>
+            <p>{item.name}</p>
           </li>
         ))}
       </ul>
