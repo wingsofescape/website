@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useState } from "react";
+import React, { use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { allDestination, allTours } from "@/data/countries";
@@ -15,7 +15,7 @@ const Destination = ({
   params: Promise<{ destinationName: string }>;
 }) => {
   const { destinationName } = use<{ destinationName: string }>(params);
-  const [activeTab, setActiveTab] = useState(0);
+  // const [activeTab, setActiveTab] = useState(0);
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
@@ -26,9 +26,9 @@ const Destination = ({
 
   const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
 
-  const getActiveTabContent = () => {
-    return destination.tabbedSection[activeTab] || destination.tabbedSection[0];
-  };
+  // const getActiveTabContent = () => {
+  //   return destination.tabbedSection[activeTab] || destination.tabbedSection[0];
+  // };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
