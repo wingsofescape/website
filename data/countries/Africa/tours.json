@@ -1,8 +1,8 @@
 {
   "recommendedToursContent": {
-    "title": "Recommended Tours in Africa",
-    "description": "Ready to get to know Africa's stunning landscapes or discover the rich cultural heritage? Whether you want to spend your time exploring the bustling streets of Marrakech or relaxing in the serene savannahs of Serengeti, our destination experts will plan a bespoke tour to help make your luxury Africa holiday truly memorable."
-  },
+            "title": "Recommended Tours in Sri Lanka",
+            "description": "Ready to get to know Sri Lanka's Hill Country or discover the Cultural Triangle's top highlights? Whether you want to spend your time visiting the tea plantations of Nuwara Eliya or riding through Colombo on a tuk-tuk, our destination experts will plan a bespoke tour to help make your luxury Sri Lanka holiday truly memorable."
+          },
   "tours": [
     {
       "id": "sri-lanka-uncovered",
@@ -103,7 +103,7 @@
         "title": "Sri Lanka Raw & Real: Heritage, Highlands & Hidden Coves",
         "nights": 10,
         "price": 4500,
-        "image": "/images/destinations/sriLanka/recommendedTour4.jpg",
+        "image": "/images/destinations/sriLanka/recommendedTour3.jpg",
         "slug": "best-of-sri-lanka"
       },
       "itinerary": [

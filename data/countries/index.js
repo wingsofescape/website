@@ -7,6 +7,7 @@ import srilankaTours from "@/data/countries/SriLanka/tours";
 import indiaTours from "@/data/countries/India/tours";
 import vietnamTours from "@/data/countries/Vietnam/tours";
 import japanTours from "@/data/countries/Japan/tours";
+import africaTours from "@/data/countries/Africa/tours";
 
 export const allDestination = { srilanka, india, vietnam, japan, africa };
-export const allTours = {srilankaTours, indiaTours, vietnamTours, japanTours}
+export const allTours = {srilankaTours, indiaTours, vietnamTours, japanTours, africaTours}
