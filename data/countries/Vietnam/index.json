@@ -2,33 +2,33 @@
   "destinationBreadcrumbs": [
     { "label": "Home", "ref": "/" },
     {
-      "label": "Indian Subcontinent",
-      "ref": "/regions/indian-subcontinent"
+      "label": "Vietnam",
+      "ref": "/regions/vietna-subcontinent"
     },
-    { "label": "India Holidays", "ref": "/destination/india" }
+    { "label": "Vietnam Holidays", "ref": "/destination/vietnam" }
   ],
   "destinationHeroBanner": {
-    "name": "India",
-    "title": "Luxury India Holidays 2025/2026",
-    "slug": "india",
-    "description": "Combining stunning natural landscapes and beaches with bustling cities and ancient cultural sites, India is a country like no other. With a vibrant culture, distinctive cuisine and many destinations to discover, there are endless experiences that everyone can enjoy on a holiday to India.",
+    "name": "Vietnam",
+    "title": "Luxury Vietnam Holidays 2025/2026",
+    "slug": "vietnam",
+    "description": "Combining stunning natural landscapes and beaches with bustling cities and ancient cultural sites, Vietnam is a country like no other. With a vibrant culture, distinctive cuisine and many destinations to discover, there are endless experiences that everyone can enjoy on a holiday to Vietnam.",
     "heroImage": {"asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"}
   },
   "destinationContent": {
    "holidaysOverview": {
       "id": "holidays",
-      "title": "India Holidays",
+      "title": "Vietnam Holidays",
       "content": {
-        "description": "Discover our handpicked selection of tour ideas designed to showcase the very best of India's diverse landscapes and rich cultural heritage.",
+        "description": "Discover our handpicked selection of tour ideas designed to showcase the very best of Vietnam's diverse landscapes and rich cultural heritage.",
         "paragraphs": [
-          "Whether you're drawn to the archaeological ruins of the north or intrigued by India's colonial heritage, our expert travel consultants will craft a luxury holiday tailored just for you.",
-          "For first-time visitors, we recommend the stunning South Coast — a perfect introduction to the country's charms. Unwind on palm-fringed beaches, dive into crystal-clear waters for snorkelling or scuba adventures, and stroll through the colonial port of Galle, where the 17th-century Dutch Fort and authentic Indian cuisine await.",
-          "If history is your passion, head inland to cultural gems like Kandy and Sigiriya. Here, ancient ruins, sacred Buddhist temples, and UNESCO World Heritage sites offer an enriching journey through India's storied past. Nature lovers will also find paradise in the island's lush national parks, where safaris and wildlife encounters promise unforgettable memories.",
-          "From romantic escapes and off-the-beaten-track adventures to family-friendly city breaks, a luxury India holiday delivers experiences you'll treasure for a lifetime."
+          "Whether you're drawn to the archaeological ruins of the north or intrigued by Vietnam's colonial heritage, our expert travel consultants will craft a luxury holiday tailored just for you.",
+          "For first-time visitors, we recommend the stunning South Coast — a perfect introduction to the country's charms. Unwind on palm-fringed beaches, dive into crystal-clear waters for snorkelling or scuba adventures, and stroll through the colonial port of Galle, where the 17th-century Dutch Fort and authentic Vietnam cuisine await.",
+          "If history is your passion, head inland to cultural gems like Kandy and Sigiriya. Here, ancient ruins, sacred Buddhist temples, and UNESCO World Heritage sites offer an enriching journey through Vietnam's storied past. Nature lovers will also find paradise in the island's lush national parks, where safaris and wildlife encounters promise unforgettable memories.",
+          "From romantic escapes and off-the-beaten-track adventures to family-friendly city breaks, a luxury Vietnam holiday delivers experiences you'll treasure for a lifetime."
         ],
         "recommendedTours": {
-          "title": "Recommended Tours in India",
-          "description": "Ready to get to know India's Hill Country or discover the Cultural Triangle's top highlights? Whether you want to spend your time visiting the tea plantations of Nuwara Eliya or riding through Colombo on a tuk-tuk, our destination experts will plan a bespoke tour to help make your luxury India holiday truly memorable."
+          "title": "Recommended Tours in Vietnam",
+          "description": "Ready to get to know Vietnam's Hill Country or discover the Cultural Triangle's top highlights? Whether you want to spend your time visiting the tea plantations of Nuwara Eliya or riding through Colombo on a tuk-tuk, our destination experts will plan a bespoke tour to help make your luxury Vietnam holiday truly memorable."
         }
       }
     },
@@ -36,143 +36,143 @@
       "id": "tour-ideas",
       "title": "Tour Ideas",
       "content": {
-        "description": "Discover our handpicked selection of tour ideas designed to showcase the very best of India's diverse landscapes and rich cultural heritage.",
+        "description": "Discover our handpicked selection of tour ideas designed to showcase the very best of Vietnam's diverse landscapes and rich cultural heritage.",
         "paragraphs": [
-          "Whether you're drawn to the archaeological ruins of the north or intrigued by India's colonial heritage, our expert travel consultants will craft a luxury holiday tailored just for you.",
-          "For first-time visitors, we recommend the stunning South Coast — a perfect introduction to the country's charms. Unwind on palm-fringed beaches, dive into crystal-clear waters for snorkelling or scuba adventures, and stroll through the colonial port of Galle, where the 17th-century Dutch Fort and authentic Indian cuisine await.",
-          "If history is your passion, head inland to cultural gems like Kandy and Sigiriya. Here, ancient ruins, sacred Buddhist temples, and UNESCO World Heritage sites offer an enriching journey through India's storied past. Nature lovers will also find paradise in the island's lush national parks, where safaris and wildlife encounters promise unforgettable memories.",
-          "From romantic escapes and off-the-beaten-track adventures to family-friendly city breaks, a luxury India holiday delivers experiences you'll treasure for a lifetime."
+          "Whether you're drawn to the archaeological ruins of the north or intrigued by Vietnam's colonial heritage, our expert travel consultants will craft a luxury holiday tailored just for you.",
+          "For first-time visitors, we recommend the stunning South Coast — a perfect introduction to the country's charms. Unwind on palm-fringed beaches, dive into crystal-clear waters for snorkelling or scuba adventures, and stroll through the colonial port of Galle, where the 17th-century Dutch Fort and authentic Vietnam cuisine await.",
+          "If history is your passion, head inland to cultural gems like Kandy and Sigiriya. Here, ancient ruins, sacred Buddhist temples, and UNESCO World Heritage sites offer an enriching journey through Vietnam's storied past. Nature lovers will also find paradise in the island's lush national parks, where safaris and wildlife encounters promise unforgettable memories.",
+          "From romantic escapes and off-the-beaten-track adventures to family-friendly city breaks, a luxury Vietnam holiday delivers experiences you'll treasure for a lifetime."
         ],
         "tours": [
           {
-            "id": "India-uncovered",
-            "title": "India Uncovered: Heritage, Nature & Shores",
+            "id": "Vietnam-uncovered",
+            "title": "Vietnam Uncovered: Heritage, Nature & Shores",
             "duration": "10 Nights",
             "itineraryName": "2N Kandy | 2N Dambulla | 2N Nuwara Eliya | 2N Galle | 2N Colombo",
-            "description": "Experience the best of India on this 10-day journey. Begin with the cultural heart of Kandy, then explore the ancient wonders of Dambulla. Soak in the cool tea-country charm of Nuwara Eliya before unwinding on the coastal beauty of Galle. Conclude your adventure in vibrant Colombo, blending history, shopping, and nightlife.",
+            "description": "Experience the best of Vietnam on this 10-day journey. Begin with the cultural heart of Kandy, then explore the ancient wonders of Dambulla. Soak in the cool tea-country charm of Nuwara Eliya before unwinding on the coastal beauty of Galle. Conclude your adventure in vibrant Colombo, blending history, shopping, and nightlife.",
             "image": "/images/destinations/sriLanka/tour1.jpg",
-            "href": "/tours/India-uncovered",
+            "href": "/tours/Vietnam-uncovered",
             "recommended": true,
             "recommendedContent": {
               "id": 1,
-              "title": "The Best of India: Culture, Wildlife & Coast",
+              "title": "The Best of Vietnam: Culture, Wildlife & Coast",
               "nights": 14,
               "price": 5300,
               "image": "/images/destinations/sriLanka/recommendedTour1.jpg",
-              "slug": "best-of-India"
+              "slug": "best-of-Vietnam"
             }
           },
           {
             "id": "treasures-of-tropics",
-            "title": "Treasures of the Tropics: India",
+            "title": "Treasures of the Tropics: Vietnam",
             "duration": "10 Nights",
             "itineraryName": "1N Colombo | 2N Bentota | 2N Kandy | 3N Ella | 2N Dambulla",
-            "description": "Embark on a captivating Indian escape starting in lively Colombo, then unwind on the golden beaches of Bentota. Immerse yourself in Kandy's rich cultural heritage before heading to Ella's scenic highlands and waterfalls. Conclude your journey in Dambulla, exploring ancient temples and the island's fascinating history.",
+            "description": "Embark on a captivating Vietnam escape starting in lively Colombo, then unwind on the golden beaches of Bentota. Immerse yourself in Kandy's rich cultural heritage before heading to Ella's scenic highlands and waterfalls. Conclude your journey in Dambulla, exploring ancient temples and the island's fascinating history.",
             "image": "/images/destinations/sriLanka/tour2.jpg",
             "href": "/tours/treasures-of-tropics",
             "recommended": true,
             "recommendedContent": {
               "id": 2,
-              "title": "Treasures of the Tropics: India",
+              "title": "Treasures of the Tropics: Vietnam",
               "nights": 10,
               "price": 8700,
               "image": "/images/destinations/sriLanka/recommendedTour2.jpg",
-              "slug": "best-of-India"
+              "slug": "best-of-Vietnam"
             }
           },
           {
             "id": "wonders-culture-wilderness",
-            "title": "Wonders of India: Culture, Wilderness & Waves",
+            "title": "Wonders of Vietnam: Culture, Wilderness & Waves",
             "duration": "10 Nights",
             "itineraryName": "1N Colombo | 2N Galle | 2N Yala | 3N Nuwara Eliya | 2N Kandy",
-            "description": "Begin your Indian adventure in the vibrant capital of Colombo before soaking up the charm of Galle's colonial streets and coastal beauty. Journey into the wild at Yala National Park for thrilling safaris, then retreat to the cool, scenic tea country of Nuwara Eliya. End your trip in Kandy, steeped in culture, history, and spiritual heritage.",
-            "image": "/images/tours/India/culture-wilderness-waves.jpg",
+            "description": "Begin your Vietnam adventure in the vibrant capital of Colombo before soaking up the charm of Galle's colonial streets and coastal beauty. Journey into the wild at Yala National Park for thrilling safaris, then retreat to the cool, scenic tea country of Nuwara Eliya. End your trip in Kandy, steeped in culture, history, and spiritual heritage.",
+            "image": "/images/tours/Vietnam/culture-wilderness-waves.jpg",
             "href": "/tours/wonders-culture-wilderness",
             "recommended": true,
             "recommendedContent": {
               "id": 3,
-              "title": "Wonders of India: Culture, Wilderness & Waves",
+              "title": "Wonders of Vietnam: Culture, Wilderness & Waves",
               "nights": 10,
               "price": 6500,
               "image": "/images/destinations/sriLanka/recommendedTour3.jpg",
-              "slug": "best-of-India"
+              "slug": "best-of-Vietnam"
             }
           },
           {
             "id": "raw-real-heritage",
-            "title": "India Raw & Real: Heritage, Highlands & Hidden Coves",
+            "title": "Vietnam Raw & Real: Heritage, Highlands & Hidden Coves",
             "duration": "10 Nights",
             "itineraryName": "2N Kandy | 3N Trincomalee | 2N Dambulla | 3N Nuwara Eliya",
-            "description": "Discover India's diverse beauty starting in Kandy, the cultural capital, with its sacred temples and vibrant traditions. Continue to Trincomalee's pristine beaches for relaxation and coastal adventures. Explore the ancient marvels of Dambulla before ending in the lush tea country of Nuwara Eliya, surrounded by serene landscapes and colonial charm.",
-            "image": "/images/tours/India/raw-real-heritage.jpg",
+            "description": "Discover Vietnam's diverse beauty starting in Kandy, the cultural capital, with its sacred temples and vibrant traditions. Continue to Trincomalee's pristine beaches for relaxation and coastal adventures. Explore the ancient marvels of Dambulla before ending in the lush tea country of Nuwara Eliya, surrounded by serene landscapes and colonial charm.",
+            "image": "/images/tours/Vietnam/raw-real-heritage.jpg",
             "href": "/tours/raw-real-heritage",
             "recommended": true,
             "recommendedContent": {
               "id": 4,
-              "title": "India Raw & Real: Heritage, Highlands & Hidden Coves",
+              "title": "Vietnam Raw & Real: Heritage, Highlands & Hidden Coves",
               "nights": 10,
               "price": 4500,
               "image": "/images/destinations/sriLanka/recommendedTour4.jpg",
-              "slug": "best-of-India"
+              "slug": "best-of-Vietnam"
             }
           },
           {
             "id": "unseen-culture-wilderness",
-            "title": "India Unseen: Culture, Wilderness & Coastal Charms",
+            "title": "Vietnam Unseen: Culture, Wilderness & Coastal Charms",
             "duration": "8 Nights",
             "itineraryName": "1N Colombo | 2N Bentota | 2N Yala | 3N Nuwara Eliya",
             "description": "Start in the bustling city of Colombo before unwinding on Bentota's golden beaches and tranquil waters. Venture into Yala National Park for unforgettable wildlife encounters, from leopards to elephants. Conclude your journey in the cool highlands of Nuwara Eliya, surrounded by lush tea plantations and breathtaking mountain views.",
-            "image": "/images/tours/India/unseen-culture.jpg",
+            "image": "/images/tours/Vietnam/unseen-culture.jpg",
             "href": "/tours/unseen-culture-wilderness",
             "recommended": false
           },
           {
             "id": "mystic-legends-shores",
-            "title": "Mystic India: Legends, Landscapes & Lost Shores",
+            "title": "Mystic Vietnam: Legends, Landscapes & Lost Shores",
             "duration": "8 Nights",
             "itineraryName": "2N Galle | 3N Nuwara Eliya | 2N Kandy | 1N Colombo",
-            "description": "Discover India's southern charm in Galle, where colonial heritage meets pristine beaches. Escape to the misty hills of Nuwara Eliya for tea gardens, waterfalls, and serene landscapes. Immerse yourself in Kandy's cultural treasures before concluding your journey in the vibrant city of Colombo.",
-            "image": "/images/tours/India/mystic-legends.jpg",
+            "description": "Discover Vietnam's southern charm in Galle, where colonial heritage meets pristine beaches. Escape to the misty hills of Nuwara Eliya for tea gardens, waterfalls, and serene landscapes. Immerse yourself in Kandy's cultural treasures before concluding your journey in the vibrant city of Colombo.",
+            "image": "/images/tours/Vietnam/mystic-legends.jpg",
             "href": "/tours/mystic-legends-shores",
             "recommended": false
           },
           {
             "id": "explorer-heritage-hills",
-            "title": "India Explorer: Heritage, Hills & Harbours",
+            "title": "Vietnam Explorer: Heritage, Hills & Harbours",
             "duration": "8 Nights",
             "itineraryName": "2N Kandy | 2N Dambulla | 3N Nuwara Eliya | 1N Colombo",
-            "description": "Discover India's cultural soul in Kandy before exploring the ancient wonders of Dambulla. Unwind amidst the misty hills, tea plantations, and waterfalls of Nuwara Eliya. Conclude your journey in Colombo, where vibrant city life meets colonial charm.",
-            "image": "/images/tours/India/explorer-heritage.jpg",
+            "description": "Discover Vietnam's cultural soul in Kandy before exploring the ancient wonders of Dambulla. Unwind amidst the misty hills, tea plantations, and waterfalls of Nuwara Eliya. Conclude your journey in Colombo, where vibrant city life meets colonial charm.",
+            "image": "/images/tours/Vietnam/explorer-heritage.jpg",
             "href": "/tours/explorer-heritage-hills",
             "recommended": false
           },
           {
             "id": "untouched-romantic",
-            "title": "India Untouched: Romantic Escapes",
+            "title": "Vietnam Untouched: Romantic Escapes",
             "duration": "8 Nights",
             "itineraryName": "1N Colombo | 3N Nuwara Eliya | 4N Galle",
             "description": "Start in Colombo, where modern vibrance meets colonial charm. Continue to the cool highlands of Nuwara Eliya, surrounded by lush tea plantations and serene landscapes. Conclude your journey in Galle, with its golden beaches, historic fort, and laid-back coastal allure.",
-            "image": "/images/tours/India/untouched-romantic.jpg",
+            "image": "/images/tours/Vietnam/untouched-romantic.jpg",
             "href": "/tours/untouched-romantic",
             "recommended": false
           },
           {
             "id": "cultural-coastal-bliss-tour",
-            "title": "India: Cultural and Coastal Bliss",
+            "title": "Vietnam: Cultural and Coastal Bliss",
             "duration": "6 Nights",
             "itineraryName": "3N Nuwara Eliya | 3N Bentota",
-            "description": "Savor the serene charm of Nuwara Eliya, with its rolling tea plantations, cool climate, and colonial elegance. Then head to Bentota to relax on golden beaches, enjoy water sports, and take in stunning sunsets over the Indian Ocean. A perfect blend of hill country tranquility and coastal bliss.",
-            "image": "/images/tours/India/cultural-coastal.jpg",
+            "description": "Savor the serene charm of Nuwara Eliya, with its rolling tea plantations, cool climate, and colonial elegance. Then head to Bentota to relax on golden beaches, enjoy water sports, and take in stunning sunsets over the Vietnam Ocean. A perfect blend of hill country tranquility and coastal bliss.",
+            "image": "/images/tours/Vietnam/cultural-coastal.jpg",
             "href": "/tours/cultural-coastal-bliss-tour",
             "recommended": false
           },
           {
             "id": "beyond-ordinary-tour",
-            "title": "India Beyond Ordinary",
+            "title": "Vietnam Beyond Ordinary",
             "duration": "4 Nights",
             "itineraryName": "1N Colombo | 3N Galle",
             "description": "Start your journey in Colombo, where modern energy meets colonial elegance. Then, escape to Galle for three nights of coastal charm — from its golden beaches to the storied ramparts of the 17th-century Dutch Fort. Explore boutique cafés, vibrant markets, and the laid-back atmosphere that makes Galle unforgettable.",
-            "image": "/images/tours/India/beyond-ordinary-tour.jpg",
+            "image": "/images/tours/Vietnam/beyond-ordinary-tour.jpg",
             "href": "/tours/beyond-ordinary-tour",
             "recommended": false
           }
