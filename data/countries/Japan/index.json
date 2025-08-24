@@ -1,20 +1,21 @@
 {
-  "breadcrumbs": [
-    { "label": "Home", "href": "/" },
+  "destinationBreadcrumbs": [
+    { "label": "Home", "ref": "/" },
     {
       "label": "Japan",
-      "href": "/regions/japan-subcontinent"
+      "ref": "/regions/japan-subcontinent"
     },
-    { "label": "Japan Holidays", "href": "/destination/japan" }
+    { "label": "Japan Holidays", "ref": "/destination/japan" }
   ],
-  "heroBanner": {
+  "destinationHeroBanner": {
     "name": "Japan",
     "title": "Luxury Japan Holidays 2025/2026",
     "slug": "japan",
     "description": "Combining stunning natural landscapes and beaches with bustling cities and ancient cultural sites, Japan is a country like no other. With a vibrant culture, distinctive cuisine and many destinations to discover, there are endless experiences that everyone can enjoy on a holiday to Japan.",
-    "heroImage": "/images/destinations/japan/heroBannerRight.jpg"
+        "heroImage": {"asset":"image-70e230060b7d1ceaf57eb1e13434ccdca2c03052-3389x1906-jpg"}
+
   },
-  "tabbedSection": [
+  "destinationContent": [
     {
       "id": "holidays",
       "title": "japan Holidays",
@@ -181,5 +182,5 @@
       }
     }
   ],
-  "tabs": ["holidays", "tour-ideas"]
+  "destinationTabs": ["holidays", "tour-ideas"]
 }
