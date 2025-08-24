@@ -15,7 +15,9 @@ export const useFetchData = (
         POSTS_QUERY.query,
         {},
         options
-      );
+      ).catch((error) => {
+        console.error(`Error loading heroBanner content from CMS ${POSTS_QUERY.name}:`, error);
+      })
       setData(JSON.parse(JSON.stringify(data[0])));
       console.log(`heroBanner content loaded from CMS ${POSTS_QUERY.name}`);
     };
