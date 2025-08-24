@@ -1,21 +1,21 @@
 {
-  "breadcrumbs": [
-    { "label": "Home", "href": "/" },
+  "destinationBreadcrumbs": [
+    { "label": "Home", "ref": "/" },
     {
       "label": "Indian Subcontinent",
-      "href": "/regions/indian-subcontinent"
+      "ref": "/regions/indian-subcontinent"
     },
-    { "label": "India Holidays", "href": "/destination/india" }
+    { "label": "India Holidays", "ref": "/destination/india" }
   ],
-  "heroBanner": {
+  "destinationHeroBanner": {
     "name": "India",
     "title": "Luxury India Holidays 2025/2026",
     "slug": "india",
     "description": "Combining stunning natural landscapes and beaches with bustling cities and ancient cultural sites, India is a country like no other. With a vibrant culture, distinctive cuisine and many destinations to discover, there are endless experiences that everyone can enjoy on a holiday to India.",
-    "heroImage": "/images/destinations/india/heroBannerRight.jpg"
+    "heroImage": {"asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"}
   },
-  "tabbedSection": [
-    {
+  "destinationContent": {
+   "holidaysOverview": {
       "id": "holidays",
       "title": "India Holidays",
       "content": {
@@ -32,7 +32,7 @@
         }
       }
     },
-    {
+    "tourIdeas": {
       "id": "tour-ideas",
       "title": "Tour Ideas",
       "content": {
@@ -179,6 +179,6 @@
         ]
       }
     }
-  ],
-  "tabs": ["holidays", "tour-ideas"]
+  },
+  "destinationTabs": ["holidays", "tour-ideas"]
 }
