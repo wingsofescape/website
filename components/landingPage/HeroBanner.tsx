@@ -1,52 +1,25 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
 import HeroCarousal2 from "@/public/images/HeroCarousal.jpg";
-import { type SanityDocument } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
-import { client } from "@/sanity/lib/client";
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
-const data = {
-  "_id": "66065ac2-cdc3-45a3-adbf-ffaf90b5cbbe",
-  "heroBannerButtons": [{
-    "link": "https://www.wingsofescape.com/",
-    "title": "For Families"
-  }],
-  "heroBannerHeading": "Let us help you plan your next luxury trip",
-  "heroBannerImage": {
-    "_type": "image",
-    "asset": {
-      "_ref": "image-1d76dc844c9df7e064439417602c4491dd2e017f-6000x4000-jpg",
-      "_type": "reference"
-    }
-  },
-  "heroBannerSubHeading": "Wherever you want to go, our Travel Specialists can design a perfect holiday for you"
-}
-
-const POSTS_QUERY = `*[
-  _type == "heroBanner"
-]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`;
-const { projectId, dataset } = client.config();
-const options = { next: { revalidate: 30000 } };
-
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
+import landingPageData from "@/data/landingPage/index.json";
+import { urlFor } from "@/sanity/lib/image";
+import { POST_QUERY } from "@/lib/constants";
+import { useFetchData } from "@/hooks/useFetchData";
+import {  IHeroBannerButton } from "@/app/models/heroBanner";
 
 export const HeroBanner = () => {
-  const [content, setContent] = useState(data);
+  const options = { next: { revalidate: 30 } };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options)
-      setContent(JSON.parse(JSON.stringify(data[0])));
-    }
-  fetchData();
-  }, []);
-  
-  const image = content.heroBannerImage ? urlFor(content.heroBannerImage.asset)?.url() : HeroCarousal2.src;
+  const data = useFetchData(
+    POST_QUERY.heroBanner,
+    options,
+    landingPageData.heroBanner
+  );
+  const image = data.heroBannerImage
+    ? urlFor(data.heroBannerImage.asset)?.url()
+    : HeroCarousal2.src;
+
   return (
     <>
       {/* Mobile Version - New responsive design with CSS blobs */}
@@ -54,106 +27,45 @@ export const HeroBanner = () => {
         {/* CSS Blob Background */}
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-20 left-20 w-53 h-52 md:w-48 md:h-48 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full opacity-20 blob-animation"></div>
-          
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-left space-y-6 md:space-y-8">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight font-serif">
-              Let us help you plan
-              <br />
-              <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent font-serif italic">
-                your luxury trip
-              </span>
+              {data.heroBannerHeading}
             </h1>
 
             <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl">
-              Wherever you want to go, our Travel Specialists can design your
-              perfect holiday with personalized experiences tailored just for
-              you.
+              {data.heroBannerSubHeading}
             </p>
 
             {/* Navigation Links */}
             <div className="flex flex-wrap gap-3 md:gap-4 pt-4">
-              <Link
-                href="/families"
-                className="group inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-amber-300 text-sm md:text-base"
-              >
-                FOR FAMILIES
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
-
-              <Link
-                href="/couples"
-                className="group inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-amber-300 text-sm md:text-base"
-              >
-                FOR COUPLES
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
-
-              <Link
-                href="/how-we-work"
-                className="group inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-amber-300 text-sm md:text-base"
-              >
-                HOW WE WORK
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
-
-              <Link
-                href="/unique-trips"
-                className="group inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 text-sm md:text-base"
-              >
-                UNIQUE TRIPS
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </Link>
+              {data?.heroBannerButtons &&
+                data?.heroBannerButtons.map(
+                  (button: IHeroBannerButton, index: number) => (
+                    <Link
+                      href={`${button.link}`}
+                      key={button?.title + index}
+                      className="group inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-amber-300 text-sm md:text-base"
+                    >
+                      {button.title}
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </Link>
+                  )
+                )}
             </div>
           </div>
         </div>
@@ -220,7 +132,7 @@ export const HeroBanner = () => {
       </section>
 
       {/* Desktop Version - Original design with background image */}
-      
+
       <section
         className="hidden lg:flex relative h-[600px] items-center"
         style={{
@@ -232,19 +144,24 @@ export const HeroBanner = () => {
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 max-w-5xl mx-auto px-8">
           <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg font-serif">
-            {content?.heroBannerHeading}
+            {data.heroBannerHeading}
           </h2>
           <p className="text-2xl lg:text-3xl text-white font-semibold mb-8 drop-shadow">
-             {content?.heroBannerSubHeading}
-             </p>
+            {data.heroBannerSubHeading}
+          </p>
           <div className="flex flex-wrap gap-6">
-            {content?.heroBannerButtons && content?.heroBannerButtons.map((button, index) => (
-              <Link key={button?.title+index} className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200" href={button.link}>
-                {button?.title}
-              </Link>
-            ))}
-            
-            
+            {data?.heroBannerButtons &&
+              data?.heroBannerButtons.map(
+                (button: IHeroBannerButton, index: number) => (
+                  <Link
+                    key={button?.title + index}
+                    className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200"
+                    href={button.link}
+                  >
+                    {button.title}
+                  </Link>
+                )
+              )}
           </div>
         </div>
       </section>

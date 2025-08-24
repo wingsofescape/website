@@ -14,7 +14,7 @@ export interface IHeroBanner {
 
 export interface IBreadcrumb {
   label: string;
-  href: string;
+  ref: string;
 }
 
 export interface ITabbedSection {
