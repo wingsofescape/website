@@ -16,8 +16,14 @@ export const useFetchData = (
         {},
         options
       ).catch((error) => {
-        console.error(`Error loading heroBanner content from CMS ${POSTS_QUERY.name}:`, error);
-      })
+        console.error(`Error fetching ${POSTS_QUERY.name}:`, error);
+        return [];
+      });
+      if (data.length === 0) {
+        console.warn(`No data found for ${POSTS_QUERY.name}`);
+        return;
+      }
+      // Deep clone the data to avoid potential issues with reactivity
       setData(JSON.parse(JSON.stringify(data[0])));
       console.log(`heroBanner content loaded from CMS ${POSTS_QUERY.name}`);
     };
