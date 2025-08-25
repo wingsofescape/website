@@ -1,6 +1,5 @@
 import { HeroBanner } from "@/components/landingPage/HeroBanner";
 import Testimonials from "@/components/testimonials";
-
 import Background1 from "@/public/images/bg1.jpg";
 import Background2 from "@/public/images/bg2.jpg";
 export default function HomePage() {
@@ -8,10 +7,10 @@ export default function HomePage() {
     <>
       <main className="bg-beige p-0">
         <HeroBanner />
-        <section className="bg-white py-10 flex flex-nowrap">
+        <section className="bg-white py-10 flex flex-nowrap text-theme-primary-dark">
           <div className="mx-auto px-8 grid md:grid-cols-4 gap-4">
             <div className="flex flex-col items-center text-center ">
-              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 test-white">
+              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
                 Tailored Experiences
               </h3>
               <p className="text-gray-700 text-sm mt-5">
@@ -20,7 +19,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 test-white">
+              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
                 Expert Knowledge
               </h3>
               <p className="text-gray-700 text-sm mt-5">
@@ -29,7 +28,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 test-white">
+              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
                 24/7 Support
               </h3>
               <p className="text-gray-700 text-sm mt-5">
@@ -38,7 +37,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 test-white">
+              <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
                 Curated Destinations
               </h3>
               <p className="text-gray-700 text-sm mt-5">
@@ -48,12 +47,12 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section className="bg-[#f7f7f5] py-12 px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold test-white mb-6 font-serif">
+        <section className="bg-[#f7f7f5] py-12 px-4 text-theme-primary-dark">
+          <div className="max-w-5xl mx-auto ">
+            <h2 className="text-4xl md:text-5xl font-bold  mb-6 font-serif">
               Your Luxury Holiday Starts Here…
             </h2>
-            <p className="text-lg md:text-xl test-white mb-2">
+            <p className="text-lg md:text-xl  mb-2">
               It’s time to elevate luxury travel out of the ordinary. Our
               experts have travelled to the farthest reaches of the world,
               exploring everything from the biggest cities to the smallest
@@ -70,7 +69,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="max-w-5xl mx-auto mt-20">
-            <h3 className="text-4xl md:text-5xl font-bold test-white font-serif mb-2 relative inline-block">
+            <h3 className="text-4xl md:text-5xl font-bold  font-serif mb-2 relative inline-block">
               <span className="pl-2 text-center underline decoration-[#004236] decoration-4 underline-offset-8">
                 Our Booking Process
               </span>
@@ -82,7 +81,7 @@ export default function HomePage() {
                   <span className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-theme-primary">
                     {/* Magnifying glass icon */}
                     <svg
-                      className="w-14 h-14 test-white"
+                      className="w-14 h-14 "
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2.5"
@@ -107,10 +106,10 @@ export default function HomePage() {
                     </svg>
                   </span>
                 </div>
-                <div className="text-2xl font-bold test-white font-serif mb-2">
+                <div className="text-2xl font-bold  font-serif mb-2">
                   1. Make an Enquiry
                 </div>
-                <div className="text-lg test-white">
+                <div className="text-lg ">
                   Submit a holiday{" "}
                   <a href="#" className="underline">
                     enquiry
@@ -125,7 +124,7 @@ export default function HomePage() {
                   <span className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-theme-primary">
                     {/* Headset icon */}
                     <svg
-                      className="w-14 h-14 test-white"
+                      className="w-14 h-14 "
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2.5"
@@ -162,12 +161,12 @@ export default function HomePage() {
                     </svg>
                   </span>
                 </div>
-                <div className="text-2xl font-bold test-white font-serif mb-2">
+                <div className="text-2xl font-bold  font-serif mb-2">
                   2. Speak to an
                   <br />
                   Expert
                 </div>
-                <div className="text-lg test-white">
+                <div className="text-lg ">
                   Discuss your travel plans
                   <br />
                   with your own dedicated
@@ -181,7 +180,7 @@ export default function HomePage() {
                   <span className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-theme-primary">
                     {/* Envelope icon */}
                     <svg
-                      className="w-14 h-14 test-white"
+                      className="w-14 h-14 "
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2.5"
@@ -205,10 +204,10 @@ export default function HomePage() {
                     </svg>
                   </span>
                 </div>
-                <div className="text-2xl font-bold test-white font-serif mb-2">
+                <div className="text-2xl font-bold  font-serif mb-2">
                   3. Receive a Quote
                 </div>
-                <div className="text-lg test-white">
+                <div className="text-lg ">
                   We craft your dream
                   <br />
                   holiday and send you a<br />
@@ -221,7 +220,7 @@ export default function HomePage() {
                   <span className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-theme-primary">
                     {/* Passport/boarding pass icon */}
                     <svg
-                      className="w-14 h-14 test-white"
+                      className="w-14 h-14 "
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2.5"
@@ -263,10 +262,10 @@ export default function HomePage() {
                     </svg>
                   </span>
                 </div>
-                <div className="text-2xl font-bold test-white font-serif mb-2">
+                <div className="text-2xl font-bold  font-serif mb-2">
                   4. Book Your Trip
                 </div>
-                <div className="text-lg test-white">
+                <div className="text-lg ">
                   Once every detail is just
                   <br />
                   right, we confirm your

@@ -16,7 +16,6 @@
   },
   "branding": {
     "logo": {
-      "text": "WingsOfEscape",
       "href": "/"
     }
   },
@@ -28,7 +27,7 @@
         { "name": "Vietnam", "href": "/destination/vietnam" },
         { "name": "Africa", "href": "/destination/africa" },
         { "name": "India", "href": "/destination/india" },
-         { "name": "Sri Lanka", "href": "/destination/srilanka" }
+        { "name": "Sri Lanka", "href": "/destination/srilanka" }
       ]
     },
     "holidayIdeas": {
@@ -48,8 +47,8 @@
         { "name": "Stories", "href": "/inspiration/stories" }
       ]
     },
-    "kidsClub": {
-      "label": "Adventure Kids Club",
+    "contactUs": {
+      "label": "Contact Us",
       "items": [
         { "name": "Activities", "href": "/kids/activities" },
         { "name": "Family Offers", "href": "/kids/offers" }
