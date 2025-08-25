@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { use } from "react";
-
+import {allTours} from "@/data/countries";
+import HeroBanner from "@/components/heroBanner/HeroBanner";
 interface Tour {
   id: string;
   slug: string;
@@ -69,47 +70,18 @@ export default function DestinationToursPage({
 }: {
   params: Promise<{ destinationName: string }>;
 }) {
+
   const { destinationName } = use<{ destinationName: string }>(params);
-  const tours = mockTours[destinationName];
+  const tours = allTours[`${destinationName}Tours` as keyof typeof allTours].tours;
+  // const tours = mockTours[destinationName];
 
-  if (!tours) {
-    notFound();
-  }
 
-  const destinationTitle = destinationName
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const destinationTitle = destinationName;
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-slate-800 text-white py-16">
-        <div className="container mx-auto px-4">
-          <nav className="text-sm mb-6 opacity-80">
-            <Link href="/" className="hover:underline">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <Link
-              href={`/destination/${destinationName}`}
-              className="hover:underline"
-            >
-              {destinationTitle}
-            </Link>
-            <span className="mx-2">/</span>
-            <span>Tours</span>
-          </nav>
-
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {destinationTitle} Tours
-          </h1>
-          <p className="text-xl opacity-90 max-w-2xl">
-            Discover the best tours and experiences in {destinationTitle}. From
-            cultural adventures to wildlife safaris, find your perfect journey.
-          </p>
-        </div>
-      </section>
+      <HeroBanner destination={destinationTitle} />
 
       {/* Tours Grid */}
       <section className="py-16">
@@ -149,7 +121,7 @@ export default function DestinationToursPage({
                     </div>
 
                     {/* Highlights */}
-                    <div className="flex flex-wrap gap-2">
+                    {/* <div className="flex flex-wrap gap-2">
                       {tour.highlights.slice(0, 3).map((highlight, index) => (
                         <span
                           key={index}
@@ -158,7 +130,7 @@ export default function DestinationToursPage({
                           {highlight}
                         </span>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </Link>

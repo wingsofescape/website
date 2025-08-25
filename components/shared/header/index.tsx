@@ -92,7 +92,7 @@ const Header = () => {
       {/* Top Banner - Hidden on mobile */}
 
       {/* Main Header */}
-      <div className="flex justify-between items-stretch h-22 pl-4">
+      <div className="flex justify-between items-stretch h-22 pl-4 lg:pl-8">
         {/* Logo */}
 
         <Link
@@ -103,7 +103,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex text-sm items-center space-x-4">
+        <nav className="hidden lg:flex text-sm lg:text-base items-center space-x-4">
           {renderDropdown(headerData.navigation.destinations)}
           {renderDropdown(headerData.navigation.inspiration)}
           {renderDropdown(headerData.navigation.contactUs)}
