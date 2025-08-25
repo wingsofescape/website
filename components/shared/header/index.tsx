@@ -1,10 +1,12 @@
 "use client";
-
 import Link from "next/link";
 import { useState } from "react";
 import headerData from "@/data/header.json";
 import { getConfig } from "@/config/featureFlags";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Logo2 from "@/public/logos/logo_2.png";
+
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isCountrySelectorVisible = getConfig("showCountrySelector");
@@ -19,7 +21,9 @@ const Header = () => {
     items: { name: string; href: string }[];
   }) => (
     <div className="relative group">
-      <button className="hover:underline px-2 py-1">{section.label}</button>
+      <button className="hover:underline px-2 py-1 font-bold">
+        {section.label}
+      </button>
       <ul className="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-20">
         {section.items.map((item) => (
           <li
@@ -84,86 +88,38 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-slate-800 text-white">
+    <header className="bg-white text-slate-800">
       {/* Top Banner - Hidden on mobile */}
-      <div
-        className="hidden md:flex top-0 left-0 w-full bg-slate-900 text-white text-sm justify-between items-center px-6 py-1 z-10"
-        id="banner"
-      >
-        <div
-          className={`flex items-center ${
-            isCountrySelectorVisible || isCurrencySelectorVisible
-              ? "space-x-4"
-              : ""
-          }`}
-        >
-          {isCountrySelectorVisible && (
-            <label>
-              {headerData.topBanner.countrySelector.label}
-              <select className="ml-2 bg-amber-900 rounded px-2 py-1 text-white">
-                {headerData.topBanner.countrySelector.options.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
-                  </option>
-                ))}
-              </select>
-            </label>
-          )}
-          {isCurrencySelectorVisible && (
-            <label>
-              {headerData.topBanner.currencySelector.label}
-              <select className="ml-2 bg-amber-900 rounded px-2 py-1 text-white">
-                {headerData.topBanner.currencySelector.options.map(
-                  (currency) => (
-                    <option key={currency} value={currency}>
-                      {currency}
-                    </option>
-                  )
-                )}
-              </select>
-            </label>
-          )}
-        </div>
-        <div className="hidden lg:block">
-          {headerData.topBanner.contactInfo.text}{" "}
-          <span className="font-semibold">
-            {headerData.topBanner.contactInfo.phone}
-          </span>{" "}
-          |{" "}
-          <span className="underline">
-            {headerData.topBanner.contactInfo.email}
-          </span>
-        </div>
-      </div>
+
       {/* Main Header */}
-      <div className="container mx-auto flex justify-between items-center px-4 md:px-6 h-16 md:h-20">
+      <div className="flex justify-between items-stretch h-22 pl-4">
         {/* Logo */}
-        <Link href={headerData.branding.logo.href}>
-          <h1 className="text-2xl md:text-4xl font-bold font-serif bg-gradient-to-r from-amber-200 to-white bg-clip-text text-transparent drop-shadow-lg tracking-wide">
-            {headerData.branding.logo.text}
-          </h1>
+
+        <Link
+          href={headerData.branding.logo.href}
+          className="flex items-center"
+        >
+          <Image src={Logo2} alt="Logo" width={275} height={275} />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex text-sm items-center space-x-4">
           {renderDropdown(headerData.navigation.destinations)}
-          {renderDropdown(headerData.navigation.holidayIdeas)}
           {renderDropdown(headerData.navigation.inspiration)}
-          {renderDropdown(headerData.navigation.kidsClub)}
-          {renderDropdown(headerData.navigation.adventurePrivate)}
+          {renderDropdown(headerData.navigation.contactUs)}
           {renderDropdown(headerData.navigation.aboutUs)}
           {/* Search Bar */}
           <form className="ml-2">
             <input
               type="text"
               placeholder={headerData.searchBar.placeholder}
-              className="rounded-full px-4 py-2 border border-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-500 w-30 text-white"
+              className="rounded-full px-4 py-2 border border-theme-primary-dark focus:outline-none focus:ring-2 focus:ring-amber-500 w-32 text-theme-primary"
             />
           </form>
         </nav>
 
         {/* Desktop CTA Button */}
-        <div className="hidden md:flex ml-2 h-full items-center px-6 bg-[#004236] text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-[#3e6d65] border-none rounded-none group">
+        <div className="hidden md:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-[#3e6d65] border-none rounded-none group">
           <button
             type="button"
             onClick={() => (window.location.href = headerData.cta.button.href)}
@@ -234,9 +190,6 @@ const Header = () => {
           >
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-amber-700 text-white">
-              <h2 className="text-xl font-bold font-serif bg-gradient-to-r from-amber-200 to-white bg-clip-text text-transparent drop-shadow-lg tracking-wide">
-                {headerData.branding.logo.text}
-              </h2>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="p-2 hover:bg-amber-600 rounded-md transition-colors"
@@ -265,7 +218,7 @@ const Header = () => {
                 <MobileDropdown section={headerData.navigation.destinations} />
                 <MobileDropdown section={headerData.navigation.holidayIdeas} />
                 <MobileDropdown section={headerData.navigation.inspiration} />
-                <MobileDropdown section={headerData.navigation.kidsClub} />
+                <MobileDropdown section={headerData.navigation.contactUs} />
                 <MobileDropdown
                   section={headerData.navigation.adventurePrivate}
                 />
