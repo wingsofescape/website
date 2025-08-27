@@ -51,16 +51,16 @@ export interface Content2 {
 }
 
 export interface ToursSection {
-  recommendedToursContent: RecommendedToursContent
-  tours: Tour[]
+  recommendedToursContent: IRecommendedToursContent
+  tours: ITour[]
 }
 
-export interface RecommendedToursContent {
+export interface IRecommendedToursContent {
   title: string
   description: string
 }
 
-export interface Tour {
+export interface ITour {
   id: string
   title: string
   duration: string
@@ -69,10 +69,10 @@ export interface Tour {
   image: string
   href: string
   recommended: boolean
-  recommendedContent?: RecommendedContent
+  recommendedContent?: IRecommendedContent
 }
 
-export interface RecommendedContent {
+export interface IRecommendedContent {
   id: number
   title: string
   nights: number
