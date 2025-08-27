@@ -1,90 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { use } from "react";
+import TourBanner from "@/components/tourBanner";
+import allTours from "@/data/countries/SriLanka/tours.json";
 
-interface Tour {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  longDescription: string;
-  duration: string;
-  price: string;
-  image: string;
-  gallery: string[];
-  highlights: string[];
-  itinerary: {
-    day: number;
-    title: string;
-    description: string;
-  }[];
-  includes: string[];
-  excludes: string[];
-}
-
-// This would typically come from your Sanity CMS or database
-const mockTours: Record<string, Record<string, Tour>> = {
-  srilanka: {
-    "ancient-cities-adventure": {
-      id: "1",
-      slug: "ancient-cities-adventure",
-      title: "Ancient Cities Adventure",
-      description:
-        "Explore the ancient cities of Anuradhapura and Polonnaruwa, discovering centuries-old temples and ruins.",
-      longDescription:
-        "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
-      duration: "7 days",
-      price: "From $1,200",
-      image: "/images/ancient-cities.jpg",
-      gallery: [
-        "/images/gallery1.jpg",
-        "/images/gallery2.jpg",
-        "/images/gallery3.jpg",
-      ],
-      highlights: [
-        "Visit UNESCO World Heritage sites",
-        "Explore ancient temples and stupas",
-        "Discover intricate stone carvings",
-        "Learn about Buddhist history",
-        "Photography opportunities",
-      ],
-      itinerary: [
-        {
-          day: 1,
-          title: "Arrival in Colombo",
-          description:
-            "Arrive at Bandaranaike International Airport and transfer to your hotel in Colombo. Evening briefing about the tour.",
-        },
-        {
-          day: 2,
-          title: "Colombo to Anuradhapura",
-          description:
-            "Travel to Anuradhapura, the first ancient capital of Sri Lanka. Begin exploring the sacred city with visits to key temples.",
-        },
-        {
-          day: 3,
-          title: "Full Day Anuradhapura",
-          description:
-            "Complete exploration of Anuradhapura including Ruwanwelisaya, Thuparamaya, and the Sacred Bo Tree.",
-        },
-      ],
-      includes: [
-        "Accommodation in selected hotels",
-        "Professional English-speaking guide",
-        "All entrance fees",
-        "Transportation in air-conditioned vehicle",
-        "Daily breakfast",
-      ],
-      excludes: [
-        "International flights",
-        "Lunch and dinner (unless specified)",
-        "Personal expenses",
-        "Travel insurance",
-        "Tips and gratuities",
-      ],
-    },
-  },
-};
 
 export default function TourDetailsPage({
   params,
@@ -96,7 +15,7 @@ export default function TourDetailsPage({
     "tour-name": string;
   }>(params);
 
-  const tour = mockTours[destinationName]?.[tourSlug];
+  const tour = allTours.tours.find(t => t.slug === tourSlug); 
 
   if (!tour) {
     notFound();
@@ -110,50 +29,7 @@ export default function TourDetailsPage({
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-96 bg-slate-800">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
-          <span className="text-white text-lg">Tour Hero Image</span>
-        </div>
-
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-
-        <div className="relative container mx-auto px-4 h-full flex flex-col justify-end pb-8">
-          {/* Breadcrumb */}
-          <nav className="text-sm mb-4 text-white opacity-80">
-            <Link href="/" className="hover:underline">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <Link
-              href={`/destination/${destinationName}`}
-              className="hover:underline"
-            >
-              {destinationTitle}
-            </Link>
-            <span className="mx-2">/</span>
-            <Link
-              href={`/destination/${destinationName}/tours`}
-              className="hover:underline"
-            >
-              Tours
-            </Link>
-            <span className="mx-2">/</span>
-            <span>{tour.title}</span>
-          </nav>
-
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            {tour.title}
-          </h1>
-          <div className="flex flex-wrap gap-4 text-white">
-            <span className="bg-white bg-opacity-20 px-3 py-1 rounded">
-              {tour.duration}
-            </span>
-            <span className="bg-white bg-opacity-20 px-3 py-1 rounded">
-              {tour.price}
-            </span>
-          </div>
-        </div>
-      </section>
+      <TourBanner {...tour} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
@@ -170,7 +46,7 @@ export default function TourDetailsPage({
               {/* Highlights */}
               <h3 className="text-xl font-semibold mb-4">Tour Highlights</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {tour.highlights.map((highlight, index) => (
+                {tour.highlights && tour.highlights.map((highlight, index) => (
                   <li key={index} className="flex items-center">
                     <svg
                       className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
@@ -215,7 +91,7 @@ export default function TourDetailsPage({
                     What&apos;s Included
                   </h3>
                   <ul className="space-y-2">
-                    {tour.includes.map((item, index) => (
+                    {tour.includes && tour.includes.map((item, index) => (
                       <li key={index} className="flex items-start">
                         <svg
                           className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"
@@ -239,7 +115,7 @@ export default function TourDetailsPage({
                     What&apos;s Not Included
                   </h3>
                   <ul className="space-y-2">
-                    {tour.excludes.map((item, index) => (
+                    {tour.excludes && tour.excludes.map((item, index) => (
                       <li key={index} className="flex items-start">
                         <svg
                           className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0"
