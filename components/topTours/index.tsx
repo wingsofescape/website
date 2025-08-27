@@ -1,14 +1,17 @@
 "use client";
-
 import React from "react";
 import Link from "next/link";
 import {  IRecommendedContent, IRecommendedToursContent, ITour } from "@/app/models/destinations";
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursContent: IRecommendedToursContent }}) => {
   const { tours, recommendedToursContent } = props.tours;
+  const pathname = usePathname();
   if(tours.length === 0) return null;
+
   const recommendedTours  = tours.filter((tour : ITour) => tour.recommended);
+
   return (
     <section className="py-8 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -26,9 +29,12 @@ export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursCon
                 {recommendedToursContent?.description}
               </p>
 
-              <button className="w-full sm:w-auto border-2 border-[#00332a] text-[#00332a] px-6 py-3 hover:bg-theme-primary-dark hover:text-white transition-all duration-300 font-medium">
+                <Link
+                href={`${pathname}/tours`}
+                className="w-full sm:w-auto border-2 border-[#00332a] text-[#00332a] px-6 py-3 hover:bg-theme-primary-dark hover:text-white transition-all duration-300 font-medium text-center"
+                >
                 VIEW ALL TOURS
-              </button>
+                </Link>
             </div>
           </div>
 

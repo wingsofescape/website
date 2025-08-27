@@ -1,163 +1,111 @@
-import { notFound } from "next/navigation";
+"use client";
 import Link from "next/link";
 import { use } from "react";
-
-interface Tour {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  duration: string;
-  price: string;
-  image: string;
-  highlights: string[];
-}
-
-// This would typically come from your Sanity CMS or database
-const mockTours: Record<string, Tour[]> = {
-  srilanka: [
-    {
-      id: "1",
-      slug: "ancient-cities-adventure",
-      title: "Ancient Cities Adventure",
-      description:
-        "Explore the ancient cities of Anuradhapura and Polonnaruwa, discovering centuries-old temples and ruins.",
-      duration: "7 days",
-      price: "From $1,200",
-      image: "/images/ancient-cities.jpg",
-      highlights: [
-        "Ancient temples",
-        "Historical ruins",
-        "Cultural experiences",
-      ],
-    },
-    {
-      id: "2",
-      slug: "tea-country-escape",
-      title: "Tea Country Escape",
-      description:
-        "Journey through the lush tea plantations of Nuwara Eliya and experience the hill country's natural beauty.",
-      duration: "5 days",
-      price: "From $950",
-      image: "/images/tea-country.jpg",
-      highlights: [
-        "Tea plantation tours",
-        "Scenic train rides",
-        "Mountain views",
-      ],
-    },
-    {
-      id: "3",
-      slug: "wildlife-safari-experience",
-      title: "Wildlife Safari Experience",
-      description:
-        "Encounter elephants, leopards, and exotic birds in Yala and Udawalawe National Parks.",
-      duration: "6 days",
-      price: "From $1,100",
-      image: "/images/wildlife-safari.jpg",
-      highlights: [
-        "Safari adventures",
-        "Wildlife photography",
-        "National parks",
-      ],
-    },
-  ],
-};
+import { allDestination, allTours } from "@/data/countries";
+import HeroBanner from "@/components/heroBanner/HeroBanner";
+import { useFetchData } from "@/hooks/useFetchData";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
+import Image from "next/image";
+import { ITour } from "@/app/models/tours";
+import { urlFor } from "@/sanity/lib/image";
 
 export default function DestinationToursPage({
   params,
 }: {
   params: Promise<{ destinationName: string }>;
 }) {
+
   const { destinationName } = use<{ destinationName: string }>(params);
-  const tours = mockTours[destinationName];
-
-  if (!tours) {
-    notFound();
-  }
-
-  const destinationTitle = destinationName
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const tourDescription =allTours[`${destinationName}Tours` as keyof typeof allTours].description;
+  const tours =
+    allTours[`${destinationName}Tours` as keyof typeof allTours].tours;
+ 
+  const destination = useFetchData(
+    POST_QUERY.destination(destinationName),
+    SANITY_QUERY_OPTION,
+    allDestination[destinationName as keyof typeof allDestination]
+  );
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-slate-800 text-white py-16">
-        <div className="container mx-auto px-4">
-          <nav className="text-sm mb-6 opacity-80">
-            <Link href="/" className="hover:underline">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <Link
-              href={`/destination/${destinationName}`}
-              className="hover:underline"
-            >
-              {destinationTitle}
-            </Link>
-            <span className="mx-2">/</span>
-            <span>Tours</span>
-          </nav>
+      <HeroBanner destination={destination} />
 
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            {destinationTitle} Tours
-          </h1>
-          <p className="text-xl opacity-90 max-w-2xl">
-            Discover the best tours and experiences in {destinationTitle}. From
-            cultural adventures to wildlife safaris, find your perfect journey.
-          </p>
+      <div className="bg-white rounded-lg shadow-sm p-8 lg:p-6 flex justify-center">
+        <div className="max-w-4xl">
+          <h2 className="text-2xl lg:text-3xl mb-6 font-bold">
+            {destination.destinationHeroBanner.name} Tours
+          </h2>
+
+          <div className="prose prose-lg max-w-none">
+            {
+              tourDescription.map(
+                (paragraph: string, index: number) => (
+                  <p key={index} className="text-gray-700 leading-relaxed mb-4">
+                    {paragraph}
+                  </p>
+                )
+              )}
+          </div>
         </div>
-      </section>
-
+      </div>
+              
       {/* Tours Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tours.map((tour) => (
+          <div className="tour-count flex justify-end">
+            <span className="text-gray-600 mb-6 font-semibold text-lg"> Showing 1 - {tours.length} of {tours.length} tours </span>
+          </div>
+
+          <div className="flex flex-col gap-8">
+            {tours.map((tour : ITour) => (
               <Link
                 key={tour.id}
                 href={`/destination/${destinationName}/tours/${tour.slug}`}
                 className="group"
               >
-                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-                  {/* Tour Image */}
-                  <div className="aspect-w-16 aspect-h-9 bg-gray-200">
-                    <div className="w-full h-48 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center">
-                      <span className="text-white text-sm">Tour Image</span>
+                <div className="bg-white  shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row">
+                  {/* Tour Image & Badge */}
+                  <div className="relative h-75 w-full md:w-2/5">
+                    <Image
+                      src={tour.image.asset.includes("/") ? tour.image.asset : urlFor(tour.image.asset)?.url()}
+                      alt={tour.title}
+                      className="object-cover w-full h-full"
+                      width={500}
+                      height={0}
+                    />
+                    {/* Nights Badge */}
+                    <div className="absolute bottom-0 left-0 bg-theme-primary text-white px-4 py-2 font-bold text-center shadow-lg opacity-60">
+                      {/* Extract number of nights from duration string */}
+                      <div className="text-lg leading-none">{tour.duration.split(' ')[0]}</div>
+                      <div className="text-xs uppercase">NIGHTS</div>
                     </div>
                   </div>
 
                   {/* Tour Content */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-slate-700 transition-colors">
-                      {tour.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
-                      {tour.description}
-                    </p>
-
-                    {/* Tour Details */}
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-sm text-gray-500">
-                        {tour.duration}
-                      </span>
-                      <span className="font-semibold text-slate-800">
-                        {tour.price}
-                      </span>
+                  <div className="flex-1 p-6 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-2xl font-bold mb-2 text-[#00332a] group-hover:text-green-900 transition-colors">
+                        {tour.title}
+                      </h3>
+                      {/* Location/Itinerary */}
+                      <div className="text-sm text-gray-700 font-semibold mb-2">
+                        {/* You can add a location or itinerary field here if available */}
+                      </div>
+                      <p className="text-gray-700 mb-4 line-clamp-3 font-sans">
+                        {tour.description}
+                      </p>
                     </div>
-
-                    {/* Highlights */}
-                    <div className="flex flex-wrap gap-2">
-                      {tour.highlights.slice(0, 3).map((highlight, index) => (
-                        <span
-                          key={index}
-                          className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded"
-                        >
-                          {highlight}
-                        </span>
-                      ))}
+                    <div className="flex items-end justify-between mt-4">
+                      <div>
+                        <span className="text-gray-600 text-sm">From</span>
+                        <div className="text-2xl font-bold text-green-900">
+                          £{tour.price} <span className="text-base font-normal text-gray-600">pp</span>
+                        </div>
+                      </div>
+                      <div className="bg-green-900 text-white px-6 py-2 font-semibold hover:bg-green-800 transition-colors" >
+                        VIEW TOUR
+                      </div>
                     </div>
                   </div>
                 </div>
