@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { allDestination, allTours } from "@/data/countries";
 import { TopTours } from "@/components/topTours";
-import { IBreadcrumb } from "@/app/models/destinations";
+import { IDestinationBreadcrumb } from "@/app/models/destinations";
 import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { urlFor } from "@/sanity/lib/image";
@@ -41,7 +41,7 @@ const Destination = ({
           <nav className="bg-theme-primary-dark px-4 py-3">
             <div className="flex items-center space-x-2 text-sm">
               {destination.destinationBreadcrumbs.map(
-                (crumb: IBreadcrumb, index: number) => (
+                (crumb: IDestinationBreadcrumb, index: number) => (
                   <React.Fragment key={index}>
                     <Link
                       href={crumb.ref}
