@@ -1,34 +1,43 @@
 {
   "recommendedToursContent": {
-            "title": "Recommended Tours in Sri Lanka",
-            "description": "Ready to get to know Sri Lanka's Hill Country or discover the Cultural Triangle's top highlights? Whether you want to spend your time visiting the tea plantations of Nuwara Eliya or riding through Colombo on a tuk-tuk, our destination experts will plan a bespoke tour to help make your luxury Sri Lanka holiday truly memorable."
-          },
+    "title": "Recommended Tours in Sri Lanka",
+    "description": "Ready to get to know Sri Lanka's Hill Country or discover the Cultural Triangle's top highlights? Whether you want to spend your time visiting the tea plantations of Nuwara Eliya or riding through Colombo on a tuk-tuk, our destination experts will plan a bespoke tour to help make your luxury Sri Lanka holiday truly memorable."
+  },
+  "description": [
+    "Whether you’re looking for a holiday packed with adventure and exploration or are keen to escape to a tropical palm-lined beach for a trip that’s all about relaxation and indulgence, Sri Lanka has it all.",
+    "The landscapes in Sri Lanka range from cool, mountainous terrain, to vast tea plantations, verdant rainforest and endless sandy beaches.Meanwhile, the local cuisine in Sri Lanka is second to none, with foodies sure to delight in sampling many of the region’s most famous dishes including kottu, hoppers and sour fish curry.",
+    "At Wings of Escape, our destination experts can craft you a luxury tour of Sri Lanka that surpasses your expectations, opening up the true magic of the country and revealing the best things to do that the guidebooks won’t tell you about.",
+    "Our private tours are bespoke to you and whatever it is you want to do, we can organise Sri Lanka wildlife tours in some of the country’s best national parks like Wilpattu, arrange a guided tour of Kandy’s most impressive temples, or even organise a magical sunrise hike up Sigiriya rock, granting you breathtaking views of the land below."
+  ],
   "tours": [
     {
-      "id": "sri-lanka-uncovered",
-      "title": "Sri Lanka Uncovered: Heritage, Nature & Shores",
-      "duration": "10 Nights",
-      "itineraryName": "2N Kandy | 2N Dambulla | 2N Nuwara Eliya | 2N Galle | 2N Colombo",
-      "overview": {
-        "description": "Experience the best of Sri Lanka on this comprehensive 10-day journey through the island's most iconic destinations.",
-        "highlights": [
-          "Cultural immersion in ancient Kandy",
-          "Explore Sigiriya Rock Fortress",
-          "Tea plantation experiences in Nuwara Eliya",
-          "Colonial heritage in Galle Fort",
-          "Urban exploration in vibrant Colombo"
-        ]
+      "id": "1",
+      "slug": "ancient-cities-adventure",
+      "title": "Ancient Cities Adventure",
+      "image": {
+        "asset": "/images/destinations/sriLanka/recommendedTour1.jpg"
       },
+      "itineraryName": "Test Itinerary Name",
+      "description": "Explore the ancient cities of Anuradhapura and Polonnaruwa, discovering centuries-old temples and ruins.",
+      "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
+      "duration": "7 days",
+      "price": 1200,
+      "highlights": [
+        "Cultural immersion in ancient Kandy",
+        "Explore Sigiriya Rock Fortress",
+        "Tea plantation experiences in Nuwara Eliya",
+        "Colonial heritage in Galle Fort",
+        "Urban exploration in vibrant Colombo"
+      ],
       "recommended": true,
       "recommendedContent": {
-        "id": 1,
-        "title": "The Best of Sri Lanka: Culture, Wildlife & Coast",
-        "nights": 14,
-        "price": 7800,
-        "image": "/images/destinations/sriLanka/recommendedTour1.jpg",
+        "id": 4,
+        "title": "Sri Lanka Raw & Real: Heritage, Highlands & Hidden Coves",
+        "nights": 10,
+        "price": 4500,
+        "image": "/images/destinations/sriLanka/recommendedTour3.jpg",
         "slug": "best-of-sri-lanka"
       },
-
       "itinerary": [
         {
           "day": 1,
@@ -80,23 +89,41 @@
           "title": "Colombo Exploration & Departure",
           "description": "Spend your day uncovering the vibrant charms of Colombo, from bustling streets to cultural treasures. Visit the iconic Gangaramaya Temple, a serene blend of history and spirituality. In the evening, take a leisurely stroll along the golden sands of Mount Lavinia Beach, soaking in the sunset hues. The next morning, bid farewell to Sri Lanka, carrying with you a heart full of memories."
         }
+      ],
+      "includes": [
+        "Accommodation in selected hotels",
+        "Professional English-speaking guide",
+        "All entrance fees",
+        "Transportation in air-conditioned vehicle",
+        "Daily breakfast"
+      ],
+      "excludes": [
+        "International flights",
+        "Lunch and dinner (unless specified)",
+        "Personal expenses",
+        "Travel insurance",
+        "Tips and gratuities"
       ]
     },
     {
       "id": "mystic-sri-lanka",
+      "slug": "ancient-cities-adventure1",
       "title": "Mystic Sri Lanka: Legends, Landscapes & Lost Shores",
       "duration": "8 Nights",
-      "itineraryName": "2N Galle | 2N Nuwara Eliya | 3N Kandy | 1N Colombo",
-      "overview": {
-        "description": "Discover Sri Lanka's mystical charm through its ancient legends, breathtaking landscapes, and hidden coastal treasures.",
-        "highlights": [
-          "Colonial heritage in Galle Fort",
-          "Scuba diving at Unawatuna Beach",
-          "Tea plantation visits in Nuwara Eliya",
-          "Sigiriya Rock Fortress exploration",
-          "Elephant encounters at Pinnawala"
-        ]
+      "price": 6200,
+      "image": {
+        "asset": "/images/destinations/sriLanka/recommendedTour1.jpg"
       },
+      "itineraryName": "2N Galle | 2N Nuwara Eliya | 3N Kandy | 1N Colombo",
+      "description": "Discover Sri Lanka's mystical charm through its ancient legends, breathtaking landscapes, and hidden coastal treasures.",
+      "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
+      "highlights": [
+        "Colonial heritage in Galle Fort",
+        "Scuba diving at Unawatuna Beach",
+        "Tea plantation visits in Nuwara Eliya",
+        "Sigiriya Rock Fortress exploration",
+        "Elephant encounters at Pinnawala"
+      ],
       "recommended": true,
       "recommendedContent": {
         "id": 4,
@@ -151,19 +178,23 @@
     },
     {
       "id": "wilderness-heritage-luxe",
+      "slug": "ancient-cities-adventure1",
       "title": "Wilderness & Heritage Luxe",
       "duration": "6 Nights",
       "itineraryName": "2N Yala | 3N Bentota | 1N Colombo",
-      "overview": {
-        "description": "Experience the perfect blend of Sri Lanka's untamed wilderness and coastal luxury on this exclusive 6-night journey.",
-        "highlights": [
-          "Safari adventures in Yala National Park",
-          "Luxury beachfront stay in Bentota",
-          "Whale watching in Mirissa",
-          "Colonial exploration in Galle",
-          "Urban discoveries in Colombo"
-        ]
+      "price": 6200,
+      "image": {
+        "asset": "/images/destinations/sriLanka/recommendedTour4.jpg"
       },
+      "description": "Experience the perfect blend of Sri Lanka's untamed wilderness and coastal luxury on this exclusive 6-night journey.",
+      "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
+      "highlights": [
+        "Safari adventures in Yala National Park",
+        "Luxury beachfront stay in Bentota",
+        "Whale watching in Mirissa",
+        "Colonial exploration in Galle",
+        "Urban discoveries in Colombo"
+      ],
       "recommended": true,
       "recommendedContent": {
         "id": 11,
@@ -208,20 +239,24 @@
     },
     {
       "id": "luxe-secrets-lanka",
+      "slug": "luxe-secrets-lanka",
       "title": "Luxe Secrets of Lanka",
       "duration": "4 Nights",
       "itineraryName": "1N Colombo | 3N Nuwara Eliya",
-      "overview": {
-        "description": "Discover Sri Lanka's hidden luxurious secrets in this intimate 4-night journey through urban sophistication and mountain serenity.",
-        "highlights": [
-          "Luxury oceanfront accommodation in Colombo",
-          "Mountain retreat in Nuwara Eliya",
-          "Nine Arch Bridge exploration",
-          "Gregory Lake sunset experiences",
-          "Colonial tea plantation visits"
-        ]
+      "price": 6200,
+      "image": {
+        "asset": "/images/destinations/sriLanka/recommendedTour2.jpg"
       },
-      "recommended": false,
+      "description": "Discover Sri Lanka's hidden luxurious secrets in this intimate 4-night journey through urban sophistication and mountain serenity.",
+      "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
+      "highlights": [
+        "Luxury oceanfront accommodation in Colombo",
+        "Mountain retreat in Nuwara Eliya",
+        "Nine Arch Bridge exploration",
+        "Gregory Lake sunset experiences",
+        "Colonial tea plantation visits"
+      ],
+      "recommended": true,
       "recommendedContent": {
         "id": 2,
         "title": "Treasures of the Tropics: Sri Lanka",
