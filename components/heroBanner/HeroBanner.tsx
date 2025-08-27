@@ -1,20 +1,22 @@
-'use client';
+"use client";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { IBreadcrumb } from "@/app/models/destinations";
-import {usePathname} from 'next/navigation'
+import {
+  IDestinationBreadcrumb,
+  IDestination,
+} from "@/app/models/destinations";
+import { usePathname } from "next/navigation";
 import { generateBreadcrumbs } from "@/utils/generateBreadcrumbs";
-const HeroBanner = ({ destination}: any) => {
-
+const HeroBanner = ({ destination }: { destination: IDestination }) => {
   const image = urlFor(
     destination.destinationHeroBanner.heroImage.asset
   )?.url();
 
   const pathname = usePathname();
   const breadCrumbs = generateBreadcrumbs(pathname);
-  
+
   return (
     <div className="hidden lg:block">
       <div className="relative">
@@ -23,7 +25,7 @@ const HeroBanner = ({ destination}: any) => {
             <nav className="bg-theme-primary-dark pt-4">
               <div className="max-w-7xl mx-auto">
                 <div className="flex items-center space-x-3 text-xs">
-                  {breadCrumbs.map((crumb: IBreadcrumb, index: number) => (
+                  {breadCrumbs.map((crumb: IDestinationBreadcrumb, index: number) => (
                     <React.Fragment key={index}>
                       <Link
                         href={crumb.ref}
@@ -43,7 +45,7 @@ const HeroBanner = ({ destination}: any) => {
               <h1 className="text-xl xl:text-4xl font-bold mb-6 font-serif leading-tight ">
                 {destination.destinationHeroBanner.title}
               </h1>
-              <p className="text-gray-200 mb-8 text-lg leading-relaxed">
+              <p className="text-gray-200 mb-8 text-md leading-relaxed font-">
                 {destination.destinationHeroBanner.description}
               </p>
             </div>

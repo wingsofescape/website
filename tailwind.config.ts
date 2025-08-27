@@ -12,7 +12,7 @@ module.exports = {
         "theme-slate": "#1e293b", // Updated to match bg-slate-800
       },
       fontFamily: {
-        boho: ['"Poppins"', "sans-serif"],
+       
       },
     },
   },

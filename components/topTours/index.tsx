@@ -4,11 +4,14 @@ import Link from "next/link";
 import {  IRecommendedContent, IRecommendedToursContent, ITour } from "@/app/models/destinations";
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+
 export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursContent: IRecommendedToursContent }}) => {
   const { tours, recommendedToursContent } = props.tours;
   const pathname = usePathname();
   if(tours.length === 0) return null;
+
   const recommendedTours  = tours.filter((tour : ITour) => tour.recommended);
+
   return (
     <section className="py-8 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
