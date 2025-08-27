@@ -9,7 +9,7 @@ const EnquireNowPage = () => {
         className="relative w-full h-48 flex items-center"
         style={{
           backgroundColor: "#0d3c2e",
-          backgroundImage: "url('/images/banner-pattern.png')", // Replace with your pattern image path
+          backgroundImage: "url('/images/banner-pattern.png')",
           backgroundRepeat: "repeat",
           backgroundSize: "cover",
         }}
