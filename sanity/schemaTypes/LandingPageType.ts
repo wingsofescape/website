@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-export const LandingPage = defineType({
+export const LandingPageType = defineType({
   name: "landingPage",
   title: "Hero Banner",
   type: "document",
