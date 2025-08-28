@@ -6,13 +6,13 @@ import landingPageData from "@/data/landingPage/index.json";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY } from "@/lib/constants";
 import { useFetchData } from "@/hooks/useFetchData";
-import {  IHeroBannerButton } from "@/app/models/heroBanner";
+import { IHeroBannerButton } from "@/app/models/heroBanner";
 
 export const HeroBanner = () => {
   const options = { next: { revalidate: 30 } };
 
   const data = useFetchData(
-    POST_QUERY.heroBanner,
+    POST_QUERY.landingPage,
     options,
     landingPageData.heroBanner
   );

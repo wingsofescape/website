@@ -10,6 +10,10 @@ export const destinationType = defineType({
       type: "string",
     }),
     defineField({
+      name: "slug",
+      type: "string",
+    }),
+    defineField({
       name: "destinationContent",
       title: "Destination Content",
       type: "document",
@@ -35,12 +39,13 @@ export const destinationType = defineType({
                 defineField({
                   name: "description",
                   title: "Description",
-                  type: "string",
+                  type: "text",
                 }),
                 defineField({
                   name: "paragraph",
                   title: "Paragraph",
-                  type: "string",
+                  type: "array",
+                  of: [{ type: "string" }],
                 }),
               ],
             }),
@@ -67,13 +72,13 @@ export const destinationType = defineType({
                 defineField({
                   name: "description",
                   title: "Description",
-                  type: "string",
+                  type: "text",
                 }),
                 defineField({
                   name: "paragraph",
                   title: "Paragraph",
                   type: "array",
-                  of: [{ type: "string" }]
+                  of: [{ type: "string" }],
                 }),
               ],
             }),
@@ -99,7 +104,7 @@ export const destinationType = defineType({
         }),
         defineField({
           name: "description",
-          type: "string",
+          type: "text",
         }),
         defineField({
           name: "heroImage",
@@ -107,29 +112,5 @@ export const destinationType = defineType({
         }),
       ],
     }),
-    defineField({
-      name: "destinationBreadcrumbs",
-      type: "array",
-      of: [
-        {
-          type: "object", // This indicates an object within the array
-          name: "breadCrumbLinks", // A unique name for this object type
-          fields: [
-            {
-              name: "label",
-              title: "Label",
-              type: "string",
-            },
-            {
-              name: "ref",
-              title: "Ref",
-              type: "string",
-            },
-            // Add more fields for your object as needed
-          ],
-        },
-      ],
-    }),
-    
   ],
 });
