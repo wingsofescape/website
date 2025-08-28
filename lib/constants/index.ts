@@ -11,6 +11,10 @@ export const POST_QUERY = {
       _type == "heroBanner"
       ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`,
   },
+  header: {
+    name: "header",
+    query: `*[_type == "destination"]{ _id, destinationHeading}`,
+  },
   destination(dest: string) {
     return {
       name: `destination-${dest}`,
