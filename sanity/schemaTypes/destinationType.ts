@@ -10,6 +10,10 @@ export const destinationType = defineType({
       type: "string",
     }),
     defineField({
+      name: "slug",
+      type: "string",
+    }),
+    defineField({
       name: "destinationContent",
       title: "Destination Content",
       type: "document",
@@ -73,7 +77,7 @@ export const destinationType = defineType({
                   name: "paragraph",
                   title: "Paragraph",
                   type: "array",
-                  of: [{ type: "string" }]
+                  of: [{ type: "string" }],
                 }),
               ],
             }),
@@ -91,10 +95,6 @@ export const destinationType = defineType({
         }),
         defineField({
           name: "title",
-          type: "string",
-        }),
-        defineField({
-          name: "slug",
           type: "string",
         }),
         defineField({
@@ -130,6 +130,5 @@ export const destinationType = defineType({
         },
       ],
     }),
-    
   ],
 });
