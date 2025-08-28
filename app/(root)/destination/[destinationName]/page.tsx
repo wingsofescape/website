@@ -16,22 +16,24 @@ const Destination = ({
   params: Promise<{ destinationName: string }>;
 }) => {
   const { destinationName } = use<{ destinationName: string }>(params);
-  console.log('destinatinName', destinationName);
+  console.log("destinatinName", destinationName);
   // const [activeTab, setActiveTab] = useState(0);
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
     allDestination[destinationName as keyof typeof allDestination]
   );
-  // const tours = useFetchData(
-  //   POST_QUERY.tours(destinationName),
-  //   SANITY_QUERY_OPTION,
-  //   allTours[`${destinationName}Tours` as keyof typeof allTours].tours
-  // );
-  
-  const image = urlFor(destination.destinationHeroBanner.heroImage.asset)?.url();
+  const tours = useFetchData(
+    POST_QUERY.tours(destinationName),
+    SANITY_QUERY_OPTION,
+    allTours[`${destinationName}Tours` as keyof typeof allTours].tours
+  );
 
-   const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
+  const image = urlFor(
+    destination.destinationHeroBanner.heroImage.asset
+  )?.url();
+
+  //  const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
 
   // const getActiveTabContent = () => {
   //   return destination.tabbedSection[activeTab] || destination.tabbedSection[0];
@@ -91,7 +93,6 @@ const Destination = ({
         {/* Desktop Design - Half and Half Layout */}
         <HeroBanner destination={destination} />
       </section>
-
 
       <section className="py-8 px-4 lg:px-12 bg-gray-50">
         {/* <div className="max-w-7xl mx-auto">
