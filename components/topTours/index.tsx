@@ -1,17 +1,21 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import {  IRecommendedContent, IRecommendedToursContent, ITour } from "@/app/models/destinations";
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import {
+  IRecommendedContent,
+  IRecommendedToursContent,
+  ITour,
+} from "@/app/models/destinations";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";
 
-export const TopTours = (props : { tours : {tours : ITour[]}}) => {
-  console.log(props);
-  const tours = props.tours.tours;
-  const pathname = usePathname();
-  if(tours.length === 0) return null;
-  const recommendedTours  = tours.filter((tour : ITour) => tour.recommended);
+export const TopTours = (props: { tours: { tours: ITour[] } }) => {
+  console.log(props.tours);
+  const tours = props.tours;
+  //   const pathname = usePathname();
+  //   if (tours.length === 0) return null;
+  const recommendedTours = tours.filter((tour: ITour) => tour.recommended);
   console.log(recommendedTours);
   return (
     <section className="py-8 px-4 bg-white">
@@ -42,13 +46,20 @@ export const TopTours = (props : { tours : {tours : ITour[]}}) => {
           {/* Right Tours Flex - Mobile: Full width, Desktop: 7/12 width */}
           <div className="w-full lg:w-7/12">
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
-              {recommendedTours.length && recommendedTours.map((tour : ITour) => (
-                tour.recommendedContent ? (
-                  <div className="w-full sm:w-[calc(50%-0.5rem)] flex-grow" key={tour.id}>
-                    <TourCard tour={tour.recommendedContent} countryName={tour.countryName} />
-                  </div>
-                ) : null
-              ))}
+              {recommendedTours.length &&
+                recommendedTours.map((tour: ITour) =>
+                  tour.recommendedContent ? (
+                    <div
+                      className="w-full sm:w-[calc(50%-0.5rem)] flex-grow"
+                      key={tour.id}
+                    >
+                      <TourCard
+                        tour={tour.recommendedContent}
+                        countryName={tour.countryName}
+                      />
+                    </div>
+                  ) : null
+                )}
             </div>
           </div>
         </div>
@@ -58,17 +69,27 @@ export const TopTours = (props : { tours : {tours : ITour[]}}) => {
 };
 
 // Tour Card Component
-const TourCard = ({ tour, countryName } : { tour: IRecommendedContent, countryName: string }) => {
-  console.log(tour);
+const TourCard = ({
+  tour,
+  countryName,
+}: {
+  tour: IRecommendedContent;
+  countryName: string;
+}) => {
+  console.log("TourCard", tour);
   return (
     <div className="bg-white -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
       {/* Tour Image */}
       <div
         className={`relative h-60 overflow-hidden bg-cover bg-center bg-no-repeat hover:scale-101 flex flex-col`}
       >
-          {/* Tour Image with fallback */}
-          <Image
-          src={tour.image.asset.includes('/')?tour.image.asset.includes('/'): urlFor(tour.image.asset)?.url}
+        {/* Tour Image with fallback */}
+        <Image
+          src={
+            tour.image.asset.includes("/")
+              ? tour.image.asset.includes("/")
+              : urlFor(tour.image.asset)?.url
+          }
           alt={tour.title}
           className="absolute inset-0 w-full h-full object-cover"
           width={400}
@@ -85,26 +106,26 @@ const TourCard = ({ tour, countryName } : { tour: IRecommendedContent, countryNa
         <div className="absolute top-[50%] left-[50%] p-0 flex flex-col bg-transparent translate-y-[-50%] opacity-90">
           {/* Black Header */}
           <div className="bg-[#090909] text-white p-4 flex flex-col">
-        <h3 className="font-bold text-xs leading-tight mb-3">
-          {tour.title}
-        </h3>
-        <div className="text-sm flex flex-col">
-          <span className="opacity-80">from</span>
-          <div className="text-xl font-bold">
-            {tour.price.toLocaleString()}{" "}
-            <span className="text-base font-normal opacity-80">inr.</span>
-          </div>
-        </div>
+            <h3 className="font-bold text-xs leading-tight mb-3">
+              {tour.title}
+            </h3>
+            <div className="text-sm flex flex-col">
+              <span className="opacity-80">from</span>
+              <div className="text-xl font-bold">
+                {tour.price.toLocaleString()}{" "}
+                <span className="text-base font-normal opacity-80">inr.</span>
+              </div>
+            </div>
           </div>
 
           {/* ThemeDark CTA Button */}
           <div className="bg-theme-primary p-4 text-center text-white flex items-center justify-center">
-        <Link
-          href={`/destination/${countryName}/tours/${tour.slug}`}
-          className="font-bold text-lg hover:test-white transition-colors"
-        >
-          View Tour
-        </Link>
+            <Link
+              href={`/destination/${countryName}/tours/${tour.slug}`}
+              className="font-bold text-lg hover:test-white transition-colors"
+            >
+              View Tour
+            </Link>
           </div>
         </div>
       </div>

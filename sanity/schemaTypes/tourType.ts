@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineType } from "sanity";
 
 export const tourType = defineType({
   name: "tour",
