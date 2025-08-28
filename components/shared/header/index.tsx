@@ -5,10 +5,22 @@ import headerData from "@/data/header.json";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Logo2 from "@/public/logos/logo_2.png";
+import { useFetchData } from "@/hooks/useFetchData";
+import {
+  POST_QUERY,
+  SANITY_QUERY_OPTION,
+  totalDestinations,
+} from "@/lib/constants";
+import { createDestinationList } from "@/utils/createDestinations";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
+  const data = useFetchData(
+    POST_QUERY.header,
+    SANITY_QUERY_OPTION,
+    totalDestinations
+  );
 
   const handleDestinationClick = (destinationLink: string) => {
     router.push(destinationLink);
@@ -22,9 +34,9 @@ const Header = () => {
         {section.label}
       </button>
       <ul className="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-20">
-        {section.items.map((item) => (
+        {section.items.map((item, index) => (
           <li
-            key={item.name}
+            key={index}
             className="px-4 py-2 hover:bg-amber-100 hover:rounded cursor-pointer text-xs font-semibold"
             onClick={() => {
               handleDestinationClick(item.href);
@@ -101,7 +113,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex text-sm lg:text-base items-center space-x-4">
-          {renderDropdown(headerData.navigation.destinations)}
+          {renderDropdown(createDestinationList(data, "Destinations"))}
           {renderDropdown(headerData.navigation.inspiration)}
           {renderDropdown(headerData.navigation.contactUs)}
           {renderDropdown(headerData.navigation.aboutUs)}

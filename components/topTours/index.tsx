@@ -4,14 +4,15 @@ import Link from "next/link";
 import {  IRecommendedContent, IRecommendedToursContent, ITour } from "@/app/models/destinations";
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { urlFor } from "@/sanity/lib/image";
 
-export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursContent: IRecommendedToursContent }}) => {
-  const { tours, recommendedToursContent } = props.tours;
+export const TopTours = (props : { tours : {tours : ITour[]}}) => {
+  console.log(props);
+  const tours = props.tours.tours;
   const pathname = usePathname();
   if(tours.length === 0) return null;
-
   const recommendedTours  = tours.filter((tour : ITour) => tour.recommended);
-
+  console.log(recommendedTours);
   return (
     <section className="py-8 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -19,7 +20,7 @@ export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursCon
         <div className="flex flex-col lg:flex-row lg:gap-8">
           {/* Left Content Area - Mobile: Full width, Desktop: 5/12 width */}
           <div className="w-full lg:w-5/12 mb-8 lg:mb-0 flex-shrink-0">
-            <div className="bg-white p-6 -lg shadow-sm h-full flex flex-col justify-center">
+            {/* <div className="bg-white p-6 -lg shadow-sm h-full flex flex-col justify-center">
               <h2 className="text-2xl md:text-3xl font-bold text-[#00332a] mb-4 font-serif">
                 {recommendedToursContent.title}
               </h2>
@@ -35,16 +36,16 @@ export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursCon
                 >
                 VIEW ALL TOURS
                 </Link>
-            </div>
+            </div> */}
           </div>
 
           {/* Right Tours Flex - Mobile: Full width, Desktop: 7/12 width */}
           <div className="w-full lg:w-7/12">
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
-              {recommendedTours.length && recommendedTours.map((tour) => (
+              {recommendedTours.length && recommendedTours.map((tour : ITour) => (
                 tour.recommendedContent ? (
                   <div className="w-full sm:w-[calc(50%-0.5rem)] flex-grow" key={tour.id}>
-                    <TourCard tour={tour.recommendedContent} />
+                    <TourCard tour={tour.recommendedContent} countryName={tour.countryName} />
                   </div>
                 ) : null
               ))}
@@ -57,16 +58,17 @@ export const TopTours = (props : { tours : { tours: ITour[]; recommendedToursCon
 };
 
 // Tour Card Component
-const TourCard = ({ tour } : { tour: IRecommendedContent }) => {
+const TourCard = ({ tour, countryName } : { tour: IRecommendedContent, countryName: string }) => {
+  console.log(tour);
   return (
     <div className="bg-white -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
       {/* Tour Image */}
       <div
         className={`relative h-60 overflow-hidden bg-cover bg-center bg-no-repeat hover:scale-101 flex flex-col`}
       >
-        {/* Tour Image with fallback */}
-        <Image
-          src={tour.image}
+          {/* Tour Image with fallback */}
+          <Image
+          src={tour.image.asset.includes('/')?tour.image.asset.includes('/'): urlFor(tour.image.asset)?.url}
           alt={tour.title}
           className="absolute inset-0 w-full h-full object-cover"
           width={400}
@@ -98,7 +100,7 @@ const TourCard = ({ tour } : { tour: IRecommendedContent }) => {
           {/* ThemeDark CTA Button */}
           <div className="bg-theme-primary p-4 text-center text-white flex items-center justify-center">
         <Link
-          href={`/tours/${tour.slug}`}
+          href={`/destination/${countryName}/tours/${tour.slug}`}
           className="font-bold text-lg hover:test-white transition-colors"
         >
           View Tour

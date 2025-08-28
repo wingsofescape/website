@@ -16,16 +16,22 @@ const Destination = ({
   params: Promise<{ destinationName: string }>;
 }) => {
   const { destinationName } = use<{ destinationName: string }>(params);
+  console.log('destinatinName', destinationName);
   // const [activeTab, setActiveTab] = useState(0);
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
     allDestination[destinationName as keyof typeof allDestination]
   );
-  // const destination = allDestination[destinationName as keyof typeof allDestination];
+  // const tours = useFetchData(
+  //   POST_QUERY.tours(destinationName),
+  //   SANITY_QUERY_OPTION,
+  //   allTours[`${destinationName}Tours` as keyof typeof allTours].tours
+  // );
+  
   const image = urlFor(destination.destinationHeroBanner.heroImage.asset)?.url();
 
-  const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
+   const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
 
   // const getActiveTabContent = () => {
   //   return destination.tabbedSection[activeTab] || destination.tabbedSection[0];

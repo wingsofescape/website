@@ -10,7 +10,6 @@
   "destinationHeroBanner": {
     "name": "Sri Lanka",
     "title": "Luxury Sri Lanka Holidays 2025/2026",
-    "slug": "sri-lanka",
     "description": "Combining stunning natural landscapes and beaches with bustling cities and ancient cultural sites, Sri Lanka is a country like no other. With a vibrant culture, distinctive cuisine and many destinations to discover, there are endless experiences that everyone can enjoy on a holiday to Sri Lanka.",
     "heroImage": {"asset":"image-70e230060b7d1ceaf57eb1e13434ccdca2c03052-3389x1906-jpg"}
   },
@@ -182,5 +181,7 @@
       }
     }
   },
-  "destinationTabs": ["holidays", "tour-ideas"]
+  "destinationTabs": ["holidays", "tour-ideas"],
+  "slug": "srilanka",
+  "destinationHeading": "Sri Lanka"
 }
