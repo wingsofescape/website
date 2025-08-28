@@ -1,8 +1,8 @@
 import { type SchemaTypeDefinition } from "sanity";
-import { LandingPage } from "./LandingPage";
+import { LandingPageType } from "./LandingPageType";
 import { destinationType } from "./destinationType";
 import { tourType } from "./tourType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [LandingPage, destinationType, tourType],
+  types: [LandingPageType, destinationType, tourType],
 };
