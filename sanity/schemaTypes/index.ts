@@ -1,8 +1,8 @@
 import { type SchemaTypeDefinition } from "sanity";
-import { heroBannerType } from "./heroBannerType";
+import { LandingPage } from "./LandingPage";
 import { destinationType } from "./destinationType";
 import { tourType } from "./tourType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [heroBannerType, destinationType, tourType],
+  types: [LandingPage, destinationType, tourType],
 };
