@@ -8,6 +8,7 @@ export const useFetchData = (
   options = {},
   defaultData?: any
 ) => {
+  console.log(`${POSTS_QUERY.name}`, defaultData);
   const [data, setData] = useState(defaultData);
   useEffect(() => {
     const getData = async () => {

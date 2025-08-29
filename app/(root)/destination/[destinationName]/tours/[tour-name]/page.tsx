@@ -19,7 +19,8 @@ export default function TourDetailsPage({
   const tour = useFetchData(
     POST_QUERY.singleTour(tourSlug),
     SANITY_QUERY_OPTION,
-    allTours[`${destinationName}Tours` as keyof typeof allTours][0]
+    allTours[`${destinationName}Tours` as keyof typeof allTours]?.[0] ||
+    allTours["srilankaTours"][0]
   );
 
   if (!tour) {
