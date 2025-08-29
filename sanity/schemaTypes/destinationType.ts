@@ -14,6 +14,28 @@ export const destinationType = defineType({
       type: "string",
     }),
     defineField({
+      name: "destinationHeroBanner",
+      type: "document",
+      fields: [
+        defineField({
+          name: "name",
+          type: "string",
+        }),
+        defineField({
+          name: "title",
+          type: "string",
+        }),
+        defineField({
+          name: "description",
+          type: "text",
+        }),
+        defineField({
+          name: "heroImage",
+          type: "image",
+        }),
+      ],
+    }),
+    defineField({
       name: "destinationContent",
       title: "Destination Content",
       type: "document",
@@ -39,12 +61,13 @@ export const destinationType = defineType({
                 defineField({
                   name: "description",
                   title: "Description",
-                  type: "string",
+                  type: "text",
                 }),
                 defineField({
                   name: "paragraph",
                   title: "Paragraph",
-                  type: "string",
+                  type: "array",
+                  of: [{ type: "string" }],
                 }),
               ],
             }),
@@ -71,7 +94,7 @@ export const destinationType = defineType({
                 defineField({
                   name: "description",
                   title: "Description",
-                  type: "string",
+                  type: "text",
                 }),
                 defineField({
                   name: "paragraph",
@@ -85,50 +108,14 @@ export const destinationType = defineType({
         }),
       ],
     }),
-    defineField({
-      name: "destinationHeroBanner",
-      type: "document",
+    {
+      name: "recommendedToursContent",
+      title: "Recommended Tours Content",
+      type: "object",
       fields: [
-        defineField({
-          name: "name",
-          type: "string",
-        }),
-        defineField({
-          name: "title",
-          type: "string",
-        }),
-        defineField({
-          name: "description",
-          type: "string",
-        }),
-        defineField({
-          name: "heroImage",
-          type: "image",
-        }),
-      ],
-    }),
-    defineField({
-      name: "destinationBreadcrumbs",
-      type: "array",
-      of: [
-        {
-          type: "object", // This indicates an object within the array
-          name: "breadCrumbLinks", // A unique name for this object type
-          fields: [
-            {
-              name: "label",
-              title: "Label",
-              type: "string",
-            },
-            {
-              name: "ref",
-              title: "Ref",
-              type: "string",
-            },
-            // Add more fields for your object as needed
-          ],
-        },
-      ],
-    }),
+        { name: "title", title: "Title", type: "string" },
+        { name: "description", title: "Description", type: "text" },
+        ],  
+    },
   ],
 });

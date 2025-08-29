@@ -1,10 +1,8 @@
 "use client";
 import React, { use } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { allDestination, allTours } from "@/data/countries";
 import { TopTours } from "@/components/topTours";
-import { IDestinationBreadcrumb } from "@/app/models/destinations";
 import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { urlFor } from "@/sanity/lib/image";
@@ -16,8 +14,7 @@ const Destination = ({
   params: Promise<{ destinationName: string }>;
 }) => {
   const { destinationName } = use<{ destinationName: string }>(params);
-  console.log('destinatinName', destinationName);
-  // const [activeTab, setActiveTab] = useState(0);
+  // const [activeTab, setActiveTab] = useState('holidaysOverview');
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
@@ -32,10 +29,11 @@ const Destination = ({
   const image = urlFor(destination.destinationHeroBanner.heroImage.asset)?.url();
 
    const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
+  // console.log(tours);
 
-  // const getActiveTabContent = () => {
-  //   return destination.tabbedSection[activeTab] || destination.tabbedSection[0];
-  // };
+  const getActiveTabContent = (destinationContentType: string) => {
+    return destination.destinationContent[destinationContentType];
+  };
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -46,7 +44,7 @@ const Destination = ({
           {/* Mobile Breadcrumbs */}
           <nav className="bg-theme-primary-dark px-4 py-3">
             <div className="flex items-center space-x-2 text-sm">
-              {destination.destinationBreadcrumbs.map(
+              {/* {destination.destinationBreadcrumbs.map(
                 (crumb: IDestinationBreadcrumb, index: number) => (
                   <React.Fragment key={index}>
                     <Link
@@ -60,7 +58,7 @@ const Destination = ({
                     )}
                   </React.Fragment>
                 )
-              )}
+              )} */}
             </div>
           </nav>
 
@@ -94,37 +92,23 @@ const Destination = ({
 
 
       <section className="py-8 px-4 lg:px-12 bg-gray-50">
-        {/* <div className="max-w-7xl mx-auto">
+       <div className="max-w-7xl mx-auto">
           <div className="mb-8">
-            <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200">
-              {destination.tabbedSection.map((tab : ITabbedSection, index: number) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(index)}
-                  className={`px-6 py-3 text-sm md:text-base font-medium transition-all duration-300 border-b-2 ${
-                    activeTab === index
-                      ? "text-[#00332a] border-[#00332a] bg-white"
-                      : "text-gray-600 border-transparent hover:text-[#00332a] hover:border-gray-300"
-                  }`}
-                >
-                  {tab.title}
-                </button>
-              ))}
-            </div>
+            {/* <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200">
+              {destination.destinationContent['holidaysOverview'].title}
+              {destination.destinationContent['tourIdeas'].title}
+            </div> */}
           </div>
 
           <div className="bg-white rounded-lg shadow-sm p-8 lg:p-12">
             <div className="max-w-4xl">
               <h2 className="text-2xl lg:text-3xl font-bold text-[#00332a] font-serif mb-6">
-                {getActiveTabContent().title}
+                {getActiveTabContent('tourIdeas').title}
               </h2>
 
               <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  {getActiveTabContent().content.description}
-                </p>
-                {getActiveTabContent().content?.paragraphs &&
-                  getActiveTabContent().content?.paragraphs.map(
+                {getActiveTabContent('tourIdeas').content?.paragraph &&
+                  getActiveTabContent('tourIdeas').content?.paragraph.map(
                     (paragraph : string, index: number) => (
                       <p
                         key={index}
@@ -137,11 +121,11 @@ const Destination = ({
               </div>
             </div>
           </div>
-        </div> */}
+        </div> 
       </section>
 
       {/* Rest of the destination page content would go here */}
-      <TopTours tours={tours} />
+      <TopTours tours={tours} recommendedTourContent={destination.recommendedToursContent} />
     </div>
   );
 };
