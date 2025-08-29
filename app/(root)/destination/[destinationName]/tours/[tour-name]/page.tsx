@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { use } from "react";
 import TourBanner from "@/components/tourBanner";
-import allTours from "@/data/countries/SriLanka/tours.json";
+import { allTours } from "@/data/countries";
 import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { Itinerary } from "@/app/models/tours";
@@ -16,13 +16,11 @@ export default function TourDetailsPage({
   params: Promise<ParamTye>;
 }) {
   const { destinationName, "tour-name": tourSlug } = use<ParamTye>(params);
-
   const tour = useFetchData(
     POST_QUERY.singleTour(tourSlug),
     SANITY_QUERY_OPTION,
-    allTours.find((t) => t.slug.current === tourSlug)
+    allTours[`${destinationName}Tours` as keyof typeof allTours][0]
   );
-  // const tour  = allTours.find((t) => t.slug.current === tourSlug)
 
   if (!tour) {
     notFound();
@@ -35,7 +33,7 @@ export default function TourDetailsPage({
 
   const UniqueDay = ({ day }: { day: Itinerary }) => {
     return (
-      <div key={day.day} className="pl-6 unique-day">
+      <div key={day.day} className="pl-6 unique-day1">
         <span>Day {day.day}</span>
         <h3 className="text-xl font-semibold mb-2">{day.title}</h3>
         <p className="text-gray-700">{day.description}</p>
