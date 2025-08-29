@@ -1,3 +1,4 @@
+type Image = { asset: string } | string;
 export interface IDestinationTours {
   description: string[];
   tours: ITour[];
@@ -10,32 +11,32 @@ export interface IRecommendedToursContent {
 }
 
 export interface ITour {
-  id: string
-  slug: string
-  title: string
-  duration: string
-  itineraryName: string
-  price: number
-  image: {asset: string}
-  description: string
-  longDescription: string
-  highlights: string[]
-  recommended: boolean
-  recommendedContent: RecommendedContent
-  itinerary: Itinerary[]
+  id: string;
+  slug: { current: string };
+  title: string;
+  duration: string;
+  itineraryName: string;
+  price: number;
+  image: Image;
+  description: string;
+  longDescription: string;
+  highlights: string[];
+  recommended: boolean;
+  recommendedContent: RecommendedContent;
+  itinerary: Itinerary[];
 }
 
 export interface RecommendedContent {
-  id: number
-  title: string
-  nights: number
-  price: number
-  image: string
-  slug: string
+  id: number;
+  title: string;
+  nights: number;
+  price: number;
+  image: Image;
+  slug: string;
 }
 
 export interface Itinerary {
-  day: number
-  title: string
-  description: string
+  day: number;
+  title: string;
+  description: string;
 }

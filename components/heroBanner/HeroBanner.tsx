@@ -8,14 +8,16 @@ import {
   IDestination,
 } from "@/app/models/destinations";
 import { usePathname } from "next/navigation";
-import { generateBreadcrumbs } from "@/utils/generateBreadcrumbs";
+import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
+
 const HeroBanner = ({ destination }: { destination: IDestination }) => {
-  const image = urlFor(
-    destination.destinationHeroBanner.heroImage.asset
-  )?.url();
+  const image =
+    typeof destination.destinationHeroBanner.heroImage === "string"
+      ? destination.destinationHeroBanner.heroImage
+      : urlFor(destination.destinationHeroBanner.heroImage.asset)?.url();
 
   const pathname = usePathname();
-  const breadCrumbs = generateBreadcrumbs(pathname);
+  const breadCrumbs = createBreadcrumbs(pathname);
 
   return (
     <div className="hidden lg:block">
@@ -25,19 +27,21 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
             <nav className="bg-theme-primary-dark pt-4">
               <div className="max-w-7xl mx-auto">
                 <div className="flex items-center space-x-3 text-xs">
-                  {breadCrumbs.map((crumb: IDestinationBreadcrumb, index: number) => (
-                    <React.Fragment key={index}>
-                      <Link
-                        href={crumb.ref}
-                        className="text-white hover:text-amber-300 transition-colors duration-200"
-                      >
-                        {crumb.label}
-                      </Link>
-                      {index < breadCrumbs.length - 1 && (
-                        <span className="text-gray-300 text-lg">›</span>
-                      )}
-                    </React.Fragment>
-                  ))}
+                  {breadCrumbs.map(
+                    (crumb: IDestinationBreadcrumb, index: number) => (
+                      <React.Fragment key={index}>
+                        <Link
+                          href={crumb.ref}
+                          className="text-white hover:text-amber-300 transition-colors duration-200"
+                        >
+                          {crumb.label}
+                        </Link>
+                        {index < breadCrumbs.length - 1 && (
+                          <span className="text-gray-300 text-lg">›</span>
+                        )}
+                      </React.Fragment>
+                    )
+                  )}
                 </div>
               </div>
             </nav>

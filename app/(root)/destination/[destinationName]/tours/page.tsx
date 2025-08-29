@@ -14,16 +14,19 @@ export default function DestinationToursPage({
 }: {
   params: Promise<{ destinationName: string }>;
 }) {
-
   const { destinationName } = use<{ destinationName: string }>(params);
-  const tourDescription =allTours[`${destinationName}Tours` as keyof typeof allTours].description;
-  const tours =
-    allTours[`${destinationName}Tours` as keyof typeof allTours].tours;
- 
+  const tourDescription =
+    allTours[`${destinationName}Tours` as keyof typeof allTours].description;
+
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
     allDestination[destinationName as keyof typeof allDestination]
+  );
+  const tours = useFetchData(
+    POST_QUERY.tours(destinationName),
+    SANITY_QUERY_OPTION,
+    allTours[`${destinationName}Tours` as keyof typeof allTours]
   );
 
   return (
@@ -37,38 +40,34 @@ export default function DestinationToursPage({
             {destination.destinationHeroBanner.name} Tours
           </h2>
 
-          <div className="prose prose-lg max-w-none">
-            {
-              tourDescription.map(
-                (paragraph: string, index: number) => (
-                  <p key={index} className="text-gray-700 leading-relaxed mb-4">
-                    {paragraph}
-                  </p>
-                )
-              )}
-          </div>
+          <div className="prose prose-lg max-w-none">{tourDescription}</div>
         </div>
       </div>
-              
+
       {/* Tours Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="tour-count flex justify-end">
-            <span className="text-gray-600 mb-6 font-semibold text-lg"> Showing 1 - {tours.length} of {tours.length} tours </span>
+            <span className="text-gray-600 mb-6 font-semibold text-lg">
+              {" "}
+              Showing 1 - {tours.length} of {tours.length} tours{" "}
+            </span>
           </div>
 
           <div className="flex flex-col gap-8">
-            {tours.map((tour : ITour) => (
+            {tours.map((tour: ITour) => (
               <Link
                 key={tour.id}
-                href={`/destination/${destinationName}/tours/${tour.slug}`}
+                href={`/destination/${destinationName}/tours/${tour.slug.current}`}
                 className="group"
               >
                 <div className="bg-white  shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row">
                   {/* Tour Image & Badge */}
                   <div className="relative h-75 w-full md:w-2/5">
                     <Image
-                      src={tour.image.asset.includes("/") ? tour.image.asset : urlFor(tour.image.asset)?.url()}
+                      src={typeof tour.image === "string"
+                                    ? tour.image
+                                    : urlFor(tour.image.asset)?.url()}
                       alt={tour.title}
                       className="object-cover w-full h-full"
                       width={500}
@@ -77,7 +76,9 @@ export default function DestinationToursPage({
                     {/* Nights Badge */}
                     <div className="absolute bottom-0 left-0 bg-theme-primary text-white px-4 py-2 font-bold text-center shadow-lg opacity-60">
                       {/* Extract number of nights from duration string */}
-                      <div className="text-lg leading-none">{tour.duration.split(' ')[0]}</div>
+                      <div className="text-lg leading-none">
+                        {tour.duration.split(" ")[0]}
+                      </div>
                       <div className="text-xs uppercase">NIGHTS</div>
                     </div>
                   </div>
@@ -100,10 +101,13 @@ export default function DestinationToursPage({
                       <div>
                         <span className="text-gray-600 text-sm">From</span>
                         <div className="text-2xl font-bold text-green-900">
-                          £{tour.price} <span className="text-base font-normal text-gray-600">pp</span>
+                          £{tour.price}{" "}
+                          <span className="text-base font-normal text-gray-600">
+                            pp
+                          </span>
                         </div>
                       </div>
-                      <div className="bg-green-900 text-white px-6 py-2 font-semibold hover:bg-green-800 transition-colors" >
+                      <div className="bg-green-900 text-white px-6 py-2 font-semibold hover:bg-green-800 transition-colors">
                         VIEW TOUR
                       </div>
                     </div>

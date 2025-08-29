@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import HeroCarousal2 from "@/public/images/HeroCarousal.jpg";
 import landingPageData from "@/data/landingPage/index.json";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY } from "@/lib/constants";
@@ -16,9 +15,9 @@ export const HeroBanner = () => {
     options,
     landingPageData.heroBanner
   );
-  const image = data.heroBannerImage
-    ? urlFor(data.heroBannerImage.asset)?.url()
-    : HeroCarousal2.src;
+  const image = data.heroBannerImage.asset.includes("/")
+    ? data.heroBannerImage.asset
+    : urlFor(data.heroBannerImage.asset)?.url();
 
   return (
     <>

@@ -10,8 +10,30 @@ export const destinationType = defineType({
       type: "string",
     }),
     defineField({
-      name: "slug",
+      name: "slug", //
       type: "string",
+    }),
+    defineField({
+      name: "destinationHeroBanner",
+      type: "document",
+      fields: [
+        defineField({
+          name: "name",
+          type: "string",
+        }),
+        defineField({
+          name: "title",
+          type: "string",
+        }),
+        defineField({
+          name: "description",
+          type: "text",
+        }),
+        defineField({
+          name: "heroImage",
+          type: "image",
+        }),
+      ],
     }),
     defineField({
       name: "destinationContent",
@@ -86,31 +108,14 @@ export const destinationType = defineType({
         }),
       ],
     }),
-    defineField({
-      name: "destinationHeroBanner",
-      type: "document",
+    {
+      name: "recommendedToursContent",
+      title: "Recommended Tours Content",
+      type: "object",
       fields: [
-        defineField({
-          name: "name",
-          type: "string",
-        }),
-        defineField({
-          name: "title",
-          type: "string",
-        }),
-        defineField({
-          name: "slug",
-          type: "string",
-        }),
-        defineField({
-          name: "description",
-          type: "text",
-        }),
-        defineField({
-          name: "heroImage",
-          type: "image",
-        }),
-      ],
-    }),
+        { name: "title", title: "Title", type: "string" },
+        { name: "description", title: "Description", type: "text" },
+        ],  
+    },
   ],
 });

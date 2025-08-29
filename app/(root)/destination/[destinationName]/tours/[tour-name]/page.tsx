@@ -1,21 +1,28 @@
+"use client";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { use } from "react";
 import TourBanner from "@/components/tourBanner";
 import allTours from "@/data/countries/SriLanka/tours.json";
+import { useFetchData } from "@/hooks/useFetchData";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
+import { Itinerary } from "@/app/models/tours";
 
+type PageProps = { destinationName: string; "tour-name": string };
 
 export default function TourDetailsPage({
   params,
 }: {
-  params: Promise<{ destinationName: string; "tour-name": string }>;
+  params: Promise<PageProps>;
 }) {
-  const { destinationName, "tour-name": tourSlug } = use<{
-    destinationName: string;
-    "tour-name": string;
-  }>(params);
+  const { destinationName, "tour-name": tourSlug } = use<PageProps>(params);
 
-  const tour = allTours.tours.find(t => t.slug === tourSlug); 
+  const tour = useFetchData(
+    POST_QUERY.singleTour(tourSlug),
+    SANITY_QUERY_OPTION,
+    allTours.find((t) => t.slug.current === tourSlug)
+  );
+  // const tour = allTours.find((t) => t.slug.current === tourSlug);
 
   if (!tour) {
     notFound();
@@ -29,7 +36,7 @@ export default function TourDetailsPage({
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <TourBanner {...tour} />
+      <TourBanner tour={tour} />
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
@@ -46,22 +53,23 @@ export default function TourDetailsPage({
               {/* Highlights */}
               <h3 className="text-xl font-semibold mb-4">Tour Highlights</h3>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {tour.highlights && tour.highlights.map((highlight, index) => (
-                  <li key={index} className="flex items-center">
-                    <svg
-                      className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                    <span>{highlight}</span>
-                  </li>
-                ))}
+                {tour.highlights &&
+                  tour.highlights.map((highlight: string, index: number) => (
+                    <li key={index} className="flex items-center">
+                      <svg
+                        className="w-5 h-5 text-green-500 mr-3 flex-shrink-0"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
               </ul>
             </section>
 
@@ -69,7 +77,7 @@ export default function TourDetailsPage({
             <section className="mb-12">
               <h2 className="text-3xl font-bold mb-6">Detailed Itinerary</h2>
               <div className="space-y-6">
-                {tour.itinerary.map((day) => (
+                {tour.itinerary.map((day : Itinerary) => (
                   <div
                     key={day.day}
                     className="border-l-4 border-slate-800 pl-6"
@@ -91,22 +99,23 @@ export default function TourDetailsPage({
                     What&apos;s Included
                   </h3>
                   <ul className="space-y-2">
-                    {tour.includes && tour.includes.map((item, index) => (
-                      <li key={index} className="flex items-start">
-                        <svg
-                          className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className="text-sm">{item}</span>
-                      </li>
-                    ))}
+                    {tour.includes &&
+                      tour.includes.map((item: string, index: number) => (
+                        <li key={index} className="flex items-start">
+                          <svg
+                            className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            ></path>
+                          </svg>
+                          <span className="text-sm">{item}</span>
+                        </li>
+                      ))}
                   </ul>
                 </div>
 
@@ -115,22 +124,23 @@ export default function TourDetailsPage({
                     What&apos;s Not Included
                   </h3>
                   <ul className="space-y-2">
-                    {tour.excludes && tour.excludes.map((item, index) => (
-                      <li key={index} className="flex items-start">
-                        <svg
-                          className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                          ></path>
-                        </svg>
-                        <span className="text-sm">{item}</span>
-                      </li>
-                    ))}
+                    {tour.excludes &&
+                      tour.excludes.map((item: string, index: number) => (
+                        <li key={index} className="flex items-start">
+                          <svg
+                            className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clipRule="evenodd"
+                            ></path>
+                          </svg>
+                          <span className="text-sm">{item}</span>
+                        </li>
+                      ))}
                   </ul>
                 </div>
               </div>
