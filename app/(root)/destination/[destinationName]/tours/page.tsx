@@ -28,7 +28,6 @@ export default function DestinationToursPage({
     SANITY_QUERY_OPTION,
     allTours[`${destinationName}Tours` as keyof typeof allTours]
   );
-  console.log(tours[0].image.asset);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -66,7 +65,9 @@ export default function DestinationToursPage({
                   {/* Tour Image & Badge */}
                   <div className="relative h-75 w-full md:w-2/5">
                     <Image
-                      src={urlFor(tour.image.asset)?.url()}
+                      src={typeof tour.image === "string"
+                                    ? tour.image
+                                    : urlFor(tour.image.asset)?.url()}
                       alt={tour.title}
                       className="object-cover w-full h-full"
                       width={500}

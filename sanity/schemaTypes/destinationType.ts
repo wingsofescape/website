@@ -10,7 +10,7 @@ export const destinationType = defineType({
       type: "string",
     }),
     defineField({
-      name: "slug",
+      name: "slug", //
       type: "string",
     }),
     defineField({

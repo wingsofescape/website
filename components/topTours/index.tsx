@@ -10,12 +10,15 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";
 
-export const TopTours = (props: { tours: ITour[], recommendedTourContent: IRecommendedToursContent }) => {
-  const {tours, recommendedTourContent} = props;
+export const TopTours = (props: {
+  tours: ITour[];
+  recommendedTourContent: IRecommendedToursContent;
+}) => {
+  const { tours, recommendedTourContent } = props;
   const pathname = usePathname();
   if (tours.length === 0) return null;
   const recommendedTours = tours.filter((tour: ITour) => tour.recommended);
-  
+
   return (
     <section className="py-8 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -33,12 +36,12 @@ export const TopTours = (props: { tours: ITour[], recommendedTourContent: IRecom
                 {recommendedTourContent?.description}
               </p>
 
-                <Link
+              <Link
                 href={`${pathname}/tours`}
                 className="w-full sm:w-auto border-2 border-[#00332a] text-[#00332a] px-6 py-3 hover:bg-theme-primary-dark hover:text-white transition-all duration-300 font-medium text-center"
-                >
+              >
                 VIEW ALL TOURS
-                </Link>
+              </Link>
             </div>
           </div>
 
@@ -77,21 +80,19 @@ const TourCard = ({
 }) => {
   return (
     <div className="bg-white -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
-      {/* Tour Image */}
       <div
         className={`relative h-60 overflow-hidden bg-cover bg-center bg-no-repeat hover:scale-101 flex flex-col`}
       >
-        {/* Tour Image with fallback */}
         <Image
           src={
-            tour.image.asset.includes("/")
-              ? tour.image.asset
+            typeof tour.image === "string"
+              ? tour.image
               : urlFor(tour.image.asset)?.url()
           }
           alt={tour.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="absolute inset-0 w-full h-full object-cover"
-          width={400}
-          height={240}
         />
 
         {/* Nights Badge */}

@@ -27,6 +27,12 @@ export const POST_QUERY = {
       query: `*[_type == "tour" && countryName == '${destSlug}']`,
     };
   },
+  singleTour(tourSlug: string) {
+    return {
+      name: `Tour - ${tourSlug}`,
+      query: `*[_type == "tour" && slug.current == '${tourSlug}']`,
+    };
+  }
 };
 
 export const SANITY_QUERY_OPTION = { next: { revalidate: 30 } };
