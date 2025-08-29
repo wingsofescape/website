@@ -1,24 +1,23 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import HeroCarousal2 from "@/public/images/HeroCarousal.jpg";
 import landingPageData from "@/data/landingPage/index.json";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY } from "@/lib/constants";
 import { useFetchData } from "@/hooks/useFetchData";
-import {  IHeroBannerButton } from "@/app/models/heroBanner";
+import { IHeroBannerButton } from "@/app/models/heroBanner";
 
 export const HeroBanner = () => {
   const options = { next: { revalidate: 30 } };
 
   const data = useFetchData(
-    POST_QUERY.heroBanner,
+    POST_QUERY.landingPage,
     options,
     landingPageData.heroBanner
   );
-  const image = data.heroBannerImage
-    ? urlFor(data.heroBannerImage.asset)?.url()
-    : HeroCarousal2.src;
+  const image = data.heroBannerImage.asset.includes("/")
+    ? data.heroBannerImage.asset
+    : urlFor(data.heroBannerImage.asset)?.url();
 
   return (
     <>

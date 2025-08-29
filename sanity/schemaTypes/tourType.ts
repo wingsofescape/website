@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineType } from "sanity";
 
 export const tourType = defineType({
   name: "tour",
@@ -28,7 +28,6 @@ export const tourType = defineType({
       name: "image",
       title: "Image",
       type: "image",
-      fields: [{ name: "tourImage", title: "Tour Image", type: "string" }],
     },
     { name: "itineraryName", title: "Itinerary Name", type: "string" },
     { name: "description", title: "Short Description", type: "text" },

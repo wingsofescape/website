@@ -15,7 +15,7 @@ export default function TourDetailsPage({
     "tour-name": string;
   }>(params);
 
-  const tour = allTours.tours.find(t => t.slug === tourSlug); 
+  const tour = allTours.find(t => t.slug === tourSlug); 
 
   if (!tour) {
     notFound();

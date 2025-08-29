@@ -5,11 +5,11 @@ export const SERVER_URL =
   process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
 
 export const POST_QUERY = {
-  heroBanner: {
-    name: "heroBanner",
+  landingPage: {
+    name: "landingPage",
     query: `*[
-      _type == "heroBanner"
-      ]{heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`,
+      _type == "landingPage"
+      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`,
   },
   header: {
     name: "header",
@@ -18,7 +18,7 @@ export const POST_QUERY = {
   destination(destSlug: string) {
     return {
       name: `destination-${destSlug}`,
-      query: `*[_type == "destination" && slug == '${destSlug}']{ _id, destinationHeading, destinationContent, destinationHeroBanner, destinationBreadcrumbs }`,
+      query: `*[_type == "destination" && slug == '${destSlug}']{ _id, destinationHeading, destinationContent, destinationHeroBanner, destinationBreadcrumbs, recommendedToursContent}`,
     };
   },
   tours(destSlug: string) {

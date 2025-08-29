@@ -11,7 +11,7 @@ export interface IRecommendedToursContent {
 
 export interface ITour {
   id: string
-  slug: string
+  slug: {current: string}
   title: string
   duration: string
   itineraryName: string
