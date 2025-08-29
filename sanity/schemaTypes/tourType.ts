@@ -13,12 +13,6 @@ export const tourType = defineType({
       options: { source: "title", maxLength: 96 },
     },
     {
-      name: "tourFor",
-      title: "Country Name",
-      type: "reference",
-      to: [{ type: "destination" }],
-    },
-    {
       name: "countryName",
       title: "Country Name",
       type: "string",
