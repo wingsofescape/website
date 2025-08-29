@@ -16,17 +16,20 @@ export default function DestinationToursPage({
 }) {
   const { destinationName } = use<{ destinationName: string }>(params);
   const tourDescription =
-    allTours[`${destinationName}Tours` as keyof typeof allTours].description;
+    allTours[`${destinationName}Tours` as keyof typeof allTours]?.description ||
+    allTours["srilankaTours"].description;
 
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
-    allDestination[destinationName as keyof typeof allDestination]
+    allDestination[destinationName as keyof typeof allDestination] ||
+      allDestination["srilanka"]
   );
   const tours = useFetchData(
     POST_QUERY.tours(destinationName),
     SANITY_QUERY_OPTION,
-    allTours[`${destinationName}Tours` as keyof typeof allTours]
+    allTours[`${destinationName}Tours` as keyof typeof allTours] ||
+      allTours["srilankaTours"]
   );
 
   return (
@@ -65,9 +68,11 @@ export default function DestinationToursPage({
                   {/* Tour Image & Badge */}
                   <div className="relative h-75 w-full md:w-2/5">
                     <Image
-                      src={typeof tour.image === "string"
-                                    ? tour.image
-                                    : urlFor(tour.image.asset)?.url()}
+                      src={
+                        typeof tour.image === "string"
+                          ? tour.image
+                          : urlFor(tour.image.asset)?.url()
+                      }
                       alt={tour.title}
                       className="object-cover w-full h-full"
                       width={500}
