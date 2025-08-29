@@ -18,7 +18,7 @@ export const POST_QUERY = {
   destination(destSlug: string) {
     return {
       name: `destination-${destSlug}`,
-      query: `*[_type == "destination" && slug == '${destSlug}']{ _id, destinationHeading, destinationContent, destinationHeroBanner, destinationBreadcrumbs, recommendedToursContent}`,
+      query: `*[_type == "destination" && slug == '${destSlug}']{ _id, destinationHeading, destinationContent, destinationHeroBanner, recommendedToursContent}`,
     };
   },
   tours(destSlug: string) {
