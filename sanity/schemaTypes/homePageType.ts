@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-export const LandingPageType = defineType({
-  name: "landingPage",
-  title: "Hero Banner",
+export const HomePageType = defineType({
+  name: "homePage",
+  title: "Home Page",
   type: "document",
   fields: [
     defineField({
@@ -19,7 +19,7 @@ export const LandingPageType = defineType({
       of: [
         {
           type: "object", // This indicates an object within the array
-          name: "buttnos", // A unique name for this object type
+          name: "buttons", // A unique name for this object type
           fields: [
             {
               name: "title",

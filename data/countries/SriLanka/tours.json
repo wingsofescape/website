@@ -1,11 +1,9 @@
 [
   {
     "id": "1",
-    "slug": "ancient-cities-adventure",
+    "slug": { "current": "ancient-cities-adventure" },
     "title": "Ancient Cities Adventure",
-    "image": {
-      "asset": "image-70e230060b7d1ceaf57eb1e13434ccdca2c03052-3389x1906-jpg"
-    },
+    "image": "/images/destinations/sriLanka/recommendedTour1.jpg",
     "itineraryName": "Test Itinerary Name",
     "description": "Explore the ancient cities of Anuradhapura and Polonnaruwa, discovering centuries-old temples and ruins.",
     "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
@@ -24,10 +22,8 @@
       "title": "Sri Lanka Raw & Real: Heritage, Highlands & Hidden Coves",
       "nights": 10,
       "price": 4500,
-      "image": {
-        "asset": "/images/destinations/sriLanka/recommendedTour1.jpg"
-      },
-      "slug": "best-of-sri-lanka"
+      "image": "/images/destinations/sriLanka/recommendedTour1.jpg",
+      "slug": "ancient-cities-adventure"
     },
     "itinerary": [
       {
@@ -98,13 +94,11 @@
   },
   {
     "id": "mystic-sri-lanka",
-    "slug": "mystic-sri-lanka",
+    "slug": { "current": "mystic-sri-lanka" },
     "title": "Mystic Sri Lanka: Legends, Landscapes & Lost Shores",
     "duration": "8 Nights",
     "price": 200000,
-    "image": {
-      "asset": "image-70e230060b7d1ceaf57eb1e13434ccdca2c03052-3389x1906-jpg"
-    },
+    "image": "/images/destinations/sriLanka/recommendedTour1.jpg",
     "itineraryName": "2N Galle | 2N Nuwara Eliya | 3N Kandy | 1N Colombo",
     "description": "Discover Sri Lanka's mystical charm through its ancient legends, breathtaking landscapes, and hidden coastal treasures.",
     "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
@@ -121,10 +115,8 @@
       "title": "Sri Lanka Raw & Real: Heritage, Highlands & Hidden Coves",
       "nights": 10,
       "price": 4500,
-      "image": {
-        "asset": "/images/destinations/sriLanka/recommendedTour2.jpg"
-      },
-      "slug": "best-of-sri-lanka"
+      "image": "/images/destinations/sriLanka/recommendedTour2.jpg",
+      "slug": "mystic-sri-lanka"
     },
     "itinerary": [
       {
@@ -171,14 +163,12 @@
   },
   {
     "id": "wilderness-heritage-luxe",
-    "slug": "ancient-cities-adventure1",
+    "slug": { "current": "wilderness-heritage-luxe" },
     "title": "Wilderness & Heritage Luxe",
     "duration": "6 Nights",
     "itineraryName": "2N Yala | 3N Bentota | 1N Colombo",
     "price": 6200,
-    "image": {
-      "asset": "image-70e230060b7d1ceaf57eb1e13434ccdca2c03052-3389x1906-jpg"
-    },
+    "image": "/images/destinations/sriLanka/recommendedTour2.jpg",
     "description": "Experience the perfect blend of Sri Lanka's untamed wilderness and coastal luxury on this exclusive 6-night journey.",
     "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
     "highlights": [
@@ -194,10 +184,8 @@
       "title": "Sri Lanka Raw & Real: Heritage, Highlands & Hidden Coves",
       "nights": 10,
       "price": 4500,
-      "image": {
-        "asset": "/images/destinations/sriLanka/recommendedTour3.jpg"
-      },
-      "slug": "best-of-sri-lanka"
+      "image": "/images/destinations/sriLanka/recommendedTour3.jpg",
+      "slug": "wilderness-heritage-luxe"
     },
     "itinerary": [
       {
@@ -234,14 +222,12 @@
   },
   {
     "id": "luxe-secrets-lanka",
-    "slug": "luxe-secrets-lanka",
+    "slug": { "current": "luxe-secrets-lanka" },
     "title": "Luxe Secrets of Lanka",
     "duration": "4 Nights",
     "itineraryName": "1N Colombo | 3N Nuwara Eliya",
     "price": 6200,
-    "image": {
-      "asset": "image-70e230060b7d1ceaf57eb1e13434ccdca2c03052-3389x1906-jpg"
-    },
+    "image": "/images/destinations/sriLanka/recommendedTour3.jpg",
     "description": "Discover Sri Lanka's hidden luxurious secrets in this intimate 4-night journey through urban sophistication and mountain serenity.",
     "longDescription": "Embark on a journey through time as you explore Sri Lanka's ancient capitals. This comprehensive tour takes you through the UNESCO World Heritage sites of Anuradhapura and Polonnaruwa, where you'll discover magnificent temples, ancient stupas, and intricate stone carvings that tell the story of a civilization that flourished over 2,000 years ago.",
     "highlights": [
@@ -257,10 +243,8 @@
       "title": "Treasures of the Tropics: Sri Lanka",
       "nights": 10,
       "price": 5600,
-      "image": {
-        "asset": "/images/destinations/sriLanka/recommendedTour4.jpg"
-      },
-      "slug": "best-of-sri-lanka"
+      "image": "/images/destinations/sriLanka/recommendedTour4.jpg",
+      "slug": "luxe-secrets-lanka"
     },
     "itinerary": [
       {

@@ -1,3 +1,5 @@
+type Image = { asset: string } | string;
+
 export interface IDestination {
   destinationBreadcrumbs: IDestinationBreadcrumb[];
   destinationHeroBanner: DestinationHeroBanner;
@@ -15,11 +17,7 @@ export interface DestinationHeroBanner {
   name: string;
   title: string;
   description: string;
-  heroImage: HeroImage;
-}
-
-export interface HeroImage {
-  asset: string;
+  heroImage: Image;
 }
 
 export interface DestinationContent {
@@ -66,7 +64,7 @@ export interface ITour {
   duration: string;
   itineraryName: string;
   description: string;
-  image: string;
+  image: Image;
   href: string;
   recommended: boolean;
   recommendedContent?: IRecommendedContent;
@@ -78,6 +76,6 @@ export interface IRecommendedContent {
   title: string;
   nights: number;
   price: number;
-  image: { asset: string };
-  slug: string;
+  image: Image;
+  slug: { current: string };
 }

@@ -7,6 +7,9 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { urlFor } from "@/sanity/lib/image";
 import HeroBanner from "@/components/heroBanner/HeroBanner";
+import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const Destination = ({
   params,
@@ -15,21 +18,22 @@ const Destination = ({
 }) => {
   const { destinationName } = use<{ destinationName: string }>(params);
   // const [activeTab, setActiveTab] = useState('holidaysOverview');
+   const pathname = usePathname();
+   const breadCrumbs = createBreadcrumbs(pathname);
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
     allDestination[destinationName as keyof typeof allDestination]
   );
-  // const tours = useFetchData(
-  //   POST_QUERY.tours(destinationName),
-  //   SANITY_QUERY_OPTION,
-  //   allTours[`${destinationName}Tours` as keyof typeof allTours].tours
-  // );
-  
-  const image = urlFor(destination.destinationHeroBanner.heroImage.asset)?.url();
+  const tours = useFetchData(
+    POST_QUERY.tours(destinationName),
+    SANITY_QUERY_OPTION,
+    allTours[`${destinationName}Tours` as keyof typeof allTours]
+  );
 
-   const tours = allTours[`${destinationName}Tours` as keyof typeof allTours];
-  // console.log(tours);
+  const image = typeof destination.destinationHeroBanner.heroImage === "string"
+    ? destination.destinationHeroBanner.heroImage
+    : urlFor(destination.destinationHeroBanner.heroImage.asset)?.url();
 
   const getActiveTabContent = (destinationContentType: string) => {
     return destination.destinationContent[destinationContentType];
@@ -44,21 +48,20 @@ const Destination = ({
           {/* Mobile Breadcrumbs */}
           <nav className="bg-theme-primary-dark px-4 py-3">
             <div className="flex items-center space-x-2 text-sm">
-              {/* {destination.destinationBreadcrumbs.map(
-                (crumb: IDestinationBreadcrumb, index: number) => (
-                  <React.Fragment key={index}>
-                    <Link
+              {breadCrumbs.map((crumb :{label: string, ref: string}, index:number) => (
+                  <React.Fragment key={crumb.ref}>
+                    <Link 
                       href={crumb.ref}
                       className="text-white hover:text-amber-300 transition-colors"
                     >
                       {crumb.label}
                     </Link>
-                    {index < destination.destinationBreadcrumbs.length - 1 && (
+                    {index < breadCrumbs.length - 1 && (
                       <span className="text-gray-300">›</span>
                     )}
                   </React.Fragment>
                 )
-              )} */}
+              )}
             </div>
           </nav>
 
@@ -90,17 +93,16 @@ const Destination = ({
         <HeroBanner destination={destination} />
       </section>
 
-
       <section className="py-8 px-4 lg:px-12 bg-gray-50">
        <div className="max-w-7xl mx-auto">
           <div className="mb-8">
-            {/* <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200">
+            <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200">
               {destination.destinationContent['holidaysOverview'].title}
               {destination.destinationContent['tourIdeas'].title}
-            </div> */}
+            </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-8 lg:p-12">
+          <div className="bg-white rounded-lg shadow-sm ">
             <div className="max-w-4xl">
               <h2 className="text-2xl lg:text-3xl font-bold text-[#00332a] font-serif mb-6">
                 {getActiveTabContent('tourIdeas').title}
