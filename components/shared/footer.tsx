@@ -70,7 +70,7 @@ export const Footer = () => {
             </div> */}
           </div>
           {/* Footer Links */}
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 text-sm mt-8 md:mt-0">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 text-sm mt-1 md:mt-0 text-white  md:text-black">
             <ul className="space-y-2">
               <li>
                 <a href="#" className="hover:underline">
@@ -79,7 +79,7 @@ export const Footer = () => {
               </li>
               <li>
                 <a href="#" className="hover:underline">
-                  Booking Terms &amp; Conditions
+                  Booking T &amp; C
                 </a>
               </li>
               <li>
@@ -128,7 +128,7 @@ export const Footer = () => {
           </div>
         </div>
         {/* Continue Exploring */}
-        <div className="max-w-7xl mx-auto px-6 mt-2 pt-1 flex flex-col md:flex-row items-center justify-center gap-4 text-white">
+        {/* <div className="max-w-7xl mx-auto px-6 mt-2 pt-1 flex flex-col md:flex-row items-center justify-center gap-4 text-white">
           <span className="text-xl font-semibold">Continue exploring:</span>
           <a href="#" className="ml-2 hover:underline text-base">
             Luxury Thailand Holidays 2025/2026
@@ -139,7 +139,7 @@ export const Footer = () => {
           <a href="#" className="ml-2 hover:underline text-base">
             Luxury Italy Holidays 2025/2026
           </a>
-        </div>
+        </div> */}
         {/* Version */}
         <div className="max-w-7xl mx-auto px-6 mt-6 pt-4 text-center">
           <span className="text-sm text-gray-300">
