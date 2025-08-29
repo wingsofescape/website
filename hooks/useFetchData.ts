@@ -6,7 +6,7 @@ import { POST_QUERY } from "@/lib/constants";
 export const useFetchData = (
   POSTS_QUERY: (typeof POST_QUERY)["landingPage"],
   options = {},
-  defaultData: any
+  defaultData?: any
 ) => {
   const [data, setData] = useState(defaultData);
   useEffect(() => {
@@ -22,8 +22,8 @@ export const useFetchData = (
         return;
       }
       // Deep clone the data to avoid potential issues with reactivity
-      setData(JSON.parse(JSON.stringify(data[0])));
-      console.log(`heroBanner content loaded from CMS ${POSTS_QUERY.name}`);
+      setData(data.length > 1 ? JSON.parse(JSON.stringify(data)) : JSON.parse(JSON.stringify(data[0])));
+      console.log(`content loaded from CMS ${POSTS_QUERY.name}`, data);
     };
 
     getData();

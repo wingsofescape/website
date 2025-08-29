@@ -10,12 +10,13 @@
   "destinationHeroBanner": {
     "name": "Africa",
     "title": "Luxury Africa Holidays 2025/2026",
-    "slug": "Africa",
     "description": "Combining stunning natural landscapes and beaches with bustling cities and ancient cultural sites, Africa is a country like no other. With a vibrant culture, distinctive cuisine and many destinations to discover, there are endless experiences that everyone can enjoy on a holiday to Africa.",
-    "heroImage": {"asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"}
+    "heroImage": {
+      "asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"
+    }
   },
   "destinationContent": {
-   "holidaysOverview": {
+    "holidaysOverview": {
       "id": "holidays",
       "title": "Africa Holidays",
       "content": {
@@ -180,5 +181,7 @@
       }
     }
   },
-  "destinationTabs": ["holidays", "tour-ideas"]
+  "destinationTabs": ["holidays", "tour-ideas"],
+  "slug": "africa",
+  "destinationHeading": "Africa"
 }

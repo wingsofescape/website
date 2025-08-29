@@ -11,12 +11,30 @@ export const POST_QUERY = {
       _type == "landingPage"
       ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`,
   },
-  destination(dest: string) {
+  header: {
+    name: "header",
+    query: `*[_type == "destination"]{destinationHeading , slug}`,
+  },
+  destination(destSlug: string) {
     return {
-      name: `destination-${dest}`,
-      query: `*[_type == "destination" && destinationHeading == '${dest}']{ _id, destinationHeading, destinationContent, destinationHeroBanner, destinationBreadcrumbs }`,
+      name: `destination-${destSlug}`,
+      query: `*[_type == "destination" && slug == '${destSlug}']{ _id, destinationHeading, destinationContent, destinationHeroBanner, destinationBreadcrumbs, recommendedToursContent}`,
     };
   },
+  tours(destSlug: string) {
+    return {
+      name: `${destSlug} - tours`,
+      query: `*[_type == "tour" && countryName == '${destSlug}']`,
+    };
+  },
+  singleTour(tourSlug: string) {
+    return {
+      name: `Tour - ${tourSlug}`,
+      query: `*[_type == "tour" && slug.current == '${tourSlug}']`,
+    };
+  }
 };
 
 export const SANITY_QUERY_OPTION = { next: { revalidate: 30 } };
+
+export const totalDestinations = ["Vietnam", "India", "Japan", "Sri Lanka", "Bali"];

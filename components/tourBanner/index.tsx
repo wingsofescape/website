@@ -1,16 +1,15 @@
-'use client';
-import React from 'react'
-import { urlFor } from '@/sanity/lib/image'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import { generateBreadcrumbs } from '@/utils/generateBreadcrumbs';
-import Link from 'next/link';
-import { ITour } from '@/app/models/tours';
+"use client";
+import React from "react";
+import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
+import Link from "next/link";
+import { ITour } from "@/app/models/tours";
 
-
-const TourBanner = (tour : ITour) => {
+const TourBanner = (tour: { tour: ITour }) => {
   const pathname = usePathname();
-  const breadCrumbs = generateBreadcrumbs(pathname);
+  const breadCrumbs = createBreadcrumbs(pathname);
 
   return (
     <div className="hidden lg:block">
@@ -38,21 +37,25 @@ const TourBanner = (tour : ITour) => {
             </nav>
             <div className="w-full max-w-2xl mx-auto  mt-5">
               <h1 className="text-xl xl:text-4xl font-bold mb-6 font-serif leading-tight ">
-                {tour.title}
+                {tour.tour.title}
               </h1>
               <p className="text-gray-200 mb-8 text-md leading-relaxed font-">
-                {tour.longDescription}
+                {tour.tour.longDescription}
               </p>
             </div>
           </div>
 
           <div className="relative overflow-hidden flex-1 w-1/2">
             <Image
-              src={tour.image.asset.includes("/") ? tour.image.asset : urlFor(tour.image.asset)?.url()}
-              alt={tour.title}
+              src={
+                typeof tour.tour.image === "string"
+                  ? tour.tour.image
+                  : urlFor(tour.tour.image.asset)?.url()
+              }
+              alt={tour.tour.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover object-bottom hover:scale-105 transition-transform duration-700"
+              className="absoluteobject-cover object-bottom hover:scale-105 transition-transform duration-700"
               priority
             />
             {/* Optional overlay for better text contrast if needed */}
@@ -62,6 +65,6 @@ const TourBanner = (tour : ITour) => {
       </div>
     </div>
   );
-}
+};
 
-export default TourBanner
+export default TourBanner;

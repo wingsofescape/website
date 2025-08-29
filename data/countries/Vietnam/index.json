@@ -10,12 +10,13 @@
   "destinationHeroBanner": {
     "name": "Vietnam",
     "title": "Luxury Vietnam Holidays 2025/2026",
-    "slug": "vietnam",
     "description": "Combining stunning natural landscapes and beaches with bustling cities and ancient cultural sites, Vietnam is a country like no other. With a vibrant culture, distinctive cuisine and many destinations to discover, there are endless experiences that everyone can enjoy on a holiday to Vietnam.",
-    "heroImage": {"asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"}
+    "heroImage": {
+      "asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"
+    }
   },
   "destinationContent": {
-   "holidaysOverview": {
+    "holidaysOverview": {
       "id": "holidays",
       "title": "Vietnam Holidays",
       "content": {
@@ -180,5 +181,7 @@
       }
     }
   },
-  "destinationTabs": ["holidays", "tour-ideas"]
+  "destinationTabs": ["holidays", "tour-ideas"],
+  "slug": "vietnam",
+  "destinationHeading": "Vietnam"
 }
