@@ -33,7 +33,7 @@ export default function TourDetailsPage({
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  const UniqueDay = ({ day, index }: { day: Itinerary; index: number }) => {
+  const UniqueDay = ({ day }: { day: Itinerary }) => {
     return (
       <div key={day.day} className="pl-6 unique-day">
         <span>Day {day.day}</span>
