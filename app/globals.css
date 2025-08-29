@@ -62,3 +62,16 @@ main {
     background-color: white;
   }
 }
+
+.unique-day::before{
+    content :'';
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border:2px solid var(--theme-primary-light);
+    background-color: var(--theme-primary);
+    display: block;
+    margin-bottom: 1rem;
+    position: absolute;
+}
+

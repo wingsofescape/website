@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
 import Link from "next/link";
 import { ITour } from "@/app/models/tours";
+import { formatPrice } from "@/utils/priceFormatter";
 
 const TourBanner = (tour: { tour: ITour }) => {
   const pathname = usePathname();
@@ -35,12 +36,20 @@ const TourBanner = (tour: { tour: ITour }) => {
                 </div>
               </div>
             </nav>
-            <div className="w-full max-w-2xl mx-auto  mt-5">
+            <div className="w-full max-w-2xl mx-auto mt-15">
               <h1 className="text-xl xl:text-4xl font-bold mb-6 font-serif leading-tight ">
                 {tour.tour.title}
               </h1>
-              <p className="text-gray-200 mb-8 text-md leading-relaxed font-">
+              <p className="text-gray-200 mb-12 text-md leading-relaxed">
                 {tour.tour.longDescription}
+              </p>
+              <p className="text-gray-200 mb-2 text-sm leading-relaxed">
+                🌆 {tour.tour.itineraryName}
+              </p>
+
+              <p className="text-gray-200 mb-8 text-sm leading-relaxed">
+                🕙 {tour.tour.duration} tour for {formatPrice(tour.tour.price)}  {" "}
+                <span className="text-xs">per person</span>
               </p>
             </div>
           </div>
