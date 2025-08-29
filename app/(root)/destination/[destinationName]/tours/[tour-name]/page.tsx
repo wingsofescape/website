@@ -85,7 +85,7 @@ export default function TourDetailsPage({
             <section className="mb-12">
               <h2 className="text-3xl font-bold mb-6">Itinerary</h2>
               <div className="space-y-6 relative">
-                {tour.itinerary.map((day: Itinerary, index: number) => (
+                {tour.itinerary.map((day: Itinerary) => (
                   <UniqueDay key={day.day} day={day} />
                 ))}
               </div>
