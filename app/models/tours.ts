@@ -1,4 +1,5 @@
 type Image = { asset: string } | string;
+
 export interface IDestinationTours {
   description: string[];
   tours: ITour[];
@@ -39,4 +40,5 @@ export interface Itinerary {
   day: number;
   title: string;
   description: string;
+  image: Image[]
 }

@@ -20,7 +20,7 @@ export default function HomePage() {
         {/* Testimonials Section */}
         <Testimonials />
 
-        <section className="flex flex-col md:flex-row w-full h-[600px]">
+        <section className="flex flex-col md:flex-row w-full md:h-[600px]">
           {/* Left Block */}
           <div
             className="flex-1 flex items-center justify-center bg-cover bg-center"
@@ -29,7 +29,7 @@ export default function HomePage() {
             }}
           >
             <div className="bg-theme-primary-dark/75 p-12 rounded-none md:rounded-sm max-w-xl w-full mx-8 text-center flex flex-col items-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-white font-sans mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
                 Traveler&apos;s Clubs
               </h2>
               <p className="text-lg text-white mb-10">
@@ -49,7 +49,7 @@ export default function HomePage() {
             }}
           >
             <div className="bg-theme-primary-dark/75 p-12 rounded-none md:rounded-sm max-w-xl w-full mx-8 text-center flex flex-col items-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-white font-sans mb-8">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
                 When to Go Where
               </h2>
               <p className="text-lg text-white mb-10">

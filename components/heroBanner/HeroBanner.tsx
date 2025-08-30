@@ -46,7 +46,7 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
               </div>
             </nav>
             <div className="w-full max-w-2xl mx-auto  mt-5">
-              <h1 className="text-xl xl:text-4xl font-bold mb-6 font-serif leading-tight ">
+              <h1 className="text-xl xl:text-4xl font-bold mb-6 leading-tight ">
                 {destination.destinationHeroBanner.title}
               </h1>
               <p className="text-gray-200 mb-8 text-md leading-relaxed font-">
@@ -61,7 +61,7 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
               alt={destination.destinationHeroBanner.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover object-bottom hover:scale-105 transition-transform duration-700"
+              className="object-cover object-bottom hover:scale-105   transition-transform duration-700"
               priority
             />
             {/* Optional overlay for better text contrast if needed */}

@@ -8,9 +8,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --theme-primary: #1e293b; /* bg-slate-800 */
-  --theme-primary-light: #334155; /* bg-slate-700 */
-  --theme-primary-dark: #0f172a; /* bg-slate-900 */
+  --theme-primary: #1e293b;
+  /* bg-slate-800 */
+  --theme-primary-light: #334155;
+  /* bg-slate-700 */
+  --theme-primary-dark: #0f172a;
+  /* bg-slate-900 */
 }
 
 @theme inline {
@@ -25,7 +28,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1e293b; /* Use slate-800 for dark mode background */
+    --background: #1e293b;
+    /* Use slate-800 for dark mode background */
     --foreground: #ededed;
   }
 }
@@ -38,7 +42,8 @@ body {
 
 html,
 main {
-  background-color: #f8fafc; /* slate-50 - complements slate-800 theme */
+  background-color: #f8fafc;
+  /* slate-50 - complements slate-800 theme */
 }
 
 .enquire-form {
@@ -63,15 +68,23 @@ main {
   }
 }
 
-.unique-day::before{
-    content :'';
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    border:2px solid var(--theme-primary-light);
-    background-color: var(--theme-primary);
-    display: block;
-    margin-bottom: 1rem;
-    position: absolute;
+.unique-day::before {
+  content: '';
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 2px solid var(--theme-primary-light);
+  background-color: var(--theme-primary);
+  display: block;
+  margin-bottom: 1rem;
+  position: absolute;
 }
 
+.itinerary-line {
+  background-image: repeating-linear-gradient(to bottom,
+      #a3a3a3 0px,
+      #a3a3a3 8px,
+      transparent 8px,
+      transparent 16px);
+  background-size: 100% 16px;
+}

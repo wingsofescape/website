@@ -3,75 +3,15 @@ import React from "react";
 export const Footer = () => {
   return (
     <footer
-      className="relative text-black pt-14 pb-7 bg-cover bg-center"
+      className="relative text-black pt-114 md:pt-94 pb-5 bg-cover bg-center text-xs"
       style={{ backgroundImage: "url('/images/footer.jpg')" }}
     >
       {/* Overlay for readability */}
-      <div className="absolute inset-0  pointer-events-none z-0" />
-      <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
-          {/* Newsletter */}
-          <div>
-            <h2 className="text-3xl font-bold mb-4 font-sans">Newsletter</h2>
-            <p className="text-lg mb-8">
-              Sign up below to receive travel inspiration, news, offers and expert
-              tips.
-            </p>
-            <form className="mb-6">
-              <div className="flex items-center bg-white rounded w-full h-14 px-6 mb-6">
-                <svg
-                  className="w-5 h-5 text-gray-400 mr-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <rect
-                    width="20"
-                    height="14"
-                    x="2"
-                    y="5"
-                    rx="2"
-                    stroke="currentColor"
-                  />
-                  <path stroke="currentColor" d="M22 7.5 12 15 2 7.5" />
-                </svg>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full h-full bg-transparent outline-none text-base text-gray-800"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-1/2 bg-theme-primary-light hover:bg-theme-primary text-white font-medium py-3 rounded transition-all duration-200 text-base"
-              >
-                SIGN UP
-              </button>
-            </form>
-            <p className="text-sm text-white mt-8">
-              I consent to receive promotional emails from WingsOfEscape and
-              understand that the personal data I provide will be used for this
-              purpose in accordance with the{" "}
-              <a href="#" className="underline">
-                Privacy Policy
-              </a>
-              . You can unsubscribe from marketing emails at any time.
-            </p>
-            {/* Logos */}
-            {/* <div className="flex flex-wrap items-center gap-6 mt-10">
-              <img src="/logo1.png" alt="Award" className="h-12" />
-              <img src="/logo2.png" alt="Protected" className="h-12" />
-              <img src="/logo3.png" alt="IATA" className="h-12" />
-              <img src="/logo4.png" alt="ABTOT" className="h-12" />
-              <img src="/logo5.png" alt="Conscious Travel" className="h-12" />
-              <img src="/logo6.png" alt="British Airways" className="h-12" />
-            </div> */}
-          </div>
+      <div className="relative z-10 flex flex-col justify-center items-center flex-wrap">
+        <div className="mx-auto px-6 text-center text-white">
           {/* Footer Links */}
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-8 text-sm mt-1 md:mt-0 text-white  md:text-black">
-            <ul className="space-y-2">
+          <div className="flex flex-col md:flex-row gap-8  mt-1 md:mt-0">
+            <ul className="flex-1 space-y-2 text-left">
               <li>
                 <a href="#" className="hover:underline">
                   Contact Us
@@ -98,7 +38,7 @@ export const Footer = () => {
                 </a>
               </li>
             </ul>
-            <ul className="space-y-2">
+            <ul className="flex-1 space-y-2 text-left">
               <li>
                 <a href="#" className="hover:underline">
                   Why WingsOfEscape
@@ -127,27 +67,16 @@ export const Footer = () => {
             </ul>
           </div>
         </div>
-        {/* Continue Exploring */}
-        {/* <div className="max-w-7xl mx-auto px-6 mt-2 pt-1 flex flex-col md:flex-row items-center justify-center gap-4 text-white">
-          <span className="text-xl font-semibold">Continue exploring:</span>
-          <a href="#" className="ml-2 hover:underline text-base">
-            Luxury Thailand Holidays 2025/2026
-          </a>
-          <a href="#" className="ml-2 hover:underline text-base">
-            Luxury Japan Holidays 2025/2026
-          </a>
-          <a href="#" className="ml-2 hover:underline text-base">
-            Luxury Italy Holidays 2025/2026
-          </a>
-        </div> */}
-        {/* Version */}
-        <div className="max-w-7xl mx-auto px-6 mt-6 pt-4 text-center">
-          <span className="text-sm text-gray-300">
+        <div className="max-w-7xl mx-auto px-6 mt-2 pt-4 text-left">
+          <span className="text-gray-300">
+            Copyright © 2025 Wings Of Escape Ltd.
+          </span>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 mt-1 pt-1 text-left">
+          <span className="text-gray-300">
             Version {process.env.NEXT_PUBLIC_APP_VERSION || "1.0.0"}
           </span>
         </div>
-        {/* Accessibility Icon */}
-        {/* <button ... /> */}
       </div>
     </footer>
   );
