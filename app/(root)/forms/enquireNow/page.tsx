@@ -14,7 +14,7 @@ const EnquireNowPage = () => {
           backgroundSize: "cover",
         }}
       >
-        <div className="absolute inset-0 bg-[#0d3c2e]/90" />
+        <div className="absolute inset-0 bg-theme-primary" />
         <div className="relative z-10 max-w-6xl mx-auto w-full px-8 pb-8">
           <nav className="text-white text-sm mb-2">
             <span className="opacity-80">Home</span>

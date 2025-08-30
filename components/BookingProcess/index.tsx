@@ -3,7 +3,7 @@ import React from "react";
 const BookingProcess = () => {
   return (
     <div className="max-w-5xl mx-auto mt-20">
-      <h3 className="text-4xl md:text-5xl font-bold  font-serif mb-2 relative inline-block">
+      <h3 className="text-4xl md:text-5xl font-bold mb-2 relative inline-block">
         <span className="pl-2 text-center underline decoration-[#004236] decoration-4 underline-offset-8">
           Our Booking Process
         </span>
@@ -40,7 +40,7 @@ const BookingProcess = () => {
               </svg>
             </span>
           </div>
-          <div className="text-2xl font-bold  font-serif mb-2">
+          <div className="text-2xl font-bold mb-2">
             1. Make an Enquiry
           </div>
           <div className="text-lg ">
@@ -95,7 +95,7 @@ const BookingProcess = () => {
               </svg>
             </span>
           </div>
-          <div className="text-2xl font-bold  font-serif mb-2">
+          <div className="text-2xl font-bold   mb-2">
             2. Speak to an
             <br />
             Expert
@@ -138,7 +138,7 @@ const BookingProcess = () => {
               </svg>
             </span>
           </div>
-          <div className="text-2xl font-bold  font-serif mb-2">
+          <div className="text-2xl font-bold   mb-2">
             3. Receive a Quote
           </div>
           <div className="text-lg ">
@@ -196,7 +196,7 @@ const BookingProcess = () => {
               </svg>
             </span>
           </div>
-          <div className="text-2xl font-bold  font-serif mb-2">
+          <div className="text-2xl font-bold   mb-2">
             4. Book Your Trip
           </div>
           <div className="text-lg ">

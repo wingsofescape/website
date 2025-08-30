@@ -42,9 +42,9 @@
     "inspiration": {
       "label": "Inspiration",
       "items": [
-        { "name": "Travel Guides", "href": "/inspiration/guides" },
-        { "name": "Blog", "href": "/inspiration/blog" },
-        { "name": "Stories", "href": "/inspiration/stories" }
+        { "name": "Blogs", "href": "/inspiration/guides" },
+        { "name": "Our top 10", "href": "/inspiration/blog" },
+        { "name": "Where to go by month", "href": "/inspiration/stories" }
       ]
     },
     "contactUs": {
@@ -65,8 +65,7 @@
       "label": "About Us",
       "items": [
         { "name": "Our Story", "href": "/about/story" },
-        { "name": "Contact", "href": "/about/contact" },
-        { "name": "Careers", "href": "/about/careers" }
+        { "name": "Contact", "href": "/about/contact" }
       ]
     }
   },

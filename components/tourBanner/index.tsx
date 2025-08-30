@@ -37,7 +37,7 @@ const TourBanner = (tour: { tour: ITour }) => {
               </div>
             </nav>
             <div className="w-full max-w-2xl mx-auto mt-15">
-              <h1 className="text-xl xl:text-4xl font-bold mb-6 font-serif leading-tight ">
+              <h1 className="text-xl xl:text-4xl font-bold mb-6  leading-tight ">
                 {tour.tour.title}
               </h1>
               <p className="text-gray-200 mb-12 text-md leading-relaxed">

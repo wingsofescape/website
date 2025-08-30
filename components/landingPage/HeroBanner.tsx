@@ -30,7 +30,7 @@ export const HeroBanner = () => {
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-left space-y-6 md:space-y-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight font-serif">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight ">
               {data.heroBannerHeading}
             </h1>
 
@@ -142,7 +142,7 @@ export const HeroBanner = () => {
       >
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 max-w-5xl mx-auto px-8">
-          <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg font-serif">
+          <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg ">
             {data.heroBannerHeading}
           </h2>
           <p className="text-2xl lg:text-3xl text-white font-semibold mb-8 drop-shadow">

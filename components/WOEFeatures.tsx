@@ -5,7 +5,7 @@ const WOEFeatures = () => {
     <section className="bg-white py-10 flex flex-nowrap text-theme-primary-dark">
       <div className="mx-auto px-8 grid md:grid-cols-4 gap-4">
         <div className="flex flex-col items-center text-center ">
-          <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
+          <h3 className="text-2xl font-bold mb-2 tracking-tight underline decoration-amber-700 underline-offset-10 ">
             Tailored Experiences
           </h3>
           <p className="text-gray-700 text-sm mt-5">
@@ -14,7 +14,7 @@ const WOEFeatures = () => {
           </p>
         </div>
         <div className="flex flex-col items-center text-center">
-          <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
+          <h3 className="text-2xl font-bold mb-2 tracking-tight underline decoration-amber-700 underline-offset-10 ">
             Expert Knowledge
           </h3>
           <p className="text-gray-700 text-sm mt-5">
@@ -23,7 +23,7 @@ const WOEFeatures = () => {
           </p>
         </div>
         <div className="flex flex-col items-center text-center">
-          <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
+          <h3 className="text-2xl font-bold mb-2 tracking-tight underline decoration-amber-700 underline-offset-10 ">
             24/7 Support
           </h3>
           <p className="text-gray-700 text-sm mt-5">
@@ -32,7 +32,7 @@ const WOEFeatures = () => {
           </p>
         </div>
         <div className="flex flex-col items-center text-center">
-          <h3 className="text-2xl font-bold mb-2 font-serif tracking-tight underline decoration-amber-700 underline-offset-10 ">
+          <h3 className="text-2xl font-bold mb-2 tracking-tight underline decoration-amber-700 underline-offset-10 ">
             Curated Destinations
           </h3>
           <p className="text-gray-700 text-sm mt-5">
