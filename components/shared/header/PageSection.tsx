@@ -3,7 +3,7 @@ import React from "react";
 const PageSection = () => {
   return (
     <div className="max-w-5xl mx-auto ">
-      <h2 className="text-4xl md:text-5xl font-bold  mb-6 font-serif">
+      <h2 className="text-4xl md:text-5xl font-bold  mb-6 ">
         Your Luxury Holiday Starts Here…
       </h2>
       <p className="text-lg md:text-xl  mb-2">

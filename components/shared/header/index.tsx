@@ -224,13 +224,9 @@ const Header = () => {
             <div className="flex flex-col h-full overflow-y-auto">
               {/* Navigation Items */}
               <div className="flex-1">
-                <MobileDropdown section={createDestinationList(data, "Destinations")} />
-                {/* <MobileDropdown section={headerData.navigation.inspiration} /> */}
-                {/* <MobileDropdown section={headerData.navigation.contactUs} /> */}
-                {/* <MobileDropdown
-                  section={headerData.navigation.adventurePrivate}
+                <MobileDropdown
+                  section={createDestinationList(data, "Destinations")}
                 />
-                <MobileDropdown section={headerData.navigation.aboutUs} /> */}
 
                 {/* Mobile Search */}
                 <div className="p-4 border-b border-gray-200">

@@ -1,4 +1,4 @@
-type Image = { asset: string } | string;
+export type Image = { asset: string } | string;
 
 export interface IDestination {
   destinationBreadcrumbs: IDestinationBreadcrumb[];

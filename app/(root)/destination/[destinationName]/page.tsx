@@ -82,7 +82,7 @@ const Destination = ({
 
           {/* Mobile Content */}
           <div className="bg-theme-primary-dark text-white px-4 py-8">
-            <h1 className="text-2xl md:text-3xl font-bold mb-4 font-serif">
+            <h1 className="text-2xl md:text-3xl font-bold mb-4 ">
               {destination.destinationHeroBanner.title}
             </h1>
             <p className="text-gray-200 mb-6 leading-relaxed">
@@ -106,7 +106,7 @@ const Destination = ({
 
           <div className="bg-white rounded-lg shadow-sm ">
             <div className="max-w-4xl">
-              <h2 className="text-2xl lg:text-3xl font-bold text-[#00332a] font-serif mb-6">
+              <h2 className="text-2xl lg:text-3xl font-bold text-[#00332a]  mb-6">
                 {getActiveTabContent("tourIdeas").title}
               </h2>
 

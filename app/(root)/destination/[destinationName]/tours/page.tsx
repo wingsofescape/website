@@ -64,7 +64,7 @@ export default function DestinationToursPage({
                 href={`/destination/${destinationName}/tours/${tour.slug.current}`}
                 className="group"
               >
-                <div className="bg-white  shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row">
+                <div className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row">
                   {/* Tour Image & Badge */}
                   <div className="relative h-75 w-full md:w-2/5">
                     <Image
@@ -91,7 +91,7 @@ export default function DestinationToursPage({
                   {/* Tour Content */}
                   <div className="flex-1 p-6 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-2xl font-bold mb-2 text-[#00332a] group-hover:text-green-900 transition-colors">
+                      <h3 className="text-2xl font-bold mb-2 text-theme-primary group-hover:text-theme-primary transition-colors">
                         {tour.title}
                       </h3>
                       {/* Location/Itinerary */}
@@ -105,14 +105,14 @@ export default function DestinationToursPage({
                     <div className="flex items-end justify-between mt-4">
                       <div>
                         <span className="text-gray-600 text-sm">From</span>
-                        <div className="text-2xl font-bold text-green-900">
+                        <div className="text-2xl font-bold text-theme-primary">
                           £{tour.price}{" "}
                           <span className="text-base font-normal text-gray-600">
                             pp
                           </span>
                         </div>
                       </div>
-                      <div className="bg-green-900 text-white px-6 py-2 font-semibold hover:bg-green-800 transition-colors">
+                      <div className="bg-theme-primary text-white px-6 py-2 font-semibold hover:bg-theme-primary transition-colors">
                         VIEW TOUR
                       </div>
                     </div>
