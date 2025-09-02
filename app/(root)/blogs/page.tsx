@@ -3,14 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import HeroBannerImage from "@/public/images/blogs/blogsHeroBanner.jpg";
 import blogsData from "@/data/blogs/index.json";
-
-interface IBlogContent {
-  heading: string,
-  subHeading: string,
-  paragraphs: string[],
-  images: string[],
-  imagesDescription: string
-}
+import { IBlog, IBlogContent } from "@/app/models/blog";
 
 function Blogs() {
   const [offsetY, setOffsetY] = useState(0);
@@ -44,7 +37,7 @@ function Blogs() {
                     <Image
                       key={i}
                       src={img}
-                      alt={content.imagesDescription}
+                      alt={content.imagesDescription || ''}
                       className="w-1/2"
                       width={1200}
                       height={800}
@@ -59,7 +52,7 @@ function Blogs() {
                     <Image
                       key={i}
                       src={img}
-                      alt={content.imagesDescription}
+                      alt={content.imagesDescription || ''}
                       className="w-full object-cover"
                       width={1000}
                       height={1000}
@@ -129,7 +122,7 @@ function Blogs() {
 
 
       <div className="mx-auto py-12">
-        {blogsData.map((blog: any, idx: number) => (
+        {blogsData.map((blog: IBlog, idx: number) => (
           <div
             key={idx}
             className="bg-white overflow-hidden flex flex-col items-center"
