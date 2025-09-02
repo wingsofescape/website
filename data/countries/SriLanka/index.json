@@ -1,12 +1,4 @@
 {
-  "destinationBreadcrumbs": [
-    { "label": "Home", "ref": "/" },
-    {
-      "label": "Indian Subcontinent",
-      "ref": "/regions/indian-subcontinent"
-    },
-    { "label": "Sri Lanka Holidays", "ref": "/destination/sri-lanka" }
-  ],
   "destinationHeroBanner": {
     "name": "Sri Lanka",
     "title": "Luxury Sri Lanka Holidays 2025/2026",
@@ -26,26 +18,13 @@
           "From romantic escapes and off-the-beaten-track adventures to family-friendly city breaks, a luxury Sri Lanka holiday delivers experiences you'll treasure for a lifetime."
         ]
       }
-    },
-    "tourIdeas": {
-      "id": "tour-ideas",
-      "title": "Tour Ideas dekho",
-      "content": {
-        "description": "Discover our handpicked selection of tour ideas designed to showcase the very best of Sri Lanka's diverse landscapes and rich cultural heritage.",
-        "paragraph": [
-          "Whether you're drawn to the archaeological ruins of the north or intrigued by Sri Lanka's colonial heritage, our expert travel consultants will craft a luxury holiday tailored just for you.",
-          "For first-time visitors, we recommend the stunning South Coast — a perfect introduction to the country's charms. Unwind on palm-fringed beaches, dive into crystal-clear waters for snorkelling or scuba adventures, and stroll through the colonial port of Galle, where the 17th-century Dutch Fort and authentic Sri Lankan cuisine await.",
-          "If history is your passion, head inland to cultural gems like Kandy and Sigiriya. Here, ancient ruins, sacred Buddhist temples, and UNESCO World Heritage sites offer an enriching journey through Sri Lanka's storied past. Nature lovers will also find paradise in the island's lush national parks, where safaris and wildlife encounters promise unforgettable memories.",
-          "From romantic escapes and off-the-beaten-track adventures to family-friendly city breaks, a luxury Sri Lanka holiday delivers experiences you'll treasure for a lifetime."
-        ]
-      }
     }
   },
   "recommendedToursContent": {
     "title": "Recommended Tours in Sri Lanka",
     "description": "Ready to get to know Sri Lanka's Hill Country or discover the Cultural Triangle's top highlights? Whether you want to spend your time visiting the tea plantations of Nuwara Eliya or riding through Colombo on a tuk-tuk, our destination experts will plan a bespoke tour to help make your luxury Sri Lanka holiday truly memorable."
   },
-  "destinationTabs": ["holidaysOverview", "tourIdeas"],
+  "destinationTabs": ["holidaysOverview"],
   "slug": "srilanka",
   "destinationHeading": "Sri Lanka"
 }

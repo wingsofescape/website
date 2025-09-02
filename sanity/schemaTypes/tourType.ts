@@ -35,6 +35,7 @@ export const tourType = defineType({
       of: [{ type: "string" }],
     },
     { name: "recommended", title: "Recommended", type: "boolean" },
+    { name: "isIdea", title: "Is this tour just an idea", type: "boolean" },
     {
       name: "recommendedContent",
       title: "Recommended Content",
@@ -81,23 +82,19 @@ export const tourType = defineType({
         },
       ],
     },
-    {
-      name: "includes",
-      title: "Includes",
-      type: "array",
-      of: [{ type: "string" }],
-    },
-    {
-      name: "excludes",
-      title: "Excludes",
-      type: "array",
-      of: [{ type: "string" }],
-    },
   ],
   preview: {
     select: {
       title: "title",
       subtitle: "countryName",
+      isIdea: "isIdea",
+    },
+    prepare(selection: { title: string, subtitle: string, isIdea: boolean }) {
+      const { title, subtitle } = selection;
+      return {
+        title: title,
+        subtitle: subtitle
+      };
     },
   },
 });
