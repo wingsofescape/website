@@ -10,29 +10,14 @@
 
       "id": "holidays",
       "title": "Vietnam Holidays"
-    },
-    "tourIdeas": {
-      "content": {
-        "description": "Discover our handpicked selection of tour ideas designed to showcase the very best of Bali's diverse landscapes and rich cultural heritage.",
-        "paragraph": [
-          "From the emerald limestone karsts of Halong Bay to the vibrant energy of Ho Chi Minh City, Vietnam unfolds as a true journey for the senses. The country is a mosaic of breathtaking landscapes, golden coastlines, and evocative cities steeped in history. Imagine cycling through the winding waterways of the Mekong Delta, savoring the rich flavors of Saigon’s street food, or basking under the warm sun along the central coast’s pristine beaches. Lose yourself in the labyrinthine alleys of Hanoi’s Old Quarter, where ancient temples and timeless traditions await discovery. Wherever your path leads, Vietnam promises unforgettable experiences to captivate every kind of traveler"
-        ]
-      },
-      "id": "tour-ideas",
-      "title": "Tour Ideas"
     }
   },
   "destinationHeading": "Vietnam",
   "destinationHeroBanner": {
-    "description": "There are few places in the world where culture feels as vibrant and alive as it does in Vietnam. From ancient temples and lantern-lit streets to timeless traditions woven into daily life, every moment offers a glimpse into its rich heritage. Whether you’re wandering bustling markets, drifting along the Mekong, or savoring authentic flavors, Vietnam embraces you with an exotic charm that lingers long after your journey ends",
-    "heroImage": {
-      "asset": {
-        "_ref": "image-4a881288600ae726346970f4450623555494505a-1600x1066-jpg",
-        "_type": "reference"
-      }
-    },
     "name": "Vietnam",
-    "title": "Luxury Bali Vietnam 2025/2026"
+    "title": "Luxury Bali Vietnam 2025/2026",
+    "description": "There are few places in the world where culture feels as vibrant and alive as it does in Vietnam. From ancient temples and lantern-lit streets to timeless traditions woven into daily life, every moment offers a glimpse into its rich heritage. Whether you’re wandering bustling markets, drifting along the Mekong, or savoring authentic flavors, Vietnam embraces you with an exotic charm that lingers long after your journey ends",
+    "heroImage": "/images/destinations/sriLanka/heroBannerRight.jpg"
   },
   "recommendedToursContent": {
     "description": "We understand that every traveler seeks something unique, which is why our experts have journeyed across Vietnam to uncover the finest experiences for a truly bespoke escape. Our thoughtfully designed itineraries flow effortlessly, blending the country’s iconic highlights with just the right pace of discovery. Enriched with exclusive experiences and complemented by handpicked luxury stays, each journey promises unforgettable moments that capture the essence of Vietnam",

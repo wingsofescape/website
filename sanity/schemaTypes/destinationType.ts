@@ -59,44 +59,6 @@ export const destinationType = defineType({
               type: "document",
               fields: [
                 defineField({
-                  name: "description",
-                  title: "Description",
-                  type: "text",
-                }),
-                defineField({
-                  name: "paragraph",
-                  title: "Paragraph",
-                  type: "array",
-                  of: [{ type: "string" }],
-                }),
-              ],
-            }),
-          ],
-        }),
-        defineField({
-          name: "tourIdeas",
-          title: "Tour Ideas",
-          type: "document",
-          fields: [
-            defineField({
-              name: "id",
-              type: "string",
-            }),
-            defineField({
-              name: "title",
-              type: "string",
-            }),
-            defineField({
-              name: "content",
-              title: "Content",
-              type: "document",
-              fields: [
-                defineField({
-                  name: "description",
-                  title: "Description",
-                  type: "text",
-                }),
-                defineField({
                   name: "paragraph",
                   title: "Paragraph",
                   type: "array",
@@ -115,7 +77,7 @@ export const destinationType = defineType({
       fields: [
         { name: "title", title: "Title", type: "string" },
         { name: "description", title: "Description", type: "text" },
-        ],  
+        ],
     },
   ],
 });

@@ -1,7 +1,6 @@
 export type Image = { asset: string } | string;
 
 export interface IDestination {
-  destinationBreadcrumbs: IDestinationBreadcrumb[];
   destinationHeroBanner: DestinationHeroBanner;
   destinationContent: DestinationContent;
   destinationTabs: string[];

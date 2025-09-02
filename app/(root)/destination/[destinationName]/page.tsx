@@ -23,12 +23,14 @@ const Destination = ({
   const destination = useFetchData(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
-    allDestination[destinationName as keyof typeof allDestination] || allDestination["srilanka"]
+    allDestination[destinationName as keyof typeof allDestination] ||
+      allDestination["srilanka"]
   );
   const tours = useFetchData(
     POST_QUERY.tours(destinationName),
     SANITY_QUERY_OPTION,
-    allTours[`${destinationName}Tours` as keyof typeof allTours] || allTours["srilankaTours"]
+    allTours[`${destinationName}Tours` as keyof typeof allTours] ||
+      allTours["srilankaTours"]
   );
 
   const image =
@@ -100,19 +102,21 @@ const Destination = ({
           <div className="mb-8">
             <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200">
               {destination.destinationContent["holidaysOverview"].title}
-              {destination.destinationContent["tourIdeas"].title}
+              {/* {destination.destinationContent["tourIdeas"].title} */}
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm ">
-            <div className="max-w-4xl">
+            <div className="max-w-full">
               <h2 className="text-2xl lg:text-3xl font-bold text-[#00332a]  mb-6">
-                {getActiveTabContent("tourIdeas").title}
+                {getActiveTabContent("holidaysOverview").title}
               </h2>
 
               <div className="prose prose-lg max-w-none">
-                {getActiveTabContent("tourIdeas").content?.paragraph &&
-                  getActiveTabContent("tourIdeas").content?.paragraph.map(
+                {getActiveTabContent("holidaysOverview").content?.paragraph &&
+                  getActiveTabContent(
+                    "holidaysOverview"
+                  ).content?.paragraph.map(
                     (paragraph: string, index: number) => (
                       <p
                         key={index}
