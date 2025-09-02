@@ -81,20 +81,12 @@ export const tourType = defineType({
           ],
         },
       ],
-    },
+    }
   ],
   preview: {
     select: {
       title: "title",
-      subtitle: "countryName",
-      isIdea: "isIdea",
-    },
-    prepare(selection: { title: string, subtitle: string, isIdea: boolean }) {
-      const { title, subtitle } = selection;
-      return {
-        title: title,
-        subtitle: subtitle
-      };
-    },
+      subtitle: "countryName"
+    }
   },
 });
