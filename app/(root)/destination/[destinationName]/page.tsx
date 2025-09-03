@@ -24,13 +24,13 @@ const Destination = ({
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
     allDestination[destinationName as keyof typeof allDestination] ||
-      allDestination["srilanka"]
+    allDestination["srilanka"]
   );
   const tours = useFetchData(
     POST_QUERY.tours(destinationName),
     SANITY_QUERY_OPTION,
     allTours[`${destinationName}Tours` as keyof typeof allTours] ||
-      allTours["srilankaTours"]
+    allTours["srilankaTours"]
   );
 
   const image =
@@ -87,7 +87,7 @@ const Destination = ({
             <h1 className="text-2xl md:text-3xl font-bold mb-4 ">
               {destination.destinationHeroBanner.title}
             </h1>
-            <p className="text-gray-200 mb-6 leading-relaxed">
+            <p className="text-white text-xs mb-6 leading-relaxed">
               {destination.destinationHeroBanner.description}
             </p>
           </div>

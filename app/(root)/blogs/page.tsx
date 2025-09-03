@@ -22,10 +22,10 @@ function Blogs() {
       blogContent.map((content, index) => (
         <div key={index} className="mb-1 flex flex-col align-center items-center text-left" >
           <div className="contentSection my-10 w-3/4">
-            <h3 className="text-5xl font-semibold mb-6 mt-2">{content.heading}</h3>
-            <h4 className="text-xl font-semibold mb-2">{content.subHeading}</h4>
+            <h3 className="text-5xl font-semibold mb-6 mt-2 text-red-800">{content.heading}</h3>
+            <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">{content.subHeading}</h4>
             {content.paragraphs.map((para, idx) => (
-              <p key={idx} className="text-gray-700 mb-2">{para}</p>
+              <p key={idx} className="mb-2 text-theme-primary-dark">{para}</p>
             ))}
           </div>
 
@@ -111,10 +111,10 @@ function Blogs() {
             transition: "transform 0.1s linear",
           }}
         >
-          <h2 className="text-xl md:text-5xl lg:text-6xl font-semibold mb-2 leading-snug">
+          <h2 className="text-xl md:text-5xl lg:text-6xl font-semibold mb-2 leading-snug text-black">
             {blogsData[0].title}
           </h2>
-          <p className="text-gray-600 mb-4">{blogsData[0].subtitle}</p>
+          <p className="mb-4 text-theme-primary-dark">{blogsData[0].subtitle}</p>
           <strong>{blogsData[0].author}</strong>
           <strong>{blogsData[0].date}</strong>
         </div>

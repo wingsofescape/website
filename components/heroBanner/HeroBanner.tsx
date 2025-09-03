@@ -23,7 +23,7 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
     <div className="hidden lg:block">
       <div className="relative">
         <div className="inset-0 flex">
-          <div className="bg-theme-primary-dark text-white flex flex-col items-left px-30 py-5 w-1/2">
+          <div className="bg-theme-primary-dark text-white flex flex-col items-left px-25 py-5 w-1/2">
             <nav className="bg-theme-primary-dark pt-4">
               <div className="max-w-7xl mx-auto">
                 <div className="flex items-center space-x-3 text-xs">
@@ -45,13 +45,26 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
                 </div>
               </div>
             </nav>
-            <div className="w-full max-w-2xl mx-auto  mt-5">
+            <div className="w-full max-w-2xl mx-auto  my-15">
               <h1 className="text-xl xl:text-4xl font-bold mb-6 leading-tight ">
                 {destination.destinationHeroBanner.title}
               </h1>
-              <p className="text-gray-200 mb-8 text-md leading-relaxed font-">
+              <p className="text-white mb-8 text-xs leading-relaxed font-extralight">
                 {destination.destinationHeroBanner.description}
               </p>
+              <div className="pills flex gap-10">
+                <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
+                  Luxury
+                </div>
+
+                <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
+                  Escape
+                </div>
+                <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
+                  Historic
+                </div>
+
+              </div>
             </div>
           </div>
 
