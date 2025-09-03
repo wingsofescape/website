@@ -27,6 +27,11 @@ export const blogType = defineType({
       type: "date",
     }),
     defineField({
+      name: "blogHeroImage",
+      title: "Blog Hero Image",
+      type: "image",
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
