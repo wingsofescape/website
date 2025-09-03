@@ -1,35 +1,10 @@
 {
-  "topBanner": {
-    "countrySelector": {
-      "label": "Country:",
-      "options": ["USA", "Canada", "UK", "Australia", "India"]
-    },
-    "currencySelector": {
-      "label": "Currency:",
-      "options": ["USD", "CAD", "GBP", "AUD"]
-    },
-    "contactInfo": {
-      "text": "Travel questions? Speak to an expert 24/7:",
-      "phone": "+1 (800) 123-4567",
-      "email": "info@tourcompany.com"
-    }
-  },
   "branding": {
     "logo": {
       "href": "/"
     }
   },
   "navigation": {
-    "destinations": {
-      "label": "Destinations",
-      "items": [
-        { "name": "Japan", "href": "/destination/japan" },
-        { "name": "Vietnam", "href": "/destination/vietnam" },
-        { "name": "Africa", "href": "/destination/africa" },
-        { "name": "India", "href": "/destination/india" },
-        { "name": "Sri Lanka", "href": "/destination/srilanka" }
-      ]
-    },
     "holidayIdeas": {
       "label": "Holiday Ideas",
       "items": [
@@ -42,24 +17,14 @@
     "inspiration": {
       "label": "Inspiration",
       "items": [
-        { "name": "Blogs", "href": "/inspiration/guides" },
-        { "name": "Our top 10", "href": "/inspiration/blog" },
-        { "name": "Where to go by month", "href": "/inspiration/stories" }
+        { "name": "Blogs", "href": "/blogs" },
+        { "name": "Our top 10", "href": "/top10" },
+        { "name": "Where to go by month", "href": "/where-to-go-by-month" }
       ]
     },
     "contactUs": {
       "label": "Contact Us",
-      "items": [
-        { "name": "Activities", "href": "/kids/activities" },
-        { "name": "Family Offers", "href": "/kids/offers" }
-      ]
-    },
-    "adventurePrivate": {
-      "label": "Adventure Private",
-      "items": [
-        { "name": "Private Tours", "href": "/private/tours" },
-        { "name": "Exclusive Deals", "href": "/private/deals" }
-      ]
+      "items": [{ "name": "Contact Us", "href": "/about/contact" }]
     },
     "aboutUs": {
       "label": "About Us",
