@@ -1,4 +1,4 @@
-export const APP_NAME = process.env.NEXT_PUBLIC_API_NAME || "WingsOfEscape";
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Wings Of Escape";
 export const APP_DESCRIPTION =
   "Discover extraordinary destinations with WingsOfEscape, your premier gateway to luxury travel and adventure.";
 export const SERVER_URL =
@@ -32,9 +32,12 @@ export const POST_QUERY = {
       name: `Tour - ${tourSlug}`,
       query: `*[_type == "tour" && slug.current == '${tourSlug}']`,
     };
-  }
+  },
 };
 
 export const SANITY_QUERY_OPTION = { next: { revalidate: 30 } };
 
-export const totalDestinations = ["Vietnam", "India", "Japan", "Sri Lanka", "Bali"];
+export const totalDestinations = [
+  { name: "Bali", href: "/destination/bali" },
+  { name: "Sri Lanka", href: "/destination/srilanka" },
+];
