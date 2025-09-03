@@ -52,9 +52,9 @@ export default function TourDetailsPage({
         </div>
         {/* Card */}
         <div className="bg-white shadow-md p-2 md:p-8 pt-4 mb-8 w-3/4">
-          <h3 className="text-2xl font-semibold mb-2 text-theme-primary-dark">{day.title}</h3>
-          <p className="text-gray-700 mb-1">{day.description}</p>
-          <span className="">
+          <h3 className="text-lg md:text-2xl font-semibold mb-2 text-theme-primary-dark">{day.title}</h3>
+          <p className="text-sm text-gray-700 mb-1">{day.description}</p>
+          <span>
             <strong>
               Accommodation: <a href="#" title="Uga Ulagalla">{day.title}</a>
             </strong>

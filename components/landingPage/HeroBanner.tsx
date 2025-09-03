@@ -2,22 +2,18 @@
 import React from "react";
 import Link from "next/link";
 import landingPageData from "@/data/landingPage/index.json";
-import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY } from "@/lib/constants";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IHeroBannerButton } from "@/app/models/heroBanner";
 
 export const HeroBanner = () => {
   const options = { next: { revalidate: 30 } };
-
+  const heroBannerVideo = "/videos/heroBannerVideo1.mp4";
   const data = useFetchData(
     POST_QUERY.landingPage,
     options,
     landingPageData.heroBanner
   );
-  const image = data.heroBannerImage.asset.includes("/")
-    ? data.heroBannerImage.asset
-    : urlFor(data.heroBannerImage.asset)?.url();
 
   return (
     <>
@@ -68,66 +64,6 @@ export const HeroBanner = () => {
             </div>
           </div>
         </div>
-
-        {/* CSS for blob animations */}
-        <style jsx>{`
-          .blob-animation {
-            animation: blob 7s infinite;
-          }
-
-          .blob-animation-delay {
-            animation: blob 7s infinite;
-            animation-delay: -2s;
-          }
-
-          .blob-animation-slow {
-            animation: blob 9s infinite;
-            animation-delay: -4s;
-          }
-
-          .blob-animation-reverse {
-            animation: blob-reverse 8s infinite;
-            animation-delay: -1s;
-          }
-
-          @keyframes blob {
-            0% {
-              transform: translate(0px, 0px) scale(1);
-              border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            }
-            33% {
-              transform: translate(30px, -50px) scale(1.1);
-              border-radius: 70% 30% 50% 50% / 50% 60% 40% 60%;
-            }
-            66% {
-              transform: translate(-20px, 20px) scale(0.9);
-              border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            }
-            100% {
-              transform: translate(0px, 0px) scale(1);
-              border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            }
-          }
-
-          @keyframes blob-reverse {
-            0% {
-              transform: translate(0px, 0px) scale(1);
-              border-radius: 30% 70% 40% 60% / 70% 40% 60% 30%;
-            }
-            33% {
-              transform: translate(-30px, 50px) scale(1.1);
-              border-radius: 50% 50% 30% 70% / 60% 40% 50% 60%;
-            }
-            66% {
-              transform: translate(20px, -20px) scale(0.9);
-              border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%;
-            }
-            100% {
-              transform: translate(0px, 0px) scale(1);
-              border-radius: 30% 70% 40% 60% / 70% 40% 60% 30%;
-            }
-          }
-        `}</style>
       </section>
 
       {/* Desktop Version - Original design with background image */}
@@ -135,12 +71,22 @@ export const HeroBanner = () => {
       <section
         className="hidden lg:flex relative h-[600px] items-center"
         style={{
-          backgroundImage: `url(${image?.toString()})`,
+          // backgroundImage: `url(${image?.toString()})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="absolute inset-0 bg-black/30" />
+        <video controls preload="auto" autoPlay loop muted className="absolute h-full inset-0 w-full object-cover">
+          <source src={heroBannerVideo} type="video/mp4" />
+          {/* <track
+            src="/path/to/captions.vtt"
+            kind="subtitles"
+            srcLang="en"
+            label="English"
+          /> */}
+          Your browser does not support the video tag.
+        </video>
+        {/* <div className="absolute inset-0 bg-black/30" /> */}
         <div className="relative z-10 max-w-5xl mx-auto px-8">
           <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg ">
             {data.heroBannerHeading}

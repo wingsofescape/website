@@ -8,6 +8,7 @@ import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import Image from "next/image";
 import { ITour } from "@/app/models/tours";
 import { urlFor } from "@/sanity/lib/image";
+import { formatPrice } from "@/utils/priceFormatter";
 
 export default function DestinationToursPage({
   params,
@@ -23,13 +24,13 @@ export default function DestinationToursPage({
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
     allDestination[destinationName as keyof typeof allDestination] ||
-      allDestination["srilanka"]
+    allDestination["srilanka"]
   );
   const tours = useFetchData(
     POST_QUERY.tours(destinationName),
     SANITY_QUERY_OPTION,
     allTours[`${destinationName}Tours` as keyof typeof allTours] ||
-      allTours["srilankaTours"]
+    allTours["srilankaTours"]
   );
 
   return (
@@ -39,7 +40,7 @@ export default function DestinationToursPage({
 
       <div className="bg-white rounded-lg shadow-sm p-8 lg:p-6 flex justify-center">
         <div className="max-w-4xl">
-          <h2 className="text-2xl lg:text-3xl mb-6 font-bold">
+          <h2 className="text-2xl lg:text-3xl mb-6 font-bold text-theme-primary-dark">
             {destination.destinationHeroBanner.name} Tours
           </h2>
 
@@ -61,7 +62,7 @@ export default function DestinationToursPage({
             {tours.map((tour: ITour) => (
               <Link
                 key={tour.id}
-                href={`/destination/${destinationName}/tours/${tour.slug.current}`}
+                href={tour.isIdea ? "/forms/enquireNow" : `/destination/${destinationName}/tours/${tour.slug.current}`}
                 className="group"
               >
                 <div className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row">
@@ -106,14 +107,14 @@ export default function DestinationToursPage({
                       <div>
                         <span className="text-gray-600 text-sm">From</span>
                         <div className="text-2xl font-bold text-theme-primary">
-                          £{tour.price}{" "}
+                          {formatPrice(tour.price)} {" "}
                           <span className="text-base font-normal text-gray-600">
                             pp
                           </span>
                         </div>
                       </div>
-                      <div className="bg-theme-primary text-white px-6 py-2 font-semibold hover:bg-theme-primary transition-colors">
-                        VIEW TOUR
+                      <div className="bg-theme-primary text-white px-6 py-2 font-semibold hover:bg-theme-primary transition-colors" >
+                        {tour.isIdea ? "ENQUIRE NOW" : "VIEW TOUR "}
                       </div>
                     </div>
                   </div>

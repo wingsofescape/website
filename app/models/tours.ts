@@ -23,6 +23,7 @@ export interface ITour {
   longDescription: string;
   highlights: string[];
   recommended: boolean;
+  isIdea: boolean;
   recommendedContent: RecommendedContent;
   itinerary: Itinerary[];
 }
