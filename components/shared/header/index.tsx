@@ -12,7 +12,6 @@ import {
   totalDestinations,
 } from "@/lib/constants";
 import { createDestinationList } from "@/utils/createDestinations";
-import headers from "@/data/header.json";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -199,10 +198,10 @@ const Header = () => {
             }`}
           >
             {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-amber-700 text-white">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-theme-primary-light text-white">
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 hover:bg-amber-600 rounded-md transition-colors"
+                className="p-2 hover:bg-theme-primary-light rounded-md transition-colors text-white"
                 aria-label="Close menu"
               >
                 <svg

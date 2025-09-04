@@ -18,8 +18,8 @@
       "label": "Inspiration",
       "items": [
         { "name": "Blogs", "href": "/blogs" },
-        { "name": "Our top 10", "href": "/top10" },
-        { "name": "Where to go by month", "href": "/where-to-go-by-month" }
+        { "name": "Our top 10", "href": "/blogs" },
+        { "name": "Where to go by month", "href": "/blogs" }
       ]
     },
     "contactUs": {
