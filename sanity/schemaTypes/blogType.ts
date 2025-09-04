@@ -32,6 +32,11 @@ export const blogType = defineType({
       type: "image",
     }),
     defineField({
+      name: "isPromoted",
+      title: "Promote",
+      type: "boolean",
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
