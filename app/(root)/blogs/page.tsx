@@ -1,11 +1,113 @@
-"use client";
+'use client'
 import React, { useEffect, useRef, useState } from "react";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
+import { useFetchData } from "@/hooks/useFetchData";
+import blogs from "@/data/blogs/index.json";
+import Image from "next/image";
+import { IBlog } from "@/app/models/blog";
+import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
 
-import blogsData from "@/data/blogs/index.json";
-import { IBlog, IBlogContent } from "@/app/models/blog";
+export default function Blogs() {
 
-function Blogs() {
-  return <div> All blogs</div>;
+  const blogsData = useFetchData(
+    POST_QUERY.blogs,
+    SANITY_QUERY_OPTION,
+    blogs
+  );
+  const [offsetY, setOffsetY] = useState(0);
+  const bannerRef = useRef<HTMLDivElement>(null);
+
+  localStorage.setItem("blogs", JSON.stringify(blogsData));
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffsetY(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="blogsLandingPage">
+      <div
+        ref={bannerRef}
+        className="blogHeroImage relative overflow-hidden mb-10"
+        style={{
+          height: "90vh",
+        }}
+      >
+        <Image
+          alt="Page Banner Image"
+          src={urlFor(blogsData[0]?.blogHeroImage)?.url()}
+          className="object-cover"
+          fill
+          style={{
+            transform: `translateY(${offsetY * 0.5}px) scale(1.08)`,
+            transition: "transform 0.1s linear",
+            zIndex: 1,
+          }}
+        />
+        <div className="overlay opacity-40 bg-white h-full absolute top-0 right-0 w-full md:w-2/5 z-10" />
+        <div
+          className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-10"
+          style={{
+            transform: `translateY(${offsetY * 0.18}px)`,
+            transition: "transform 0.1s linear",
+          }}
+        >
+          <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-theme-primary-dark">
+            {blogsData[0].title}
+          </h2>
+          <p className="mb-4 text-theme-primary-dark">
+            {blogsData[0].subtitle}
+          </p>
+          <strong className="text-theme-primary-dark">- {blogsData[0].author}</strong>
+          <strong className="text-theme-primary-dark">{blogsData[0].date}</strong>
+        </div>
+      </div>
+
+      <div className="blogsList flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-4/5 mx-auto bg-white">
+        {blogsData.map((blog: IBlog, index: number) => {
+          return (
+            <Link
+              key={index}
+              className="blogCard flex flex-col rounded-none overflow-hidden h-[70vh] w-11/12 md:w-1/4 text-left my-2 md:my-10"
+              href={blog.slug.current ? `/blogs/${blog.slug.current}` : "#"}
+            >
+              {/* Blog Image */}
+              <div className="relative flex flex-1 h-full w-full">
+                <Image
+                  src={urlFor(blog.blogHeroImage)?.url()}
+                  alt={blog.title}
+                  width={1080}
+                  height={1260}
+                  className="object-cover w-full h-full"
+                  priority={index < 3}
+                />
+              </div>
+              {/* Blog Content */}
+              <div className="flex flex-col py-6 text-left">
+
+                <strong className="text-xs tracking-widest text-gray-500 mb-2 uppercase">
+                  {blog?.date}
+                </strong>
+
+                <strong className="text-xs tracking-widest text-gray-500 mb-2 uppercase">
+                  {blog?.author}
+                </strong>
+
+                <p className="block text-md  font-semibold text-theme-primary-dark mb-3 leading-snug hover:text-theme-primary-light transition-colors"
+                >
+                  {blog.title}
+                </p>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
+    </div>
+
+  )
 }
 
-export default Blogs;

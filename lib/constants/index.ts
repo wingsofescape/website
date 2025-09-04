@@ -33,6 +33,10 @@ export const POST_QUERY = {
       query: `*[_type == "tour" && slug.current == '${tourSlug}']`,
     };
   },
+  blogs: {
+    name: "blogs",
+    query: `*[_type == "blog"] | order(date desc){_createdAt, blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
+  }
 };
 
 export const SANITY_QUERY_OPTION = { next: { revalidate: 30 } };
