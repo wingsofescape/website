@@ -35,7 +35,13 @@ export const POST_QUERY = {
   },
   blogs: {
     name: "blogs",
-    query: `*[_type == "blog"] | order(date desc){_createdAt, blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
+    query: `*[_type == "blog"] | order(date desc){_createdAt, blogHeroImage, author, slug, title, date}`,
+  },
+  getblog(blogSlug: string) {
+    return {
+      name: `Blog - ${blogSlug}`,
+      query: `*[_type == "blog" && slug.current == '${blogSlug}']{blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
+    };
   }
 };
 

@@ -18,8 +18,6 @@ export default function Blogs() {
   const [offsetY, setOffsetY] = useState(0);
   const bannerRef = useRef<HTMLDivElement>(null);
 
-  localStorage.setItem("blogs", JSON.stringify(blogsData));
-
   useEffect(() => {
     const handleScroll = () => {
       setOffsetY(window.scrollY);

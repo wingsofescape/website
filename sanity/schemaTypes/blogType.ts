@@ -37,6 +37,12 @@ export const blogType = defineType({
       type: "boolean",
     }),
     defineField({
+      name: "keywords",
+      title: "Blog keywords",
+      type: "array",
+      of: [{ type: "string" }],
+    }),
+    defineField({
       name: "slug",
       title: "Slug",
       type: "slug",
@@ -51,6 +57,7 @@ export const blogType = defineType({
           type: "object",
           fields: [
             { name: "heading", title: "Heading", type: "string" },
+            { name: "href", title: "Parent Link", type: "url" },
             { name: "subHeading", title: "Sub Heading", type: "string" },
             defineField({
               name: "paragraph",

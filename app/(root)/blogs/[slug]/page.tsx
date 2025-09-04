@@ -1,13 +1,19 @@
 "use client";
 import Image from "next/image";
 import React, { use, useEffect, useRef, useState } from "react";
-import { IBlog, IBlogContent } from "@/app/models/blog";
+import { IBlogContent } from "@/app/models/blog";
 import { urlFor } from "@/sanity/lib/image";
+import { useFetchData } from "@/hooks/useFetchData";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
+import allBlogs from "@/data/blogs/index.json";
 
 function Blogs({ params }: { params: Promise<{ slug: string }>; }) {
   const { slug } = use<{ slug: string }>(params);
-  const blogs = JSON.parse(localStorage.getItem("blogs") || "[]");
-  const blog = blogs.filter((b: IBlog) => b.slug.current === slug)[0];
+  const blog = useFetchData(
+    POST_QUERY.getblog(slug),
+    SANITY_QUERY_OPTION,
+    allBlogs[0]
+  );
   const [offsetY, setOffsetY] = useState(0);
   const bannerRef = useRef<HTMLDivElement>(null);
 
@@ -48,8 +54,8 @@ function Blogs({ params }: { params: Promise<{ slug: string }>; }) {
                 src={urlFor(img?.asset)?.url()}
                 alt={content.imagesDescription || ""}
                 className="object-cover h-[40vh] md:h-[65vh]  md:w-11/12 mx-auto"
-                width={1000}
-                height={1000}
+                width={1080}
+                height={1920}
               />
             ))}
           </div>
