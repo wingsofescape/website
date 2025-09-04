@@ -1,3 +1,4 @@
+import { Image } from "./destinations";
 export type Blogs = IBlog[]
 
 export interface IBlog {
@@ -6,12 +7,15 @@ export interface IBlog {
     author: string
     date: string
     blogContent: IBlogContent[]
+    blogHeroImage: Image
+    slug: { current: string }
+    _createdAt: string
 }
 
 export interface IBlogContent {
     heading: string
     subHeading: string
-    paragraphs: string[]
-    images: string[]
+    paragraph: string[]
+    image: { asset: string }[]
     imagesDescription?: string
 }

@@ -106,9 +106,9 @@ const Destination = ({
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm ">
+          <div className="bg-white  shadow-sm  p-6">
             <div className="max-w-full">
-              <h2 className="text-2xl lg:text-3xl font-bold text-[#00332a]  mb-6">
+              <h2 className="text-2xl lg:text-3xl font-bold text-theme-primary-dark  mb-6">
                 {getActiveTabContent("holidaysOverview").title}
               </h2>
 

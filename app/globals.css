@@ -28,7 +28,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1e293b;
+    --background: #ffffff;
     /* Use slate-800 for dark mode background */
     --foreground: #ededed;
   }

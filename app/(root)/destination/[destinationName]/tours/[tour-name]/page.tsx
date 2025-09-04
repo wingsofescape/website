@@ -90,7 +90,7 @@ export default function TourDetailsPage({
           {/* Main Content */}
           <div className="flex-1">
             {/* Overview */}
-            <section className="mb-12">
+            <section className="mb-12 text-theme-primary-dark">
               <h2 className="text-3xl font-bold mb-6">Tour Overview</h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
                 {tour.longDescription}
@@ -100,7 +100,7 @@ export default function TourDetailsPage({
             </section>
 
             {/* Itinerary */}
-            <section className="mb-2">
+            <section className="mb-2 text-theme-primary-dark">
               <h2 className="text-3xl font-bold mb-6">Itinerary</h2>
               <div className="space-y-8 relative">
                 {/* Timeline vertical line for the whole itinerary */}
