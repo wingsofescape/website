@@ -12,6 +12,7 @@ import {
   totalDestinations,
 } from "@/lib/constants";
 import { createDestinationList } from "@/utils/createDestinations";
+import headers from "@/data/header.json";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -63,8 +64,9 @@ const Header = () => {
         >
           {section.label}
           <svg
-            className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""
-              }`}
+            className={`w-4 h-4 transition-transform ${
+              isOpen ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -192,8 +194,9 @@ const Header = () => {
 
           {/* Sheet Menu */}
           <div
-            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
+            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+              isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
           >
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-amber-700 text-white">
@@ -225,6 +228,7 @@ const Header = () => {
                 <MobileDropdown
                   section={createDestinationList(data, "Destinations")}
                 />
+                <MobileDropdown section={headerData.navigation.inspiration} />
 
                 {/* Mobile Search */}
                 <div className="p-4 border-b border-gray-200">
