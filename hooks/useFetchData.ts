@@ -22,7 +22,11 @@ export const useFetchData = (
         return;
       }
       // Deep clone the data to avoid potential issues with reactivity
-      setData(data.length > 1 ? JSON.parse(JSON.stringify(data)) : JSON.parse(JSON.stringify(data[0])));
+      setData(
+        data.length > 1
+          ? JSON.parse(JSON.stringify(data))
+          : JSON.parse(JSON.stringify(data[0]))
+      );
       console.log(`content loaded from CMS ${POST_QUERY.name}`, data);
     };
 

@@ -76,7 +76,14 @@ export const HeroBanner = () => {
           backgroundPosition: "center",
         }}
       >
-        <video controls preload="auto" autoPlay loop muted className="absolute h-full inset-0 w-full object-cover">
+        <video
+          controls
+          preload="auto"
+          autoPlay
+          loop
+          muted
+          className="absolute h-full inset-0 w-full object-cover"
+        >
           <source src={heroBannerVideo} type="video/mp4" />
           {/* <track
             src="/path/to/captions.vtt"

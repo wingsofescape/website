@@ -37,15 +37,15 @@ export const POST_QUERY = {
     name: "blogs",
     query: `*[_type == "blog"] | order(date desc){_createdAt, blogHeroImage, author, slug, title, date}`,
   },
-  getblog(blogSlug: string) {
+  getblog(blogSlug: { slug: string }) {
     return {
       name: `Blog - ${blogSlug}`,
-      query: `*[_type == "blog" && slug.current == '${blogSlug}']{blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
+      query: `*[_type == "blog" && slug.current == '${blogSlug.slug}']{blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
     };
-  }
+  },
 };
 
-export const SANITY_QUERY_OPTION = { next: { revalidate: 30 } };
+export const SANITY_QUERY_OPTION = { next: { revalidate: 60 }, useCdn: true };
 
 export const totalDestinations = [
   { name: "Bali", href: "/destination/bali" },
