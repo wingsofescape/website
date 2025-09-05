@@ -70,7 +70,7 @@ const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="py-12 md:py-16 lg:py-20 bg-gray-50">
+    <section className="py-4 bg-transparent">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
