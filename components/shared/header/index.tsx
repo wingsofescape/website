@@ -25,6 +25,7 @@ const Header = () => {
   const handleDestinationClick = (destinationLink: string) => {
     router.push(destinationLink);
   };
+
   const renderDropdown = (section: {
     label: string;
     items: { name: string; href: string }[];
@@ -37,7 +38,7 @@ const Header = () => {
         {section.items.map((item, index) => (
           <li
             key={index}
-            className="px-4 py-2 hover:bg-amber-100 hover:rounded cursor-pointer text-xs font-semibold"
+            className="px-4 py-2 hover:rounded cursor-pointer text-xs font-semibold"
             onClick={() => {
               handleDestinationClick(item.href);
             }}
@@ -63,9 +64,8 @@ const Header = () => {
         >
           {section.label}
           <svg
-            className={`w-4 h-4 transition-transform ${
-              isOpen ? "rotate-180" : ""
-            }`}
+            className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""
+              }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -108,27 +108,33 @@ const Header = () => {
           href={headerData.branding.logo.href}
           className="flex items-center"
         >
-          <Image src={Logo2} alt="Logo" width={275} height={275} />
+          <Image
+            src={Logo2}
+            alt="Logo"
+            width={225}
+            height={225}
+            style={{ width: "auto" }}
+          />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex text-sm lg:text-base items-center space-x-4">
           {renderDropdown(createDestinationList(data, "Destinations"))}
           {renderDropdown(headerData.navigation.inspiration)}
-          {renderDropdown(headerData.navigation.contactUs)}
-          {renderDropdown(headerData.navigation.aboutUs)}
+          {/* {renderDropdown(headerData.navigation.contactUs)}
+          {renderDropdown(headerData.navigation.aboutUs)} */}
           {/* Search Bar */}
           <form className="ml-2">
             <input
               type="text"
               placeholder={headerData.searchBar.placeholder}
-              className="rounded-full px-4 py-2 border border-theme-primary-dark focus:outline-none focus:ring-2 focus:ring-amber-500 w-32 text-theme-primary"
+              className="rounded-full px-4 py-2 border border-theme-primary-dark focus:outline-none focus:ring-2 focus:ring-theme-primary-light w-32 text-theme-primary"
             />
           </form>
         </nav>
 
         {/* Desktop CTA Button */}
-        <div className="hidden md:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-[#3e6d65] border-none rounded-none group">
+        <div className="hidden md:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
           <button
             type="button"
             onClick={() => (window.location.href = headerData.cta.button.href)}
@@ -153,7 +159,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden flex items-center justify-center w-10 h-10 rounded-md hover:bg-amber-600 transition-colors"
+          className="lg:hidden flex items-center justify-center w-10 h-10 rounded-md hover:bg-theme-primary-light transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle mobile menu"
         >
@@ -193,9 +199,8 @@ const Header = () => {
 
           {/* Sheet Menu */}
           <div
-            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
-              isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-            }`}
+            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
           >
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-theme-primary-light text-white">
@@ -235,7 +240,7 @@ const Header = () => {
                     <input
                       type="text"
                       placeholder={headerData.searchBar.placeholder}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-800"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary-light text-gray-800"
                     />
                   </form>
                 </div>
