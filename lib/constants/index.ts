@@ -48,6 +48,16 @@ export const POST_QUERY = {
 export const SANITY_QUERY_OPTION = { next: { revalidate: 60 }, useCdn: true };
 
 export const totalDestinations = [
-  { name: "Bali", href: "/destination/bali" },
-  { name: "Sri Lanka", href: "/destination/srilanka" },
+  { destinationHeading: "Sri Lanka", slug: "srilanka" },
+  { destinationHeading: "Azerbaijan", slug: "azerbaijan" },
+  { destinationHeading: "Thailand", slug: "thailand" },
+  { destinationHeading: "Oman", slug: "oman" },
+  { destinationHeading: "Hong kong", slug: "hongkong" },
+  { destinationHeading: "Vietnam", slug: "vietnam" },
+  { destinationHeading: "Indonesia", slug: "indonesia" },
+  { destinationHeading: "Malaysia", slug: "malaysia" },
+  { destinationHeading: "Maldives", slug: "maldives" },
+  { destinationHeading: "Mauritius", slug: "mauritius" },
+  { destinationHeading: "UAE", slug: "uae" },
+  { destinationHeading: "Singapore", slug: "singapore" },
 ];
