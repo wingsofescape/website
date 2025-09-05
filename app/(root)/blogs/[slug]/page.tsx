@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { IBlogContent } from "@/app/models/blog";
+import { IBlogContent } from "@/app/_models/blog";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/lib/fetch";
@@ -105,7 +105,7 @@ export default async function Blogs({ params }: PageProps) {
             zIndex: 1,
           }}
         />
-        <div className="overlay opacity-40 bg-white h-full absolute top-0 right-0 w-full md:w-2/5 z-10" />
+        <div className="overlay opacity-40 bg-white h-full absolute top-[33%] md:top-0 right-0 w-full md:w-2/5 z-10" />
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-200 text-theme-primary-dark"
           style={{

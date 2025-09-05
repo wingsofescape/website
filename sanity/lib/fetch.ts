@@ -6,10 +6,8 @@ export async function sanityFetch(
   POST_QUERY: (typeof GROQ_QUERY)["blogs"],
   options = {}
 ) {
-  return client
-    .fetch<SanityDocument[]>(POST_QUERY.query, {}, options)
-    .catch((error) => {
-      console.error(`Error fetching ${POST_QUERY.name}:`, error);
-      return [];
-    });
+  return client.fetch(POST_QUERY.query, {}, options).catch((error) => {
+    console.error(`Error fetching ${POST_QUERY.name}:`, error);
+    return [];
+  });
 }

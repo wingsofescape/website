@@ -1,12 +1,13 @@
 import React from "react";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import Image from "next/image";
-import { IBlog } from "@/app/models/blog";
+import { IBlog } from "@/app/_models/blog";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { Blogs as BlogsType } from "@/app/_models/blog";
 
-async function getBlogs() {
+async function getBlogs(): Promise<BlogsType> {
   return await sanityFetch(POST_QUERY.blogs, SANITY_QUERY_OPTION);
 }
 

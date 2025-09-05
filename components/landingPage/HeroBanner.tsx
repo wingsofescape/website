@@ -4,7 +4,7 @@ import Link from "next/link";
 import landingPageData from "@/data/landingPage/index.json";
 import { POST_QUERY } from "@/lib/constants";
 import { useFetchData } from "@/hooks/useFetchData";
-import { IHeroBannerButton } from "@/app/models/heroBanner";
+import { IHeroBannerButton } from "@/app/_models/heroBanner";
 
 export const HeroBanner = () => {
   const options = { next: { revalidate: 30 } };
