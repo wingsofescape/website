@@ -2,11 +2,11 @@ import React from "react";
 
 const PageSection = () => {
   return (
-    <div className="max-w-5xl mx-auto ">
-      <h2 className="text-4xl md:text-5xl font-bold  mb-6 ">
+    <div className="w-5/6 mx-auto mt-5 ">
+      <h2 className="text-4xl md:text-5xl font-bold mb-6 ">
         Your Luxury Holiday Starts Here…
       </h2>
-      <p className="text-lg md:text-xl  mb-2">
+      <p className="text-lg md:text-xl mb-2">
         It’s time to elevate luxury travel out of the ordinary. Our experts have
         travelled to the farthest reaches of the world, exploring everything
         from the biggest cities to the smallest villages, from vast rainforests
