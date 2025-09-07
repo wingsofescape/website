@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/lib/client";
-import { POST_QUERY as GROQ_QUERY } from "@/lib/constants";
+
+type QueryType = {
+  name: string,
+  query: string
+};
 
 export const useFetchData = (
-  POST_QUERY: (typeof GROQ_QUERY)["landingPage"],
+  POST_QUERY: QueryType,
   options = {},
   defaultData?: any
 ) => {
