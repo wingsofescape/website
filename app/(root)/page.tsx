@@ -9,8 +9,9 @@ import Background1 from "@/public/images/bg1.jpg";
 import Background2 from "@/public/images/bg2.jpg";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { IHeroBannerButton } from "../_models/heroBanner";
+import { SanityDocument } from "next-sanity";
 
-async function getHomePageContent(): Promise<any> {
+async function getHomePageContent(): Promise<SanityDocument[]> {
   return await sanityFetch(POST_QUERY.homePage, SANITY_QUERY_OPTION);
 }
 

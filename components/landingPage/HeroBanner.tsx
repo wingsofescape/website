@@ -1,8 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import { IHeroBannerButton } from "@/app/_models/heroBanner";
+import { Image } from "@/app/_models/tours";
 
-export const HeroBanner = ({ data }: any) => {
+type HeroBannerProps = {
+  heroBannerHeading: string;
+  heroBannerSubHeading: string;
+  heroBannerButtons: IHeroBannerButton[],
+  image: Image,
+
+}
+export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
   const heroBannerVideo = "/videos/heroBannerVideo1.mp4";
   return (
     <>
