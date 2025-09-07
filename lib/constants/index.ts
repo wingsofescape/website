@@ -5,11 +5,11 @@ export const SERVER_URL =
   process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
 
 export const POST_QUERY = {
-  landingPage: {
-    name: "landingPage",
+  homePage: {
+    name: "homePage",
     query: `*[
-      _type == "landingPage"
-      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`,
+      _type == "homePage"
+      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection, whyWOESection }`,
   },
   header: {
     name: "header",

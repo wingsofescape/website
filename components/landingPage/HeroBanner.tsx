@@ -1,27 +1,16 @@
-"use client";
 import React from "react";
 import Link from "next/link";
-import landingPageData from "@/data/landingPage/index.json";
-import { POST_QUERY } from "@/lib/constants";
-import { useFetchData } from "@/hooks/useFetchData";
 import { IHeroBannerButton } from "@/app/_models/heroBanner";
 
-export const HeroBanner = () => {
-  const options = { next: { revalidate: 30 } };
+export const HeroBanner = ({ data }: any) => {
   const heroBannerVideo = "/videos/heroBannerVideo1.mp4";
-  const data = useFetchData(
-    POST_QUERY.landingPage,
-    options,
-    landingPageData.heroBanner
-  );
-
   return (
     <>
       {/* Mobile Version - New responsive design with CSS blobs */}
       <section className="lg:hidden relative min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100">
         {/* CSS Blob Background */}
         <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-20 left-20 w-53 h-52 md:w-48 md:h-48 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full opacity-20 blob-animation"></div>
+          <div className="absolute top-20 left-20 w-53 h-52 md:w-48 md:h-48 bg-gradient-to-r rounded-full opacity-20 blob-animation"></div>
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
@@ -42,7 +31,7 @@ export const HeroBanner = () => {
                     <Link
                       href={`${button.link}`}
                       key={button?.title + index}
-                      className="group inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 hover:border-amber-300 text-sm md:text-base"
+                      className="group inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 text-sm md:text-base"
                     >
                       {button.title}
                       <svg
