@@ -5,11 +5,11 @@ export const SERVER_URL =
   process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
 
 export const POST_QUERY = {
-  landingPage: {
-    name: "landingPage",
+  homePage: {
+    name: "homePage",
     query: `*[
-      _type == "landingPage"
-      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage }`,
+      _type == "homePage"
+      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection, whyWOESection }`,
   },
   header: {
     name: "header",
@@ -37,17 +37,27 @@ export const POST_QUERY = {
     name: "blogs",
     query: `*[_type == "blog"] | order(date desc){_createdAt, blogHeroImage, author, slug, title, date}`,
   },
-  getblog(blogSlug: string) {
+  getblog(blogSlug: { slug: string }) {
     return {
       name: `Blog - ${blogSlug}`,
-      query: `*[_type == "blog" && slug.current == '${blogSlug}']{blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
+      query: `*[_type == "blog" && slug.current == '${blogSlug.slug}']{blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
     };
-  }
+  },
 };
 
-export const SANITY_QUERY_OPTION = { next: { revalidate: 30 } };
+export const SANITY_QUERY_OPTION = { next: { revalidate: 60 }, useCdn: true };
 
 export const totalDestinations = [
-  { name: "Bali", href: "/destination/bali" },
-  { name: "Sri Lanka", href: "/destination/srilanka" },
+  { destinationHeading: "Sri Lanka", slug: "srilanka" },
+  { destinationHeading: "Azerbaijan", slug: "azerbaijan" },
+  { destinationHeading: "Thailand", slug: "thailand" },
+  { destinationHeading: "Oman", slug: "oman" },
+  { destinationHeading: "Hong kong", slug: "hongkong" },
+  { destinationHeading: "Vietnam", slug: "vietnam" },
+  { destinationHeading: "Indonesia", slug: "indonesia" },
+  { destinationHeading: "Malaysia", slug: "malaysia" },
+  { destinationHeading: "Maldives", slug: "maldives" },
+  { destinationHeading: "Mauritius", slug: "mauritius" },
+  { destinationHeading: "UAE", slug: "uae" },
+  { destinationHeading: "Singapore", slug: "singapore" },
 ];

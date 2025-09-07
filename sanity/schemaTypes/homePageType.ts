@@ -181,7 +181,7 @@ export const HomePageType = defineType({
       fields: [
         { name: 'heading', title: 'Heading', type: 'string' },
         {
-          name: 'testemonials', title: 'All Testemonials', type: 'array',
+          name: 'reasons', title: 'All Reasons', type: 'array',
           of: [
             {
               type: "object",

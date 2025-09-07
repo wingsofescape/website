@@ -7,10 +7,9 @@ import TourBanner from "@/components/tourBanner";
 import { allTours } from "@/data/countries";
 import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import { Itinerary } from "@/app/models/tours";
+import { Itinerary } from "@/app/_models/tours";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-
 
 type ParamTye = { destinationName: string; "tour-name": string };
 
@@ -24,7 +23,7 @@ export default function TourDetailsPage({
     POST_QUERY.singleTour(tourSlug),
     SANITY_QUERY_OPTION,
     allTours[`${destinationName}Tours` as keyof typeof allTours]?.[0] ||
-    allTours["srilankaTours"][0]
+      allTours["srilankaTours"][0]
   );
 
   if (!tour) {
@@ -52,26 +51,31 @@ export default function TourDetailsPage({
         </div>
         {/* Card */}
         <div className="bg-white shadow-md p-2 md:p-8 pt-4 mb-8 w-3/4">
-          <h3 className="text-lg md:text-2xl font-semibold mb-2 text-theme-primary-dark">{day.title}</h3>
+          <h3 className="text-lg md:text-2xl font-semibold mb-2 text-theme-primary-dark">
+            {day.title}
+          </h3>
           <p className="text-sm text-gray-700 mb-1">{day.description}</p>
           <span>
             <strong>
-              Accommodation: <a href="#" title="Uga Ulagalla">{day.title}</a>
+              Accommodation:{" "}
+              <a href="#" title="Uga Ulagalla">
+                {day.title}
+              </a>
             </strong>
           </span>
           {/* Images placeholder */}
           {day.image && day.image.length > 0 && (
             <div className="relative h-100 md:h-55 w-11/12 lg:w-3/4 overflow-hidden bg-cover bg-center bg-no-repeat flex flex-col md:flex-row">
               {day.image.map((img, index) => (
-                <Image src={typeof img === "string"
-                  ? img
-                  : urlFor(img.asset)?.url()}
+                <Image
+                  src={typeof img === "string" ? img : urlFor(img.asset)?.url()}
                   key={index}
                   alt={tour.title}
                   width={330}
                   height={0}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                  className="object-fit m-2 w-full md:w-1/2 min-h-42" />
+                  className="object-fit m-2 w-full md:w-1/2 min-h-42"
+                />
               ))}
             </div>
           )}
@@ -95,8 +99,6 @@ export default function TourDetailsPage({
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
                 {tour.longDescription}
               </p>
-
-
             </section>
 
             {/* Itinerary */}

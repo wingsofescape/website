@@ -101,7 +101,7 @@ const Header = () => {
       {/* Top Banner - Hidden on mobile */}
 
       {/* Main Header */}
-      <div className="flex justify-between items-stretch h-22 pl-4 lg:pl-8">
+      <div className="flex justify-between  items-center h-22 pl-4 lg:pl-8">
         {/* Logo */}
 
         <Link
@@ -134,7 +134,7 @@ const Header = () => {
         </nav>
 
         {/* Desktop CTA Button */}
-        <div className="hidden md:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
+        <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
           <button
             type="button"
             onClick={() => (window.location.href = headerData.cta.button.href)}

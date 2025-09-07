@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/lib/client";
-import { POST_QUERY as GROQ_QUERY } from "@/lib/constants";
+
+type QueryType = {
+  name: string,
+  query: string
+};
 
 export const useFetchData = (
-  POST_QUERY: (typeof GROQ_QUERY)["landingPage"],
+  POST_QUERY: QueryType,
   options = {},
   defaultData?: any
 ) => {
@@ -22,7 +26,11 @@ export const useFetchData = (
         return;
       }
       // Deep clone the data to avoid potential issues with reactivity
-      setData(data.length > 1 ? JSON.parse(JSON.stringify(data)) : JSON.parse(JSON.stringify(data[0])));
+      setData(
+        data.length > 1
+          ? JSON.parse(JSON.stringify(data))
+          : JSON.parse(JSON.stringify(data[0]))
+      );
       console.log(`content loaded from CMS ${POST_QUERY.name}`, data);
     };
 

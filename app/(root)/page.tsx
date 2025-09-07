@@ -4,24 +4,46 @@ import { TailorMade } from "@/components/landingPage/TailorMade";
 import PageSection from "@/components/shared/header/PageSection";
 import Testimonials from "@/components/testimonials";
 import WOEFeatures from "@/components/WOEFeatures";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import Background1 from "@/public/images/bg1.jpg";
 import Background2 from "@/public/images/bg2.jpg";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { IHeroBannerButton } from "../_models/heroBanner";
+import { SanityDocument } from "next-sanity";
 
-export default function HomePage() {
+async function getHomePageContent(): Promise<SanityDocument[]> {
+  return await sanityFetch(POST_QUERY.homePage, SANITY_QUERY_OPTION);
+}
+
+export default async function HomePage() {
+
+  const res = await getHomePageContent();
+  const data = res?.[0];
+  console.log(data);
+
+  const heroBannerData = {
+    heroBannerHeading: data.heroBannerHeading,
+    heroBannerSubHeading: data.heroBannerSubHeading,
+    heroBannerButtons: data.heroBannerButtons as IHeroBannerButton[],
+    image: data.heroBannerImage,
+  }
+
+  if (!data) return <p>Loading...</p>;
+
   return (
     <>
       <div className="p-0 bg-slate-200">
-        <HeroBanner />
+        <HeroBanner data={heroBannerData} />
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
-          <WOEFeatures />
-          <TailorMade />
+          <WOEFeatures data={data.features} />
+          <TailorMade data={data.tailorMadeSection} />
         </div>
       </div>
       <div className="p-0 bg-amber-50 mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
 
-          <PageSection />
-          <BookingProcess />
+          <PageSection data={data?.luxuryHolidaySection} />
+          <BookingProcess data={data.bookingProcess} />
 
           {/* Testimonials Section */}
 
@@ -29,7 +51,7 @@ export default function HomePage() {
       </div>
       <div className="p-0 bg-slate-200 mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
-          <Testimonials />
+          <Testimonials data={data.testemonialsSection} />
           <section className="flex flex-col md:flex-row w-full md:h-[600px]">
             {/* Left Block */}
             <div
