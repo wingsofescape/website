@@ -6,7 +6,7 @@ import { urlFor } from "@/sanity/lib/image";
 import {
   IDestinationBreadcrumb,
   IDestination,
-} from "@/app/models/destinations";
+} from "@/app/_models/destinations";
 import { usePathname } from "next/navigation";
 import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
 
@@ -63,7 +63,6 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
                 <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
                   Historic
                 </div>
-
               </div>
             </div>
           </div>

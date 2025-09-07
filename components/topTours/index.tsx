@@ -5,7 +5,7 @@ import {
   IRecommendedContent,
   IRecommendedToursContent,
   ITour,
-} from "@/app/models/destinations";
+} from "@/app/_models/destinations";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";

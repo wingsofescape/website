@@ -1,21 +1,17 @@
 import React from "react";
-const features = [
-  { heading: "Tailored Experiences", text: "Our experts craft every trip to match your interests, style, and pace for a truly bespoke adventure." },
-  { heading: "Expert Knowledge", text: "Benefit from our deep destination expertise and insider access to the world’s finest experiences." },
-  { heading: "24/7 Support", text: "Travel with confidence knowing our team is available around the clock to assist you at every step." },
-  { heading: "Curated Destinations", text: "We meticulously select each destination to ensure it meets our high standards of quality and authenticity." },
-]
-const WOEFeatures = () => {
+type IFeature = { featureHeading: string, featureContent: string }
+
+const WOEFeatures = ({ data }: { data: IFeature[] }) => {
   return (
     <section className="bg-transparent mt-10 mb-5 flex flex-nowrap text-theme-primary-dark">
-      <div className="mx-auto px-8 grid md:grid-cols-4 gap-4">
-        {features.map((feature, index) =>
-          <div className="flex flex-col items-center text-center" key={index}>
-            <h3 className="text-2xl font-bold mb-2 tracking-tight underline underline-offset-10 ">
-              {feature.heading}
+      <div className="mx-auto px-8 flex flex-col md:flex-row gap-4">
+        {data.map((feature: IFeature, index: number) =>
+          <div className="flex flex-col items-left md:items-center text-left md:text-center" key={index}>
+            <h3 className="text-md md:text-xl font-bold mb-2 tracking-tight underline underline-offset-10 ">
+              {feature.featureHeading}
             </h3>
-            <p className="text-gray-700 text-sm mt-5">
-              {feature.text}
+            <p className="text-gray-700 text-xs md:text-sm mt-2 md:mt-5">
+              {feature.featureContent}
             </p>
           </div>
         )}
