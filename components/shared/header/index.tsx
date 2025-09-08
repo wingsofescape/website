@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import headerData from "@/data/header.json";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -14,8 +14,9 @@ import {
 import { createDestinationList } from "@/utils/createDestinations";
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
   const router = useRouter();
 
   const data = useFetchData(
@@ -28,44 +29,32 @@ const Header = () => {
     router.push(destinationLink);
   };
 
-  const initialState = {
-    destinations: false,
-    inspiration: false,
-  };
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-  const reducer = (
-    state: { destinations: boolean; inspiration: boolean },
-    action: string
-  ) => {
-    switch (action) {
-      case "Destinations":
-        return { inspiration: false, destinations: true };
-      case "Inspiration":
-        return { destinations: false, inspiration: true };
-      case "RESET":
-        return { destinations: false, inspiration: false };
-      default:
-        return state;
-    }
-  };
-  const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    setOpenDropdown(null);
+  }, [pathname]);
 
   const RenderDropdown = ({
     data,
+    openDropdown,
+    setOpenDropdown,
   }: {
     data: { label: string; items: { href: string; name: string }[] };
+    openDropdown: string | null;
+    setOpenDropdown: (label: string | null) => void;
   }) => {
+    const isOpen = openDropdown === data.label;
     return (
-      <div className="relative group">
+      <div className="relative group hidden lg:block">
         <button
-          onClick={() => dispatch(data.label)}
+          onClick={() => setOpenDropdown(isOpen ? null : data.label)}
           className="hover:underline px-2 py-1 font-bold flex items-center"
         >
-          {data.label} {state[data.label]}
+          {data.label}
           <svg
-            className={`w-4 h-4 transition-transform ml-2 ${
-              state.[data.label] ? "rotate-180" : ""
-            }`}
+            className={`w-4 h-4 transition-transform ml-2 ${isOpen ? "rotate-180" : ""
+              }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -79,7 +68,7 @@ const Header = () => {
           </svg>
         </button>
         <div
-          className={`absolute bg-white text-black rounded transition-opacity z-20 h-fit w-[200px] top-10 flex flex-wrap}`}
+          className={`absolute bg-slate-50 text-theme-primary-dark rounded z-20 w-[200px] h-fit top-10 ${isOpen ? "flex flex-col flex-wrap" : "hidden"}`}
         >
           {data.items.map(
             (item: { href: string; name: string }, index: number) => (
@@ -113,9 +102,8 @@ const Header = () => {
         >
           {section.label}
           <svg
-            className={`w-4 h-4 transition-transform ${
-              isOpen ? "rotate-180" : ""
-            }`}
+            className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""
+              }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -151,30 +139,32 @@ const Header = () => {
       {/* Top Banner - Hidden on mobile */}
 
       {/* Main Header */}
-      <div className="flex justify-between  items-center h-22 pl-4 lg:pl-8">
+      <div className="flex justify-between items-center h-22 pl-4 lg:pl-8">
         {/* Logo */}
         <Link
           href={headerData.branding.logo.href}
-          className="flex items-center"
+          className="flex items-center flex-2"
         >
           <Image src={Logo2} alt="Logo" width={260} height={260} />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="flex text-sm lg:text-base items-center space-x-4">
-          <RenderDropdown data={createDestinationList(data, "Destinations")} />
-          <RenderDropdown data={headerData.navigation.inspiration} />
+        <nav className="hidden md:flex text-sm lg:text-base items-center space-x-4 flex-1">
+          <RenderDropdown data={createDestinationList(data, "Destinations")} openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown} />
+          <RenderDropdown data={headerData.navigation.inspiration} openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown} />
           {/* {renderDropdown(headerData.navigation.inspiration)}
           {renderDropdown(headerData.navigation.contactUs)}
           {renderDropdown(headerData.navigation.aboutUs)} */}
           {/* Search Bar */}
-          <form className="ml-2">
+          {/* <form className="ml-2 hidden lg:block">
             <input
               type="text"
               placeholder={headerData.searchBar.placeholder}
               className="rounded-full px-4 py-2 border border-theme-primary-dark focus:outline-none focus:ring-2 focus:ring-theme-primary-light w-32 text-theme-primary"
             />
-          </form>
+          </form> */}
         </nav>
 
         {/* Desktop CTA Button */}
@@ -243,9 +233,8 @@ const Header = () => {
 
           {/* Sheet Menu */}
           <div
-            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
-              isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-            }`}
+            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+              }`}
           >
             {/* Mobile Menu Header */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-theme-primary-light text-white">

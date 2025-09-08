@@ -1,4 +1,4 @@
-import BookingProcess from "@/components/BookingProcess";
+import BookingProcess from "@/components/landingPage/BookingProcess";
 import { HeroBanner } from "@/components/landingPage/HeroBanner";
 import { TailorMade } from "@/components/landingPage/TailorMade";
 import PageSection from "@/components/shared/header/PageSection";
@@ -10,6 +10,7 @@ import Background2 from "@/public/images/bg2.jpg";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { IHeroBannerButton } from "../_models/heroBanner";
 import { SanityDocument } from "next-sanity";
+import WhyWOE from "@/components/landingPage/WhyWOE";
 
 async function getHomePageContent(): Promise<SanityDocument[]> {
   return await sanityFetch(POST_QUERY.homePage, SANITY_QUERY_OPTION);
@@ -18,7 +19,7 @@ async function getHomePageContent(): Promise<SanityDocument[]> {
 export default async function HomePage() {
   const res = await getHomePageContent();
   const data = res?.[0];
-
+  console.log(data);
   const heroBannerData = {
     heroBannerHeading: data.heroBannerHeading,
     heroBannerSubHeading: data.heroBannerSubHeading,
@@ -45,11 +46,10 @@ export default async function HomePage() {
           {/* Testimonials Section */}
         </div>
       </div>
-      <div className="p-0 bg-slate-200 mt-10">
+      <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
           <Testimonials data={data.testemonialsSection} />
           <section className="flex flex-col md:flex-row w-full md:h-[600px]">
-            {/* Left Block */}
             <div
               className="flex-1 flex items-center justify-center bg-cover bg-center"
               style={{
@@ -69,7 +69,6 @@ export default async function HomePage() {
                 </button>
               </div>
             </div>
-            {/* Right Block */}
             <div
               className="flex-1 flex items-center justify-center bg-cover bg-center"
               style={{
@@ -90,8 +89,10 @@ export default async function HomePage() {
               </div>
             </div>
           </section>
+          <WhyWOE data={data.whyWOESection} />
         </div>
       </div>
+
     </>
   );
 }
