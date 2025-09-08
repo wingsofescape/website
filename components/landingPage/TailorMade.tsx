@@ -1,7 +1,7 @@
 import React from "react";
 import { urlFor } from "@/sanity/lib/image";
-import { Image } from "@/app/_models/tours";
-
+import { Image as IImage } from "@/app/_models/tours";
+import Image from "next/image";
 type ITailorMadeSection = {
     buttonLink: string;
     buttonText: string;
@@ -10,7 +10,7 @@ type ITailorMadeSection = {
     images: ImageCard[]
 }
 type ImageCard = {
-    image: Image,
+    image: IImage,
     imageText: string
 }
 
@@ -42,9 +42,11 @@ export async function TailorMade(prop: { data: ITailorMadeSection }) {
                         className="relative w-full sm:w-[48%] lg:w-[32%] h-56 md:h-64 rounded-none overflow-hidden flex items-end mb-4"
                         style={{ background: "#fff" }}
                     >
-                        <img
+                        <Image
                             src={urlFor(card.image.asset).url()}
                             alt={card.imageText}
+                            height={400}
+                            width={400}
                             className="absolute inset-0 w-full h-full object-cover"
                         />
                         <div className="relative z-10 w-full text-center pb-6 px-2">

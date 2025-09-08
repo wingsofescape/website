@@ -3,19 +3,19 @@ import React from "react";
 type ITestimonialSection = {
   heading: string;
   testemonials: Testemonials[];
-}
+};
 
 type Testemonials = {
   guestReview: string;
   guestName: string;
-  destinationVisited: string
-}
+  destinationVisited: string;
+};
+
 const TestimonialCard: React.FC<{ testimonial: Testemonials }> = ({
   testimonial,
 }) => {
   return (
-    <div className="bg-slate-800 text-white p-6  h-full flex flex-col">
-      {/* Quote content */}
+    <div className="bg-slate-800 text-white p-6 h-full flex flex-col w-full md:w-1/4">
       <div className="flex-grow mb-6">
         <p className="text-xs md:text-xs leading-relaxed">
           &ldquo;{testimonial.guestReview}&rdquo;
@@ -24,9 +24,7 @@ const TestimonialCard: React.FC<{ testimonial: Testemonials }> = ({
 
       {/* Author details */}
       <div className="text-center">
-        <p className="font-semibold text-lg mb-1">
-          {testimonial.guestName} -
-        </p>
+        <p className="font-semibold text-lg mb-1">{testimonial.guestName} -</p>
         <p className="text-sm opacity-90">{testimonial.destinationVisited}</p>
       </div>
     </div>
@@ -34,7 +32,7 @@ const TestimonialCard: React.FC<{ testimonial: Testemonials }> = ({
 };
 
 const Testimonials = (props: { data: ITestimonialSection }) => {
-  const { heading, testemonials } = props.data
+  const { heading, testemonials } = props.data;
   return (
     <section className="py-4 bg-transparent">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -47,7 +45,7 @@ const Testimonials = (props: { data: ITestimonialSection }) => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="flex gap-6 mb-12">
+        <div className="flex flex-col md:flex-row gap-6 mb-12 mx-auto justify-center">
           {testemonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}

@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import headerData from "@/data/header.json";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Logo2 from "@/public/logos/logo_2.png";
 import { useFetchData } from "@/hooks/useFetchData";
@@ -14,8 +14,11 @@ import {
 import { createDestinationList } from "@/utils/createDestinations";
 
 const Header = () => {
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
   const router = useRouter();
+
   const data = useFetchData(
     POST_QUERY.header,
     SANITY_QUERY_OPTION,
@@ -26,29 +29,64 @@ const Header = () => {
     router.push(destinationLink);
   };
 
-  const renderDropdown = (section: {
-    label: string;
-    items: { name: string; href: string }[];
-  }) => (
-    <div className="relative group">
-      <button className="hover:underline px-2 py-1 font-bold">
-        {section.label}
-      </button>
-      <ul className="absolute left-0 mt-2 w-40 bg-white text-black rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-20">
-        {section.items.map((item, index) => (
-          <li
-            key={index}
-            className="px-4 py-2 hover:rounded cursor-pointer text-xs font-semibold"
-            onClick={() => {
-              handleDestinationClick(item.href);
-            }}
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  useEffect(() => {
+    setOpenDropdown(null);
+  }, [pathname]);
+
+  const RenderDropdown = ({
+    data,
+    openDropdown,
+    setOpenDropdown,
+  }: {
+    data: { label: string; items: { href: string; name: string }[] };
+    openDropdown: string | null;
+    setOpenDropdown: (label: string | null) => void;
+  }) => {
+    const isOpen = openDropdown === data.label;
+    return (
+      <div className="relative group hidden lg:block">
+        <button
+          onClick={() => setOpenDropdown(isOpen ? null : data.label)}
+          className="hover:underline px-2 py-1 font-bold flex items-center"
+        >
+          {data.label}
+          <svg
+            className={`w-4 h-4 transition-transform ml-2 ${isOpen ? "rotate-180" : ""
+              }`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <p>{item.name}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </button>
+        <div
+          className={`absolute bg-slate-50 text-theme-primary-dark rounded z-20 w-[200px] h-fit top-10 ${isOpen ? "flex flex-col flex-wrap" : "hidden"}`}
+        >
+          {data.items.map(
+            (item: { href: string; name: string }, index: number) => (
+              <div
+                key={index}
+                className="px-4 py-2 cursor-pointer text-xs font-semibold hover:underline"
+                onClick={() => {
+                  handleDestinationClick(item.href);
+                }}
+              >
+                <p>{item.name}</p>
+              </div>
+            )
+          )}
+        </div>
+      </div>
+    );
+  };
 
   const MobileDropdown = ({
     section,
@@ -101,36 +139,32 @@ const Header = () => {
       {/* Top Banner - Hidden on mobile */}
 
       {/* Main Header */}
-      <div className="flex justify-between  items-center h-22 pl-4 lg:pl-8">
+      <div className="flex justify-between items-center h-22 pl-4 lg:pl-8">
         {/* Logo */}
-
         <Link
           href={headerData.branding.logo.href}
-          className="flex items-center"
+          className="flex items-center flex-2"
         >
-          <Image
-            src={Logo2}
-            alt="Logo"
-            width={225}
-            height={225}
-            style={{ width: "auto" }}
-          />
+          <Image src={Logo2} alt="Logo" width={260} height={260} />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex text-sm lg:text-base items-center space-x-4">
-          {renderDropdown(createDestinationList(data, "Destinations"))}
-          {renderDropdown(headerData.navigation.inspiration)}
-          {/* {renderDropdown(headerData.navigation.contactUs)}
+        <nav className="hidden md:flex text-sm lg:text-base items-center space-x-4 flex-1">
+          <RenderDropdown data={createDestinationList(data, "Destinations")} openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown} />
+          <RenderDropdown data={headerData.navigation.inspiration} openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown} />
+          {/* {renderDropdown(headerData.navigation.inspiration)}
+          {renderDropdown(headerData.navigation.contactUs)}
           {renderDropdown(headerData.navigation.aboutUs)} */}
           {/* Search Bar */}
-          <form className="ml-2">
+          {/* <form className="ml-2 hidden lg:block">
             <input
               type="text"
               placeholder={headerData.searchBar.placeholder}
               className="rounded-full px-4 py-2 border border-theme-primary-dark focus:outline-none focus:ring-2 focus:ring-theme-primary-light w-32 text-theme-primary"
             />
-          </form>
+          </form> */}
         </nav>
 
         {/* Desktop CTA Button */}
@@ -138,7 +172,7 @@ const Header = () => {
           <button
             type="button"
             onClick={() => (window.location.href = headerData.cta.button.href)}
-            className="flex items-center focus:outline-none"
+            className="flex items-center focus:outline-none cursor-pointer"
           >
             {headerData.cta.button.text}
             <svg

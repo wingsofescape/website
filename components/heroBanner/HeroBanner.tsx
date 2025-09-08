@@ -52,11 +52,10 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
               <p className="text-white mb-8 text-xs leading-relaxed font-extralight">
                 {destination.destinationHeroBanner.description}
               </p>
-              <div className="pills flex gap-10">
+              <div className="pills flex gap-6">
                 <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
                   Luxury
                 </div>
-
                 <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
                   Escape
                 </div>
