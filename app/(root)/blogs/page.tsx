@@ -11,6 +11,10 @@ async function getBlogs(): Promise<BlogsType> {
   return await sanityFetch(POST_QUERY.blogs, SANITY_QUERY_OPTION);
 }
 
+export async function generateStaticParams() {
+  return [{}];
+}
+
 export default async function Blogs() {
   const blogsData = await getBlogs();
 
@@ -30,7 +34,6 @@ export default async function Blogs() {
   return (
     <div className="blogsLandingPage">
       <div
-        // ref={bannerRef}
         className="blogHeroImage relative overflow-hidden mb-10"
         style={{
           height: "90vh",
@@ -42,7 +45,6 @@ export default async function Blogs() {
           className="object-cover"
           fill
           style={{
-            // transform: `translateY(${offsetY * 0.5}px) scale(1.08)`,
             transition: "transform 0.1s linear",
             zIndex: 1,
           }}
@@ -51,7 +53,6 @@ export default async function Blogs() {
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-10"
           style={{
-            // transform: `translateY(${offsetY * 0.18}px)`,
             transition: "transform 0.1s linear",
           }}
         >

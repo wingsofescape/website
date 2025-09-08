@@ -6,10 +6,9 @@ import { Image } from "@/app/_models/tours";
 type HeroBannerProps = {
   heroBannerHeading: string;
   heroBannerSubHeading: string;
-  heroBannerButtons: IHeroBannerButton[],
-  image: Image,
-
-}
+  heroBannerButtons: IHeroBannerButton[];
+  image: Image;
+};
 export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
   const heroBannerVideo = "/videos/heroBannerVideo1.mp4";
   return (
@@ -39,7 +38,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
                     <Link
                       href={`${button.link}`}
                       key={button?.title + index}
-                      className="group inline-flex items-center gap-2 bg-white hover:bg-amber-50 text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 text-sm md:text-base"
+                      className="group inline-flex items-center gap-2 bg-white text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 text-sm md:text-base"
                     >
                       {button.title}
                       <svg

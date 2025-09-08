@@ -16,17 +16,15 @@ async function getHomePageContent(): Promise<SanityDocument[]> {
 }
 
 export default async function HomePage() {
-
   const res = await getHomePageContent();
   const data = res?.[0];
-  console.log(data);
 
   const heroBannerData = {
     heroBannerHeading: data.heroBannerHeading,
     heroBannerSubHeading: data.heroBannerSubHeading,
     heroBannerButtons: data.heroBannerButtons as IHeroBannerButton[],
     image: data.heroBannerImage,
-  }
+  };
 
   if (!data) return <p>Loading...</p>;
 
@@ -39,14 +37,12 @@ export default async function HomePage() {
           <TailorMade data={data.tailorMadeSection} />
         </div>
       </div>
-      <div className="p-0 bg-amber-50 mt-10">
+      <div className="p-0 mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
-
           <PageSection data={data?.luxuryHolidaySection} />
           <BookingProcess data={data.bookingProcess} />
 
           {/* Testimonials Section */}
-
         </div>
       </div>
       <div className="p-0 bg-slate-200 mt-10">
@@ -65,8 +61,8 @@ export default async function HomePage() {
                   Traveler&apos;s Clubs
                 </h2>
                 <p className="text-lg text-white mb-10">
-                  Dreaming of a holiday but not sure where to go? Look no further
-                  than our monthly travel guide.
+                  Dreaming of a holiday but not sure where to go? Look no
+                  further than our monthly travel guide.
                 </p>
                 <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded transition-all duration-200 text-lg shadow-lg">
                   READ MORE
@@ -85,8 +81,8 @@ export default async function HomePage() {
                   When to Go Where
                 </h2>
                 <p className="text-lg text-white mb-10">
-                  Dreaming of a holiday but not sure where to go? Look no further
-                  than our monthly travel guide.
+                  Dreaming of a holiday but not sure where to go? Look no
+                  further than our monthly travel guide.
                 </p>
                 <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded transition-all duration-200 text-lg shadow-lg">
                   READ MORE
