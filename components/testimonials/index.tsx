@@ -47,7 +47,7 @@ const Testimonials = (props: { data: ITestimonialSection }) => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="flex gap-6 mb-12">
           {testemonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} />
           ))}
