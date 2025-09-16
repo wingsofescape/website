@@ -11,25 +11,10 @@ async function getBlogs(): Promise<BlogsType> {
   return await sanityFetch(POST_QUERY.blogs, SANITY_QUERY_OPTION);
 }
 
-export async function generateStaticParams() {
-  return [{}];
-}
-
 export default async function Blogs() {
   const blogsData = await getBlogs();
 
   if (!blogsData) return <p>Loading...</p>;
-  // const blogsData = useFetchData(POST_QUERY.blogs, SANITY_QUERY_OPTION, blogs);
-  // const [offsetY, setOffsetY] = useState(0);
-  // const bannerRef = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setOffsetY(window.scrollY);
-  //   };
-  //   window.addEventListener("scroll", handleScroll, { passive: true });
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
 
   return (
     <div className="blogsLandingPage">

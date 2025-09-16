@@ -1,38 +1,45 @@
-"use client";
 import React, { use } from "react";
 import Image from "next/image";
-import { allDestination, allTours } from "@/data/countries";
 import { TopTours } from "@/components/topTours";
-import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { urlFor } from "@/sanity/lib/image";
 import HeroBanner from "@/components/heroBanner/HeroBanner";
-import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+// import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
+// import Link from "next/link";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
-const Destination = ({
-  params,
-}: {
+
+type PageProps = {
   params: Promise<{ destinationName: string }>;
-}) => {
-  const { destinationName } = use<{ destinationName: string }>(params);
-  // const [activeTab, setActiveTab] = useState('holidaysOverview');
-  const pathname = usePathname();
-  const breadCrumbs = createBreadcrumbs(pathname);
-  const destination = useFetchData(
-    POST_QUERY.destination(destinationName),
-    SANITY_QUERY_OPTION,
-    allDestination[destinationName as keyof typeof allDestination] ||
-    allDestination["srilanka"]
-  );
-  const tours = useFetchData(
-    POST_QUERY.tours(destinationName),
-    SANITY_QUERY_OPTION,
-    allTours[`${destinationName}Tours` as keyof typeof allTours] ||
-    allTours["srilankaTours"]
-  );
+};
 
+export async function generateStaticParams() {
+  console.log(await sanityFetch(POST_QUERY.destinationList, SANITY_QUERY_OPTION));
+  return await sanityFetch(POST_QUERY.destinationList, SANITY_QUERY_OPTION);
+}
+
+async function getDestination(destinationName: string) {
+  return await sanityFetch(
+    POST_QUERY.destination(destinationName),
+    SANITY_QUERY_OPTION
+  );
+}
+const Destination = async ({
+  params,
+}: PageProps) => {
+  // const [activeTab, setActiveTab] = useState('holidaysOverview');
+  // const pathname = usePathname();
+
+  // const breadCrumbs = createBreadcrumbs(pathname);
+
+  const res = await getDestination((await params).destinationName)
+  const destination = res?.[0]
+  console.log('Destination', destination);
+
+  const tours = await sanityFetch(
+    POST_QUERY.tours((await params).destinationName),
+    SANITY_QUERY_OPTION
+  );
   const image =
     typeof destination.destinationHeroBanner.heroImage === "string"
       ? destination.destinationHeroBanner.heroImage
@@ -51,7 +58,7 @@ const Destination = ({
           {/* Mobile Breadcrumbs */}
           <nav className="bg-theme-primary-dark px-4 py-3">
             <div className="flex items-center space-x-2 text-sm">
-              {breadCrumbs.map(
+              {/* {breadCrumbs.map(
                 (crumb: { label: string; ref: string }, index: number) => (
                   <React.Fragment key={crumb.ref}>
                     <Link
@@ -65,7 +72,7 @@ const Destination = ({
                     )}
                   </React.Fragment>
                 )
-              )}
+              )} */}
             </div>
           </nav>
 

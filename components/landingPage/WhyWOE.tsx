@@ -7,14 +7,10 @@ type IWhyWoe = { reasons: { whyWOEPointers: string, whyWOEHeading: string, whyWO
 const WhyWOE = ({ data }: { data: IWhyWoe }) => {
     return (
 
-        <section
-            className="w-full py-12 px-4 bg-theme-primary-dark flex flex-col "
-
-        >
+        <section className="w-full py-12 px-4 bg-theme-primary-dark flex flex-col">
             <h3 className="text-3xl md:text-5xl font-bold mb-2 text-white text-center">
                 <span className="relative inline-block pb-2">
                     {data.heading}
-                    <span className="block w-16 h-1 bg-[#f7cfcf] mx-auto mt-2 rounded"></span>
                 </span>
             </h3>
             {/* Top Cards */}
@@ -41,7 +37,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                             {reason.whyWOEHeading}
                         </div>
                         {/* Image */}
-                        <div className="w-full h-32 md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
+                        <div className="w-full h-52  md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
                             <Image
                                 src={urlFor(reason.whyWOEImage.asset).url()}
                                 alt={reason.whyWOEHeading + " icon"}

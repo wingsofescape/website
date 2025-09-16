@@ -15,6 +15,10 @@ export const POST_QUERY = {
     name: "header",
     query: `*[_type == "destination"]{destinationHeading , slug}`,
   },
+  destinationList: {
+    name: 'Destination List',
+    query: `*[_type == "destination" && defined(slug) ]{"destinationName": slug }`,
+  },
   destination(destSlug: string) {
     return {
       name: `destination-${destSlug}`,
@@ -43,6 +47,10 @@ export const POST_QUERY = {
       query: `*[_type == "blog" && slug.current == '${blogSlug.slug}']{blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
     };
   },
+  blogsList: {
+    name: "blogsList",
+    query: `*[_type == "blog" && defined(slug.current)]{"slug": slug.current}`,
+  }
 };
 
 export const SANITY_QUERY_OPTION = { next: { revalidate: 60 }, useCdn: true };

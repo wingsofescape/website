@@ -3,7 +3,6 @@ import React from "react";
 export const Footer = () => {
   return (
     <footer>
-
       <div
         className="relative text-black pt-114 md:pt-94 pb-5 bg-cover bg-center text-xs"
         style={{ backgroundImage: "url('/images/footer.jpg')" }}

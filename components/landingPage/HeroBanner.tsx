@@ -9,24 +9,30 @@ type HeroBannerProps = {
   heroBannerButtons: IHeroBannerButton[];
   image: Image;
 };
+
 export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
   const heroBannerVideo = "/videos/heroBannerVideo1.mp4";
   return (
     <>
       {/* Mobile Version - New responsive design with CSS blobs */}
-      <section className="lg:hidden relative min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden bg-gradient-to-br from-amber-50 to-amber-100">
-        {/* CSS Blob Background */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-20 left-20 w-53 h-52 md:w-48 md:h-48 bg-gradient-to-r rounded-full opacity-20 blob-animation"></div>
-        </div>
-
+      <section className="lg:hidden relative min-h-[30vh]  flex items-center overflow-hidden">
+        <video
+          preload="auto"
+          autoPlay
+          loop
+          muted
+          className="absolute h-full inset-0 w-full object-cover"
+        >
+          <source src={heroBannerVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-left space-y-6 md:space-y-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight ">
+            <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight ">
               {data.heroBannerHeading}
             </h1>
 
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl">
+            <p className="text-base md:text-lg text-white leading-relaxed max-w-2xl">
               {data.heroBannerSubHeading}
             </p>
 
@@ -65,15 +71,8 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
       {/* Desktop Version - Original design with background image */}
 
       <section
-        className="hidden lg:flex relative h-[600px] items-center"
-        style={{
-          // backgroundImage: `url(${image?.toString()})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+        className="hidden lg:flex relative h-[600px] items-center">
         <video
-          controls
           preload="auto"
           autoPlay
           loop
@@ -81,12 +80,6 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
           className="absolute h-full inset-0 w-full object-cover"
         >
           <source src={heroBannerVideo} type="video/mp4" />
-          {/* <track
-            src="/path/to/captions.vtt"
-            kind="subtitles"
-            srcLang="en"
-            label="English"
-          /> */}
           Your browser does not support the video tag.
         </video>
         {/* <div className="absolute inset-0 bg-black/30" /> */}
