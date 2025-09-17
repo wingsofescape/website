@@ -7,8 +7,8 @@ type IWhyWoe = { reasons: { whyWOEPointers: string, whyWOEHeading: string, whyWO
 const WhyWOE = ({ data }: { data: IWhyWoe }) => {
     return (
 
-        <section className="w-full py-12 px-4 bg-theme-primary-dark flex flex-col">
-            <h3 className="text-3xl md:text-5xl font-bold mb-2 text-white text-center">
+        <section className="w-full py-12 px-4 bg-transparent flex flex-col text-theme-primary">
+            <h3 className="text-3xl md:text-5xl font-bold mb-2 text-center">
                 <span className="relative inline-block pb-2">
                     {data.heading}
                 </span>
@@ -37,7 +37,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                             {reason.whyWOEHeading}
                         </div>
                         {/* Image */}
-                        <div className="w-full h-52  md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
+                        <div className="w-full h-52 md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
                             <Image
                                 src={urlFor(reason.whyWOEImage.asset).url()}
                                 alt={reason.whyWOEHeading + " icon"}
@@ -54,9 +54,9 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                 {data.reasons.map((reason, index) => (
                     <div
                         key={index}
-                        className="flex-1 bg-theme-primary-light text-white rounded-none p-6 text-left max-w-xs mx-auto "
+                        className="flex-1 bg-theme-primary-light text-white rounded-none p-6 text-left"
                     >
-                        <ul className="list-disc pl-4 space-y-2 text-base">
+                        <ul className="list-disc lg:pl-4 space-y-2 text-xs lg:text-base">
                             {reason.whyWOEPointers.split("\n").map((point, i) => (
                                 <li key={i}>{point.trim()}</li>
                             ))}

@@ -11,7 +11,6 @@ type PageProps = {
 };
 
 export async function generateStaticParams() {
-  console.log(await sanityFetch(POST_QUERY.blogsList, SANITY_QUERY_OPTION));
   return await sanityFetch(POST_QUERY.blogsList, SANITY_QUERY_OPTION);
 }
 

@@ -42,11 +42,12 @@ export default async function HomePage() {
           <PageSection data={data?.luxuryHolidaySection} />
           <BookingProcess data={data.bookingProcess} />
 
-          {/* Testimonials Section */}
         </div>
       </div>
       <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
+          {/* Testimonials Section */}
+
           <Testimonials data={data.testemonialsSection} />
           <section className="flex flex-col md:flex-row w-full md:h-[600px]">
             <div
