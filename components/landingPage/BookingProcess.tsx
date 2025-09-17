@@ -3,7 +3,7 @@ type IBookinProcessProps = { bookingSteps: { content: string, heading: string }[
 
 const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
   return (
-    <div className="w-5/6 mx-auto mt-20">
+    <div className="w-5/6 mx-auto mt-20 text-theme-primary">
       <h3 className="text-4xl md:text-5xl font-bold mb-2 relative inline-block">
         <span className="pl-2 text-center decoration-4 underline-offset-8">
           {data.heading}

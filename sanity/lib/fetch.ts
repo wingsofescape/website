@@ -1,4 +1,3 @@
-import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/lib/client";
 import { POST_QUERY as GROQ_QUERY } from "@/lib/constants";
 
