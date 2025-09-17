@@ -1,11 +1,10 @@
-import React, { use } from "react";
+import React from "react";
 import Image from "next/image";
 import { TopTours } from "@/components/topTours";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { urlFor } from "@/sanity/lib/image";
 import HeroBanner from "@/components/heroBanner/HeroBanner";
 // import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
-// import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
 
 
