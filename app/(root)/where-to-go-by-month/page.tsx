@@ -6,58 +6,35 @@ import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { Blogs as BlogsType } from "@/app/_models/blog";
+import HeroBannerNew from "@/components/heroBanner/HeroBannerNew";
 
-async function getBlogs(): Promise<BlogsType> {
-  return await sanityFetch(POST_QUERY.blogs, SANITY_QUERY_OPTION);
+async function getWhereToGoByMonthData(): Promise<BlogsType> {
+  return await sanityFetch(POST_QUERY.whereToGo, SANITY_QUERY_OPTION);
 }
 
-export default async function Blogs() {
-  const blogsData = await getBlogs();
+export async function generateStaticParams() {
+  return ['where-to-go-by-month']
+}
 
-  if (!blogsData) return <p>Loading...</p>;
+const data = {
+  title: 'Where and when to go?',
+  subTitle: '',
+  description: "Dreaming of a holiday but not sure where to go? Look no further than our monthly travel guide. Our travel experts know a thing or two about their destinations and they've put together their favourite destinations by month and explained what makes them so special.",
+  heroImage: {
+    "asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"
+  }
+}
+export default async function Blogs() {
+  const whereToGoData = await getWhereToGoByMonthData();
+
+  if (!whereToGoData) return <p>Loading...</p>;
 
   return (
-    <div className="blogsLandingPage">
-      <div
-        className="blogHeroImage relative overflow-hidden mb-10"
-        style={{
-          height: "90vh",
-        }}
-      >
-        <Image
-          alt="Page Banner Image"
-          src={urlFor(blogsData[0]?.blogHeroImage)?.url()}
-          className="object-cover"
-          fill
-          style={{
-            transition: "transform 0.1s linear",
-            zIndex: 1,
-          }}
-        />
-        <div className="overlay opacity-40 bg-white h-full absolute top-0 right-0 w-full md:w-2/5 z-10" />
-        <div
-          className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-10"
-          style={{
-            transition: "transform 0.1s linear",
-          }}
-        >
-          <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-theme-primary-dark">
-            {blogsData[0].title}
-          </h2>
-          <p className="mb-4 text-theme-primary-dark">
-            {blogsData[0].subtitle}
-          </p>
-          <strong className="text-theme-primary-dark">
-            - {blogsData[0].author}
-          </strong>
-          <strong className="text-theme-primary-dark">
-            {blogsData[0].date}
-          </strong>
-        </div>
-      </div>
+    <div className="whereToGoLandingPage">
+      <HeroBannerNew data={data} />
 
-      <div className="blogsList flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
-        {blogsData.map((blog: IBlog, index: number) => {
+      <div className="flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
+        {whereToGoData.map((blog: IBlog, index: number) => {
           return (
             <Link
               key={index}
