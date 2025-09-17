@@ -19,7 +19,6 @@ async function getHomePageContent(): Promise<SanityDocument[]> {
 export default async function HomePage() {
   const res = await getHomePageContent();
   const data = res?.[0];
-  // console.log(data);
   const heroBannerData = {
     heroBannerHeading: data.heroBannerHeading,
     heroBannerSubHeading: data.heroBannerSubHeading,
