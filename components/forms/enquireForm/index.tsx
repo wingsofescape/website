@@ -1,7 +1,7 @@
-// EnquireNow.tsx
 "use client";
 import { submitFormData } from "@/lib/actions/query.actions";
 import React, { useState, useActionState } from "react";
+
 const months = [
   "Any month",
   "January",
@@ -17,13 +17,17 @@ const months = [
   "November",
   "December",
 ];
-const years = ["Any year", "2025", "2026", "2027"];
+
+const years = ["Any year", "2025", "2026", "2027", "2028"];
+
 const budgets = [
   "Select your budget *",
-  "£5,000 - £10,000",
-  "£10,000 - £20,000",
-  "£20,000+",
+  "75,000 - 1,00,000",
+  "1,00,000 - 1,50,000",
+  "1,50,000 - 2,00,000",
+  "2,00,000 - 2,50,000",
 ];
+
 const destinations = [
   "Other",
   "Europe",
@@ -66,7 +70,7 @@ export default function EnquireNow() {
 
   return (
     <form
-      className="bg-[#f7f7f5] p-8  max-w-3xl mx-auto my-12 enquire-form"
+      className="flex flex-col bg-[#f7f7f5] px-8 w-full mx-auto enquire-form py-10"
       action={formAction}
     >
       {/* Hidden inputs for state values */}
@@ -79,8 +83,8 @@ export default function EnquireNow() {
       <input type="hidden" name="message" value={details.message} />
 
       {/* Top Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-        <div>
+      <div className="flex flex-col md:flex-row gap-8 mb-8 w-full flex-wrap">
+        <div className="w-1/3">
           <label
             id="destinationLabel"
             className="block font-bold test-white mb-2 text-lg"
@@ -102,19 +106,16 @@ export default function EnquireNow() {
             ))}
           </select>
         </div>
-        <div>
+        <div className="w-1/3">
           <label className="block font-bold test-white mb-2 text-lg">
             Guests
           </label>
           <div className="flex items-center gap-6">
             <div>
-              <span className="block text-xs text-gray-700 mb-1">
-                Adults (age 15+)
-              </span>
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  className="border rounded w-7 h-7"
+                  className="border rounded cursor-pointer"
                   onClick={() => setAdults(Math.max(1, adults - 1))}
                 >
                   -
@@ -122,12 +123,15 @@ export default function EnquireNow() {
                 <span>{adults}</span>
                 <button
                   type="button"
-                  className="border rounded w-7 h-7"
+                  className="border rounded w-7 h-7 cursor-pointer"
                   onClick={() => setAdults(adults + 1)}
                 >
                   +
                 </button>
               </div>
+              <span className="block text-xs text-gray-700 mb-1">
+                Adults (age 15+)
+              </span>
             </div>
             <div>
               <span className="block text-xs text-gray-700 mb-1">
@@ -153,7 +157,7 @@ export default function EnquireNow() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="w-1/3">
           <label className="block font-bold test-white mb-2 text-lg">
             When would you like to go?
           </label>

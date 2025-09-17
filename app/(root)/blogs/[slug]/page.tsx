@@ -10,13 +10,9 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const blogsSlug = {
-  name: "blogsSlug",
-  query: `*[_type == "blog" && defined(slug.current)]{"slug": slug.current}`,
-};
-
 export async function generateStaticParams() {
-  return await sanityFetch(blogsSlug, SANITY_QUERY_OPTION);
+  console.log(await sanityFetch(POST_QUERY.blogsList, SANITY_QUERY_OPTION));
+  return await sanityFetch(POST_QUERY.blogsList, SANITY_QUERY_OPTION);
 }
 
 export default async function Blogs({ params }: PageProps) {
@@ -24,21 +20,6 @@ export default async function Blogs({ params }: PageProps) {
     POST_QUERY.getblog(await params),
     SANITY_QUERY_OPTION
   );
-  // useFetchData(
-  //   POST_QUERY.getblog(slug),
-  //   SANITY_QUERY_OPTION,
-  //   allBlogs[0]
-  // );
-  // const [offsetY, setOffsetY] = useState(0);
-  // const bannerRef = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     setOffsetY(window.scrollY);
-  //   };
-  //   window.addEventListener("scroll", handleScroll, { passive: true });
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, []);
 
   if (!blog[0]) {
     return <div>Loading ...</div>;
