@@ -168,28 +168,32 @@ const Header = () => {
         </nav>
 
         {/* Desktop CTA Button */}
-        <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
-          <button
-            type="button"
-            onClick={() => (window.location.href = headerData.cta.button.href)}
-            className="flex items-center focus:outline-none cursor-pointer"
-          >
-            {headerData.cta.button.text}
-            <svg
-              className="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
+        {
+          !pathname.includes('enquireNow') && <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
+            <button
+              type="button"
+              onClick={() => (window.location.href = headerData.cta.button.href)}
+              className="flex items-center focus:outline-none cursor-pointer"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
+              {headerData.cta.button.text}
+
+              <svg
+                className="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        }
+
 
         {/* Mobile Menu Button */}
         <button

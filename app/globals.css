@@ -46,7 +46,7 @@ main {
   /* slate-50 - complements slate-800 theme */
 }
 
-.enquire-form {
+/* .enquire-form {
   color: #0a0a0a;
 
   select,
@@ -66,8 +66,15 @@ main {
   input {
     background-color: white;
   }
-}
+} */
 
+
+.enquire-form  {
+  select > option {
+   height: 200px !important;
+   overflow-y: scroll;
+  }
+}
 .unique-day::before {
   content: '';
   height: 100px;
