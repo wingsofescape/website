@@ -73,7 +73,7 @@ export const POST_QUERY = {
   },
 };
 
-export const SANITY_QUERY_OPTION = { next: { revalidate: 60 }, useCdn: true };
+export const SANITY_QUERY_OPTION = { next: { revalidate: 3600 }, useCdn: false };
 
 export const totalDestinations = [
   { destinationHeading: "Sri Lanka", slug: "srilanka" },
