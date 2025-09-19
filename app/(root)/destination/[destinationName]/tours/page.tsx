@@ -34,7 +34,7 @@ export default function DestinationToursPage({
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-gray-50">
       {/* Hero Section */}
       <HeroBanner destination={destination} />
 

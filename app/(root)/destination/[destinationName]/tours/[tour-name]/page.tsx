@@ -79,7 +79,7 @@ export default function TourDetailsPage({
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       <TourBanner tour={tour} />
 
       {/* Main Content */}

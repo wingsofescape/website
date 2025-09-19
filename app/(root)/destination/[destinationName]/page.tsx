@@ -47,7 +47,7 @@ const Destination = async ({
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="bg-white flex flex-col">
       {/* Hero Banner Section */}
       <section className="relative">
         {/* Mobile-First Design */}
