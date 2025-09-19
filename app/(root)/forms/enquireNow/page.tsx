@@ -7,13 +7,7 @@ const EnquireNowPage = () => {
   return (
     <>
       <section
-        className="relative w-full h-48 flex items-center"
-        style={{
-          backgroundColor: "#0d3c2e",
-          backgroundImage: "url('/images/banner-pattern.png')",
-          backgroundRepeat: "repeat",
-          backgroundSize: "cover",
-        }}
+        className="relative w-full h-48 flex items-center bg-theme-primary"
       >
         <div className="absolute inset-0 bg-theme-primary" />
         <div className="relative z-10 max-w-6xl mx-auto w-full px-8 pb-8">
