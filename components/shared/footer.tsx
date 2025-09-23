@@ -4,14 +4,14 @@ export const Footer = () => {
   return (
     <footer>
       <div
-        className="relative text-black pt-114 md:pt-94 pb-5 bg-cover bg-center text-xs"
+        className="relative text-black pt-80 md:pt-94 pb-5 bg-cover bg-center text-xs"
         style={{ backgroundImage: "url('/images/footer.jpg')" }}
       >
         {/* Overlay for readability */}
         <div className="relative z-10 flex flex-col justify-center items-center flex-wrap">
           <div className="mx-auto px-6 text-center text-white">
             {/* Footer Links */}
-            <div className="flex flex-col md:flex-row gap-8  mt-1 md:mt-0">
+            <div className="flex gap-8  mt-1 md:mt-0">
               <ul className="flex-1 space-y-2 text-left">
                 <li>
                   <a href="#" className="hover:underline">

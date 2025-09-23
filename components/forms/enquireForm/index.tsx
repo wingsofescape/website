@@ -357,7 +357,7 @@ export default function EnquireNow() {
           className="border rounded px-3 py-2 w-full h-32 resize-vertical"
           name="message"
           maxLength={1000}
-          placeholder="Have you seen any hotels you would like to stay in, or tours that you would like to experience? Do you have any set dates or room requirements? Are you unsure of where to start planning? Let our Travel Specialists know so that they can help you plan a trip of a lifetime."
+          placeholder="Hotels, experiences or anything else that you have though off...."
           value={details.message}
           onChange={(e) => setDetails({ ...details, message: e.target.value })}
         />
@@ -370,7 +370,7 @@ export default function EnquireNow() {
       <div className="mt-8 flex flex-col md:flex-row justify-start items-start gap-4">
         <button
           type="submit"
-          className=" text-white font-bold px-8 py-3 rounded  transition-colors"
+          className="text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary"
         >
           Submit Form
         </button>
