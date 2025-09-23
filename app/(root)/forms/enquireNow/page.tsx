@@ -13,7 +13,7 @@ const EnquireNowPage = () => {
         <div className="relative z-10 max-w-6xl mx-auto w-full px-8 pb-8">
           <nav className="text-white text-sm mb-2">
             <Link href={"/"}>Home</Link>
-            <span>›</span>
+            <span> › </span>
             <span>Plan Your Trip</span>
           </nav>
           <h1 className="text-5xl font-bold text-white">Plan Your Trip</h1>

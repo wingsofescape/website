@@ -264,16 +264,16 @@ const Header = () => {
             </div>
 
             {/* Mobile Menu Content */}
-            <div className="flex flex-col h-full overflow-y-auto">
+            <div className="flex flex-col flex-1 justify-between">
               {/* Navigation Items */}
-              <div className="flex-1">
+              <div className="flex flex-col flex-1">
                 <MobileDropdown
                   section={createDestinationList(data, "Destinations")}
                 />
                 <MobileDropdown section={headerData.navigation.inspiration} />
 
                 {/* Mobile Search */}
-                <div className="p-4 border-b border-gray-200">
+                {/* <div className="p-4 border-b border-gray-200">
                   <form>
                     <input
                       type="text"
@@ -281,7 +281,7 @@ const Header = () => {
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary-light text-gray-800"
                     />
                   </form>
-                </div>
+                </div> */}
               </div>
 
               {/* Mobile CTA Button */}
@@ -292,7 +292,7 @@ const Header = () => {
                     window.location.href = headerData.cta.button.href;
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full bg-[#004236] text-white font-semibold py-3 px-4 rounded-md hover:bg-[#3e6d65] transition-colors flex items-center justify-center"
+                  className="w-full bg-theme-primary text-white font-semibold py-3 px-4 rounded-md hover:bg-[#3e6d65] transition-colors flex items-center justify-center"
                 >
                   {headerData.cta.button.text}
                   <svg
