@@ -48,7 +48,7 @@ export default async function HomePage() {
       <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
           <Testimonials data={data.testemonialsSection} />
-          <section className="flex flex-col md:flex-row w-full md:h-[600px]">
+          <section className="flex flex-col md:flex-row w-full md:h-[600px] mb-10">
             <div
               className="flex-1 flex items-center justify-center bg-cover bg-center"
               style={{
