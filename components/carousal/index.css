@@ -1,0 +1,4 @@
+/* Add sliding animation for carousel */
+.carousal-track {
+  will-change: transform;
+}

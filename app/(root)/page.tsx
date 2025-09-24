@@ -7,6 +7,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { IHeroBannerButton } from "../_models/heroBanner";
 import { SanityDocument } from "next-sanity";
 import WhyWOE from "@/components/landingPage/WhyWOE";
+import Carousal from "@/components/carousal";
 
 async function getHomePageContent(): Promise<SanityDocument[]> {
   return await sanityFetch(POST_QUERY.homePage, SANITY_QUERY_OPTION);
@@ -35,13 +36,12 @@ export default async function HomePage() {
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
           <PageSection data={data?.luxuryHolidaySection} />
           <BookingProcess data={data.bookingProcess} />
-
+          <Carousal />
         </div>
       </div>
       <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
           {/* Testimonials Section */}
-
           <Testimonials data={data.testemonialsSection} />
           {/* <section className="flex flex-col md:flex-row w-full md:h-[600px] mb-10">
             <div
