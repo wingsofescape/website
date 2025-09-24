@@ -13,7 +13,6 @@ type PageProps = {
 };
 
 export async function generateStaticParams() {
-  console.log(await sanityFetch(POST_QUERY.destinationList, SANITY_QUERY_OPTION));
   return await sanityFetch(POST_QUERY.destinationList, SANITY_QUERY_OPTION);
 }
 
@@ -33,7 +32,6 @@ const Destination = async ({
 
   const res = await getDestination((await params).destinationName)
   const destination = res?.[0]
-  console.log('Destination', destination);
 
   const tours = await sanityFetch(
     POST_QUERY.tours((await params).destinationName),
@@ -49,7 +47,7 @@ const Destination = async ({
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="bg-white flex flex-col">
       {/* Hero Banner Section */}
       <section className="relative">
         {/* Mobile-First Design */}

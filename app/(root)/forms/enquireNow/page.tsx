@@ -10,7 +10,7 @@ const EnquireNowPage = () => {
         className="relative w-full h-48 flex items-center bg-theme-primary"
       >
         <div className="absolute inset-0 bg-theme-primary" />
-        <div className="relative z-10 max-w-6xl mx-auto w-full px-8 pb-8">
+        <div className="relative z-10 max-w-6xl mx-auto w-full px-8 pb-8 min-h-[20vh] flex flex-col justify-center">
           <nav className="text-white text-sm mb-2">
             <Link href={"/"}>Home</Link>
             <span> › </span>

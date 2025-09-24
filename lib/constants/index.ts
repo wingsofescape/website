@@ -50,10 +50,30 @@ export const POST_QUERY = {
   blogsList: {
     name: "blogsList",
     query: `*[_type == "blog" && defined(slug.current)]{"slug": slug.current}`,
-  }
+  },
+  whereToGo: {
+    name: "Where to go by month",
+    query: `*[_type == "byMonth"] | order(date desc){_createdAt, heroImage, slug, title, subtitle}`,
+  },
+  top10: {
+    name: "Where to go by month",
+    query: `*[_type == "ourTop10"] | order(date desc){_createdAt, heroImage, slug, title, subtitle}`,
+  },
+  getTop10(top10Slug: { slug: string }) {
+    return {
+      name: `Blog - ${top10Slug}`,
+      query: `*[_type == "ourTop10" && slug.current == '${top10Slug.slug}']{heroImage, slug, title, subtitle, description, content}`,
+    };
+  },
+  getWhereToGo(byMonth: { slug: string }) {
+    return {
+      name: `Blog - ${byMonth}`,
+      query: `*[_type == "byMonth" && slug.current == '${byMonth.slug}']{heroImage, slug, title, subtitle, description, content}`,
+    };
+  },
 };
 
-export const SANITY_QUERY_OPTION = { next: { revalidate: 60 }, useCdn: true };
+export const SANITY_QUERY_OPTION = { next: { revalidate: 3600 }, useCdn: false };
 
 export const totalDestinations = [
   { destinationHeading: "Sri Lanka", slug: "srilanka" },

@@ -7,8 +7,8 @@ type IWhyWoe = { reasons: { whyWOEPointers: string, whyWOEHeading: string, whyWO
 const WhyWOE = ({ data }: { data: IWhyWoe }) => {
     return (
 
-        <section className="w-full py-12 px-4 bg-theme-primary-light flex flex-col text-theme-primary">
-            <h3 className="text-3xl md:text-5xl font-bold mb-2 text-white text-center">
+        <section className="w-full py-12 px-4 bg-transparent flex flex-col text-theme-primary">
+            <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary text-center">
                 <span className="relative inline-block pb-2">
                     {data.heading}
                 </span>
@@ -18,7 +18,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                 {data.reasons.map((reason, index) => (
                     <div
                         key={index}
-                        className="flex-1 flex flex-col items-center bg-white rounded-none shadow-lg pt-8 px-1 mx-auto w-5/6 md:w-1/4"
+                        className="flex-1 flex flex-col items-center bg-theme-primary rounded-none shadow-lg pt-8 px-1 mx-auto w-5/6 md:w-1/4"
                     >
                         {/* Icon in circle */}
                         <div className="flex flex-col items-center -mt-14 mb-2">
@@ -33,11 +33,11 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                             </div>
                         </div>
                         {/* Heading */}
-                        <div className="text-theme-primary-light text-xl font-semibold mb-2 text-center">
+                        <div className="text-white text-xl font-semibold mb-2 text-center">
                             {reason.whyWOEHeading}
                         </div>
                         {/* Image */}
-                        <div className="w-full h-52  md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
+                        <div className="w-full h-52 md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
                             <Image
                                 src={urlFor(reason.whyWOEImage.asset).url()}
                                 alt={reason.whyWOEHeading + " icon"}
@@ -50,13 +50,13 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                 ))}
             </div>
             {/* Bottom pointers */}
-            <div className="flex flex-col md:flex-row gap-8 justify-center mt-2 items-stretch">
+            <div className="flex flex-col md:flex-row md:gap-8 justify-center mt-2 items-stretch">
                 {data.reasons.map((reason, index) => (
                     <div
                         key={index}
-                        className="flex-1 bg-theme-primary-light text-white rounded-none p-6 text-left max-w-xs mx-auto "
+                        className="flex-1 bg-white shadow text-theme-primary rounded-none p-6 text-left"
                     >
-                        <ul className="list-disc pl-4 space-y-2 text-base">
+                        <ul className="list-disc lg:pl-4 space-y-2 text-sm lg:text-base">
                             {reason.whyWOEPointers.split("\n").map((point, i) => (
                                 <li key={i}>{point.trim()}</li>
                             ))}

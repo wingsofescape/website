@@ -28,7 +28,7 @@ export default function RootLayout({
     <>
       <Header />
       <html lang="en">
-        <body className={`${inter.className} antialiased`}>{children}</body>
+        <body className={`${inter.className} antialiased flex flex-col justify-between`}>{children}</body>
       </html>
       <Footer />
     </>
