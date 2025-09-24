@@ -1,12 +1,8 @@
 import BookingProcess from "@/components/landingPage/BookingProcess";
 import { HeroBanner } from "@/components/landingPage/HeroBanner";
-import { TailorMade } from "@/components/landingPage/TailorMade";
 import PageSection from "@/components/shared/header/PageSection";
 import Testimonials from "@/components/testimonials";
-import WOEFeatures from "@/components/WOEFeatures";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import Background1 from "@/public/images/bg1.jpg";
-import Background2 from "@/public/images/bg2.jpg";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { IHeroBannerButton } from "../_models/heroBanner";
 import { SanityDocument } from "next-sanity";
@@ -33,8 +29,6 @@ export default async function HomePage() {
       <div className="p-0 bg-slate-200">
         <HeroBanner data={heroBannerData} />
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
-          <WOEFeatures data={data.features} />
-          <TailorMade data={data.tailorMadeSection} />
         </div>
       </div>
       <div className="p-0 mt-10">
@@ -49,7 +43,7 @@ export default async function HomePage() {
           {/* Testimonials Section */}
 
           <Testimonials data={data.testemonialsSection} />
-          <section className="flex flex-col md:flex-row w-full md:h-[600px]">
+          {/* <section className="flex flex-col md:flex-row w-full md:h-[600px] mb-10">
             <div
               className="flex-1 flex items-center justify-center bg-cover bg-center"
               style={{
@@ -88,7 +82,7 @@ export default async function HomePage() {
                 </button>
               </div>
             </div>
-          </section>
+          </section> */}
           <WhyWOE data={data.whyWOESection} />
         </div>
       </div>
