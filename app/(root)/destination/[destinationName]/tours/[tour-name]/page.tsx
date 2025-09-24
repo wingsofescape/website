@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { use } from "react";
 import TourBanner from "@/components/tourBanner";
 import { allTours } from "@/data/countries";
@@ -23,17 +22,12 @@ export default function TourDetailsPage({
     POST_QUERY.singleTour(tourSlug),
     SANITY_QUERY_OPTION,
     allTours[`${destinationName}Tours` as keyof typeof allTours]?.[0] ||
-      allTours["srilankaTours"][0]
+    allTours["srilankaTours"][0]
   );
 
   if (!tour) {
     notFound();
   }
-
-  const destinationTitle = destinationName
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
 
   // FLEX-BASED ITINERARY DAY COMPONENT
   const UniqueDay = ({ day }: { day: Itinerary }) => {
@@ -42,7 +36,7 @@ export default function TourDetailsPage({
         {/* Timeline & Circle */}
         <div className="flex flex-col items-center mr-2 md:mr-6 min-w-[56px]">
           {/* Circle */}
-          <div className="w-12 h-16 rounded-full bg-theme-primary-light flex items-center justify-center text-white font-bold text-xs shadow-lg z-10 border-3 border-gray-400 botder-opacity-20">
+          <div className="w-12 h-16 rounded-full bg-theme-primary-light flex items-center justify-center text-white font-bold text-xs z-10 border-3 border-gray-400 botder-opacity-20">
             <div className="text-center py-2">
               <span className="block text-[10px] font-normal">Day</span>
               <span className="block text-lg">{day.day}</span>
@@ -50,7 +44,7 @@ export default function TourDetailsPage({
           </div>
         </div>
         {/* Card */}
-        <div className="bg-white shadow-md p-2 md:p-8 pt-4 mb-8 w-3/4">
+        <div className="bg-white p-2 md:p-8 pt-4 mb-8 w-3/4">
           <h3 className="text-lg md:text-2xl font-semibold mb-2 text-theme-primary-dark">
             {day.title}
           </h3>
@@ -85,7 +79,7 @@ export default function TourDetailsPage({
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       <TourBanner tour={tour} />
 
       {/* Main Content */}
@@ -115,23 +109,6 @@ export default function TourDetailsPage({
           </div>
         </div>
       </div>
-
-      {/* Related Tours */}
-      <section className="bg-gray-50 pt-3">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Other {destinationTitle} Tours
-          </h2>
-          <div className="text-center">
-            <Link
-              href={`/destination/${destinationName}/tours`}
-              className="inline-block bg-slate-800 text-white px-8 py-3 rounded-md hover:bg-slate-700 transition-colors font-semibold"
-            >
-              View All {destinationTitle} Tours
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

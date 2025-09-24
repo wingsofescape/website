@@ -240,11 +240,10 @@ const Header = () => {
             className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
               }`}
           >
-            {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-theme-primary-light text-white">
+            <div className="flex flex-col flex-1 justify-between">
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 hover:bg-theme-primary-light rounded-md transition-colors text-white"
+                className="p-2 hover:bg-theme-primary-light rounded-md transition-colors text-theme-primary"
                 aria-label="Close menu"
               >
                 <svg
@@ -261,10 +260,6 @@ const Header = () => {
                   />
                 </svg>
               </button>
-            </div>
-
-            {/* Mobile Menu Content */}
-            <div className="flex flex-col flex-1 justify-between">
               {/* Navigation Items */}
               <div className="flex flex-col flex-1">
                 <MobileDropdown

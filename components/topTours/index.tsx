@@ -26,7 +26,7 @@ export const TopTours = (props: {
         <div className="flex flex-col lg:flex-row lg:gap-8">
           {/* Left Content Area - Mobile: Full width, Desktop: 5/12 width */}
           <div className="w-full lg:w-5/12 mb-8 lg:mb-0 flex-shrink-0">
-            <div className="bg-white p-6 -lg shadow-sm h-full flex flex-col justify-center">
+            <div className="bg-white p-6 -lg h-full flex flex-col justify-center">
               <h2 className="text-2xl md:text-3xl font-bold text-theme-primary mb-4 ">
                 {recommendedTourContent.title}
               </h2>

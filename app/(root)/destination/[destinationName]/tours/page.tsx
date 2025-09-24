@@ -24,17 +24,17 @@ export default function DestinationToursPage({
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION,
     allDestination[destinationName as keyof typeof allDestination] ||
-      allDestination["srilanka"]
+    allDestination["srilanka"]
   );
   const tours = useFetchData(
     POST_QUERY.tours(destinationName),
     SANITY_QUERY_OPTION,
     allTours[`${destinationName}Tours` as keyof typeof allTours] ||
-      allTours["srilankaTours"]
+    allTours["srilankaTours"]
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="bg-gray-50">
       {/* Hero Section */}
       <HeroBanner destination={destination} />
 
