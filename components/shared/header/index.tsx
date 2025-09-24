@@ -168,28 +168,32 @@ const Header = () => {
         </nav>
 
         {/* Desktop CTA Button */}
-        <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
-          <button
-            type="button"
-            onClick={() => (window.location.href = headerData.cta.button.href)}
-            className="flex items-center focus:outline-none cursor-pointer"
-          >
-            {headerData.cta.button.text}
-            <svg
-              className="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
+        {
+          !pathname.includes('enquireNow') && <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
+            <button
+              type="button"
+              onClick={() => (window.location.href = headerData.cta.button.href)}
+              className="flex items-center focus:outline-none cursor-pointer"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
+              {headerData.cta.button.text}
+
+              <svg
+                className="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        }
+
 
         {/* Mobile Menu Button */}
         <button
@@ -236,11 +240,10 @@ const Header = () => {
             className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
               }`}
           >
-            {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-theme-primary-light text-white">
+            <div className="flex flex-col flex-1 justify-between">
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 hover:bg-theme-primary-light rounded-md transition-colors text-white"
+                className="p-2 hover:bg-theme-primary-light rounded-md transition-colors text-theme-primary"
                 aria-label="Close menu"
               >
                 <svg
@@ -257,19 +260,15 @@ const Header = () => {
                   />
                 </svg>
               </button>
-            </div>
-
-            {/* Mobile Menu Content */}
-            <div className="flex flex-col h-full overflow-y-auto">
               {/* Navigation Items */}
-              <div className="flex-1">
+              <div className="flex flex-col flex-1">
                 <MobileDropdown
                   section={createDestinationList(data, "Destinations")}
                 />
                 <MobileDropdown section={headerData.navigation.inspiration} />
 
                 {/* Mobile Search */}
-                <div className="p-4 border-b border-gray-200">
+                {/* <div className="p-4 border-b border-gray-200">
                   <form>
                     <input
                       type="text"
@@ -277,7 +276,7 @@ const Header = () => {
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary-light text-gray-800"
                     />
                   </form>
-                </div>
+                </div> */}
               </div>
 
               {/* Mobile CTA Button */}
@@ -288,7 +287,7 @@ const Header = () => {
                     window.location.href = headerData.cta.button.href;
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full bg-[#004236] text-white font-semibold py-3 px-4 rounded-md hover:bg-[#3e6d65] transition-colors flex items-center justify-center"
+                  className="w-full bg-theme-primary text-white font-semibold py-3 px-4 rounded-md hover:bg-[#3e6d65] transition-colors flex items-center justify-center"
                 >
                   {headerData.cta.button.text}
                   <svg

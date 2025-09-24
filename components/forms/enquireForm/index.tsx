@@ -28,14 +28,7 @@ const budgets = [
   "2,00,000 - 2,50,000",
 ];
 
-const destinations = [
-  "Other",
-  "Europe",
-  "Asia",
-  "Africa",
-  "Americas",
-  "Oceania",
-];
+
 const availabilities = ["Any time", "Morning", "Afternoon", "Evening"];
 
 export default function EnquireNow() {
@@ -70,7 +63,7 @@ export default function EnquireNow() {
 
   return (
     <form
-      className="flex flex-col bg-[#f7f7f5] px-8 w-full mx-auto enquire-form py-10"
+      className="flex flex-col p-6 w-full md:w-1/2 mx-auto enquire-form items-left text-theme-primary-dark"
       action={formAction}
     >
       {/* Hidden inputs for state values */}
@@ -83,30 +76,40 @@ export default function EnquireNow() {
       <input type="hidden" name="message" value={details.message} />
 
       {/* Top Row */}
-      <div className="flex flex-col md:flex-row gap-8 mb-8 w-full flex-wrap">
-        <div className="w-1/3">
+      <div className="flex flex-col gap-2 mb-8">
+        <div className="w-full">
           <label
             id="destinationLabel"
             className="block font-bold test-white mb-2 text-lg"
           >
             Where would you like to go?
           </label>
-          <select
+          {/* <select
             name="destination"
-            className="w-full border rounded px-3 py-2"
+            className="w-11/12 border rounded px-3 py-2"
             value={details.destination}
             onChange={(e) =>
               setDetails({ ...details, destination: e.target.value })
             }
           >
-            {destinations.map((d) => (
-              <option key={d} value={d}>
-                {d}
+            {destinations.map((d: { destinationHeading: string }) => (
+              <option key={d.destinationHeading} value={d.destinationHeading} className="h-[50vh]">
+                {d.destinationHeading}
               </option>
             ))}
-          </select>
+          </select> */}
+          <input
+            name="destination"
+            className="border rounded px-3 py-2 w-full"
+            placeholder="Destination *"
+            value={details.destination}
+            onChange={(e) =>
+              setDetails({ ...details, destination: e.target.value })
+            }
+            required
+          />
         </div>
-        <div className="w-1/3">
+        <div className="w-full">
           <label className="block font-bold test-white mb-2 text-lg">
             Guests
           </label>
@@ -115,7 +118,7 @@ export default function EnquireNow() {
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  className="border rounded cursor-pointer"
+                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setAdults(Math.max(1, adults - 1))}
                 >
                   -
@@ -123,24 +126,22 @@ export default function EnquireNow() {
                 <span>{adults}</span>
                 <button
                   type="button"
-                  className="border rounded w-7 h-7 cursor-pointer"
+                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark  text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setAdults(adults + 1)}
                 >
                   +
                 </button>
               </div>
-              <span className="block text-xs text-gray-700 mb-1">
+              <span className="block text-xs text-theme-primary mt-1">
                 Adults (age 15+)
               </span>
             </div>
             <div>
-              <span className="block text-xs text-gray-700 mb-1">
-                Children (age 0-15)
-              </span>
+
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  className="border rounded w-7 h-7"
+                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setChildren(Math.max(0, children - 1))}
                 >
                   -
@@ -148,16 +149,19 @@ export default function EnquireNow() {
                 <span>{children}</span>
                 <button
                   type="button"
-                  className="border rounded w-7 h-7"
+                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setChildren(children + 1)}
                 >
                   +
                 </button>
               </div>
+              <span className="block text-xs text-theme-primary mt-1">
+                Children (age 0-15)
+              </span>
             </div>
           </div>
         </div>
-        <div className="w-1/3">
+        <div className="w-full">
           <label className="block font-bold test-white mb-2 text-lg">
             When would you like to go?
           </label>
@@ -190,7 +194,7 @@ export default function EnquireNow() {
             </select>
           </div>
         </div>
-        <div>
+        <div className="w-full">
           <label className="block font-bold test-white mb-2 text-lg">
             How much are you looking to spend? *
           </label>
@@ -210,9 +214,9 @@ export default function EnquireNow() {
       </div>
 
       {/* Your Details */}
-      <div className="bg-[#ededed] -mx-8 px-8 py-6 mb-8">
+      <div className="-mx-8 px-8 py-6 mb-8">
         <h2 className="text-2xl font-bold test-white mb-2">Your Details</h2>
-        <p className="mb-6 text-gray-700">
+        <p className="mb-6 text-theme-primary">
           Please add a few details below and we will call you to discuss your
           plans.
         </p>
@@ -225,7 +229,7 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, firstName: e.target.value })
             }
-            // required
+          // required
           />
           <input
             name="lastName"
@@ -235,10 +239,11 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, lastName: e.target.value })
             }
-            // required
+          // required
           />
           <div className="flex">
-            <select className="border rounded-l px-2 py-2 bg-gray-100 text-gray-700">
+            <select className="border rounded-l px-2 py-2  text-theme-primary">
+              <option>+91</option>
               <option>+44</option>
               <option>+1</option>
               <option>+33</option>
@@ -249,7 +254,6 @@ export default function EnquireNow() {
               <option>+81</option>
               <option>+86</option>
               <option>+7</option>
-              <option>+91</option>
               {/* Add more country codes as needed */}
             </select>
             <input
@@ -287,7 +291,7 @@ export default function EnquireNow() {
                   type="checkbox"
                   checked={followUp.email}
                   onChange={() => handleFollowUpChange("email")}
-                  className="accent-[#004236]"
+                  className="accent-theme-primary"
                 />
                 Email
               </label>
@@ -297,7 +301,7 @@ export default function EnquireNow() {
                   type="checkbox"
                   checked={followUp.phone}
                   onChange={() => handleFollowUpChange("phone")}
-                  className="accent-[#004236]"
+                  className="accent-theme-primary"
                 />
                 Phone Call
               </label>
@@ -307,7 +311,7 @@ export default function EnquireNow() {
                   type="checkbox"
                   checked={followUp.text}
                   onChange={() => handleFollowUpChange("text")}
-                  className="accent-[#004236]"
+                  className="accent-theme-primary"
                 />
                 Text
               </label>
@@ -345,7 +349,7 @@ export default function EnquireNow() {
       {/* Tell Us More */}
       <div>
         <h2 className="text-2xl font-bold test-white mb-2">Tell Us More</h2>
-        <p className="mb-2 text-gray-700">
+        <p className="mb-2 text-theme-primary">
           Please share your ideas and initial plans for your trip below so our
           travel specialists can help you bring them to life.
         </p>
@@ -353,7 +357,7 @@ export default function EnquireNow() {
           className="border rounded px-3 py-2 w-full h-32 resize-vertical"
           name="message"
           maxLength={1000}
-          placeholder="Have you seen any hotels you would like to stay in, or tours that you would like to experience? Do you have any set dates or room requirements? Are you unsure of where to start planning? Let our Travel Specialists know so that they can help you plan a trip of a lifetime."
+          placeholder="Hotels, experiences or anything else that you have though off...."
           value={details.message}
           onChange={(e) => setDetails({ ...details, message: e.target.value })}
         />
@@ -366,18 +370,17 @@ export default function EnquireNow() {
       <div className="mt-8 flex flex-col md:flex-row justify-start items-start gap-4">
         <button
           type="submit"
-          className="bg-[#004236] text-white font-bold px-8 py-3 rounded hover:bg-[#00664f] transition-colors"
+          className="text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary"
         >
           Submit Form
         </button>
         {state?.message && (
           <div
-            className={`text-sm px-4 py-2 rounded ${
-              state.message.includes("successfully") ||
+            className={`text-sm px-4 py-2 rounded ${state.message.includes("successfully") ||
               state.message.includes("Thank you")
-                ? "bg-green-100 text-green-800 border border-green-200"
-                : "bg-red-100 text-red-800 border border-red-200"
-            }`}
+              ? ""
+              : ""
+              }`}
           >
             {state.message}
           </div>
