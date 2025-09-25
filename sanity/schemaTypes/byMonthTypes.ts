@@ -27,17 +27,6 @@ export const byMonthTypes = defineType({
             type: "image",
         }),
         defineField({
-            name: "isPromoted",
-            title: "Promote",
-            type: "boolean",
-        }),
-        defineField({
-            name: "keywords",
-            title: "Keywords",
-            type: "array",
-            of: [{ type: "string" }],
-        }),
-        defineField({
             name: "slug",
             title: "Slug",
             type: "slug",
@@ -64,7 +53,6 @@ export const byMonthTypes = defineType({
                             name: "image",
                             title: "Blog Content Image",
                             type: "image",
-                            validation: (Rule) => Rule.max(1).min(0),
                         },
                         {
                             name: "imagesDescription",
