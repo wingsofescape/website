@@ -14,7 +14,6 @@ import {
 import { createDestinationList } from "@/utils/createDestinations";
 
 const Header = () => {
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -53,8 +52,9 @@ const Header = () => {
         >
           {data.label}
           <svg
-            className={`w-4 h-4 transition-transform ml-2 ${isOpen ? "rotate-180" : ""
-              }`}
+            className={`w-4 h-4 transition-transform ml-2 ${
+              isOpen ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -102,8 +102,9 @@ const Header = () => {
         >
           {section.label}
           <svg
-            className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""
-              }`}
+            className={`w-4 h-4 transition-transform ${
+              isOpen ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -150,12 +151,24 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex text-sm lg:text-base items-center space-x-4 flex-1">
-          <RenderDropdown data={createDestinationList(data, "Destinations")} openDropdown={openDropdown}
-            setOpenDropdown={setOpenDropdown} />
-          <RenderDropdown data={headerData.navigation.inspiration} openDropdown={openDropdown}
-            setOpenDropdown={setOpenDropdown} />
+          <RenderDropdown
+            data={createDestinationList(data, "Destinations")}
+            openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown}
+          />
+          <RenderDropdown
+            data={headerData.navigation.inspiration}
+            openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown}
+          />
+          <RenderDropdown
+            data={headerData.navigation.contactUs}
+            openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown}
+          />
+          {/* {renderDropdown(headerData.navigation.contactUs)} */}
+
           {/* {renderDropdown(headerData.navigation.inspiration)}
-          {renderDropdown(headerData.navigation.contactUs)}
           {renderDropdown(headerData.navigation.aboutUs)} */}
           {/* Search Bar */}
           {/* <form className="ml-2 hidden lg:block">
@@ -168,11 +181,13 @@ const Header = () => {
         </nav>
 
         {/* Desktop CTA Button */}
-        {
-          !pathname.includes('enquireNow') && <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
+        {!pathname.includes("enquireNow") && (
+          <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
             <button
               type="button"
-              onClick={() => (window.location.href = headerData.cta.button.href)}
+              onClick={() =>
+                (window.location.href = headerData.cta.button.href)
+              }
               className="flex items-center focus:outline-none cursor-pointer"
             >
               {headerData.cta.button.text}
@@ -192,8 +207,7 @@ const Header = () => {
               </svg>
             </button>
           </div>
-        }
-
+        )}
 
         {/* Mobile Menu Button */}
         <button
@@ -237,8 +251,9 @@ const Header = () => {
 
           {/* Sheet Menu */}
           <div
-            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
+            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+              isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
           >
             <div className="flex flex-col flex-1 justify-between">
               <button
