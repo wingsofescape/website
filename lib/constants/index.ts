@@ -16,7 +16,7 @@ export const POST_QUERY = {
     query: `*[_type == "destination"]{destinationHeading , slug}`,
   },
   destinationList: {
-    name: 'Destination List',
+    name: "Destination List",
     query: `*[_type == "destination" && defined(slug) ]{"destinationName": slug }`,
   },
   destination(destSlug: string) {
@@ -53,7 +53,23 @@ export const POST_QUERY = {
   },
   whereToGo: {
     name: "Where to go by month",
-    query: `*[_type == "byMonth"] | order(date desc){_createdAt, heroImage, slug, title, subtitle}`,
+    query: `*[_type == "byMonth"] | order(date desc){_createdAt, heroImage, slug, title, subtitle, description, keywords}`,
+  },
+  whereToGoByList: {
+    name: "Where to go by month",
+    query: `*[_type == "byMonth" && defined(slug.current)]{"slug": slug.current}`,
+  },
+  getWhereToGoBy(monthSlug: { slug: string }) {
+    return {
+      name: "Where to Go by month List",
+      query: `*[_type == "byMonth" && slug.current == '${monthSlug.slug}'
+
+      ]{heroImage, slug, title, subtitle, description, keywords, content}`,
+    };
+  },
+  ourTop10List: {
+    name: "Our Top 10 List",
+    query: `*[_type == "ourTop10" && defined(slug.current)]{"slug": slug.current}`,
   },
   top10: {
     name: "Where to go by month",
@@ -73,7 +89,10 @@ export const POST_QUERY = {
   },
 };
 
-export const SANITY_QUERY_OPTION = { next: { revalidate: 3600 }, useCdn: false };
+export const SANITY_QUERY_OPTION = {
+  next: { revalidate: 3600 },
+  useCdn: false,
+};
 
 export const totalDestinations = [
   { destinationHeading: "Sri Lanka", slug: "srilanka" },
