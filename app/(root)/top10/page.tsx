@@ -9,7 +9,7 @@ import { Blogs as BlogsType } from "@/app/_models/blog";
 import HeroBannerNew from "@/components/heroBanner/HeroBannerNew";
 
 async function ourTop10(): Promise<BlogsType> {
-  return await sanityFetch(POST_QUERY.ourTop10List, SANITY_QUERY_OPTION);
+  return await sanityFetch(POST_QUERY.blogs, SANITY_QUERY_OPTION);
 }
 
 export async function generateStaticParams() {
@@ -26,9 +26,8 @@ const data = {
   },
 };
 
-export default async function Blogs() {
+export default async function Top10() {
   const top10Data = await ourTop10();
-  console.log("top10Data", top10Data);
 
   if (!top10Data) return <p>Loading...</p>;
 
