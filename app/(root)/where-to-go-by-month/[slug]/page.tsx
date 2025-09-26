@@ -20,8 +20,6 @@ export default async function Page({ params }: PageProps) {
     SANITY_QUERY_OPTION
   );
 
-  console.log(data);
-
   if (!data[0]) {
     return <div className={"text-theme-primary"}>Loading ...</div>;
   }

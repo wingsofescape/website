@@ -53,7 +53,7 @@ export const POST_QUERY = {
   },
   whereToGo: {
     name: "Where to go by month",
-    query: `*[_type == "byMonth"] | order(date desc){_createdAt, heroImage, slug, title, subtitle, description, keywords}`,
+    query: `*[_type == "byMonth"] | order(date desc){_createdAt, heroImage, slug, title, subtitle, description}`,
   },
   whereToGoByList: {
     name: "Where to go by month",

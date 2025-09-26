@@ -26,7 +26,6 @@ export interface IWhereToGoByType {
   description: string;
   herImage: Image;
   isPromoted: boolean;
-  keywords: string[];
   slug: string;
   content: IWhereToGoBycontent;
 }
