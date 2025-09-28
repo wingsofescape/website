@@ -1,10 +1,10 @@
-import Image from "next/image";
 import React from "react";
-import { IBlogContent } from "@/app/_models/blog";
+import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/lib/fetch";
+import { IBlogContent } from "@/app/_models/blog";
 import { shimmer, toBase64 } from "@/utils/shimmer";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
