@@ -1,15 +1,38 @@
 import React from "react";
-import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import Image from "next/image";
-import { IBlog } from "@/app/_models/blog";
-import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { Blogs as BlogsType } from "@/app/_models/blog";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import HeroBannerNew from "@/components/heroBanner/HeroBannerNew";
 
-async function ourTop10(): Promise<BlogsType> {
-  return await sanityFetch(POST_QUERY.blogs, SANITY_QUERY_OPTION);
+export interface PageDataType {
+  _createdAt: string;
+  description?: string;
+  heroImage: HeroImage;
+  keywords?: string[];
+  slug: Slug;
+  subtitle: string;
+  title: string;
+}
+
+export interface HeroImage {
+  _type: string;
+  asset: Asset;
+}
+
+export interface Asset {
+  _ref: string;
+  _type: string;
+}
+
+export interface Slug {
+  _type: string;
+  current: string;
+}
+
+async function ourTop10(): Promise<PageDataType[]> {
+  return await sanityFetch(POST_QUERY.top10, SANITY_QUERY_OPTION);
 }
 
 export async function generateStaticParams() {
@@ -32,40 +55,33 @@ export default async function Top10() {
   if (!top10Data) return <p>Loading...</p>;
 
   return (
-    <div className="blogsLandingPage">
+    <div className="top10ContentPage">
       <HeroBannerNew data={data} />
 
       <div className="blogsList flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
-        {top10Data.map((blog: IBlog, index: number) => {
+        {top10Data.map((data: PageDataType, index: number) => {
           return (
             <Link
               key={index}
               className="blogCard flex flex-col rounded-none overflow-hidden h-[90vh] w-11/12 md:w-1/4 text-left my-2 md:my-10"
-              href={blog.slug.current ? `/blogs/${blog.slug.current}` : "#"}
+              href={data.slug.current ? `/top10/${data.slug.current}` : "#"}
             >
-              {/* Blog Image */}
               <div className="relative flex flex-1 h-full w-full">
                 <Image
-                  src={urlFor(blog.blogHeroImage)?.url()}
-                  alt={blog.title}
+                  src={urlFor(data.heroImage)?.url()}
+                  alt={data.title}
                   width={1080}
                   height={1260}
                   className="object-cover w-full h-full"
                   priority={index < 3}
                 />
               </div>
-              {/* Blog Content */}
               <div className="flex flex-col py-6 text-left">
                 <strong className="text-xs tracking-widest text-gray-500 mb-2 uppercase">
-                  {blog?.date}
+                  {data?.date}
                 </strong>
-
-                <strong className="text-xs tracking-widest text-gray-500 mb-2 uppercase">
-                  {blog?.author}
-                </strong>
-
                 <p className="block text-md  font-semibold text-theme-primary-dark mb-3 leading-snug hover:text-theme-primary-light transition-colors">
-                  {blog.title}
+                  {data.title}
                 </p>
               </div>
             </Link>
