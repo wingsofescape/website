@@ -23,39 +23,30 @@ export default async function Page({ params }: PageProps) {
   if (!data[0]) {
     return <div className={"text-theme-primary"}>Loading ...</div>;
   }
-  const ContentSection = (whereToGocontent: IWhereToGoBycontent[]) => {
-    return whereToGocontent.map((content, index) => (
-      <div
-        key={index}
-        className="mb-1 flex flex-col align-center items-center text-left w-11/12 md:w-8/12"
-      >
-        <div className="contentSection my-5 ">
-          <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
-            {content.heading}
-          </h3>
-          <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">
-            {content.subHeading}
-          </h4>
-          {/* {content.paragraph.map((para, idx) => ( */}
-          <p className="mb-2 text-theme-primary-dark text-md">
-            {content.paragraph}
-          </p>
-          {/* ))} */}
-        </div>
-
-        <div className="imageSection mb-1 p-1 md:p-4 w-full ">
+  const ContentSection = (whereToGoContent: IWhereToGoBycontent[]) => {
+    return whereToGoContent.map((content, index) => (
+      <div key={index} className="mb-10 w-11/12">
+        <div className="imageSection w-full relative">
           <Image
             src={urlFor(content.image)?.url()}
             alt={content.imagesDescription || ""}
-            className="object-cover h-[40vh] md:h-[65vh]  md:w-11/12 mx-auto"
+            className="object-cover h-[40vh] md:h-[50vh] mx-auto w-1/3 float-left"
             width={1080}
             height={1920}
             placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
           />
+          <div className="contentSection absolute left-[25%] w-[70%] p-5 bg-white text-theme-primary-dark top-10 shadow">
+            <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
+              {content.heading}
+            </h3>
+            {content.subHeading && (
+              <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">
+                {content.subHeading}
+              </h4>
+            )}
+            <p className="mb-2 text-md z-10">{content.paragraph}</p>
+          </div>
         </div>
-        <p className="text-gray-500 text-sm  text-center">
-          {content.imagesDescription}
-        </p>
       </div>
     ));
   };
@@ -63,7 +54,6 @@ export default async function Page({ params }: PageProps) {
   return (
     <div>
       <div
-        // ref={bannerRef}
         className="blogHeroImage relative overflow-hidden"
         style={{
           height: "90vh",
@@ -97,9 +87,9 @@ export default async function Page({ params }: PageProps) {
         </div>
       </div>
 
-      <div className="mx-auto py-12">
+      <div className="py-12">
         <div className="bg-white overflow-hidden flex flex-col items-center">
-          <div className="flex-1 flex flex-col items-center text-left">
+          <div className="flex-1 flex flex-col items-center text-left w-11/12">
             {/* Content Section */}
             {ContentSection(data[0]?.content)}
           </div>

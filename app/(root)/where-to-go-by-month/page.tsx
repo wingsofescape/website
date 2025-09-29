@@ -70,7 +70,6 @@ export default async function WhereToGoByMonth() {
                   : "#"
               }
             >
-              {/* Blog Image */}
               <div className="relative flex flex-1 h-full w-full">
                 <Image
                   src={urlFor(data.heroImage)?.url()}
@@ -81,7 +80,6 @@ export default async function WhereToGoByMonth() {
                   priority={index < 3}
                 />
               </div>
-              {/* Blog Content */}
               <div className="flex flex-col py-6 text-left">
                 <strong className="text-xs tracking-widest text-gray-500 mb-2 uppercase">
                   {data?._createdAt}

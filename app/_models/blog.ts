@@ -39,3 +39,13 @@ export interface IWhereToGoBycontent {
   image: Image;
   imagesDescription?: string;
 }
+
+export interface ITop10Content {
+  heading: string;
+  button?: string;
+  href?: string;
+  subHeading?: string;
+  paragraph: string;
+  image: Image;
+  imagesDescription?: string;
+}

@@ -73,7 +73,7 @@ export const POST_QUERY = {
   },
   top10: {
     name: "Where to go by month",
-    query: `*[_type == "ourTop10"] | order(date desc){_createdAt, heroImage, slug, title, subtitle}`,
+    query: `*[_type == "ourTop10"] | order(date desc){_createdAt, heroImage, slug, title, subtitle, description, keywords}`,
   },
   getTop10(top10Slug: { slug: string }) {
     return {
