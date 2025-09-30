@@ -1,13 +1,26 @@
 import React from "react";
+import WhyWOE from "../landingPage/WhyWOE";
+import { SanityDocument } from "next-sanity";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 
-export const Footer = () => {
+async function getFooterContent(): Promise<SanityDocument[]> {
+  return await sanityFetch(POST_QUERY.footer, SANITY_QUERY_OPTION);
+}
+
+export const Footer = async () => {
+  const res = await getFooterContent();
+  const data = res?.[0];
+
   return (
-    <footer>
+    <footer className="">
+      <WhyWOE data={data.whyWOESection} />
       <div
         className="relative text-black pt-80 md:pt-94 pb-5 bg-cover bg-center text-xs"
         style={{ backgroundImage: "url('/images/footer.jpg')" }}
       >
         {/* Overlay for readability */}
+
         <div className="relative z-10 flex flex-col justify-center items-center flex-wrap">
           <div className="mx-auto px-6 text-center text-white">
             {/* Footer Links */}
