@@ -1,12 +1,10 @@
 import BookingProcess from "@/components/landingPage/BookingProcess";
 import { HeroBanner } from "@/components/landingPage/HeroBanner";
 import PageSection from "@/components/shared/header/PageSection";
-import Testimonials from "@/components/testimonials";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { IHeroBannerButton } from "../_models/heroBanner";
 import { SanityDocument } from "next-sanity";
-import WhyWOE from "@/components/landingPage/WhyWOE";
 import Carousal from "@/components/carousal";
 
 async function getHomePageContent(): Promise<SanityDocument[]> {
@@ -14,8 +12,10 @@ async function getHomePageContent(): Promise<SanityDocument[]> {
 }
 
 export default async function HomePage() {
+
   const res = await getHomePageContent();
   const data = res?.[0];
+
   const heroBannerData = {
     heroBannerHeading: data.heroBannerHeading,
     heroBannerSubHeading: data.heroBannerSubHeading,
@@ -43,7 +43,8 @@ export default async function HomePage() {
       <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
           {/* Testimonials Section */}
-          <Testimonials data={data.testemonialsSection} />
+
+          {/* <Testimonials data={data.testemonialsSection} /> */}
           {/* <section className="flex flex-col md:flex-row w-full md:h-[600px] mb-10">
             <div
               className="flex-1 flex items-center justify-center bg-cover bg-center"
@@ -84,10 +85,8 @@ export default async function HomePage() {
               </div>
             </div>
           </section> */}
-          <WhyWOE data={data.whyWOESection} />
         </div>
       </div>
-
     </>
   );
 }

@@ -64,7 +64,6 @@ export const top10Types = defineType({
                             name: "image",
                             title: "Blog Content Image",
                             type: "image",
-                            validation: (Rule) => Rule.max(1).min(0),
                         },
                         {
                             name: "imagesDescription",

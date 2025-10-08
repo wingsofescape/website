@@ -9,14 +9,20 @@ export const POST_QUERY = {
     name: "homePage",
     query: `*[
       _type == "homePage"
-      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection, whyWOESection }`,
+      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection }`,
+  },
+  footer: {
+    name: "Footer",
+    query: `*[
+      _type == "homePage"
+      ]{  whyWOESection }`,
   },
   header: {
     name: "header",
     query: `*[_type == "destination"]{destinationHeading , slug}`,
   },
   destinationList: {
-    name: 'Destination List',
+    name: "Destination List",
     query: `*[_type == "destination" && defined(slug) ]{"destinationName": slug }`,
   },
   destination(destSlug: string) {
@@ -53,7 +59,23 @@ export const POST_QUERY = {
   },
   whereToGo: {
     name: "Where to go by month",
-    query: `*[_type == "byMonth"] | order(date desc){_createdAt, heroImage, slug, title, subtitle}`,
+    query: `*[_type == "byMonth"] | order(date desc){_createdAt, heroImage, slug, title, subtitle, description}`,
+  },
+  whereToGoByList: {
+    name: "Where to go by month",
+    query: `*[_type == "byMonth" && defined(slug.current)]{"slug": slug.current}`,
+  },
+  getWhereToGoBy(monthSlug: { slug: string }) {
+    return {
+      name: "Where to Go by month List",
+      query: `*[_type == "byMonth" && slug.current == '${monthSlug.slug}'
+
+      ]{heroImage, slug, title, subtitle, description, keywords, content}`,
+    };
+  },
+  ourTop10List: {
+    name: "Our Top 10 List",
+    query: `*[_type == "ourTop10" && defined(slug.current)]{"slug": slug.current}`,
   },
   top10: {
     name: "Where to go by month",
@@ -73,7 +95,10 @@ export const POST_QUERY = {
   },
 };
 
-export const SANITY_QUERY_OPTION = { next: { revalidate: 3600 }, useCdn: false };
+export const SANITY_QUERY_OPTION = {
+  next: { revalidate: 3600 },
+  useCdn: false,
+};
 
 export const totalDestinations = [
   { destinationHeading: "Sri Lanka", slug: "srilanka" },
