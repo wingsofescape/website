@@ -21,7 +21,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                     >
                         {/* Icon in circle */}
                         <div className="flex flex-col items-center -mt-14 mb-2">
-                            <div className="w-16 h-16 rounded-full bg-[#f7cfcf] flex items-center justify-center shadow-lg mb-2">
+                            <div className="w-16 h-16 rounded-full bg-theme-primary-light flex items-center justify-center shadow-lg mb-2">
                                 <Image
                                     src={urlFor(reason.whyWOEIcon.asset).url()}
                                     alt={reason.whyWOEHeading + " icon"}
