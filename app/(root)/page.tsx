@@ -34,9 +34,10 @@ export default async function HomePage() {
       </div>
       <div className="p-0 mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
+          <Carousal />
+
           <PageSection data={data?.luxuryHolidaySection} />
           <BookingProcess data={data.bookingProcess} />
-          <Carousal />
         </div>
       </div>
       <div className="p-0 bg-white mt-10">

@@ -1,6 +1,9 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+
 const Carousal = () => {
+    const lastCardRef = useRef<HTMLDivElement>(null);
+    const [isLastCardVisible, setIsLastCardVisible] = useState(false);
 
     const array1 = [
         {
@@ -60,9 +63,33 @@ const Carousal = () => {
         }
     ]
     const [center, setCenter] = useState(0);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setIsLastCardVisible(entry.isIntersecting);
+            },
+            {
+                threshold: 0.9, // Card is considered visible when 50% is in view
+            }
+        );
+
+        const currentLastCard = lastCardRef.current;
+        if (currentLastCard) {
+            observer.observe(currentLastCard);
+        }
+
+        // return () => {
+        //     if (currentLastCard) {
+        //         observer.unobserve(currentLastCard);
+        //     }
+        // };
+    }, []);
+
     const slideLeft = () => {
         setCenter((prev) => (prev - 1 + array1.length) % array1.length);
     }
+
     const slideRight = () => {
         setCenter((prev) => (prev + 1) % array1.length);
     }
@@ -76,14 +103,17 @@ const Carousal = () => {
                 }}>
 
                 {
-                    array1.map((element) =>
-                        <div key={element.cardName} className={`h-80 w-60 rounded-3xl ring ring-slate-50 text-center text-theme-primary m-2 flex-shrink-0 shadow-xl`}
+                    array1.map((element, index) =>
+                        <div
+                            key={element.cardName}
+                            ref={index === array1.length - 1 ? lastCardRef : null}
+                            className={`h-80 w-60 rounded-3xl ring ring-slate-50 text-center text-theme-primary m-2 flex-shrink-0 shadow-xl`}
                             style={{
                                 backgroundImage: `url(${element.image})`,
                                 backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat',
                             }}>
-                            {/* //shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)] */}
+                            {element.cardName}
                         </div>
                     )
                 }
@@ -102,11 +132,9 @@ const Carousal = () => {
                 disabled={center === 0}
             >{'<'}</button>
             <button type="button"
-                className="ring ring-slate-300 rounded-full cursor-pointer h-8 w-8 bg-transparent text-theme-primary-dark  hover:bg-slate-300 font-semibold disabled:bg-slate-300 absolute right-[40%] bottom-1"
-                // className="bg-gray-200 p-4 cursor-pointer absolute right-[40%] bottom-1 text-theme-primary !hover:bg-slate-300"
+                className="ring ring-slate-300 rounded-full cursor-pointer h-8 w-8 bg-transparent text-theme-primary-dark hover:bg-slate-300 font-semibold disabled:bg-slate-300 absolute right-[40%] bottom-1"
                 onClick={() => slideRight()}
-
-                disabled={center === array1.length}
+                disabled={isLastCardVisible}
             >{'>'}</button>
 
 
