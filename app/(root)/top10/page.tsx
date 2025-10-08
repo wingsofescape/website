@@ -9,33 +9,34 @@ import { Blogs as BlogsType } from "@/app/_models/blog";
 import HeroBannerNew from "@/components/heroBanner/HeroBannerNew";
 
 async function ourTop10(): Promise<BlogsType> {
-  return await sanityFetch(POST_QUERY.whereToGo, SANITY_QUERY_OPTION);
+  return await sanityFetch(POST_QUERY.blogs, SANITY_QUERY_OPTION);
 }
 
 export async function generateStaticParams() {
-  return ['top10']
+  return ["top10"];
 }
 
 const data = {
-  title: 'Where and when to go?',
-  subTitle: '',
-  description: "Dreaming of a holiday but not sure where to go? Look no further than our monthly travel guide. Our travel experts know a thing or two about their destinations and they've put together their favourite destinations by month and explained what makes them so special.",
+  title: "Where and when to go?",
+  subTitle: "",
+  description:
+    "Dreaming of a holiday but not sure where to go? Look no further than our monthly travel guide. Our travel experts know a thing or two about their destinations and they've put together their favourite destinations by month and explained what makes them so special.",
   heroImage: {
-    "asset": "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg"
-  }
-}
+    asset: "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg",
+  },
+};
 
-export default async function Blogs() {
-  const blogsData = await ourTop10();
+export default async function Top10() {
+  const top10Data = await ourTop10();
 
-  if (!blogsData) return <p>Loading...</p>;
+  if (!top10Data) return <p>Loading...</p>;
 
   return (
     <div className="blogsLandingPage">
       <HeroBannerNew data={data} />
 
       <div className="blogsList flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
-        {blogsData.map((blog: IBlog, index: number) => {
+        {top10Data.map((blog: IBlog, index: number) => {
           return (
             <Link
               key={index}
