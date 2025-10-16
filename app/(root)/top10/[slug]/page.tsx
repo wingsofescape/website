@@ -72,7 +72,7 @@ export default async function Page({ params }: PageProps) {
             zIndex: 1,
           }}
         />
-        <div className="overlay opacity-40 bg-white h-full absolute top-[33%] md:top-0 right-0 w-full md:w-2/5 z-10" />
+        <div className="overlay opacity-40 bg-white h-full absolute top-[53%] md:top-0 right-0 w-full md:w-2/5 z-10" />
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-200 text-theme-primary-dark"
           style={{
@@ -80,7 +80,7 @@ export default async function Page({ params }: PageProps) {
             transition: "transform 0.1s linear",
           }}
         >
-          <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug">
+          <h2 className="text-3xl md:text-5xl font-semibold mb-2 leading-snug">
             {data.title}
           </h2>
           <p className="mb-4 ">{data.subtitle}</p>
