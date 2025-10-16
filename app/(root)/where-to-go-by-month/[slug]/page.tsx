@@ -70,7 +70,7 @@ export default async function Page({ params }: PageProps) {
             zIndex: 1,
           }}
         />
-        <div className="overlay opacity-40 bg-white h-full absolute top-[33%] md:top-0 right-0 w-full md:w-2/5 z-10" />
+        <div className="overlay opacity-40 bg-white h-full absolute top-[53%]  md:top-0 right-0 w-full md:w-2/5 z-10" />
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-200 text-theme-primary-dark"
           style={{
@@ -78,11 +78,9 @@ export default async function Page({ params }: PageProps) {
             transition: "transform 0.1s linear",
           }}
         >
-          <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug">
-            {data[0].title}
+          <h2 className="text-2xl md:text-5xl font-semibold mb-2 leading-snug">
+            The Best Places to Visit in {data[0].title}
           </h2>
-          {/* <p className="mb-4 ">{data[0].subtitle}</p> */}
-          {/* <strong>{data[0].author}</strong> */}
           <strong>{data[0]._createdAt}</strong>
         </div>
       </div>
