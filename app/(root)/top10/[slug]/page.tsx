@@ -1,66 +1,54 @@
-import Image from "next/image";
 import React from "react";
-import { IBlogContent } from "@/app/_models/blog";
+import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { shimmer, toBase64 } from "@/utils/shimmer";
+import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
+import { ITop10Content } from "@/app/_models/blog";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return await sanityFetch(POST_QUERY.blogsList, SANITY_QUERY_OPTION);
+  return await sanityFetch(POST_QUERY.ourTop10List, SANITY_QUERY_OPTION);
 }
 
-export default async function Blogs({ params }: PageProps) {
-  const blog = await sanityFetch(
-    POST_QUERY.getblog(await params),
+export default async function Page({ params }: PageProps) {
+  const res = await sanityFetch(
+    POST_QUERY.getTop10(await params),
     SANITY_QUERY_OPTION
   );
+  const data = res?.[0];
 
-  if (!blog[0]) {
+  console.log(data);
+  if (!data) {
     return <div>Loading ...</div>;
   }
-  const ContentSection = (blogContent: IBlogContent[]) => {
-    return blogContent.map((content, index) => (
-      <div
-        key={index}
-        className="mb-1 flex flex-col align-center items-center text-left w-11/12 md:w-8/12"
-      >
-        <div className="contentSection my-5 ">
-          <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
-            {content.heading}
-          </h3>
-          <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">
-            {content.subHeading}
-          </h4>
-          {content.paragraph.map((para, idx) => (
-            <p key={idx} className="mb-2 text-theme-primary-dark text-md">
-              {para}
-            </p>
-          ))}
-        </div>
-
-        {content.image && content.image.length > 0 && (
-          <div className="imageSection mb-1 p-1 md:p-4 w-full ">
-            {content.image.map((img, i) => (
-              <Image
-                key={i}
-                src={urlFor(img?.asset)?.url()}
-                alt={content.imagesDescription || ""}
-                className="object-cover h-[40vh] md:h-[65vh]  md:w-11/12 mx-auto"
-                width={1080}
-                height={1920}
-                placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-              />
-            ))}
+  const ContentSection = (top10Content: ITop10Content[]) => {
+    return top10Content.map((content, index: number) => (
+      <div key={index} className="mb-10 w-11/12">
+        <div className="imageSection w-full relative">
+          <Image
+            src={urlFor(content.image)?.url()}
+            alt={content.imagesDescription || ""}
+            className="object-cover h-[40vh] md:h-[50vh] mx-auto w-1/3 float-left"
+            width={1080}
+            height={1920}
+            placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+          />
+          <div className="contentSection absolute left-[25%] w-[70%] p-5 bg-white text-theme-primary-dark top-10 shadow">
+            <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
+              {content.heading}
+            </h3>
+            {content.subHeading && (
+              <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">
+                {content.subHeading}
+              </h4>
+            )}
+            <p className="mb-2 text-md z-10">{content.paragraph}</p>
           </div>
-        )}
-        <p className="text-gray-500 text-sm  text-center">
-          {content.imagesDescription}
-        </p>
+        </div>
       </div>
     ));
   };
@@ -68,7 +56,6 @@ export default async function Blogs({ params }: PageProps) {
   return (
     <div>
       <div
-        // ref={bannerRef}
         className="blogHeroImage relative overflow-hidden"
         style={{
           height: "90vh",
@@ -76,7 +63,7 @@ export default async function Blogs({ params }: PageProps) {
       >
         <Image
           alt="Page Banner Image"
-          src={urlFor(blog[0].blogHeroImage)?.url()}
+          src={urlFor(data.heroImage)?.url()}
           className="object-cover"
           fill
           style={{
@@ -85,7 +72,7 @@ export default async function Blogs({ params }: PageProps) {
             zIndex: 1,
           }}
         />
-        <div className="overlay opacity-40 bg-white h-full absolute top-[33%] md:top-0 right-0 w-full md:w-2/5 z-10" />
+        <div className="overlay opacity-40 bg-white h-full absolute top-[53%] md:top-0 right-0 w-full md:w-2/5 z-10" />
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-200 text-theme-primary-dark"
           style={{
@@ -93,20 +80,20 @@ export default async function Blogs({ params }: PageProps) {
             transition: "transform 0.1s linear",
           }}
         >
-          <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug">
-            {blog[0].title}
+          <h2 className="text-3xl md:text-5xl font-semibold mb-2 leading-snug">
+            {data.title}
           </h2>
-          <p className="mb-4 ">{blog[0].subtitle}</p>
-          <strong>{blog[0].author}</strong>
-          <strong>{blog[0].date}</strong>
+          <p className="mb-4 ">{data.subtitle}</p>
+          <strong>{data.author}</strong>
+          <strong>{data.date}</strong>
         </div>
       </div>
 
-      <div className="mx-auto py-12">
+      <div className="py-12">
         <div className="bg-white overflow-hidden flex flex-col items-center">
-          <div className="flex-1 flex flex-col items-center text-left">
+          <div className="flex-1 flex flex-col items-center text-left w-11/12">
             {/* Content Section */}
-            {ContentSection(blog[0]?.blogContent)}
+            {ContentSection(data?.content)}
           </div>
         </div>
       </div>

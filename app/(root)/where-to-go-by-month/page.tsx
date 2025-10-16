@@ -43,15 +43,16 @@ const headerData = {
   title: "Where and when to go?",
   subTitle: "",
   description:
-    "Dreaming of a holiday but not sure where to go? Look no further than our monthly travel guide. Our travel experts know a thing or two about their destinations and they've put together their favourite destinations by month and explained what makes them so special.",
+    "Can't decide your next getaway? Explore our monthly travel guide - a handpicked selection of destinations our experts love, and the stories that make each one unforgettable.",
   heroImage: {
-    asset: "image-c2c7716e6c7e2e10d2603667c981f2c3dc87fd26-2521x2520-jpg",
+    asset: "image-c5b952b166ecbb9916330c13116475f4f38bf9fb-2048x1364-jpg",
   },
 };
 export default async function WhereToGoByMonth() {
+  // const Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
   const whereToGoData = await getWhereToGoByMonthData();
 
-  console.log("whereToGoData", whereToGoData);
   if (!whereToGoData) return <p>Loading...</p>;
 
   return (
@@ -63,33 +64,27 @@ export default async function WhereToGoByMonth() {
           return (
             <Link
               key={index}
-              className="blogCard flex flex-col rounded-none overflow-hidden h-[90vh] w-11/12 md:w-1/4 text-left my-2 md:my-10"
+              className="flex flex-col rounded-none overflow-hidden w-11/12 md:w-1/4 text-left my-2 md:my-10"
               href={
                 data.slug.current
                   ? `/where-to-go-by-month/${data.slug.current}`
                   : "#"
               }
             >
-              {/* Blog Image */}
-              <div className="relative flex flex-1 h-full w-full">
+              <div className="relative flex w-full h-[400px]">
                 <Image
                   src={urlFor(data.heroImage)?.url()}
                   alt={data.title}
                   width={1080}
-                  height={1260}
-                  className="object-cover w-full h-full"
+                  height={400}
+                  className="object-cover w-full h-full hover:scale-105  transition-transform duration-300"
                   priority={index < 3}
                 />
-              </div>
-              {/* Blog Content */}
-              <div className="flex flex-col py-6 text-left">
-                <strong className="text-xs tracking-widest text-gray-500 mb-2 uppercase">
-                  {data?._createdAt}
-                </strong>
-
-                <p className="block text-md  font-semibold text-theme-primary-dark mb-3 leading-snug hover:text-theme-primary-light transition-colors">
-                  {data.title}
-                </p>
+                <div className="flex flex-col py-6 text-center px-2 absolute bottom-0 bg-theme-primary-dark w-full opacity-90 ">
+                  <p className="block text-xl font-semibold mb-3 leading-snug  transition-colors text-white">
+                    {data.title}
+                  </p>
+                </div>
               </div>
             </Link>
           );
