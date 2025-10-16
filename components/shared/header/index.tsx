@@ -14,7 +14,6 @@ import {
 import { createDestinationList } from "@/utils/createDestinations";
 
 const Header = () => {
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -150,12 +149,24 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex text-sm lg:text-base items-center space-x-4 flex-1">
-          <RenderDropdown data={createDestinationList(data, "Destinations")} openDropdown={openDropdown}
-            setOpenDropdown={setOpenDropdown} />
-          <RenderDropdown data={headerData.navigation.inspiration} openDropdown={openDropdown}
-            setOpenDropdown={setOpenDropdown} />
+          <RenderDropdown
+            data={createDestinationList(data, "Destinations")}
+            openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown}
+          />
+          <RenderDropdown
+            data={headerData.navigation.inspiration}
+            openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown}
+          />
+          <RenderDropdown
+            data={headerData.navigation.contactUs}
+            openDropdown={openDropdown}
+            setOpenDropdown={setOpenDropdown}
+          />
+          {/* {renderDropdown(headerData.navigation.contactUs)} */}
+
           {/* {renderDropdown(headerData.navigation.inspiration)}
-          {renderDropdown(headerData.navigation.contactUs)}
           {renderDropdown(headerData.navigation.aboutUs)} */}
           {/* Search Bar */}
           {/* <form className="ml-2 hidden lg:block">
@@ -168,20 +179,22 @@ const Header = () => {
         </nav>
 
         {/* Desktop CTA Button */}
-        {
-          !pathname.includes('enquireNow') && <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-theme-primary-light border-none rounded-none group">
+        {!pathname.includes("enquireNow") && (
+          <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 group cursor-pointer group"
+            onClick={() =>
+              (window.location.href = headerData.cta.button.href)
+            }>
             <button
               type="button"
-              onClick={() => (window.location.href = headerData.cta.button.href)}
-              className="flex items-center focus:outline-none cursor-pointer"
+              className="flex items-center focus:outline-none cursor-pointer group-hover:rounded-xl group-hover:ring hover:ring-2 px-3 py-2 antialiased transition-all duration-300"
             >
               {headerData.cta.button.text}
 
               <svg
-                className="ml-2 w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
+                className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth={2}
+                strokeWidth={3}
                 viewBox="0 0 24 24"
               >
                 <path
@@ -192,8 +205,7 @@ const Header = () => {
               </svg>
             </button>
           </div>
-        }
-
+        )}
 
         {/* Mobile Menu Button */}
         <button

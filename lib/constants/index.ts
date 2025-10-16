@@ -9,7 +9,13 @@ export const POST_QUERY = {
     name: "homePage",
     query: `*[
       _type == "homePage"
-      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection, whyWOESection }`,
+      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection }`,
+  },
+  footer: {
+    name: "Footer",
+    query: `*[
+      _type == "homePage"
+      ]{  whyWOESection }`,
   },
   header: {
     name: "header",

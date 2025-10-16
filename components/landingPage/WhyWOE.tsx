@@ -6,8 +6,7 @@ type IWhyWoe = { reasons: { whyWOEPointers: string, whyWOEHeading: string, whyWO
 
 const WhyWOE = ({ data }: { data: IWhyWoe }) => {
     return (
-
-        <section className="w-full py-12 px-4 bg-transparent flex flex-col text-theme-primary">
+        <section className="md:w-4/5 py-12 px-4 bg-transparent flex flex-col text-theme-primary mx-auto">
             <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary text-center">
                 <span className="relative inline-block pb-2">
                     {data.heading}
@@ -22,7 +21,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
                     >
                         {/* Icon in circle */}
                         <div className="flex flex-col items-center -mt-14 mb-2">
-                            <div className="w-16 h-16 rounded-full bg-[#f7cfcf] flex items-center justify-center shadow-lg mb-2">
+                            <div className="w-16 h-16 rounded-full bg-theme-primary-light flex items-center justify-center shadow-lg mb-2">
                                 <Image
                                     src={urlFor(reason.whyWOEIcon.asset).url()}
                                     alt={reason.whyWOEHeading + " icon"}
