@@ -5,7 +5,10 @@ import { HomePageType } from "./homePageType";
 import { blogType } from "./blogType";
 import { top10Types } from "./top10Types";
 import { byMonthTypes } from "./byMonthTypes";
+import { aboutUsTypes } from "./aboutUsTypes";
+import { ContactUsTypes } from "./contactUsTypes";
+import { TestemonialsTypes } from "./testemonialsTypes";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [HomePageType, destinationType, tourType, blogType, top10Types, byMonthTypes],
+  types: [HomePageType, destinationType, tourType, blogType, top10Types, byMonthTypes, aboutUsTypes, ContactUsTypes, TestemonialsTypes],
 };
