@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-export const ContactUs = defineType({
+export const ContactUsTypes = defineType({
   name: "contactUs",
   title: "Contact Us",
   type: "document",
