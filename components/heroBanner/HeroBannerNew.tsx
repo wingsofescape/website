@@ -43,7 +43,7 @@ const HeroBannerNew = ({ data }: { data: IHeroBannerProps }) => {
                                 </div> */}
                             </div>
                         </nav>
-                        <div className="w-full max-w-2xl mx-auto  my-15">
+                        <div className="w-full max-w-2xl mx-auto my-15">
                             <h1 className="text-xl xl:text-4xl font-bold mb-6 leading-tight ">
                                 {data.title}
                             </h1>
@@ -66,7 +66,7 @@ const HeroBannerNew = ({ data }: { data: IHeroBannerProps }) => {
                             alt={data.title}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover object-bottom hover:scale-105   transition-transform duration-700"
+                            className="object-cover object-bottom hover:scale-105 transition-transform duration-700"
                             priority
                         />
                         {/* Optional overlay for better text contrast if needed */}

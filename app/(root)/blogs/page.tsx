@@ -71,7 +71,7 @@ export default async function Blogs() {
                   alt={blog.title}
                   width={1080}
                   height={1260}
-                  className="object-cover w-full h-full"
+                  className="object-cover w-full h-full hover:scale-105  transition-transform duration-300"
                   priority={index < 3}
                 />
               </div>
