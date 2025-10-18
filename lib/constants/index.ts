@@ -93,6 +93,10 @@ export const POST_QUERY = {
       query: `*[_type == "byMonth" && slug.current == '${byMonth.slug}']{heroImage, slug, title, subtitle, description, content}`,
     };
   },
+  aboutUsContent: {
+    name: "About Us Content",
+    query: `*[_type == "aboutUs"]`,
+  },
 };
 
 export const SANITY_QUERY_OPTION = {
