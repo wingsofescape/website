@@ -3,7 +3,6 @@ import WhyWOE from "../landingPage/WhyWOE";
 import { SanityDocument } from "next-sanity";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import { env } from "process";
 
 async function getFooterContent(): Promise<SanityDocument[]> {
   return await sanityFetch(POST_QUERY.footer, SANITY_QUERY_OPTION);
