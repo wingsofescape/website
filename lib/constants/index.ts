@@ -9,7 +9,7 @@ export const POST_QUERY = {
     name: "homePage",
     query: `*[
       _type == "homePage"
-      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection }`,
+      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection, whatsHotSection }`,
   },
   footer: {
     name: "Footer",

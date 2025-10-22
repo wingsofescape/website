@@ -5,16 +5,16 @@ import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { IHeroBannerButton } from "../_models/heroBanner";
 import { SanityDocument } from "next-sanity";
+import WhatsHot from "@/components/landingPage/WhatsHot";
 
 async function getHomePageContent(): Promise<SanityDocument[]> {
   return await sanityFetch(POST_QUERY.homePage, SANITY_QUERY_OPTION);
 }
 
 export default async function HomePage() {
-
   const res = await getHomePageContent();
   const data = res?.[0];
-
+  console.log(data);
   const heroBannerData = {
     heroBannerHeading: data.heroBannerHeading,
     heroBannerSubHeading: data.heroBannerSubHeading,
@@ -28,18 +28,18 @@ export default async function HomePage() {
     <>
       <div className="p-0 bg-slate-200">
         <HeroBanner data={heroBannerData} />
-        <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
-        </div>
+        <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent"></div>
       </div>
       <div className="p-0 mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
           <PageSection data={data?.luxuryHolidaySection} />
           <BookingProcess data={data.bookingProcess} />
-
         </div>
       </div>
       <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
+          <WhatsHot data={data?.whatsHotSection} />
+
           {/* Testimonials Section */}
 
           {/* <Testimonials data={data.testemonialsSection} /> */}

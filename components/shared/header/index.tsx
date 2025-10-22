@@ -52,8 +52,9 @@ const Header = () => {
         >
           {data.label}
           <svg
-            className={`w-4 h-4 transition-transform ml-2 ${isOpen ? "rotate-180" : ""
-              }`}
+            className={`w-4 h-4 transition-transform ml-2 ${
+              isOpen ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -101,8 +102,9 @@ const Header = () => {
         >
           {section.label}
           <svg
-            className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""
-              }`}
+            className={`w-4 h-4 transition-transform ${
+              isOpen ? "rotate-180" : ""
+            }`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -142,7 +144,7 @@ const Header = () => {
         {/* Logo */}
         <Link
           href={headerData.branding.logo.href}
-          className="flex items-center flex-2"
+          className="flex items-center flex-1"
         >
           <Image src={Logo2} alt="Logo" width={260} height={260} />
         </Link>
@@ -180,10 +182,10 @@ const Header = () => {
 
         {/* Desktop CTA Button */}
         {!pathname.includes("enquireNow") && (
-          <div className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 group cursor-pointer group"
-            onClick={() =>
-              (window.location.href = headerData.cta.button.href)
-            }>
+          <div
+            className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 group cursor-pointer group"
+            onClick={() => (window.location.href = headerData.cta.button.href)}
+          >
             <button
               type="button"
               className="flex items-center focus:outline-none cursor-pointer group-hover:rounded-xl group-hover:ring hover:ring-2 px-3 py-2 antialiased transition-all duration-300"
@@ -249,8 +251,9 @@ const Header = () => {
 
           {/* Sheet Menu */}
           <div
-            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-              }`}
+            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+              isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
           >
             <div className="flex flex-col flex-1 justify-between">
               <button
@@ -278,6 +281,7 @@ const Header = () => {
                   section={createDestinationList(data, "Destinations")}
                 />
                 <MobileDropdown section={headerData.navigation.inspiration} />
+                <MobileDropdown section={headerData.navigation.contactUs} />
 
                 {/* Mobile Search */}
                 {/* <div className="p-4 border-b border-gray-200">
