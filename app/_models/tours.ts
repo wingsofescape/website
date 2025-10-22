@@ -41,5 +41,5 @@ export interface Itinerary {
   day: number;
   title: string;
   description: string;
-  image: Image[]
+  image: Image[];
 }
