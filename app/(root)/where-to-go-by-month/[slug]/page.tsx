@@ -26,17 +26,17 @@ export default async function Page({ params }: PageProps) {
   const ContentSection = (whereToGoContent: IWhereToGoBycontent[]) => {
     return whereToGoContent.map((content, index) => (
       <div key={index} className="mb-10 w-11/12">
-        <div className="imageSection w-full relative">
+        <div className="imageSection w-full md:relative">
           <Image
             src={urlFor(content.image)?.url()}
             alt={content.imagesDescription || ""}
-            className="object-cover h-[40vh] md:h-[50vh] mx-auto w-1/3 float-left"
+            className="object-cover h-[40vh] md:h-[50vh] mx-auto w-full md:w-1/3 float-left mb-5 md:mb-0"
             width={1080}
             height={1920}
             placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
           />
-          <div className="contentSection absolute left-[25%] w-[70%] p-5 bg-white text-theme-primary-dark top-10 shadow">
-            <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
+          <div className="contentSection md:absolute md:left-[25%] w-full md:w-[70%] p-5 bg-white text-theme-primary-dark top-10 shadow">
+            <h3 className="text-2xl font-semibold mb-6 text-theme-primary-dark mt-5 md:mt-2">
               {content.heading}
             </h3>
             {content.subHeading && (
@@ -65,7 +65,6 @@ export default async function Page({ params }: PageProps) {
           className="object-cover"
           fill
           style={{
-            // transform: `translateY(${offsetY * 0.5}px) scale(1.08)`,
             transition: "transform 0.1s linear",
             zIndex: 1,
           }}
