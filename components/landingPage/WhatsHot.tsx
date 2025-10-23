@@ -20,10 +20,10 @@ type IWhatsHot = {
 const WhatsHot = ({ data }: { data: IWhatsHot }) => {
   return (
     <section className="md:w-4/5 py-12 px-4 bg-white flex flex-col text-theme-primary mx-auto">
-      <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary text-center">
+      <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary textleft md:text-center">
         <span className="relative inline-block pb-2">{data.heading}</span>
       </h3>
-      <h1 className="text-sx font-normal mb-2 text-theme-primary text-center">
+      <h1 className="text-sx font-normal mb-2 text-theme-primary text-left md:text-center">
         <span className="relative inline-block pb-2">{data.subHeading}</span>
       </h1>
       {/* Top Cards */}
@@ -31,14 +31,14 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
         {data.images.map((image, index) => (
           <div
             key={index}
-            className="flex flex-col items-center bg-theme-primary pt-8 px-1 mx-auto w-5/6 md:w-1/3"
+            className="flex flex-col items-center bg-theme-primary pt-4 px-1 mx-auto w-11/12 md:w-1/3"
           >
             {/* Heading */}
-            <div className="text-white text-xl font-semibold mb-2 text-center">
+            <div className="text-white text-xl font-sans mb-2 text-center">
               {image.heading}
             </div>
             {/* Image */}
-            <div className="w-full mb-2 flex items-center justify-center">
+            <div className="w-full my-2 flex items-center justify-center">
               <Image
                 src={urlFor(image.image.asset).url()}
                 alt={image.heading + " icon"}
@@ -47,14 +47,14 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
               />
             </div>
-            <div className="flex flex-col md:gap-8 justify-center mt-2">
-              <p className="text-white text-sm mb-1 px-4 text-left">
+            <div className="flex flex-col md:gap-8 mt-2">
+              <p className="text-white text-sm mb-4 md:mb-1 px-2 text-left">
                 {image.paragraph}
               </p>
               {image.content.map((content, index) => (
                 <span
                   key={index}
-                  className="text-white text-sm base px-4 text-left leading-0"
+                  className="text-white text-sm base px-4 text-left leading-6"
                 >
                   * {content}
                 </span>

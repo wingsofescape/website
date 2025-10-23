@@ -14,7 +14,6 @@ async function getHomePageContent(): Promise<SanityDocument[]> {
 export default async function HomePage() {
   const res = await getHomePageContent();
   const data = res?.[0];
-  console.log(data);
   const heroBannerData = {
     heroBannerHeading: data.heroBannerHeading,
     heroBannerSubHeading: data.heroBannerSubHeading,
@@ -26,18 +25,18 @@ export default async function HomePage() {
 
   return (
     <>
-      <div className="p-0 bg-slate-200">
+      <div className="p-0">
         <HeroBanner data={heroBannerData} />
-        <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent"></div>
+        <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent"></div>
       </div>
       <div className="p-0 mt-10">
-        <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
+        <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent">
           <PageSection data={data?.luxuryHolidaySection} />
           <BookingProcess data={data.bookingProcess} />
         </div>
       </div>
       <div className="p-0 bg-white mt-10">
-        <div className="flex flex-col items-center w-full md:w-4/5 mx-auto bg-transparent">
+        <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent">
           <WhatsHot data={data?.whatsHotSection} />
 
           {/* Testimonials Section */}

@@ -64,7 +64,7 @@ export default async function WhereToGoByMonth() {
           return (
             <Link
               key={index}
-              className="flex flex-col rounded-none overflow-hidden w-11/12 md:w-1/4 text-left my-2 md:my-10"
+              className="flex flex-col rounded-none ring-1 ring-slate-300 overflow-hidden w-11/12 md:w-1/4 text-left my-2 md:my-10"
               href={
                 data.slug.current
                   ? `/where-to-go-by-month/${data.slug.current}`
@@ -81,7 +81,7 @@ export default async function WhereToGoByMonth() {
                   priority={index < 3}
                 />
                 <div className="flex flex-col py-6 text-center px-2 absolute bottom-0 bg-theme-primary-dark w-full opacity-90 ">
-                  <p className="block text-xl font-semibold mb-3 leading-snug  transition-colors text-white">
+                  <p className="block text-sm mb-3 leading-snug  transition-colors text-white">
                     {data.title}
                   </p>
                 </div>

@@ -76,13 +76,11 @@ export default async function Top10() {
                   priority={index < 3}
                 />
                 <div className="flex flex-col py-6 text-center px-2 absolute bottom-0 bg-theme-primary-dark w-full opacity-90 ">
-
-                  <p className="block text-xl font-semibold mb-3 leading-snug  transition-colors text-white">
+                  <p className="block text-sm mb-3 transition-colors text-white">
                     {data.title}
                   </p>
                 </div>
               </div>
-
             </Link>
           );
         })}
