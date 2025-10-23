@@ -24,7 +24,7 @@ export const Footer = async () => {
         <div className="relative z-10 flex flex-col justify-center items-center flex-wrap">
           {/* Footer Links */}
           <div className="flex flex-wrap flex-1 space-y-2 text-left gap-4 px-6 text-white justify-center leading-1.5">
-            <a href="#" className="hover:underline">
+            <a href="/contact-us" className="hover:underline">
               Contact Us
             </a>
             <a href="#" className="hover:underline">
@@ -40,13 +40,13 @@ export const Footer = async () => {
               Privacy Policy
             </a>
           </div>
-          <div className="max-w-7xl mx-auto px-6 mt-2 pt-4 text-left">
-            <span className="text-gray-300">
+          <div className="max-w-7xl mx-auto px-6 mt-1 pt-2">
+            <span className="text-white">
               Copyright © 2025 Wings Of Escape Ltd.
             </span>
           </div>
           {process.env.NODE_ENV === "production" && (
-            <span className="text-gray-300">
+            <span className="text-white">
               Version {process.env.NEXT_PUBLIC_APP_VERSION || "1.0.1"}
             </span>
           )}
