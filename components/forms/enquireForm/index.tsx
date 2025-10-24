@@ -21,13 +21,14 @@ const months = [
 const years = ["Any year", "2025", "2026", "2027", "2028"];
 
 const budgets = [
-  "Select your budget *",
-  "75,000 - 1,00,000",
-  "1,00,000 - 1,50,000",
-  "1,50,000 - 2,00,000",
-  "2,00,000 - 2,50,000",
+  "Select your budget (per pax.)",
+  "Less than ₹ 75,000",
+  "₹ 75,000 - ₹ 1,00,000",
+  "₹ 1,00,000 - ₹ 1,50,000",
+  "₹ 1,50,000 - ₹ 2,00,000",
+  "₹ 2,00,000 - ₹ 2,50,000",
+  "₹ 2,50,000 +",
 ];
-
 
 const availabilities = ["Any time", "Morning", "Afternoon", "Evening"];
 
@@ -137,7 +138,6 @@ export default function EnquireNow() {
               </span>
             </div>
             <div>
-
               <div className="flex items-center gap-2">
                 <button
                   type="button"
@@ -229,7 +229,7 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, firstName: e.target.value })
             }
-          // required
+            // required
           />
           <input
             name="lastName"
@@ -239,7 +239,7 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, lastName: e.target.value })
             }
-          // required
+            // required
           />
           <div className="flex">
             <select className="border rounded-l px-2 py-2  text-theme-primary">
@@ -376,11 +376,12 @@ export default function EnquireNow() {
         </button>
         {state?.message && (
           <div
-            className={`text-sm px-4 py-2 rounded ${state.message.includes("successfully") ||
+            className={`text-sm px-4 py-2 rounded ${
+              state.message.includes("successfully") ||
               state.message.includes("Thank you")
-              ? ""
-              : ""
-              }`}
+                ? ""
+                : ""
+            }`}
           >
             {state.message}
           </div>

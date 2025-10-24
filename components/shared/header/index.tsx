@@ -188,7 +188,7 @@ const Header = () => {
           >
             <button
               type="button"
-              className="flex items-center focus:outline-none cursor-pointer group-hover:rounded-xl group-hover:ring hover:ring-2 px-3 py-2 antialiased transition-all duration-300"
+              className="flex items-center focus:outline-none cursor-pointer group-hover:rounded-xl group-hover:ring hover:ring-2 px-3 py-2 antialiased transition-all duration-300 text-xs"
             >
               {headerData.cta.button.text}
 
@@ -196,7 +196,7 @@ const Header = () => {
                 className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth={3}
+                strokeWidth={2}
                 viewBox="0 0 24 24"
               >
                 <path
