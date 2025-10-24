@@ -18,6 +18,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
       <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary text-center">
         <span className="relative inline-block pb-2">{data.heading}</span>
       </h3>
+      <hr className="w-20 h-1 bg-[#edb84c] rounded-2xl mx-auto mt-4"></hr>
       {/* Top Cards */}
       <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch mt-12 mb-8">
         {data.reasons.map((reason, index) => (
@@ -61,7 +62,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
             key={index}
             className="flex-1 bg-white shadow text-theme-primary rounded-none p-6 text-left"
           >
-            <ul className="list-disc lg:pl-4 space-y-2 text-sm lg:text-base">
+            <ul className="list-disc lg:pl-4 space-y-2 text-sm">
               {reason.whyWOEPointers.split("\n").map((point, i) => (
                 <li key={i}>{point.trim()}</li>
               ))}
