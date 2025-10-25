@@ -15,7 +15,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
   return (
     <>
       {/* Mobile Version - New responsive design with CSS blobs */}
-      <section className="lg:hidden relative min-h-[30vh]  flex items-center overflow-hidden">
+      <section className="lg:hidden relative h-[50vh]  flex items-center overflow-hidden">
         <video
           preload="auto"
           autoPlay
@@ -27,27 +27,27 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
           Your browser does not support the video tag.
         </video>
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
-          <div className="text-left space-y-6 md:space-y-8">
-            <h1 className="text-xl font-bold text-white leading-tight ">
+          <div className="text-left space-y-2">
+            <h1 className="text-md font-bold text-white leading-tight ">
               {data.heroBannerHeading}
             </h1>
 
-            <p className="text-base md:text-lg text-white leading-relaxed max-w-2xl">
+            <p className="text-xs text-white leading-relaxed max-w-2xl">
               {data.heroBannerSubHeading}
             </p>
 
             {/* Navigation Links */}
-            <div className="flex flex-wrap gap-3 md:gap-4 pt-4">
+            <div className="flex flex-wrap gap-2 md:gap-4 pt-2">
               {data?.heroBannerButtons &&
                 data?.heroBannerButtons.map(
                   (button: IHeroBannerButton, index: number) => (
                     <Link
                       href={`${button.link}`}
                       key={button?.title + index}
-                      className="group inline-flex items-center gap-2 bg-white text-gray-800 font-medium px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 border border-gray-200 text-sm md:text-base"
+                      className="group inline-flex items-center gap-2 bg-theme-primary text-white font-medium px-4 py-2 rounded-2xl text-xs"
                     >
                       {button.title}
-                      <svg
+                      {/* <svg
                         className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                         fill="none"
                         stroke="currentColor"
@@ -59,7 +59,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
                           strokeWidth={2}
                           d="M9 5l7 7-7 7"
                         />
-                      </svg>
+                      </svg> */}
                     </Link>
                   )
                 )}
@@ -83,10 +83,10 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
         </video>
         {/* <div className="absolute inset-0 bg-black/30" /> */}
         <div className="relative z-10 max-w-5xl mx-auto px-8">
-          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight drop-shadow-lg ">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight drop-shadow-lg ">
             {data.heroBannerHeading}
           </h2>
-          <p className="text-2xl lg:text-3xl text-white font-semibold mb-8 drop-shadow">
+          <p className="text-xl text-white font-semibold mb-8 drop-shadow">
             {data.heroBannerSubHeading}
           </p>
           <div className="flex flex-wrap gap-6">
