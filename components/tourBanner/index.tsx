@@ -48,7 +48,8 @@ const TourBanner = (tour: { tour: ITour }) => {
               </p>
 
               <p className="text-gray-200 mb-8 text-sm leading-relaxed">
-                🕙 {tour.tour.duration} tour for {formatPrice(tour.tour.price)}{" "}
+                🕙 {tour.tour.duration} tour starting from
+                {formatPrice(tour.tour.price)}{" "}
                 <span className="text-xs">per person</span>
               </p>
             </div>
