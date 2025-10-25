@@ -23,7 +23,8 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
       <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary textleft md:text-center">
         <span className="relative inline-block pb-2">{data.heading}</span>
       </h3>
-      <h1 className="text-sx font-normal mb-2 text-theme-primary text-left md:text-center">
+      <hr className="w-20 h-1 bg-[#edb84c] rounded-2xl mx-auto mt-2"></hr>
+      <h1 className="text-sx font-normal my-4 text-theme-primary text-left md:text-center">
         <span className="relative inline-block pb-2">{data.subHeading}</span>
       </h1>
       {/* Top Cards */}
