@@ -5,6 +5,13 @@ type IBookinProcessProps = {
 };
 
 const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
+  // Alternative filled triangle version
+  const FilledRightTriangle = () => (
+    <svg className="w-5 h-5" viewBox="0 0 20 20" fill="#1e293b">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  );
+
   const icons = [
     <svg
       key={0}
@@ -72,17 +79,26 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
       <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         {data.bookingSteps.map(
           (step: { content: string; heading: string }, index: number) => (
-            <div key={index}>
-              <div className="flex justify-center mb-4">
-                <span className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-theme-primary">
-                  {icons[index]}
-                </span>
+            <React.Fragment key={index}>
+              <div className="relative">
+                <div className="flex justify-center mb-4">
+                  <span className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-theme-primary">
+                    {icons[index]}
+                  </span>
+                </div>
+                <div className="text-md font-bold mb-2">
+                  {index + 1}. {step.heading}
+                </div>
+                <div className="text-sm ">{step.content}</div>
+
+                {/* Triangle separator - only show if not the last step */}
+                {index < data.bookingSteps.length - 1 && (
+                  <div className="hidden md:block absolute top-12 -right-4 text-theme-primary">
+                    <FilledRightTriangle />
+                  </div>
+                )}
               </div>
-              <div className="text-md font-bold mb-2">
-                {index + 1}. {step.heading}
-              </div>
-              <div className="text-sm ">{step.content}</div>
-            </div>
+            </React.Fragment>
           )
         )}
       </div>

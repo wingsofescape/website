@@ -6,11 +6,17 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import { IHeroBannerButton } from "../_models/heroBanner";
 import { SanityDocument } from "next-sanity";
 import WhatsHot from "@/components/landingPage/WhatsHot";
+import RecommendedToursSlider, {
+  IRecommendedTour,
+} from "@/components/recommendedTours";
 
 async function getHomePageContent(): Promise<SanityDocument[]> {
   return await sanityFetch(POST_QUERY.homePage, SANITY_QUERY_OPTION);
 }
 
+async function getRecommendedTours(): Promise<IRecommendedTour[]> {
+  return await sanityFetch(POST_QUERY.getRecommendedTours, SANITY_QUERY_OPTION);
+}
 export default async function HomePage() {
   const res = await getHomePageContent();
   const data = res?.[0];
@@ -20,6 +26,8 @@ export default async function HomePage() {
     heroBannerButtons: data.heroBannerButtons as IHeroBannerButton[],
     image: data.heroBannerImage,
   };
+  const res1 = await getRecommendedTours();
+  console.log(res1);
 
   if (!data) return <p>Loading...</p>;
 
@@ -29,12 +37,21 @@ export default async function HomePage() {
         <HeroBanner data={heroBannerData} />
         <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent"></div>
       </div>
-      <div className="p-0 mt-10">
+      <div className="p-0">
+        <div className="flex flex-col items-center w-full mx-auto bg-transparent">
+          <RecommendedToursSlider
+            recommendedToursContent={res1 as IRecommendedTour[]}
+          />
+        </div>
+      </div>
+      <div className="p-0">
         <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent">
+          {/* Recommended Tours Slider */}
           <PageSection data={data?.luxuryHolidaySection} />
           <BookingProcess data={data.bookingProcess} />
         </div>
       </div>
+
       <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent">
           <WhatsHot data={data?.whatsHotSection} />
@@ -42,46 +59,6 @@ export default async function HomePage() {
           {/* Testimonials Section */}
 
           {/* <Testimonials data={data.testemonialsSection} /> */}
-          {/* <section className="flex flex-col md:flex-row w-full md:h-[600px] mb-10">
-            <div
-              className="flex-1 flex items-center justify-center bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${Background1.src})`,
-              }}
-            >
-              <div className="bg-theme-primary-dark/75 p-12 rounded-none md:rounded-sm max-w-xl w-full mx-8 text-center flex flex-col items-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                  Traveler&apos;s Clubs
-                </h2>
-                <p className="text-lg text-white mb-10">
-                  Dreaming of a holiday but not sure where to go? Look no
-                  further than our monthly travel guide.
-                </p>
-                <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded transition-all duration-200 text-lg shadow-lg">
-                  READ MORE
-                </button>
-              </div>
-            </div>
-            <div
-              className="flex-1 flex items-center justify-center bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${Background2.src})`,
-              }}
-            >
-              <div className="bg-theme-primary-dark/75 p-12 rounded-none md:rounded-sm max-w-xl w-full mx-8 text-center flex flex-col items-center">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                  When to Go Where
-                </h2>
-                <p className="text-lg text-white mb-10">
-                  Dreaming of a holiday but not sure where to go? Look no
-                  further than our monthly travel guide.
-                </p>
-                <button className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded transition-all duration-200 text-lg shadow-lg">
-                  READ MORE
-                </button>
-              </div>
-            </div>
-          </section> */}
         </div>
       </div>
     </>
