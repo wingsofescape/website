@@ -43,6 +43,10 @@ export const POST_QUERY = {
       query: `*[_type == "tour" && slug.current == '${tourSlug}']`,
     };
   },
+  getRecommendedTours: {
+    name: "Recommended tours List",
+    query: `*[_type == "tour" && recommended == true ]{ _id, title, slug, image, duration, price, countryName}`,
+  },
   blogs: {
     name: "blogs",
     query: `*[_type == "blog"] | order(date desc){_createdAt, blogHeroImage, author, slug, title, date}`,

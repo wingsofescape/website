@@ -22,7 +22,7 @@ export default function TourDetailsPage({
     POST_QUERY.singleTour(tourSlug),
     SANITY_QUERY_OPTION,
     allTours[`${destinationName}Tours` as keyof typeof allTours]?.[0] ||
-    allTours["srilankaTours"][0]
+      allTours["srilankaTours"][0]
   );
 
   if (!tour) {
@@ -102,7 +102,7 @@ export default function TourDetailsPage({
                 {/* Timeline vertical line for the whole itinerary */}
                 <div className="absolute left-6.5 top-0 bottom-0 w-1 z-0 pointer-events-none itinerary-line" />
                 {tour.itinerary.map((day: Itinerary) => (
-                  <UniqueDay key={day.day} day={day} />
+                  <UniqueDay key={day.title} day={day} />
                 ))}
               </div>
             </section>
