@@ -28,7 +28,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
         </video>
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6">
           <div className="text-left space-y-6 md:space-y-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight ">
+            <h1 className="text-xl font-bold text-white leading-tight ">
               {data.heroBannerHeading}
             </h1>
 
@@ -70,8 +70,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
 
       {/* Desktop Version - Original design with background image */}
 
-      <section
-        className="hidden lg:flex relative h-[600px] items-center">
+      <section className="hidden lg:flex relative h-[600px] items-center">
         <video
           preload="auto"
           autoPlay
@@ -84,7 +83,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
         </video>
         {/* <div className="absolute inset-0 bg-black/30" /> */}
         <div className="relative z-10 max-w-5xl mx-auto px-8">
-          <h2 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-tight drop-shadow-lg ">
+          <h2 className="text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight drop-shadow-lg ">
             {data.heroBannerHeading}
           </h2>
           <p className="text-2xl lg:text-3xl text-white font-semibold mb-8 drop-shadow">
