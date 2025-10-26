@@ -13,14 +13,14 @@ export async function generateStaticParams() {
   return await sanityFetch(POST_QUERY.destinationList, SANITY_QUERY_OPTION);
 }
 
-export async function getDestination(destinationName: string) {
+async function getDestinationData(destinationName: string) {
   return await sanityFetch(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION
   );
 }
 const Destination = async ({ params }: PageProps) => {
-  const res = await getDestination((await params).destinationName);
+  const res = await getDestinationData((await params).destinationName);
   const destination = res?.[0];
   console.log(destination);
 
