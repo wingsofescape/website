@@ -1,12 +1,9 @@
 import React from "react";
-import Image from "next/image";
 import { TopTours } from "@/components/topTours";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import { urlFor } from "@/sanity/lib/image";
 import HeroBanner from "@/components/heroBanner/HeroBanner";
 // import { createBreadcrumbs } from "@/utils/createBreadcrumbs";
 import { sanityFetch } from "@/sanity/lib/fetch";
-
 
 type PageProps = {
   params: Promise<{ destinationName: string }>;
@@ -16,31 +13,21 @@ export async function generateStaticParams() {
   return await sanityFetch(POST_QUERY.destinationList, SANITY_QUERY_OPTION);
 }
 
-async function getDestination(destinationName: string) {
+export async function getDestination(destinationName: string) {
   return await sanityFetch(
     POST_QUERY.destination(destinationName),
     SANITY_QUERY_OPTION
   );
 }
-const Destination = async ({
-  params,
-}: PageProps) => {
-  // const [activeTab, setActiveTab] = useState('holidaysOverview');
-  // const pathname = usePathname();
-
-  // const breadCrumbs = createBreadcrumbs(pathname);
-
-  const res = await getDestination((await params).destinationName)
-  const destination = res?.[0]
+const Destination = async ({ params }: PageProps) => {
+  const res = await getDestination((await params).destinationName);
+  const destination = res?.[0];
+  console.log(destination);
 
   const tours = await sanityFetch(
     POST_QUERY.tours((await params).destinationName),
     SANITY_QUERY_OPTION
   );
-  const image =
-    typeof destination.destinationHeroBanner.heroImage === "string"
-      ? destination.destinationHeroBanner.heroImage
-      : urlFor(destination.destinationHeroBanner.heroImage.asset)?.url();
 
   const getActiveTabContent = (destinationContentType: string) => {
     return destination.destinationContent[destinationContentType];
@@ -50,65 +37,18 @@ const Destination = async ({
     <div className="bg-white flex flex-col">
       {/* Hero Banner Section */}
       <section className="relative">
-        {/* Mobile-First Design */}
-        <div className="lg:hidden">
-          {/* Mobile Breadcrumbs */}
-          <nav className="bg-theme-primary-dark px-4 py-3">
-            <div className="flex items-center space-x-2 text-sm">
-              {/* {breadCrumbs.map(
-                (crumb: { label: string; ref: string }, index: number) => (
-                  <React.Fragment key={crumb.ref}>
-                    <Link
-                      href={crumb.ref}
-                      className="text-white hover:text-amber-300 transition-colors"
-                    >
-                      {crumb.label}
-                    </Link>
-                    {index < breadCrumbs.length - 1 && (
-                      <span className="text-gray-300">›</span>
-                    )}
-                  </React.Fragment>
-                )
-              )} */}
-            </div>
-          </nav>
-
-          {/* Mobile Hero Image */}
-          <div className="relative h-64 md:h-80">
-            <Image
-              src={image}
-              alt={destination.destinationHeroBanner.title}
-              priority
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          </div>
-
-          {/* Mobile Content */}
-          <div className="bg-theme-primary-dark text-white px-4 py-8">
-            <h1 className="text-2xl md:text-3xl font-bold mb-4 ">
-              {destination.destinationHeroBanner.title}
-            </h1>
-            <p className="text-white text-xs mb-6 leading-relaxed">
-              {destination.destinationHeroBanner.description}
-            </p>
-          </div>
-        </div>
-
         {/* Desktop Design - Half and Half Layout */}
         <HeroBanner destination={destination} />
       </section>
 
       <section className="py-8 px-4 lg:px-12 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200">
+          {/* <div className="mb-8">
+            <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200 text-theme-primary-dark">
               {destination.destinationContent["holidaysOverview"].title}
-              {/* {destination.destinationContent["tourIdeas"].title} */}
+              {/* {destination.destinationContent["tourIdeas"].title}
             </div>
-          </div>
+          </div> */}
 
           <div className="bg-white  shadow-sm  p-6">
             <div className="max-w-full">

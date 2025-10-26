@@ -16,7 +16,7 @@ export interface DestinationHeroBanner {
   name: string;
   title: string;
   description: string;
-  heroImage: Image;
+  heroImage: { asset: string };
   keywords: string[] | undefined;
 }
 
