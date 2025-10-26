@@ -4,7 +4,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import HeroBannerNew from "@/components/heroBanner/HeroBannerNew";
+import SimpleHeroBanner from "@/components/heroBanner/SimpleHeroBanner";
 
 export interface PageDataType {
   _createdAt: string;
@@ -57,7 +57,7 @@ export default async function WhereToGoByMonth() {
 
   return (
     <div className="whereToGoLandingPage">
-      <HeroBannerNew data={headerData} />
+      <SimpleHeroBanner data={headerData} />
 
       <div className="flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
         {whereToGoData.map((data: PageDataType, index: number) => {

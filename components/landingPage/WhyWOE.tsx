@@ -43,7 +43,7 @@ const WhyWOE = ({ data }: { data: IWhyWoe }) => {
               {reason.whyWOEHeading}
             </div>
             {/* Image */}
-            <div className="w-full h-52 md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
+            <div className="relative  w-full h-52 md:h-36 mb-2 rounded-none overflow-hidden flex items-center justify-center">
               <Image
                 src={urlFor(reason.whyWOEImage.asset).url()}
                 alt={reason.whyWOEHeading + " icon"}

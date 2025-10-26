@@ -9,6 +9,7 @@ import {
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { urlFor } from "@/sanity/lib/image";
+import { formatPrice } from "@/utils/priceFormatter";
 
 export const TopTours = (props: {
   tours: ITour[];
@@ -111,7 +112,7 @@ const TourCard = ({
             <div className="text-sm flex flex-col">
               <span className="opacity-80">from</span>
               <div className="text-xl font-bold">
-                {tour.price.toLocaleString()}{" "}
+                {formatPrice(tour.price)}{" "}
                 <span className="text-base font-normal opacity-80">inr.</span>
               </div>
             </div>

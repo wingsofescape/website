@@ -1,75 +1,63 @@
-"use client";
 import Link from "next/link";
-import { use } from "react";
-import { allDestination, allTours } from "@/data/countries";
 import HeroBanner from "@/components/heroBanner/HeroBanner";
-import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import Image from "next/image";
 import { ITour } from "@/app/_models/tours";
 import { urlFor } from "@/sanity/lib/image";
 import { formatPrice } from "@/utils/priceFormatter";
+import { sanityFetch } from "@/sanity/lib/fetch";
+import { IDestination } from "@/app/_models/destinations";
 
-export default function DestinationToursPage({
+async function getDestinationData(name: string): Promise<IDestination[]> {
+  return await sanityFetch(POST_QUERY.destination(name), SANITY_QUERY_OPTION);
+}
+async function getToursData(name: string): Promise<ITour[]> {
+  return await sanityFetch(POST_QUERY.tours(name), SANITY_QUERY_OPTION);
+}
+
+export default async function DestinationToursPage({
   params,
 }: {
   params: Promise<{ destinationName: string }>;
 }) {
-  const { destinationName } = use<{ destinationName: string }>(params);
-  const tourDescription =
-    allTours[`${destinationName}Tours` as keyof typeof allTours]?.description ||
-    allTours["srilankaTours"].description;
-
-  const destination = useFetchData(
-    POST_QUERY.destination(destinationName),
-    SANITY_QUERY_OPTION,
-    allDestination[destinationName as keyof typeof allDestination] ||
-    allDestination["srilanka"]
-  );
-  const tours = useFetchData(
-    POST_QUERY.tours(destinationName),
-    SANITY_QUERY_OPTION,
-    allTours[`${destinationName}Tours` as keyof typeof allTours] ||
-    allTours["srilankaTours"]
-  );
+  const res = await getDestinationData((await params).destinationName);
+  const destination = res?.[0];
+  const tours = await getToursData((await params).destinationName);
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-white">
       {/* Hero Section */}
       <HeroBanner destination={destination} />
 
-      <div className="bg-white rounded-lg shadow-sm p-8 lg:p-6 flex justify-center">
+      <div className="bg-white rounded-lg p-8 lg:p-6 flex justify-center">
         <div className="max-w-4xl">
-          <h2 className="text-2xl lg:text-3xl mb-6 font-bold text-theme-primary-dark">
+          <h2 className="text-2xl lg:text-3xl mb-2 font-bold text-theme-primary-dark">
             {destination.destinationHeroBanner.name} Tours
           </h2>
-
-          <div className="prose prose-lg max-w-none">{tourDescription}</div>
         </div>
       </div>
 
       {/* Tours Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-8">
+        <div className="mx-auto px-4 w-11/12">
           <div className="tour-count flex justify-end">
-            <span className="text-gray-600 mb-6 font-semibold text-lg">
+            <span className="text-gray-600 mb-6 font-semibold text-sm">
               {" "}
               Showing 1 - {tours.length} of {tours.length} tours{" "}
             </span>
           </div>
 
           <div className="flex flex-col gap-8">
-            {tours.map((tour: ITour) => (
+            {tours.map(async (tour: ITour) => (
               <Link
                 key={tour.id}
                 href={
                   tour.isIdea
                     ? "/forms/enquireNow"
-                    : `/destination/${destinationName}/tours/${tour.slug.current}`
+                    : `/destination/${(await params).destinationName}/tours/${tour.slug.current}`
                 }
-                className="group"
               >
-                <div className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row">
+                <div className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row group">
                   {/* Tour Image & Badge */}
                   <div className="relative h-75 w-full md:w-2/5">
                     <Image
@@ -84,7 +72,7 @@ export default function DestinationToursPage({
                       height={0}
                     />
                     {/* Nights Badge */}
-                    <div className="absolute bottom-0 left-0 bg-theme-primary text-white px-4 py-2 font-bold text-center shadow-lg opacity-60">
+                    <div className="absolute bottom-0 left-0 bg-theme-primary text-white px-4 py-2 font-bold text-center shadow-lg opacity-80">
                       {/* Extract number of nights from duration string */}
                       <div className="text-lg leading-none">
                         {tour.duration.split(" ")[0]}
@@ -96,7 +84,7 @@ export default function DestinationToursPage({
                   {/* Tour Content */}
                   <div className="flex-1 p-6 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-2xl font-bold mb-2 text-theme-primary group-hover:text-theme-primary transition-colors">
+                      <h3 className="text-2xl font-bold mb-2 text-theme-primary">
                         {tour.title}
                       </h3>
                       {/* Location/Itinerary */}
@@ -117,7 +105,7 @@ export default function DestinationToursPage({
                           </span>
                         </div>
                       </div>
-                      <div className="bg-theme-primary text-white px-6 py-2 font-semibold hover:bg-theme-primary transition-colors">
+                      <div className="bg-theme-primary text-white px-6 py-2 font-semibold group-hover:bg-theme-primary-light transition-colors">
                         {tour.isIdea ? "ENQUIRE NOW" : "VIEW TOUR "}
                       </div>
                     </div>
@@ -129,7 +117,7 @@ export default function DestinationToursPage({
 
           {/* Call to Action */}
           <div className="mt-16 text-center">
-            <h2 className="text-2xl font-bold mb-4">
+            <h2 className="text-2xl font-bold mb-4 text-theme-primary-dark">
               Can&apos;t Find What You&apos;re Looking For?
             </h2>
             <p className="text-gray-600 mb-6">

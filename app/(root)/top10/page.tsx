@@ -4,7 +4,7 @@ import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/fetch";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import HeroBannerNew from "@/components/heroBanner/HeroBannerNew";
+import SimpleHeroBanner from "@/components/heroBanner/SimpleHeroBanner";
 
 export interface PageDataType {
   _createdAt: string;
@@ -56,7 +56,7 @@ export default async function Top10() {
 
   return (
     <div className="top10ContentPage">
-      <HeroBannerNew data={data} />
+      <SimpleHeroBanner data={data} />
 
       <div className="flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
         {top10Data.map((data: PageDataType, index: number) => {
