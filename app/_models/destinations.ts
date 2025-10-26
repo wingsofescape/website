@@ -17,7 +17,7 @@ export interface DestinationHeroBanner {
   title: string;
   description: string;
   heroImage: Image;
-  keywords: string[];
+  keywords: string[] | undefined;
 }
 
 export interface DestinationContent {
