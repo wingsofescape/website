@@ -33,6 +33,12 @@ export const destinationType = defineType({
           name: "heroImage",
           type: "image",
         }),
+        defineField({
+          name: "keywords",
+          title: "Keywords",
+          type: "array",
+          of: [{ type: "string" }],
+        }),
       ],
     }),
     defineField({
@@ -77,7 +83,7 @@ export const destinationType = defineType({
       fields: [
         { name: "title", title: "Title", type: "string" },
         { name: "description", title: "Description", type: "text" },
-        ],
+      ],
     },
   ],
 });

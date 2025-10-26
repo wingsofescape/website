@@ -52,32 +52,35 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
               <p className="text-white mb-8 text-xs leading-relaxed font-extralight">
                 {destination.destinationHeroBanner.description}
               </p>
-              <div className="pills flex gap-6">
-                <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
-                  Luxury
+              {destination.destinationHeroBanner.keywords.length && (
+                <div className="pills flex gap-6">
+                  {destination.destinationHeroBanner.keywords.map(
+                    (keyword, index) => (
+                      <div
+                        key={index}
+                        className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none"
+                      >
+                        {keyword}
+                      </div>
+                    )
+                  )}
                 </div>
-                <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
-                  Escape
-                </div>
-                <div className="bg-theme-primary-light text-white rounded-4xl px-10 py-2 text-xs opacity-70 pointer-events-none">
-                  Historic
-                </div>
-              </div>
+              )}
             </div>
           </div>
+        </div>
 
-          <div className="relative overflow-hidden flex-1 w-1/2">
-            <Image
-              src={image}
-              alt={destination.destinationHeroBanner.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover object-bottom hover:scale-105   transition-transform duration-700"
-              priority
-            />
-            {/* Optional overlay for better text contrast if needed */}
-            <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/10" />
-          </div>
+        <div className="relative overflow-hidden flex-1 w-1/2">
+          <Image
+            src={image}
+            alt={destination.destinationHeroBanner.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-bottom hover:scale-105   transition-transform duration-700"
+            priority
+          />
+          {/* Optional overlay for better text contrast if needed */}
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/10" />
         </div>
       </div>
     </div>
