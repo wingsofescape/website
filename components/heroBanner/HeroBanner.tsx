@@ -52,7 +52,7 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
               <p className="text-white mb-8 text-xs leading-relaxed font-extralight">
                 {destination.destinationHeroBanner.description}
               </p>
-              {destination.destinationHeroBanner.keywords.length && (
+              {destination.destinationHeroBanner.keywords?.length && (
                 <div className="pills flex gap-6">
                   {destination.destinationHeroBanner.keywords.map(
                     (keyword, index) => (
