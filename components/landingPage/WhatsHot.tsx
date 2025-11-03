@@ -18,8 +18,8 @@ type IWhatsHot = {
 };
 
 const WhatsHot = ({ data }: { data: IWhatsHot }) => {
-  return (
-    <section className="md:w-4/5 py-12 px-4 bg-white flex flex-col text-theme-primary mx-auto">
+  const WhatsHotHeading =
+    <>
       <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary textleft md:text-center">
         <span className="relative inline-block pb-2">{data.heading}</span>
       </h3>
@@ -27,42 +27,43 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
       <h1 className="text-sx font-normal my-4 text-theme-primary text-left md:text-center">
         <span className="relative inline-block pb-2">{data.subHeading}</span>
       </h1>
+    </>;
+  return (
+    <section className="lg:w-4/5 py-2 px-4 bg-white flex flex-col text-theme-primary mx-auto lg:h-[90vh]">
+      {WhatsHotHeading}
       {/* Top Cards */}
-      <div className="flex flex-col md:flex-row gap-8 justify-center">
+      <div className="flex flex-col md:flex-row gap-1 md:gap-8 justify-center">
         {data.images.map((image, index) => (
           <div
             key={index}
-            className="flex flex-col items-center bg-theme-primary pt-4 px-1 mx-auto w-11/12 md:w-1/3"
+            className="flex flex-col items-center w-full md:w-1/3 relative"
           >
-            {/* Heading */}
-            <div className="text-white text-xl font-sans mb-2 text-center">
-              {image.heading}
-            </div>
-            {/* Image */}
-            <div className="w-full my-2 flex items-center justify-center">
-              <Image
-                src={urlFor(image.image.asset).url()}
-                alt={image.heading + " icon"}
-                fill
-                className="object-cover !static"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
-              />
-            </div>
-            <div className="flex flex-col md:gap-8 mt-2">
-              <p className="text-white text-sm mb-4 md:mb-1 px-2 text-left">
+            <Image
+              src={urlFor(image.image.asset).url()}
+              alt={image.heading + " icon"}
+              fill
+              className="object-cover !static"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+            />
+            <div className="w-11/12 lg:w-4/5 items-left justify-center bg-theme-primary
+            -translate-y-1/5 shadow-lg flex flex-col md:gap-2 mt-2 px-2 pt-4">
+              <div className="text-white text-sm lg:text-xl font-sans mb-2 text-center">
+                {image.heading}
+              </div>
+              <p className="text-white text-xs lg:text-sm mb-4 md:mb-1 px-2 text-left">
                 {image.paragraph}
               </p>
               {image.content.map((content, index) => (
                 <span
                   key={index}
-                  className="text-white text-sm base px-4 text-left leading-6"
+                  className="text-white text-xs lg:text-sm px-2 text-left leading-6"
                 >
                   * {content}
                 </span>
               ))}
               <Link
                 href={image.link || "#"}
-                className="bg-theme-primary-light hover:bg-theme-primary-dark text-white font-medium p-4 mt-4 rounded transition-all duration-200 text-center"
+                className="bg-theme-primary-light hover:bg-theme-primary-dark text-white text-xs p-4 mt-4 rounded transition-all duration-200 text-center"
               >
                 {image.buttonText}
               </Link>
