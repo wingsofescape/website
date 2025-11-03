@@ -9,6 +9,7 @@ import WhatsHot from "@/components/landingPage/WhatsHot";
 import RecommendedToursSlider, {
   IRecommendedTour,
 } from "@/components/recommendedTours";
+import PlanYourTrip from "@/components/landingPage/PlanYourTrip";
 
 async function getHomePageContent(): Promise<SanityDocument[]> {
   return await sanityFetch(POST_QUERY.homePage, SANITY_QUERY_OPTION);
@@ -27,7 +28,7 @@ export default async function HomePage() {
     image: data.heroBannerImage,
   };
   const res1 = await getRecommendedTours();
-  console.log(res1);
+  console.log(res1, data);
 
   if (!data) return <p>Loading...</p>;
 
@@ -55,12 +56,13 @@ export default async function HomePage() {
       <div className="p-0 bg-white mt-10">
         <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent">
           <WhatsHot data={data?.whatsHotSection} />
-
-          {/* Testimonials Section */}
-
+          {/* <WhereToGoSection data={data?.whereToGoSection} /> */}
           {/* <Testimonials data={data.testemonialsSection} /> */}
         </div>
+        <PlanYourTrip />
+
       </div>
+
     </>
   );
 }
