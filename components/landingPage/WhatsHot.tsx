@@ -20,7 +20,7 @@ type IWhatsHot = {
 const WhatsHot = ({ data }: { data: IWhatsHot }) => {
   const WhatsHotHeading =
     <>
-      <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary textleft md:text-center">
+      <h3 className="text-2xl md:text-4xl font-bold mb-2 text-theme-primary textleft md:text-center mt-12">
         <span className="relative inline-block pb-2">{data.heading}</span>
       </h3>
       <hr className="w-20 h-1 bg-[#edb84c] rounded-2xl mx-auto mt-2"></hr>
@@ -50,17 +50,9 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
               <div className="text-white text-sm lg:text-xl font-sans mb-2 text-center">
                 {image.heading}
               </div>
-              <p className="text-white text-xs lg:text-sm mb-4 md:mb-1 px-2 text-left">
+              <p className="text-white text-xs lg:text-sm mb-4 md:mb-1 px-2 text-center">
                 {image.paragraph}
               </p>
-              {image.content.map((content, index) => (
-                <span
-                  key={index}
-                  className="text-white text-xs lg:text-sm px-2 text-left leading-6"
-                >
-                  * {content}
-                </span>
-              ))}
               <Link
                 href={image.link || "#"}
                 className="bg-theme-primary-light hover:bg-theme-primary-dark text-white text-xs p-4 mt-4 rounded transition-all duration-200 text-center"

@@ -15,7 +15,7 @@ type IWhyWoe = {
 const WhyWOE = ({ data }: { data: IWhyWoe }) => {
   return (
     <section className="md:w-4/5 py-12 px-4 bg-white flex flex-col text-theme-primary mx-auto">
-      <h3 className="text-3xl md:text-5xl font-bold mb-2 text-theme-primary text-center">
+      <h3 className="text-2xl md:text-4xl font-bold mb-2 text-theme-primary text-center">
         <span className="relative inline-block pb-2">{data.heading}</span>
       </h3>
       <hr className="w-20 h-1 bg-[#edb84c] rounded-2xl mx-auto mt-4"></hr>
