@@ -15,7 +15,6 @@ const ContactUs = () => {
       </h2>
       <div className="card-container flex flex-col md:flex-row gap-4 md:gap-8 w-full md:w-2/3 p-8">
         <div className="card rounded-2xl w-full shadow-xl p-6 md:h-50 md:w-1/3 flex flex-row-reverse md:flex-col justify-between relative">
-          {/* <div className="overlay bg-slate-100 h-full w-full absolute opacity-20 top-0 left-0 rounded-2xl"></div> */}
           <div className="iconContainer">
             <svg
               xmlns="http://www.w3.org/2000/svg"

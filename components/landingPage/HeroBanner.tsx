@@ -32,7 +32,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
               {data.heroBannerHeading}
             </h1>
 
-            <p className="text-xs text-white leading-relaxed max-w-2xl">
+            <p className="text-xs text-white leading-relaxed max-w-2xl font-medium">
               {data.heroBannerSubHeading}
             </p>
 

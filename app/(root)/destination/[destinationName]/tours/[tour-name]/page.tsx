@@ -1,29 +1,38 @@
-"use client";
 import React from "react";
 import { notFound } from "next/navigation";
-import { use } from "react";
 import TourBanner from "@/components/tourBanner";
-import { allTours } from "@/data/countries";
-import { useFetchData } from "@/hooks/useFetchData";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import { Itinerary } from "@/app/_models/tours";
+import { Itinerary, ITour } from "@/app/_models/tours";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import PlanYourTrip from "@/components/landingPage/PlanYourTrip";
+import { sanityFetch } from "@/sanity/lib/fetch";
 
 type ParamTye = { destinationName: string; "tour-name": string };
 
-export default function TourDetailsPage({
+async function getDestinationHeroBanner(destinationName: string) {
+  return await sanityFetch(
+    POST_QUERY.destinationHeroBannerData(destinationName),
+    SANITY_QUERY_OPTION
+  );
+}
+
+async function getToursData(name: string): Promise<ITour[]> {
+  return await sanityFetch(POST_QUERY.singleTour(name), SANITY_QUERY_OPTION);
+}
+
+
+const TourDetailsPage = async ({
   params,
 }: {
   params: Promise<ParamTye>;
-}) {
-  const { destinationName, "tour-name": tourSlug } = use<ParamTye>(params);
-  const tour = useFetchData(
-    POST_QUERY.singleTour(tourSlug),
-    SANITY_QUERY_OPTION,
-    allTours[`${destinationName}Tours` as keyof typeof allTours]?.[0] ||
-      allTours["srilankaTours"][0]
-  );
+}) => {
+  const destinationName = (await params).destinationName;
+  const res = await getDestinationHeroBanner(destinationName);
+  const destinationBannerImage = res?.[0].destinationHeroBanner.heroImage;
+
+  const response = await getToursData((await params)["tour-name"]);
+  const tour = response?.[0];
 
   if (!tour) {
     notFound();
@@ -49,14 +58,7 @@ export default function TourDetailsPage({
             {day.title}
           </h3>
           <p className="text-sm text-gray-700 mb-1">{day.description}</p>
-          <span>
-            <strong>
-              Accommodation:{" "}
-              <a href="#" title="Uga Ulagalla">
-                {day.title}
-              </a>
-            </strong>
-          </span>
+
           {/* Images placeholder */}
           {day.image && day.image.length > 0 && (
             <div className="relative h-100 md:h-55 w-11/12 lg:w-3/4 overflow-hidden bg-cover bg-center bg-no-repeat flex flex-col md:flex-row">
@@ -83,7 +85,7 @@ export default function TourDetailsPage({
       <TourBanner tour={tour} />
 
       {/* Main Content */}
-      <div className="md:container mx-auto px-4 py-12">
+      <div className="md:container mx-auto px-4 pt-12">
         <div className="flex flex-col lg:flex-row gap-12">
           {/* Main Content */}
           <div className="flex-1">
@@ -109,6 +111,10 @@ export default function TourDetailsPage({
           </div>
         </div>
       </div>
+      <div className="p-0 bg-white mt-10">
+        <PlanYourTrip page={'tour'} country={destinationName} image={destinationBannerImage} />
+      </div>
     </div>
   );
 }
+export default TourDetailsPage;
