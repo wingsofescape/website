@@ -31,6 +31,12 @@ export const POST_QUERY = {
       query: `*[_type == "destination" && slug == '${destSlug}']{ _id, destinationHeading, destinationContent, destinationHeroBanner, recommendedToursContent}`,
     };
   },
+  destinationHeroBannerData(destSlug: string) {
+    return {
+      name: `destination-${destSlug}`,
+      query: `*[_type == "destination" && slug == '${destSlug}']{ _id,  destinationHeroBanner}`,
+    };
+  },
   tours(destSlug: string) {
     return {
       name: `${destSlug} - tours`,

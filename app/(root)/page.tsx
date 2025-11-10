@@ -59,7 +59,7 @@ export default async function HomePage() {
           {/* <WhereToGoSection data={data?.whereToGoSection} /> */}
           {/* <Testimonials data={data.testemonialsSection} /> */}
         </div>
-        <PlanYourTrip />
+        <PlanYourTrip page="landing" />
 
       </div>
 

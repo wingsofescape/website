@@ -20,7 +20,7 @@ export const Footer = async () => {
         style={{ backgroundImage: "url('/images/footer.jpg')" }}
       >
         {/* Overlay for readability */}
-
+        {/* <div className="overlay opacity-30 bg-slate-300 h-full absolute top-0 right-0 w-full z-10" /> */}
         <div className="relative z-10 flex flex-col justify-center items-center flex-wrap">
           {/* Footer Links */}
           <div className="flex flex-wrap flex-1 space-y-2 text-left gap-4 px-6 text-white justify-center leading-1.5">

@@ -11,6 +11,7 @@ import { IDestination } from "@/app/_models/destinations";
 async function getDestinationData(name: string): Promise<IDestination[]> {
   return await sanityFetch(POST_QUERY.destination(name), SANITY_QUERY_OPTION);
 }
+
 async function getToursData(name: string): Promise<ITour[]> {
   return await sanityFetch(POST_QUERY.tours(name), SANITY_QUERY_OPTION);
 }
