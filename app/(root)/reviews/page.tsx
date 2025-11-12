@@ -23,14 +23,14 @@ export default function Reviews() {
         <>
             <div className='container p-5 md:p-20 mx-auto flex flex-col md:flex-row gap-8'>
                 <div className='flex flex-col'>
-                    <h1 className='text-theme-primary-dark text-6xl my-10'>
+                    <h1 className='text-theme-primary-dark text-4xl md:text-6xl my-10'>
                         Happy Escapes
                     </h1>
-                    <p className='text-theme-primary-dark text-xl font-extralight'>
+                    <p className='text-theme-primary-dark text-md md:text-xl font-extralight'>
                         As your travel plans take shape, our excitement to craft an unforgettable journey for you only grows stronger.
                     </p>
                     <br></br>
-                    <p className='text-theme-primary-dark text-xl'>When you return, your stories, smiles, and memories become part of what inspires us every day. Share your experience, send us your favourite moments, and join our ever-growing circle of happy travellers - because with Wings of Escape, every journey is just the beginning.</p>
+                    <p className='text-theme-primary-dark text-md md:text-xl'>When you return, your stories, smiles, and memories become part of what inspires us every day. Share your experience, send us your favourite moments, and join our ever-growing circle of happy travellers - because with Wings of Escape, every journey is just the beginning.</p>
                 </div>
                 <Image
                     src="/images/reviewsImage.jpg"
