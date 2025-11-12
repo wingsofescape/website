@@ -29,7 +29,7 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
       </h1>
     </>;
   return (
-    <section className="lg:w-4/5 py-2 px-4 bg-white flex flex-col text-theme-primary mx-auto lg:h-[90vh]">
+    <section className="lg:w-4/5 py-2 px-4 bg-white flex flex-col text-theme-primary mx-auto lg:h-[80vh]">
       {WhatsHotHeading}
       {/* Top Cards */}
       <div className="flex flex-col md:flex-row gap-1 md:gap-8 justify-center">
@@ -46,7 +46,7 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
             />
             <div className="w-11/12 lg:w-4/5 items-left justify-center bg-theme-primary
-            -translate-y-1/5 shadow-lg flex flex-col md:gap-2 mt-2 px-2 pt-4">
+            -translate-y-1/5 shadow-lg flex flex-col md:gap-2 mt-2 px-2 pt-4 h-5/6">
               <div className="text-white text-sm lg:text-xl font-sans mb-2 text-center">
                 {image.heading}
               </div>

@@ -1,124 +1,27 @@
 'use client';
 import FullPageSlider from '@/components/fullPageSlider/FullPageSlider';
+import { POST_QUERY, SANITY_QUERY_OPTION } from '@/lib/constants';
+import { sanityFetch } from '@/sanity/lib/fetch';
 import Image from 'next/image'
 import React from 'react'
-// const reviewContent = [
-//     {
-//         name: 'Test',
-//         review: 'TestReview',
-//         destination: 'Test',
-//         image: '/images/planyourtrip.jpg'
-//     },
-//     {
-//         name: 'Test',
-//         review: 'TestReview',
-//         destination: 'Test',
-//         image: '/images/planyourtrip.jpg'
-//     },
-//     {
-//         name: 'Test',
-//         review: 'TestReview',
-//         destination: 'Test',
-//         image: '/images/planyourtrip.jpg'
-//     },
-//     {
-//         name: 'Test',
-//         review: 'TestReview',
-//         destination: 'Test',
-//         image: '/images/planyourtrip.jpg'
-//     },
 
-// ]
-
-const page = () => {
-    // const [currentIndex, setCurrentIndex] = useState(0);
-
-    // const nextSlide = () => {
-    //     setCurrentIndex((prev) => {
-    //         const newIndex = prev + 1;
-    //         return newIndex;
-    //     });
-    // };
-
-    // const prevSlide = () => {
-    //     setCurrentIndex((prev) => {
-    //         const newIndex = prev - 1;
-    //         return newIndex;
-    //     });
-    // };
-    // const leftButton = (
-    //     <button
-    //         onClick={prevSlide}
-    //         className="absolute left-5 top-[40%] -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-gray-200 transition-all duration-200 -ml-6"
-    //         disabled={currentIndex === 0}
-    //     >
-    //         <svg
-    //             className="w-6 h-6 text-slate-700"
-    //             fill="none"
-    //             stroke="currentColor"
-    //             viewBox="0 0 24 24"
-    //         >
-    //             <path
-    //                 strokeLinecap="round"
-    //                 strokeLinejoin="round"
-    //                 strokeWidth={2}
-    //                 d="M15 19l-7-7 7-7"
-    //             />
-    //         </svg>
-    //     </button>
-    // );
-
-    // const rightButton = (
-    //     <button
-    //         onClick={nextSlide}
-    //         className={`absolute right-5 top-[40%] -translate-y-1/2 z-10 w-12 h-12 bg-white shadow-xl rounded-full flex items-center justify-center transition-all duration-200 -mr-6 group`}
-    //     >
-    //         <svg
-    //             className="w-6 h-6 text-slate-700"
-    //             fill="none"
-    //             stroke="currentColor"
-    //             viewBox="0 0 24 24"
-    //         >
-    //             <path
-    //                 strokeLinecap="round"
-    //                 strokeLinejoin="round"
-    //                 strokeWidth={2}
-    //                 d="M9 5l7 7-7 7"
-    //             />
-    //         </svg>
-    //     </button>
-    // );
-
-
-    // const reviewSlider =
-    //     <div> {
-    //         reviewContent.map((el, index) => (
-    //             <div
-    //                 key={index} className={`mx-4 `}
-    //             >
-    //                 <div className="bg-theme-primary shadow-lg flex">
-    //                     <div className="flex items-center mb-4">
-    //                         <Image
-    //                             src={el.image}
-    //                             alt={el.name + " image"}
-    //                             width={800} height={800}
-    //                             className="object-cover mr-4"
-    //                         />
-    //                     </div>
-    //                     <div>
-    //                         <h3 className="text-xl font-semibold mb-2 text-white">{el.name}</h3>
-    //                         <p className="text-white mb-4 italic">"{el.review}"</p>
-    //                         <div className="text-white font-medium">Destination: {el.destination}</div>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //         ))
-    //     }
-    //     </div >;
+export default function Reviews() {
+    const [reviewContent, setReviewContent] = React.useState([]);
+    React.useEffect(() => {
+        const getReviews = async () => {
+            const reviews = await sanityFetch(
+                POST_QUERY.getTestemonial,
+                SANITY_QUERY_OPTION
+            );
+            setReviewContent(reviews[0].heroBannerHeading.testemonials);
+            console.log(reviews[0].heroBannerHeading.testemonials);
+        }
+        getReviews();
+    }, [])
 
     return (
         <>
-            <div className='container p-20 mx-auto flex gap-8'>
+            <div className='container p-5 md:p-20 mx-auto flex flex-col md:flex-row gap-8'>
                 <div className='flex flex-col'>
                     <h1 className='text-theme-primary-dark text-6xl my-10'>
                         Happy Escapes
@@ -137,10 +40,8 @@ const page = () => {
                     className="object-cover"
                 />
             </div>
-            {/* {reviewSlider} */}
-            <FullPageSlider />
-            <section className='px-20 mx-auto flex items-center justify-center relative'>
-                {/* <div className="overlay opacity-40 bg-white h-full absolute top-0 right-0 w-full  z-10" /> */}
+            {reviewContent.length && <FullPageSlider reviewContent={reviewContent} />}
+            {/* <section className='w-full md:px-20 mx-auto flex items-center justify-center relative'>
                 <div className='flex bg-[#d1dff7] py-10 px-40 flex-col items-center justify-center my-20 mx-auto'>
                     <h2 className='text-4xl my-10 text-theme-primary-dark z-10'>CHECK OUT MORE REVIEWS ON</h2>
                     <div className='flex gap-10 w-2/3'>
@@ -166,11 +67,7 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-
-
-            </section>
+            </section> */}
         </>
     )
 }
-
-export default page

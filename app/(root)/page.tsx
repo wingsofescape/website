@@ -57,7 +57,6 @@ export default async function HomePage() {
         <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent">
           <WhatsHot data={data?.whatsHotSection} />
           {/* <WhereToGoSection data={data?.whereToGoSection} /> */}
-          {/* <Testimonials data={data.testemonialsSection} /> */}
         </div>
         <PlanYourTrip page="landing" />
 

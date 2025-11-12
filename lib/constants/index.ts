@@ -9,7 +9,7 @@ export const POST_QUERY = {
     name: "homePage",
     query: `*[
       _type == "homePage"
-      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, testemonialsSection, whatsHotSection }`,
+      ]{ _id, heroBannerHeading, heroBannerSubHeading, heroBannerButtons, heroBannerImage, features, tailorMadeSection , luxuryHolidaySection, bookingProcess, whereToGoSection, whatsHotSection }`,
   },
   footer: {
     name: "Footer",
@@ -106,6 +106,12 @@ export const POST_QUERY = {
   aboutUsContent: {
     name: "About Us Content",
     query: `*[_type == "aboutUs"]`,
+  },
+  getTestemonial: {
+    name: "Testemonials",
+    query: `*[
+      _type == "testemonialsSection"
+      ]{ heroBannerHeading }`,
   },
 };
 
