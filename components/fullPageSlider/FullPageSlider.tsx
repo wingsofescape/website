@@ -55,7 +55,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
             <div className="relative inset-0 bg-theme-primary flex items-center justify-center z-10 overflow-hidden">
                 <button
                     onClick={() => startSlide('left')}
-                    className="absolute left-0 md:left-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 flex items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute left-0 md:left-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 hidden md:flex items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
                     aria-label="Previous"
                     disabled={isAnimating}
                 >
@@ -65,19 +65,19 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
                 </button>
 
                 <div className="relative w-full h-full flex items-center justify-center">
-                    <div className="relative w-full max-w-6xl h-[80vh] md:h-[90vh]">
+                    <div className="relative w-full max-w-6xl h-[90vh]">
                         {/* Current slide */}
                         <div
                             key={`current-${currentIndex}`}
-                            className={`absolute inset-0 flex flex-col md:flex-row items-center justify-start md:justify-center overflow-hidden ${slideClassForCurrent}`}
+                            className={`absolute inset-0 flex flex-col md:flex-row items-center justify-start md:justify-center overflow-hidden ${slideClassForCurrent} gap-5`}
                             style={{ transitionDuration: `${ANIMATION_DURATION}ms` }}
                         >
-                            <div className="w-full md:w-1/2 p-6 pt-10 md:p-10 flex flex-col justify-center h-1/3 md:h-full items-center">
-                                <h2 className="md:text-3xl font-bold text-white mb-4">{current.guestName}</h2>
-                                <p className="text-xs md:text-sm text-white mb-6">{current.guestReview}</p>
+                            <div className="w-full md:w-1/2 px-6 md:px-0 pt-10 md:p-10 flex flex-col justify-center h-1/3 md:h-full items-center md:items-start">
+                                <h2 className="md:text-3xl font-bold text-white mb-3 md:mb-10">{current.guestName}</h2>
+                                <p className="text-xs md:text-sm text-white mb-5">{current.guestReview}</p>
                                 <span className="text-xs md:text-sm text-slate-300">{current.destinationVisited}</span>
                             </div>
-                            <div className="w-11/12 md:w-1/2 h-3/5 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative">
+                            <div className="w-11/12 md:w-1/2 h-2/3 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative mb-5 md:mb-0">
                                 <Image src={urlFor(current.guestImage?.asset)?.url()} alt={`${current.guestName} image`} fill className="object-cover" priority />
                             </div>
                         </div>
@@ -86,15 +86,15 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
                         {isAnimating && incoming && (
                             <div
                                 key={`next-${nextIndex}`}
-                                className={`absolute inset-0 flex flex-col md:flex-row items-center justify-start md:justify-center overflow-hidden ${slideClassForNext}`}
+                                className={`absolute inset-0 flex flex-col md:flex-row items-center justify-start md:justify-center overflow-hidden ${slideClassForNext} gap-5`}
                                 style={{ animationDuration: `${ANIMATION_DURATION}ms` }}
                             >
-                                <div className="w-full md:w-1/2 p-6 pt-10 md:p-10 flex flex-col justify-center h-1/3 md:h-full items-center">
-                                    <h2 className="md:text-3xl font-bold text-white mb-4">{incoming.guestName}</h2>
-                                    <p className="text-xs md:text-sm text-white mb-6">{incoming.guestReview}</p>
+                                <div className="w-full md:w-1/2 px-6 pt-10 md:p-10 flex flex-col justify-center h-1/3 md:h-full items-center md:items-start">
+                                    <h2 className="md:text-3xl font-bold text-white mb-3 md:mb-10">{incoming.guestName}</h2>
+                                    <p className="text-xs md:text-sm text-white mb-5">{incoming.guestReview}</p>
                                     <span className="text-xs md:text-sm text-slate-300">{incoming.destinationVisited}</span>
                                 </div>
-                                <div className="w-11/12 md:w-1/2 h-3/5 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative">
+                                <div className="w-11/12 md:w-1/2 h-2/3 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative mb-5 md:mb-0">
                                     <Image src={urlFor(incoming.guestImage?.asset)?.url()} alt={`${incoming.guestName} image`} fill className="object-cover" priority />
                                 </div>
                             </div>
@@ -104,7 +104,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
 
                 <button
                     onClick={() => startSlide('right')}
-                    className="absolute right-0 md:right-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute right-0 md:right-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hidden md:flex items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
                     aria-label="Next"
                     disabled={isAnimating}
                 >
@@ -112,9 +112,6 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
-
-
-
                 <style jsx global>{`
                 .slide-center {
                     transform: translateX(0);
@@ -152,8 +149,30 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
                 }
             `}</style>
             </div >
-            <div className="text-center mt-4 text-black font-medium mb-10">
-                {currentIndex + 1} / {reviewContent.length}
+            <div className='relative'>
+                <button
+                    onClick={() => startSlide('left')}
+                    className="absolute left-0 -bottom-4 -translate-y-1/4 w-10 h-10 flex md:hidden items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    aria-label="Previous"
+                    disabled={isAnimating}
+                >
+                    <svg className="w-6 h-6 text-slate-700" fill="none" stroke="black" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <div className="text-center my-5 text-black font-medium ">
+                    {currentIndex + 1} / {reviewContent.length}
+                </div>
+                <button
+                    onClick={() => startSlide('right')}
+                    className="absolute right-0 -bottom-4 md:top-1/2 -translate-y-1/4 w-10 h-10 rounded-full flex md:hidden items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    aria-label="Next"
+                    disabled={isAnimating}
+                >
+                    <svg className="w-6 h-6 text-slate-700" fill="none" stroke="black" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
             </div>
         </div>
     );
