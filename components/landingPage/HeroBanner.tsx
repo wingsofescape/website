@@ -21,6 +21,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
           autoPlay
           loop
           muted
+          playsInline
           className="absolute h-full inset-0 w-full object-cover"
         >
           <source src={heroBannerVideo} type="video/mp4" />

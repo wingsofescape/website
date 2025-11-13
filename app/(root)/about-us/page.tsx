@@ -13,8 +13,8 @@ const AboutUs = async () => {
   console.log(aboutUsData);
   const data = aboutUsData?.[0];
   return (
-    <div className="flex flex-col md:justify-end items-center mx-auto w-full flex-wrap py-5 md:pb-10 text-theme-primary-dark bg-white">
-      <h1 className="text-4xl md:text-7xl font-bold my-5 md:my-40 flex px-2">
+    <div className="flex flex-col md:justify-end items-center mx-auto w-full flex-wrap py-5 md:pb-0 text-theme-primary-dark bg-white">
+      <h1 className="text-4xl md:text-6xl my-5 md:mb-50 md:mt-20 flex px-2">
         {data.title}
       </h1>
       <div className="relative text-sx bg-theme-primary-light/10 p-4 md:p-35 leading-7 md:w-2/3 md:self-end">
@@ -26,7 +26,7 @@ const AboutUs = async () => {
           height={300}
         />
         {data.aboutUsContent.map((content: string, index: number) => (
-          <p key={index} className="block mb-4">
+          <p key={index} className="block mb-4 mt-4 ">
             {content}
           </p>
         ))}

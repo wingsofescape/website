@@ -55,7 +55,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
             <div className="relative inset-0 bg-theme-primary flex items-center justify-center z-10 overflow-hidden">
                 <button
                     onClick={() => startSlide('left')}
-                    className="absolute left-0 md:left-8 bottom-1 md:top-1/2 -translate-y-1/2 w-10 h-10 flex items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute left-0 md:left-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 flex items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
                     aria-label="Previous"
                     disabled={isAnimating}
                 >
@@ -69,18 +69,16 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
                         {/* Current slide */}
                         <div
                             key={`current-${currentIndex}`}
-                            className={`absolute inset-0 flex items-center justify-center overflow-hidden ${slideClassForCurrent}`}
+                            className={`absolute inset-0 flex flex-col md:flex-row items-center justify-start md:justify-center overflow-hidden ${slideClassForCurrent}`}
                             style={{ transitionDuration: `${ANIMATION_DURATION}ms` }}
                         >
-                            <div className="w-2/5 md:w-1/2 p-6 md:p-10 flex flex-col justify-center h-full">
-                                <h2 className="hidden md:block md:text-3xl font-bold text-white mb-4">{current.guestName}</h2>
-                                <p className="text-xs md:text-sm text-white  mb-6">{current.guestReview}</p>
-                                <span className="hidden md:block text-xs md:text-sm text-slate-300">{current.destinationVisited}</span>
+                            <div className="w-full md:w-1/2 p-6 pt-10 md:p-10 flex flex-col justify-center h-1/3 md:h-full items-center">
+                                <h2 className="md:text-3xl font-bold text-white mb-4">{current.guestName}</h2>
+                                <p className="text-xs md:text-sm text-white mb-6">{current.guestReview}</p>
+                                <span className="text-xs md:text-sm text-slate-300">{current.destinationVisited}</span>
                             </div>
-                            <div className="w-3/5 md:w-1/2 h-3/5 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative">
-                                <h2 className="block md:hidden absolute -top-10 text-sm md:text-3xl font-bold text-white mb-4">{current.guestName}</h2>
+                            <div className="w-11/12 md:w-1/2 h-3/5 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative">
                                 <Image src={urlFor(current.guestImage?.asset)?.url()} alt={`${current.guestName} image`} fill className="object-cover" priority />
-                                <span className="block md:hidden  text-xs md:text-sm text-slate-300 absolute -bottom-10">{current.destinationVisited}</span>
                             </div>
                         </div>
 
@@ -88,15 +86,15 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
                         {isAnimating && incoming && (
                             <div
                                 key={`next-${nextIndex}`}
-                                className={`absolute inset-0 flex items-center justify-center overflow-hidden ${slideClassForNext}`}
+                                className={`absolute inset-0 flex flex-col md:flex-row items-center justify-start md:justify-center overflow-hidden ${slideClassForNext}`}
                                 style={{ animationDuration: `${ANIMATION_DURATION}ms` }}
                             >
-                                <div className="w-2/5 md:w-1/2 p-6 md:p-10 flex flex-col justify-center h-full">
-                                    <h2 className=" hidden md:block md:text-3xl font-bold text-white mb-4">{incoming.guestName}</h2>
+                                <div className="w-full md:w-1/2 p-6 pt-10 md:p-10 flex flex-col justify-center h-1/3 md:h-full items-center">
+                                    <h2 className="md:text-3xl font-bold text-white mb-4">{incoming.guestName}</h2>
                                     <p className="text-xs md:text-sm text-white mb-6">{incoming.guestReview}</p>
-                                    <span className="hidden md:block md:text-sm text-slate-300">{incoming.destinationVisited}</span>
+                                    <span className="text-xs md:text-sm text-slate-300">{incoming.destinationVisited}</span>
                                 </div>
-                                <div className="w-3/5 md:w-1/2 h-3/5 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative">
+                                <div className="w-11/12 md:w-1/2 h-3/5 md:h-4/5 flex items-center justify-center bg-theme-primary-light relative">
                                     <Image src={urlFor(incoming.guestImage?.asset)?.url()} alt={`${incoming.guestName} image`} fill className="object-cover" priority />
                                 </div>
                             </div>
@@ -106,7 +104,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
 
                 <button
                     onClick={() => startSlide('right')}
-                    className="absolute right-0 md:right-8 bottom-1 md:top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute right-0 md:right-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
                     aria-label="Next"
                     disabled={isAnimating}
                 >

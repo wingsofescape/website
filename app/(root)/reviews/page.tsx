@@ -23,7 +23,7 @@ export default function Reviews() {
         <>
             <div className='container p-5 md:p-20 mx-auto flex flex-col md:flex-row gap-8'>
                 <div className='flex flex-col'>
-                    <h1 className='text-theme-primary-dark text-4xl md:text-6xl my-10'>
+                    <h1 className='text-theme-primary-dark text-4xl md:text-6xl my-5 md:my-10'>
                         Happy Escapes
                     </h1>
                     <p className='text-theme-primary-dark text-md md:text-xl font-extralight'>

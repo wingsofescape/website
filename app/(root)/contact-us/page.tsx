@@ -3,7 +3,7 @@ import React from "react";
 const ContactUs = () => {
   return (
     <div className="flex flex-col justify-between items-center mx-auto w-full flex-wrap p-5 md:pb-10  text-theme-primary-dark">
-      <h1 className="text-3xl  font-bold my-5">Contact US</h1>
+      <h1 className="text-4xl md:text-6xl my-5">Contact US</h1>
       <p>
         {" "}
         All those who wander are not lost. In case you are, we are here to help.
@@ -29,7 +29,7 @@ const ContactUs = () => {
           </div>
           <div className="contentBox">
             <h3 className="text-md font-semibold mb-5">Call us</h3>
-            <p className="text-xs text-theme-primary-light">+91 -9988766775</p>
+            <p className="text-xs text-theme-primary-light">+91-7700984599</p>
           </div>
         </div>
         <div className="card rounded-2xl w-full shadow-xl p-6 md:h-50 md:w-1/3 flex flex-row-reverse md:flex-col  justify-between">
@@ -47,7 +47,7 @@ const ContactUs = () => {
           </div>
           <div className="contentBox">
             <h3 className="text-md font-semibold mb-5">Whatsapp us</h3>
-            <p className="text-xs text-theme-primary-light">+91-9988766775</p>
+            <p className="text-xs text-theme-primary-light">+91-7700984599</p>
           </div>
         </div>
         <div className="card rounded-2xl w-full shadow-xl p-6 md:h-50 md:w-1/3 flex flex-row-reverse md:flex-col justify-between">
