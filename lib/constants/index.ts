@@ -116,8 +116,8 @@ export const POST_QUERY = {
 };
 
 export const SANITY_QUERY_OPTION = {
-  next: { revalidate: 3600 },
-  useCdn: false,
+  next: { revalidate: 60 },
+  useCdn: true,
 };
 
 export const totalDestinations = [
