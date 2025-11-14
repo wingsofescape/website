@@ -8,7 +8,9 @@ import { byMonthTypes } from "./byMonthTypes";
 import { aboutUsTypes } from "./aboutUsTypes";
 import { ContactUsTypes } from "./contactUsTypes";
 import { TestemonialsTypes } from "./testemonialsTypes";
+import { privacyPolicyTypes } from "./privecyPolicyTypes";
+import { termsAndConditionsTypes } from "./tncTypes";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [HomePageType, destinationType, tourType, blogType, top10Types, byMonthTypes, aboutUsTypes, ContactUsTypes, TestemonialsTypes],
+  types: [HomePageType, destinationType, tourType, blogType, top10Types, byMonthTypes, aboutUsTypes, ContactUsTypes, TestemonialsTypes, termsAndConditionsTypes, privacyPolicyTypes],
 };

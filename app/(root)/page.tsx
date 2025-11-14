@@ -28,7 +28,6 @@ export default async function HomePage() {
     image: data.heroBannerImage,
   };
   const res1 = await getRecommendedTours();
-  console.log(res1, data);
 
   if (!data) return <p>Loading...</p>;
 
@@ -59,9 +58,7 @@ export default async function HomePage() {
           {/* <WhereToGoSection data={data?.whereToGoSection} /> */}
         </div>
         <PlanYourTrip page="landing" />
-
       </div>
-
     </>
   );
 }

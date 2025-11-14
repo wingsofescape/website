@@ -23,8 +23,11 @@ export default async function DestinationToursPage({
 }) {
   const res = await getDestinationData((await params).destinationName);
   const destination = res?.[0];
-  const tours = await getToursData((await params).destinationName);
-
+  const data = await getToursData((await params).destinationName);
+  const tours = data.sort((a, b) => {
+    if (a.isIdea === b.isIdea) return 0;
+    return a.isIdea ? 1 : -1;
+  });
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -85,7 +88,7 @@ export default async function DestinationToursPage({
                   {/* Tour Content */}
                   <div className="flex-1 p-6 flex flex-col justify-between">
                     <div>
-                      <h3 className="text-2xl font-bold mb-2 text-theme-primary">
+                      <h3 className="text-md md:text-2xl font-bold mb-2 text-theme-primary">
                         {tour.title}
                       </h3>
                       {/* Location/Itinerary */}
@@ -96,17 +99,17 @@ export default async function DestinationToursPage({
                         {tour.description}
                       </p>
                     </div>
-                    <div className="flex items-end justify-between mt-4">
+                    <div className="flex items-end justify-between mt-4 gap-2 md:gap-0">
                       <div>
                         <span className="text-gray-600 text-sm">From</span>
-                        <div className="text-2xl font-bold text-theme-primary">
+                        <div className="text-lg md:text-2xl font-light md:font-bol text-theme-primary">
                           {formatPrice(tour.price)}{" "}
                           <span className="text-base font-normal text-gray-600">
                             pp
                           </span>
                         </div>
                       </div>
-                      <div className="bg-theme-primary text-white px-6 py-2 font-semibold group-hover:bg-theme-primary-light transition-colors">
+                      <div className="bg-theme-primary text-white px-6 py-2 font-semibold group-hover:bg-theme-primary-light transition-colors text-xs md:text-base">
                         {tour.isIdea ? "ENQUIRE NOW" : "VIEW TOUR "}
                       </div>
                     </div>

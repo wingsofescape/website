@@ -33,6 +33,7 @@ const budgets = [
 const availabilities = ["Any time", "Morning", "Afternoon", "Evening"];
 
 export default function EnquireNow() {
+  const destinations = localStorage.getItem('destinations') ? JSON.parse(localStorage.getItem('destinations') || '[]') : [];
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [followUp, setFollowUp] = useState({
@@ -85,9 +86,9 @@ export default function EnquireNow() {
           >
             Where would you like to go?
           </label>
-          {/* <select
+          <select
             name="destination"
-            className="w-11/12 border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full"
             value={details.destination}
             onChange={(e) =>
               setDetails({ ...details, destination: e.target.value })
@@ -98,8 +99,11 @@ export default function EnquireNow() {
                 {d.destinationHeading}
               </option>
             ))}
-          </select> */}
-          <input
+            <option key={'other'} value={'other'} className="h-[50vh]">
+              Other
+            </option>
+          </select>
+          {/* <input
             name="destination"
             className="border rounded px-3 py-2 w-full"
             placeholder="Destination *"
@@ -108,7 +112,7 @@ export default function EnquireNow() {
               setDetails({ ...details, destination: e.target.value })
             }
             required
-          />
+          /> */}
         </div>
         <div className="w-full">
           <label className="block font-bold test-white mb-2 text-lg">
@@ -229,7 +233,7 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, firstName: e.target.value })
             }
-            // required
+          // required
           />
           <input
             name="lastName"
@@ -239,7 +243,7 @@ export default function EnquireNow() {
             onChange={(e) =>
               setDetails({ ...details, lastName: e.target.value })
             }
-            // required
+          // required
           />
           <div className="flex">
             <select className="border rounded-l px-2 py-2  text-theme-primary">
@@ -376,12 +380,11 @@ export default function EnquireNow() {
         </button>
         {state?.message && (
           <div
-            className={`text-sm px-4 py-2 rounded ${
-              state.message.includes("successfully") ||
+            className={`text-sm px-4 py-2 ${state.message.includes("successfully") ||
               state.message.includes("Thank you")
-                ? ""
-                : ""
-            }`}
+              ? "text-green-800"
+              : "text-red-800"
+              }`}
           >
             {state.message}
           </div>
