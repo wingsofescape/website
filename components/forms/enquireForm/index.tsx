@@ -1,6 +1,6 @@
 "use client";
 import { submitFormData } from "@/lib/actions/query.actions";
-import React, { useState, useActionState } from "react";
+import React, { useState, useActionState, useEffect } from "react";
 
 const months = [
   "Any month",
@@ -33,7 +33,13 @@ const budgets = [
 const availabilities = ["Any time", "Morning", "Afternoon", "Evening"];
 
 export default function EnquireNow() {
-  const destinations = localStorage.getItem('destinations') ? JSON.parse(localStorage.getItem('destinations') || '[]') : [];
+  const [destinations, setDestinations] = useState<any[]>([]);
+
+  // Load destinations from localStorage on client mount
+  useEffect(() => {
+    const stored = localStorage.getItem('destinations');
+    setDestinations(stored ? JSON.parse(stored) : []);
+  }, []);
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [followUp, setFollowUp] = useState({

@@ -23,7 +23,10 @@ const Header = () => {
     SANITY_QUERY_OPTION,
     totalDestinations
   );
-  localStorage.setItem('destinations', JSON.stringify(data));
+  // Set destinations to localStorage on client mount
+  useEffect(() => {
+    localStorage.setItem('destinations', JSON.stringify(data));
+  }, []);
 
   const handleDestinationClick = (destinationLink: string) => {
     router.push(destinationLink);
