@@ -33,7 +33,7 @@ const budgets = [
 const availabilities = ["Any time", "Morning", "Afternoon", "Evening"];
 
 export default function EnquireNow() {
-  const [destinations, setDestinations] = useState<any[]>([]);
+  const [destinations, setDestinations] = useState<{ destinationHeading: string, slug: string }[]>([]);
 
   // Load destinations from localStorage on client mount
   useEffect(() => {
