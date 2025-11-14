@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
+import { Resend } from 'resend';
 
 import prisma from "@/db/prisma";
 // Adjust path as needed
 
 export async function submitFormData(prevState: any, formData: FormData) {
+  const resend = new Resend(process.env.RESEND_KEY);
   // Extract all form fields
   const formFields = {
     firstName: formData.get("firstName")?.toString() || "",
@@ -57,12 +59,22 @@ export async function submitFormData(prevState: any, formData: FormData) {
       },
     });
 
+    await resend.emails.send({
+      from: 'bookings@wingsofescape.com',
+      to: 'wingsofescape@gmail.com',
+      subject: 'New Enquiry Submitted',
+      html: `<h1>New Enquiry Submitted</h1>
+      <pre>${JSON.stringify(formFields, null, 2)}</pre>`,
+      text: `A New Enquiry have been Submitted  ${JSON.stringify(formFields, null, 2)} `,
+    });
+
+
     return {
       message:
         "Thank you! Your enquiry has been submitted successfully. We'll be in touch soon.",
     };
   } catch (error) {
     console.error("Error saving data:", error);
-    return { message: "Failed to submit your enquiry. Please try again." };
+    return { error: "Failed to submit your enquiry. Please try again." };
   }
 }

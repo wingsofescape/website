@@ -68,7 +68,7 @@ const HeroBanner = ({ destination }: { destination: IDestination }) => {
                         <React.Fragment key={index}>
                           <Link
                             href={crumb.ref}
-                            className="text-white hover:text-amber-300 transition-colors duration-200"
+                            className="text-white transition-colors duration-200"
                           >
                             {crumb.label}
                           </Link>

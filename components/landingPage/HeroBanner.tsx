@@ -96,7 +96,7 @@ export const HeroBanner = ({ data }: { data: HeroBannerProps }) => {
                 (button: IHeroBannerButton, index: number) => (
                   <Link
                     key={button?.title + index}
-                    className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 rounded shadow-lg transition-all duration-200"
+                    className="bg-theme-primary-dark hover:bg-theme-primary text-white font-medium px-10 py-4 shadow-lg transition-all duration-200 rounded-full"
                     href={button.link}
                   >
                     {button.title}
