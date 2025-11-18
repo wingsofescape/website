@@ -49,17 +49,22 @@ const headerData = {
   },
 };
 export default async function WhereToGoByMonth() {
-  // const Months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  const whereToGoData = await getWhereToGoByMonthData();
 
+  const data = await getWhereToGoByMonthData();
+  const whereToGoData = data.sort((a, b) => {
+    const monthA = months.indexOf(a.title);
+    const monthB = months.indexOf(b.title);
+    return monthA - monthB;
+  });
   if (!whereToGoData) return <p>Loading...</p>;
 
   return (
     <div className="whereToGoLandingPage">
       <SimpleHeroBanner data={headerData} />
 
-      <div className="flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
+      <div className="flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-background">
         {whereToGoData.map((data: PageDataType, index: number) => {
           return (
             <Link

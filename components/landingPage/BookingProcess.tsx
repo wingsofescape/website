@@ -75,7 +75,7 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
       <h3 className="text-3xl md:text-4xl font-bold mb-2 relative inline-block w-full mx-auto text-center">
         <span className="pl-2">{data.heading}</span>
       </h3>
-      <hr className="w-20 h-1 bg-[#edb84c] rounded-2xl mx-auto mt-4"></hr>
+      <hr className="w-20 h-1 bg-theme-primary-accent rounded-2xl mx-auto mt-4"></hr>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         {data.bookingSteps.map(
           (step: { content: string; heading: string }, index: number) => (

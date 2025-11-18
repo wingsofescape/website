@@ -34,7 +34,7 @@ export default async function Blogs() {
             zIndex: 1,
           }}
         />
-        <div className="overlay opacity-40 bg-white h-full absolute top-0 right-0 w-full md:w-2/5 z-10" />
+        <div className="overlay opacity-40 bg-background h-full absolute top-0 right-0 w-full md:w-2/5 z-10" />
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-10"
           style={{
@@ -56,7 +56,7 @@ export default async function Blogs() {
         </div>
       </div>
 
-      <div className="blogsList flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
+      <div className="blogsList flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-background">
         {blogsData.map((blog: IBlog, index: number) => {
           return (
             <Link

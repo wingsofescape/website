@@ -113,6 +113,14 @@ export const POST_QUERY = {
       _type == "testemonialsSection"
       ]{ heroBannerHeading }`,
   },
+  privacyPolicyContent: {
+    name: "Privacy Policy Content",
+    query: `*[_type == "privacyPolicy"]`,
+  },
+  tncContent: {
+    name: "Terms and Conditions Content",
+    query: `*[_type == "termsandconditions"]`,
+  },
 };
 
 export const SANITY_QUERY_OPTION = {

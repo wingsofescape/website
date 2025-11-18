@@ -52,7 +52,7 @@ export default async function HomePage() {
         </div>
       </div>
 
-      <div className="p-0 bg-white mt-10">
+      <div className="p-0 bg-background mt-10">
         <div className="flex flex-col items-center w-full md:w-11/12 mx-auto bg-transparent">
           <WhatsHot data={data?.whatsHotSection} />
           {/* <WhereToGoSection data={data?.whereToGoSection} /> */}

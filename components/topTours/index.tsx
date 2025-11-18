@@ -21,13 +21,13 @@ export const TopTours = (props: {
   const recommendedTours = tours.filter((tour: ITour) => tour.recommended);
 
   return (
-    <section className="py-8 px-4 bg-white">
+    <section className="py-8 px-4 bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Flex Layout */}
         <div className="flex flex-col lg:flex-row lg:gap-8">
           {/* Left Content Area - Mobile: Full width, Desktop: 5/12 width */}
           <div className="w-full lg:w-5/12 mb-8 lg:mb-0 flex-shrink-0">
-            <div className="bg-white p-6 -lg h-full flex flex-col justify-center">
+            <div className="bg-background p-6 -lg h-full flex flex-col justify-center">
               <h2 className="text-2xl md:text-3xl font-bold text-theme-primary mb-4 ">
                 {recommendedTourContent.title}
               </h2>
@@ -80,7 +80,7 @@ const TourCard = ({
   countryName: string;
 }) => {
   return (
-    <div className="bg-white -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
+    <div className="bg-background -lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
       <div
         className={`relative h-60 overflow-hidden bg-cover bg-center bg-no-repeat hover:scale-101 flex flex-col`}
       >

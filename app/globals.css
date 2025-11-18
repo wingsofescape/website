@@ -7,11 +7,9 @@
   --background: #ffffff;
   --foreground: #171717;
   --theme-primary: #1e293b;
-  /* bg-slate-800 */
   --theme-primary-light: #334155;
-  /* bg-slate-700 */
   --theme-primary-dark: #0f172a;
-  /* bg-slate-900 */
+  --theme-primary-accent : #edb84c;
 }
 
 @theme inline {
@@ -20,6 +18,7 @@
   --color-theme-primary: var(--theme-primary);
   --color-theme-primary-light: var(--theme-primary-light);
   --color-theme-primary-dark: var(--theme-primary-dark);
+  --color-theme-primary-accent: var(--theme-primary-accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -27,7 +26,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #ffffff;
-    /* Use slate-800 for dark mode background */
     --foreground: #ededed;
   }
 }
@@ -43,31 +41,8 @@ body {
 html,
 main {
   background-color: #f8fafc;
-  /* slate-50 - complements slate-800 theme */
   height: 100%;
 }
-
-/* .enquire-form {
-  color: #0a0a0a;
-
-  select,
-  button,
-  input {
-    background-color: #b6b6b6;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #797979;
-    border-radius: 0px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    color: #0a0a0a;
-  }
-
-  input {
-    background-color: white;
-  }
-} */
 
 .enquire-form {
   select > option {

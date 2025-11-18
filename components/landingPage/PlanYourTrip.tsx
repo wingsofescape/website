@@ -8,7 +8,7 @@ const PlanYourTrip = (props: { page: 'landing' | 'tour', image?: { asset: string
         <h3 className="text-2xl md:text-4xl font-bold mb-2 text-whit text-center mt-5">
             <span className="relative inline-block pb-2">{props.country ? `${props.country.charAt(0).toUpperCase() + props.country.slice(1)} Escapes` : 'Plan Your Escape'}</span>
         </h3>
-        <hr className="w-20 h-1 bg-[#edb84c] rounded-2xl mx-auto mt-2"></hr>
+        <hr className="w-20 h-1 bg-theme-primary-accent rounded-2xl mx-auto mt-2"></hr>
         <p className="p-4 text-center text-base">{props.page === 'landing' ? 'Craving a slow and meaningful vacation ? Our team of travel specialists are waiting to help you plan your tailor-made trip, so get in touch with us today' : `We design each itinerary around you, so this suggested itinerary is a starting point that we can tweak or transform into something completely customised for you.
 
                 Start planning your holiday with us now!`}</p>

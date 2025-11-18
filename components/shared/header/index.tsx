@@ -138,7 +138,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white text-slate-800">
+    <header className="bg-background text-slate-800">
       {/* Top Banner - Hidden on mobile */}
 
       {/* Main Header */}
@@ -253,7 +253,7 @@ const Header = () => {
 
           {/* Sheet Menu */}
           <div
-            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            className={`fixed top-0 left-0 h-full w-80 max-w-sm bg-background z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
               }`}
           >
             <div className="flex flex-col flex-1 justify-between">
