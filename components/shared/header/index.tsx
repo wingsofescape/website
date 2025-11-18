@@ -137,6 +137,17 @@ const Header = () => {
     );
   };
 
+  const Logo = (smallSize = false) => {
+    return (
+
+      <Link
+        href={headerData.branding.logo.href}
+        className="flex items-center flex-1"
+      >
+        <Image src={Logo2} alt="Logo" width={smallSize ? 200 : 260} height={smallSize ? 200 : 260} />
+      </Link >
+    )
+  }
   return (
     <header className="bg-background text-slate-800">
       {/* Top Banner - Hidden on mobile */}
@@ -144,12 +155,8 @@ const Header = () => {
       {/* Main Header */}
       <div className="flex justify-between items-center h-22 pl-4 lg:pl-8">
         {/* Logo */}
-        <Link
-          href={headerData.branding.logo.href}
-          className="flex items-center flex-1"
-        >
-          <Image src={Logo2} alt="Logo" width={260} height={260} />
-        </Link>
+        {Logo()}
+
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex text-sm lg:text-base items-center space-x-4 flex-1">
@@ -257,25 +264,29 @@ const Header = () => {
               }`}
           >
             <div className="flex flex-col flex-1 justify-between">
-              <button
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 hover:bg-theme-primary-light rounded-md transition-colors text-theme-primary"
-                aria-label="Close menu"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div className="flex">
+                {Logo(true)}
+
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 hover:bg-theme-primary-light rounded-md transition-colors text-theme-primary"
+                  aria-label="Close menu"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
               {/* Navigation Items */}
               <div className="flex flex-col flex-1">
                 <MobileDropdown

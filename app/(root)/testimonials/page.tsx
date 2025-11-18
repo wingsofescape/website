@@ -48,7 +48,7 @@ export default function Reviews() {
             {reviewContent.length && <FullPageSlider reviewContent={reviewContent} />}
             <section className='w-full md:px-20 mx-auto flex items-center justify-center relative'>
                 <div className='flex bg-theme-primary-light/10 py-5 md:py-10 md:px-20 flex-col items-center justify-center my-5 md:my-20 mx-auto w-3/4'>
-                    <h2 className='text-md md:text-2xl lg:text-3xl my-5 md:my-6 text-theme-primary-dark z-10 text-center px-8 md:px-0 italic'>CHECK OUT MORE REVIEWS ON</h2>
+                    <h2 className='text-md md:text-2xl lg:text-3xl my-5 md:my-6 text-theme-primary-dark z-10 text-center px-8 md:px-0'>CHECK OUT MORE REVIEWS ON</h2>
                     <div className='flex gap-1 nnd:gap-10 w-full md:w-3/4'>
                         <div className="w-full p-4 md:p-6 md:h-50 flex flex-col justify-between items-center text-center">
                             <div className="iconContainer mb-4 ">
