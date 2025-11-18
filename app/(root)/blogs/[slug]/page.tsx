@@ -85,7 +85,7 @@ export default async function Blogs({ params }: PageProps) {
             zIndex: 1,
           }}
         />
-        <div className="overlay opacity-40 bg-white h-full absolute top-[33%] md:top-0 right-0 w-full md:w-2/5 z-10" />
+        <div className="overlay opacity-40 bg-background h-full absolute top-[33%] md:top-0 right-0 w-full md:w-2/5 z-10" />
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-200 text-theme-primary-dark"
           style={{
@@ -103,7 +103,7 @@ export default async function Blogs({ params }: PageProps) {
       </div>
 
       <div className="mx-auto py-12">
-        <div className="bg-white overflow-hidden flex flex-col items-center">
+        <div className="bg-background overflow-hidden flex flex-col items-center">
           <div className="flex-1 flex flex-col items-center text-left">
             {/* Content Section */}
             {ContentSection(blog[0]?.blogContent)}

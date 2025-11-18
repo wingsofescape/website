@@ -34,7 +34,7 @@ const Destination = async ({ params }: PageProps) => {
   };
 
   return (
-    <div className="bg-white flex flex-col">
+    <div className="bg-background flex flex-col">
       {/* Hero Banner Section */}
       <section className="relative">
         {/* Desktop Design - Half and Half Layout */}
@@ -50,7 +50,7 @@ const Destination = async ({ params }: PageProps) => {
             </div>
           </div> */}
 
-          <div className="bg-white  shadow-sm  p-6">
+          <div className="bg-background  shadow-sm  p-6">
             <div className="max-w-full">
               <h2 className="text-2xl lg:text-3xl font-bold text-theme-primary-dark  mb-6">
                 {getActiveTabContent("holidaysOverview").title}

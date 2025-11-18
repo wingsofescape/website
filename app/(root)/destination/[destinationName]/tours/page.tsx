@@ -29,11 +29,11 @@ export default async function DestinationToursPage({
     return a.isIdea ? 1 : -1;
   });
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       {/* Hero Section */}
       <HeroBanner destination={destination} />
 
-      <div className="bg-white rounded-lg p-8 lg:p-6 flex justify-center">
+      <div className="bg-background rounded-lg p-8 lg:p-6 flex justify-center">
         <div className="max-w-4xl">
           <h2 className="text-2xl lg:text-3xl mb-2 font-bold text-theme-primary-dark">
             {destination.destinationHeroBanner.name} Tours
@@ -61,7 +61,7 @@ export default async function DestinationToursPage({
                     : `/destination/${(await params).destinationName}/tours/${tour.slug.current}`
                 }
               >
-                <div className="bg-white shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row group">
+                <div className="bg-background shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col md:flex-row group">
                   {/* Tour Image & Badge */}
                   <div className="relative h-75 w-full md:w-2/5">
                     <Image

@@ -75,6 +75,6 @@ export async function submitFormData(prevState: any, formData: FormData) {
     };
   } catch (error) {
     console.error("Error saving data:", error);
-    return { error: "Failed to submit your enquiry. Please try again." };
+    return { message: "Failed to submit your enquiry. Please try again." };
   }
 }

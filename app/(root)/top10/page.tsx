@@ -58,7 +58,7 @@ export default async function Top10() {
     <div className="top10ContentPage">
       <SimpleHeroBanner data={data} />
 
-      <div className="flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-white">
+      <div className="flex flex-col md:flex-row gap-3 flex-wrap text-center items-center justify-center my-10 w-full md:w-full mx-auto bg-background">
         {top10Data.map((data: PageDataType, index: number) => {
           return (
             <Link

@@ -53,7 +53,7 @@ const TourDetailsPage = async ({
           </div>
         </div>
         {/* Card */}
-        <div className="bg-white p-2 md:p-8 pt-4 mb-8 w-3/4">
+        <div className="bg-background p-2 md:p-8 pt-4 mb-8 w-3/4">
           <h3 className="text-lg md:text-2xl font-semibold mb-2 text-theme-primary-dark">
             {day.title}
           </h3>
@@ -81,7 +81,7 @@ const TourDetailsPage = async ({
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-background">
       <TourBanner tour={tour} />
 
       {/* Main Content */}
@@ -111,7 +111,7 @@ const TourDetailsPage = async ({
           </div>
         </div>
       </div>
-      <div className="p-0 bg-white mt-10">
+      <div className="p-0 bg-background mt-10">
         <PlanYourTrip page={'tour'} country={destinationName} image={destinationBannerImage} />
       </div>
     </div>

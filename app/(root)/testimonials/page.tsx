@@ -3,9 +3,14 @@ import FullPageSlider from '@/components/fullPageSlider/FullPageSlider';
 import { POST_QUERY, SANITY_QUERY_OPTION } from '@/lib/constants';
 import { sanityFetch } from '@/sanity/lib/fetch';
 import Image from 'next/image'
+import Link from 'next/link';
 import React from 'react'
 
 export default function Reviews() {
+    const instagram = "/logos/instagram.png";
+
+    const google = "/logos/google.png";
+
     const [reviewContent, setReviewContent] = React.useState([]);
     React.useEffect(() => {
         const getReviews = async () => {
@@ -41,33 +46,33 @@ export default function Reviews() {
                 />
             </div>
             {reviewContent.length && <FullPageSlider reviewContent={reviewContent} />}
-            {/* <section className='w-full md:px-20 mx-auto flex items-center justify-center relative'>
-                <div className='flex bg-[#d1dff7] py-10 px-40 flex-col items-center justify-center my-20 mx-auto'>
-                    <h2 className='text-4xl my-10 text-theme-primary-dark z-10'>CHECK OUT MORE REVIEWS ON</h2>
-                    <div className='flex gap-10 w-2/3'>
-                        <div className="w-full p-6 md:h-50 flex flex-row-reverse md:flex-col justify-between">
-                            <div className="iconContainer">
-                                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" id="instagram"><path fill="#334155" d="M17.34,5.46h0a1.2,1.2,0,1,0,1.2,1.2A1.2,1.2,0,0,0,17.34,5.46Zm4.6,2.42a7.59,7.59,0,0,0-.46-2.43,4.94,4.94,0,0,0-1.16-1.77,4.7,4.7,0,0,0-1.77-1.15,7.3,7.3,0,0,0-2.43-.47C15.06,2,14.72,2,12,2s-3.06,0-4.12.06a7.3,7.3,0,0,0-2.43.47A4.78,4.78,0,0,0,3.68,3.68,4.7,4.7,0,0,0,2.53,5.45a7.3,7.3,0,0,0-.47,2.43C2,8.94,2,9.28,2,12s0,3.06.06,4.12a7.3,7.3,0,0,0,.47,2.43,4.7,4.7,0,0,0,1.15,1.77,4.78,4.78,0,0,0,1.77,1.15,7.3,7.3,0,0,0,2.43.47C8.94,22,9.28,22,12,22s3.06,0,4.12-.06a7.3,7.3,0,0,0,2.43-.47,4.7,4.7,0,0,0,1.77-1.15,4.85,4.85,0,0,0,1.16-1.77,7.59,7.59,0,0,0,.46-2.43c0-1.06.06-1.4.06-4.12S22,8.94,21.94,7.88ZM20.14,16a5.61,5.61,0,0,1-.34,1.86,3.06,3.06,0,0,1-.75,1.15,3.19,3.19,0,0,1-1.15.75,5.61,5.61,0,0,1-1.86.34c-1,.05-1.37.06-4,.06s-3,0-4-.06A5.73,5.73,0,0,1,6.1,19.8,3.27,3.27,0,0,1,5,19.05a3,3,0,0,1-.74-1.15A5.54,5.54,0,0,1,3.86,16c0-1-.06-1.37-.06-4s0-3,.06-4A5.54,5.54,0,0,1,4.21,6.1,3,3,0,0,1,5,5,3.14,3.14,0,0,1,6.1,4.2,5.73,5.73,0,0,1,8,3.86c1,0,1.37-.06,4-.06s3,0,4,.06a5.61,5.61,0,0,1,1.86.34A3.06,3.06,0,0,1,19.05,5,3.06,3.06,0,0,1,19.8,6.1,5.61,5.61,0,0,1,20.14,8c.05,1,.06,1.37.06,4S20.19,15,20.14,16ZM12,6.87A5.13,5.13,0,1,0,17.14,12,5.12,5.12,0,0,0,12,6.87Zm0,8.46A3.33,3.33,0,1,1,15.33,12,3.33,3.33,0,0,1,12,15.33Z"></path></svg>
+            <section className='w-full md:px-20 mx-auto flex items-center justify-center relative'>
+                <div className='flex bg-theme-primary-light/10 py-5 md:py-10 md:px-20 flex-col items-center justify-center my-5 md:my-20 mx-auto w-3/4'>
+                    <h2 className='text-md md:text-2xl lg:text-3xl my-5 md:my-6 text-theme-primary-dark z-10 text-center px-8 md:px-0 italic'>CHECK OUT MORE REVIEWS ON</h2>
+                    <div className='flex gap-1 nnd:gap-10 w-full md:w-3/4'>
+                        <div className="w-full p-4 md:p-6 md:h-50 flex flex-col justify-between items-center text-center">
+                            <div className="iconContainer mb-4 ">
+                                <Image src={instagram} alt="Instagram" width={100} height={100} className="inline-block !h-15 !w-15 md:!h-30 md:!w-30" />
                             </div>
                             <div className="contentBox">
-                                <h3 className="text-md font-extralight mb-5 pl-5 text-theme-primary-dark">Instagram</h3>
+                                <Link href="https://www.instagram.com/wingsofescape_?igsh=eDgwOXRoeWc0ODh4&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                                    <h3 className="text-xs md:text-lg font-extralight mb-5 text-theme-primary-dark cursor-pointer underline">Instagram</h3>
+                                </Link>
                             </div>
                         </div>
-                        <div className="w-full p-6 md:h-50 flex flex-row-reverse md:flex-col justify-between">
-                            <div className="iconContainer">
-                                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" id="google"><path fill="#334155" d="M22.60229,10.00391a1.00005,1.00005,0,0,0-.98388-.82227H12.2a.99974.99974,0,0,0-1,1V14.0498a.99974.99974,0,0,0,1,1h3.9624a3.65162,3.65162,0,0,1-1.13183,1.1875A5.0604,5.0604,0,0,1,12.2,17.02246a4.93525,4.93525,0,0,1-4.64624-3.4378L7.55347,13.583a4.90382,4.90382,0,0,1,0-3.167l.00024-.00165A4.9356,4.9356,0,0,1,12.2,6.97754,4.37756,4.37756,0,0,1,15.3313,8.19531a1.00053,1.00053,0,0,0,1.39844-.01562L19.5979,5.31152a.99918.99918,0,0,0-.02539-1.43847A10.62342,10.62342,0,0,0,12.2,1,10.949,10.949,0,0,0,2.37134,7.05878l-.00147.00177A10.92175,10.92175,0,0,0,1.2,12a11.07862,11.07862,0,0,0,1.16992,4.93945l.00147.00177A10.949,10.949,0,0,0,12.2,23a10.5255,10.5255,0,0,0,7.29468-2.687l.00073-.00049.00079-.00085.00019-.00013.00006-.00012a10.78575,10.78575,0,0,0,3.30365-8.08386A12.51533,12.51533,0,0,0,22.60229,10.00391ZM12.2,3a8.68219,8.68219,0,0,1,5.2085,1.67285L15.95483,6.126A6.46322,6.46322,0,0,0,12.2,4.97754,6.88648,6.88648,0,0,0,6.21069,8.52832L5.14148,7.69958l-.585-.45367A8.95257,8.95257,0,0,1,12.2,3ZM3.67944,14.90332a9.02957,9.02957,0,0,1,0-5.80664l1.78223,1.38184a6.85381,6.85381,0,0,0,0,3.042ZM12.2,21A8.9528,8.9528,0,0,1,4.5564,16.75391l.37841-.29352,1.27588-.98969A6.88482,6.88482,0,0,0,12.2,19.02246a7.27662,7.27662,0,0,0,3.30573-.75079L17.19739,19.585A8.88989,8.88989,0,0,1,12.2,21Zm6.52588-2.76074-.183-.142L17.16553,17.028a5.60626,5.60626,0,0,0,1.39966-2.79553.9998.9998,0,0,0-.9834-1.18262H13.2V11.18164h7.54883c.03418.3457.05127.69531.05127,1.0459A9.05156,9.05156,0,0,1,18.72583,18.23926Z">
-                                </path>
-                                </svg>
+                        <div className="w-full p-4 md:p-6 md:h-50 flex flex-col justify-between text-center">
+                            <div className="iconContainer mb-4 ">
+                                <Image src={google} alt="Google Reviews" width={100} height={100} className="inline-block !h-15 !w-15 md:!h-30 md:!w-30" />
                             </div>
                             <div className="contentBox">
-                                <h3 className="text-md font-extralight mb-5 text-theme-primary-dark cursor-pointer underline" onClick={() => {
-                                    window.location.href = 'https://www.google.com/search?q=wings+of+escape&rlz=1C1CHBF_enIN1128IN1128&oq=wings+of+escape&gs_lcrp=EgZjaHJvbWUyDggAEEUYJxg5GIAEGIoFMggIARAAGBYYHjIICAIQABgWGB4yCAgDEAAYFhgeMggIBBAAGBYYHjIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDU5ODVqMGo3qAIIsAIB8QWXTLWSeHEMQfEFl0y1knhxDEE&sourceid=chrome&ie=UTF-8#';
-                                }}>Google Reviews</h3>
+                                <Link href="https://www.google.com/search?q=wings+of+escape&rlz=1C1CHBF_enIN1128IN1128&oq=wings+of+escape&gs_lcrp=EgZjaHJvbWUyDggAEEUYJxg5GIAEGIoFMggIARAAGBYYHjIICAIQABgWGB4yCAgDEAAYFhgeMggIBBAAGBYYHjIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDU5ODVqMGo3qAIIsAIB8QWXTLWSeHEMQfEFl0y1knhxDEE&sourceid=chrome&ie=UTF-8#" target="_blank" rel="noopener noreferrer">
+                                    <h3 className="text-xs md:text-lg font-extralight mb-5 text-theme-primary-dark cursor-pointer underline" >Google Reviews</h3>
+                                </Link>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section> */}
+            </section>
         </>
     )
 }

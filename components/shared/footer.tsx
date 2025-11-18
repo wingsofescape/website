@@ -21,7 +21,7 @@ export const Footer = async () => {
   const data = res?.[0];
 
   return (
-    <footer className="bg-white">
+    <footer className="bg-background">
       <WhyWOE data={data.whyWOESection} />
       <div
         className="relative text-black pt-60 pb-5 bg-cover bg-center text-xs md:text-sm"
@@ -38,10 +38,10 @@ export const Footer = async () => {
             <a href="/testimonials" className="hover:underline">
               Testimonials
             </a>
-            <a href="#" className="hover:underline">
+            <a href="/privacypolicy" className="hover:underline">
               Privacy Policy
             </a>
-            <a href="#" className="hover:underline">
+            <a href="/terms-and-conditions" className="hover:underline">
               Booking T &amp; Cs
             </a>
             <a href="#" className="hover:underline">
@@ -56,10 +56,10 @@ export const Footer = async () => {
               </Link>
               <Link href="https://www.instagram.com/wingsofescape_?igsh=eDgwOXRoeWc0ODh4&utm_source=qr
 " target="_blank" rel="noopener noreferrer">
-                <Image src={instagram} alt="WhatsApp" width={100} height={100} className="inline-block mr-4 !h-7 !w-7 md:!h-10 md:!w-10" />
+                <Image src={instagram} alt="Instagram" width={100} height={100} className="inline-block mr-4 !h-7 !w-7 md:!h-10 md:!w-10" />
               </Link>
               <Link href="https://www.facebook.com/share/1HQKFt8EjE/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
-                <Image src={facebook} alt="WhatsApp" width={100} height={100} className="inline-block !h-7 !w-10 md:!h-10 md:!w-13" />
+                <Image src={facebook} alt="Facebook" width={100} height={100} className="inline-block !h-7 !w-10 md:!h-10 md:!w-13" />
               </Link>
             </div>
             <span className="text-white w-full md:w-3/5 text-center md:text-right ">

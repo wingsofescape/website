@@ -36,7 +36,7 @@ export default async function Page({ params }: PageProps) {
             height={1920}
             placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
           />
-          <div className="contentSection md:absolute md:left-[25%] w-full md:w-[70%] p-5 bg-white text-theme-primary-dark top-10 shadow">
+          <div className="contentSection md:absolute md:left-[25%] w-full md:w-[70%] p-5 bg-background text-theme-primary-dark top-10 shadow">
             <h3 className="text-2xl font-semibold mb-6 text-theme-primary-dark mt-5 md:mt-2">
               {content.heading}
             </h3>
@@ -70,7 +70,7 @@ export default async function Page({ params }: PageProps) {
             zIndex: 1,
           }}
         />
-        <div className="overlay opacity-40 bg-white h-full absolute top-[53%] md:top-0 right-0 w-full md:w-2/5 z-10" />
+        <div className="overlay opacity-40 bg-background h-full absolute top-[53%] md:top-0 right-0 w-full md:w-2/5 z-10" />
         <div
           className="heading absolute bottom-25 right-0 w-full md:w-2/5 flex flex-col justify-center p-10 z-200 text-theme-primary-dark"
           style={{
@@ -88,7 +88,7 @@ export default async function Page({ params }: PageProps) {
       </div>
 
       <div className="py-12">
-        <div className="bg-white overflow-hidden flex flex-col items-center">
+        <div className="bg-background overflow-hidden flex flex-col items-center">
           <div className="flex-1 flex flex-col items-center text-left w-11/12">
             {/* Content Section */}
             {ContentSection(data?.content)}

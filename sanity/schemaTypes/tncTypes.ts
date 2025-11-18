@@ -11,7 +11,7 @@ export const termsAndConditionsTypes = defineType({
             type: "string",
         }),
         defineField({
-            name: "privacyPolicyContent",
+            name: "termsAndConditionsContent",
             title: "Terms and Conditions Content",
             type: "array",
             of: [

@@ -13,7 +13,7 @@ const AboutUs = async () => {
   console.log(aboutUsData);
   const data = aboutUsData?.[0];
   return (
-    <div className="flex flex-col md:justify-end items-center mx-auto w-full flex-wrap py-5 md:pb-0 text-theme-primary-dark bg-white">
+    <div className="flex flex-col md:justify-end items-center mx-auto w-full flex-wrap py-5 md:pb-0 text-theme-primary-dark bg-background">
       <h1 className="text-4xl md:text-6xl my-5 md:mb-50 md:mt-20 flex px-2">
         {data.title}
       </h1>
