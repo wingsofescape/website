@@ -93,7 +93,7 @@ const TourDetailsPage = async ({
             <section className="mb-12 text-theme-primary-dark">
               <h2 className="text-3xl font-bold mb-6">Tour Overview</h2>
               <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                {tour.longDescription}
+                {tour.description}
               </p>
             </section>
 

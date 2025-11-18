@@ -24,7 +24,7 @@ export const tourType = defineType({
       type: "image",
     },
     { name: "itineraryName", title: "Itinerary Name", type: "string" },
-    { name: "description", title: "Short Description", type: "text" },
+    { name: "description", title: "Description", type: "text" },
     { name: "longDescription", title: "Long Description", type: "text" },
     { name: "duration", title: "Duration", type: "string" },
     { name: "price", title: "Price", type: "number" },
