@@ -18,7 +18,7 @@ const months = [
   "December",
 ];
 
-const years = ["Any year", "2025", "2026", "2027", "2028"];
+const years = ["Any year", "2026", "2027", "2028"];
 
 const budgets = [
   "Select your budget (per pax.)",
@@ -40,6 +40,7 @@ export default function EnquireNow() {
     const stored = localStorage.getItem('destinations');
     setDestinations(stored ? JSON.parse(stored) : []);
   }, []);
+
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
   const [followUp, setFollowUp] = useState({
@@ -109,16 +110,6 @@ export default function EnquireNow() {
               Other
             </option>
           </select>
-          {/* <input
-            name="destination"
-            className="border rounded px-3 py-2 w-full"
-            placeholder="Destination *"
-            value={details.destination}
-            onChange={(e) =>
-              setDetails({ ...details, destination: e.target.value })
-            }
-            required
-          /> */}
         </div>
         <div className="w-full">
           <label className="block font-bold test-white mb-2 text-lg">
@@ -346,11 +337,7 @@ export default function EnquireNow() {
               ))}
             </select>
             <div className="text-xs text-gray-600 mt-1">
-              Our team will contact you during{" "}
-              <a href="#" className="underline">
-                office hours
-              </a>
-              .
+              Our team will contact you during office hours.
             </div>
           </div>
         </div>
