@@ -30,7 +30,7 @@ const TourDetailsPage = async ({
   const destinationName = (await params).destinationName;
   const res = await getDestinationHeroBanner(destinationName);
   const destinationBannerImage = res?.[0].destinationHeroBanner.heroImage;
-
+  const home = '/logos/home.png'
   const response = await getToursData((await params)["tour-name"]);
   const tour = response?.[0];
 
@@ -53,7 +53,7 @@ const TourDetailsPage = async ({
           </div>
         </div>
         {/* Card */}
-        <div className="bg-background p-2 md:p-8 pt-4 mb-8 w-3/4">
+        <div className="bg-background p-4 mb-0 w-3/4">
           <h3 className="text-lg md:text-2xl font-semibold mb-2 text-theme-primary-dark">
             {day.title}
           </h3>
@@ -61,7 +61,7 @@ const TourDetailsPage = async ({
 
           {/* Images placeholder */}
           {day.image && day.image.length > 0 && (
-            <div className="relative h-100 md:h-55 w-11/12 lg:w-3/4 overflow-hidden bg-cover bg-center bg-no-repeat flex flex-col md:flex-row">
+            <div className="relative h-100 md:h-55 w-full lg:w-3/4 overflow-hidden bg-cover bg-center bg-no-repeat flex flex-col md:flex-row">
               {day.image.map((img, index) => (
                 <Image
                   src={typeof img === "string" ? img : urlFor(img.asset)?.url()}
@@ -106,6 +106,9 @@ const TourDetailsPage = async ({
                 {tour.itinerary.map((day: Itinerary) => (
                   <UniqueDay key={day.title} day={day} />
                 ))}
+                <div className="absolute left-1 -bottom-5  z-0 pointer-events-none" >
+                  <Image src={home} alt="home icon" width={50} height={50} className="inline-block" />
+                </div>
               </div>
             </section>
           </div>

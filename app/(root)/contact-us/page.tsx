@@ -69,9 +69,16 @@ const ContactUs = () => {
           </div>
           <div className="contentBox">
             <h3 className="text-md font-semibold mb-5">Email us</h3>
-            <p className="break-words text-xs text-theme-primary-light">
-              wingsofescape@gmail.com
-            </p>
+            <a href="mailto:bookings@wingsofescape.com" className="w-full md:w-1/3">
+              <p className="break-words text-xs text-theme-primary-light">
+                bookings@wingsofescape.com
+              </p>
+            </a>
+            <a href="mailto:wingsofescape@gmail.com" className="w-full md:w-1/3">
+              <p className="break-words text-xs text-theme-primary-light">
+                wingsofescape@gmail.com
+              </p>
+            </a>
           </div>
         </div>
       </div>
