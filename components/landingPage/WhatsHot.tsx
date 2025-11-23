@@ -24,7 +24,7 @@ const WhatsHot = ({ data }: { data: IWhatsHot }) => {
         <span className="relative inline-block pb-2">{data.heading}</span>
       </h3>
       <hr className="w-20 h-1 bg-theme-primary-accent rounded-2xl mx-auto mt-2"></hr>
-      <h1 className="text-sx font-normal my-4 text-theme-primary text-left md:text-center">
+      <h1 className="text-md md:text-md font-normal my-4 text-theme-primary text-left md:text-center">
         <span className="relative inline-block pb-2">{data.subHeading}</span>
       </h1>
     </>;

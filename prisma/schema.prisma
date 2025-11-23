@@ -18,8 +18,11 @@ model userQuery {
   id               Int     @id @default(autoincrement())
   email            String  @unique
   name             String?
-  address          String
   phoneNumber      String
   queryDestination String
   numberOfDays     Int
+  message          String
+  budget           String
+  travelMonth      String
+  year             String
 }

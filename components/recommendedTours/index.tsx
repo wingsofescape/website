@@ -163,7 +163,7 @@ const RecommendedToursSlider = ({
             Recommended Tours
           </h2>
           <hr className="w-20 h-1 bg-theme-primary-accent rounded-2xl mx-auto mt-4"></hr>
-          <p className="text-gray-600 max-w-2xl mx-auto mt-4">
+          <p className="text-gray-600 max-w-2xl mx-auto mt-4 text-sm md:text-lg">
             Discover our handpicked selection of the most popular destinations
             and experiences.
           </p>
@@ -177,7 +177,7 @@ const RecommendedToursSlider = ({
           {rightButton}
 
           {/* Tours Container */}
-          <div className="overflow-hidden rounded-2xl pb-20">
+          <div className="overflow-hidden rounded-2xl pb-15">
             <div
               className="flex transition-transform duration-700 ease-in-out"
               style={{

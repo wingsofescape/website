@@ -54,11 +54,13 @@ export async function submitFormData(prevState: any, formData: FormData) {
         phoneNumber: formFields.phone,
         queryDestination: formFields.destination,
         numberOfDays: 10,
-        address: "Test Address", // Placeholder, replace with actual field if needed
+        message: formFields.message,
+        budget: formFields.budget,
+        travelMonth: formFields.month,
+        year: formFields.year,
         // Add other fields as needed
       },
     });
-
     await resend.emails.send({
       from: 'bookings@wingsofescape.com',
       to: 'wingsofescape@gmail.com',
@@ -67,8 +69,6 @@ export async function submitFormData(prevState: any, formData: FormData) {
       <pre>${JSON.stringify(formFields, null, 2)}</pre>`,
       text: `A New Enquiry have been Submitted  ${JSON.stringify(formFields, null, 2)} `,
     });
-
-
     return {
       message:
         "Thank you! Your enquiry has been submitted successfully. We'll be in touch soon.",
