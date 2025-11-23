@@ -20,7 +20,7 @@ const PrivacyPolicy = async () => {
                 </h1>
                 <hr className="w-20 h-1 bg-theme-primary-accent rounded-2xl mx-auto mt-5"></hr>
             </div>
-            <section className="w-full flex flex-col items-start bg-background text-black pt-0 md:py-5 px-5 md:px-15">
+            {data?.privacyPolicyContent?.length && <section className="w-full flex flex-col items-start bg-background text-black pt-0 md:py-5 px-5 md:px-15">
                 {data.privacyPolicyContent.map((item: { heading: string, text: string[] }, index: number) => (
                     <div key={index} className="my-5 w-full">
                         <div key={index} className="w-full md:w-3/5 md:px-0 my-4">
@@ -33,7 +33,7 @@ const PrivacyPolicy = async () => {
                         }
                     </div>
                 ))}
-            </section>
+            </section>}
         </div>
     )
 }
