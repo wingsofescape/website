@@ -51,21 +51,50 @@ export const Footer = async () => {
 
           <div className=" mx-auto px-0 md:px-6 mt-5 md:mt-9  w-full text-center flex flex-col  items-center justify-center md:flex-row-reverse">
             <div className="w-full md:w-2/5 text-right flex mb-5 md:mt-0 justify-center md:justify-end items-center">
-              <Link href="https://wa.me/7700984599" target="_blank" rel="noopener noreferrer">
-                <Image src={whatsapp} alt="WhatsApp" width={100} height={100} className="inline-block mr-6 !h-7 !w-7 md:!h-10 md:!w-10" />
+              <Link
+                href="https://wa.me/7700984599"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={whatsapp}
+                  alt="WhatsApp"
+                  width={100}
+                  height={100}
+                  className="inline-block mr-6 !h-7 !w-7 md:!h-10 md:!w-10"
+                />
               </Link>
-              <Link href="https://www.instagram.com/wingsofescape_?igsh=eDgwOXRoeWc0ODh4&utm_source=qr
-" target="_blank" rel="noopener noreferrer">
-                <Image src={instagram} alt="Instagram" width={100} height={100} className="inline-block mr-4 !h-7 !w-7 md:!h-10 md:!w-10" />
+              <Link
+                href="https://www.instagram.com/wingsofescape_?igsh=eDgwOXRoeWc0ODh4&utm_source=qr
+"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={instagram}
+                  alt="Instagram"
+                  width={100}
+                  height={100}
+                  className="inline-block mr-4 !h-7 !w-7 md:!h-10 md:!w-10"
+                />
               </Link>
-              <Link href="https://www.facebook.com/share/1HQKFt8EjE/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
-                <Image src={facebook} alt="Facebook" width={100} height={100} className="inline-block !h-7 !w-10 md:!h-10 md:!w-13" />
+              <Link
+                href="https://www.facebook.com/share/1HQKFt8EjE/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={facebook}
+                  alt="Facebook"
+                  width={100}
+                  height={100}
+                  className="inline-block !h-7 !w-10 md:!h-10 md:!w-13"
+                />
               </Link>
             </div>
             <span className="text-white w-full md:w-3/5 text-center md:text-right ">
-              Copyright © 2025 Wings Of Escape Ltd.
+              Copyright © 2025 ANDP Experiences
             </span>
-
           </div>
 
           {process.env.NODE_ENV === "production" && (
