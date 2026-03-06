@@ -15,7 +15,7 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
   const icons = [
     <svg
       key={0}
-      className="w-10 h-10 "
+      className="w-8 h-8 "
       fill="none"
       stroke="currentColor"
       strokeWidth="2.5"
@@ -38,7 +38,7 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
       width="16"
       height="16"
       fill="currentColor"
-      className="bi bi-headphones w-10 h-10 text-white"
+      className="bi bi-headphones w-8 h-8 text-white"
       viewBox="0 0 16 16"
       stroke="currentColor"
     >
@@ -50,7 +50,7 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
       width="16"
       height="16"
       fill="currentColor"
-      className="bi bi-envelope w-10 h-10 text-white"
+      className="bi bi-envelope w-8 h-8 text-white"
       viewBox="0 0 16 16"
       stroke="currentColor"
     >
@@ -62,7 +62,7 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
       width="16"
       height="16"
       fill="currentColor"
-      className="bi bi-airplane w-10 h-10 text-white"
+      className="bi bi-airplane w-8 h-8 text-white"
       viewBox="0 0 16 16"
       stroke="currentColor"
     >
@@ -82,7 +82,7 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
             <React.Fragment key={index}>
               <div className="relative">
                 <div className="flex justify-center mb-4">
-                  <span className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-theme-primary">
+                  <span className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-theme-primary">
                     {icons[index]}
                   </span>
                 </div>
@@ -93,7 +93,7 @@ const BookingProcess = ({ data }: { data: IBookinProcessProps }) => {
 
                 {/* Triangle separator - only show if not the last step */}
                 {index < data.bookingSteps.length - 1 && (
-                  <div className="hidden md:block absolute top-12 -right-4 text-theme-primary">
+                  <div className="hidden md:block absolute top-8 -right-4 text-theme-primary">
                     <FilledRightTriangle />
                   </div>
                 )}

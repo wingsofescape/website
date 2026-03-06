@@ -132,10 +132,18 @@ const RecommendedToursSlider = ({
   const rightButton = (
     <button
       onClick={nextSlide}
+<<<<<<< HEAD
       className={`absolute right-5 top-[40%] -translate-y-1/2 z-10 w-12 h-12 bg-background shadow-xl rounded-full flex items-center justify-center transition-all duration-200 -mr-6 group ${isLastCardVisible
         ? "opacity-50 cursor-not-allowed"
         : "hover:bg-gray-200"
         }`}
+=======
+      className={`absolute right-5 top-[40%] -translate-y-1/2 z-10 w-12 h-12 bg-background shadow-xl rounded-full flex items-center justify-center transition-all duration-200 -mr-6 group ${
+        isLastCardVisible
+          ? "opacity-50 cursor-not-allowed"
+          : "hover:bg-gray-200 cursor-pointer"
+      }`}
+>>>>>>> f91d2f5f8737a594a6b530c8090afcccf34893fc
       disabled={isLastCardVisible}
     >
       <svg
@@ -193,14 +201,15 @@ const RecommendedToursSlider = ({
                     <div
                       key={tour.title}
                       ref={isLastCard ? lastCardRef : null}
-                      className={`flex-shrink-0 px-2 ${isMobile
-                        ? "w-1/2"
-                        : slidesToShow === 2
+                      className={`flex-shrink-0 px-2 ${
+                        isMobile
                           ? "w-1/2"
-                          : slidesToShow === 3
-                            ? "w-1/3"
-                            : "w-1/5"
-                        }`}
+                          : slidesToShow === 2
+                            ? "w-1/2"
+                            : slidesToShow === 3
+                              ? "w-1/3"
+                              : "w-1/5"
+                      }`}
                     >
                       <Link
                         href={`/destination/${tour.countryName}/tours/${tour.slug.current}`}
@@ -240,7 +249,8 @@ const RecommendedToursSlider = ({
                             </p>
                             <div className="text-sm">
                               {formatPrice(tour.price)}
-                              <span className="text-xs font-normal ml-1">
+                              <br />
+                              <span className="text-xs font-normal ml-1 text-slate-400">
                                 per person
                               </span>
                             </div>
