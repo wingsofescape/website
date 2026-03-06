@@ -1,10 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import { IBlogContent } from "@/app/_models/blog";
 import { urlFor } from "@/sanity/lib/image";
 import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { shimmer, toBase64 } from "@/utils/shimmer";
 import { ItineraryAccordion } from "./ItineraryAccordion";
 
 type PageProps = {
@@ -14,6 +12,8 @@ type PageProps = {
 
 
 export default async function Itinerary({ params }: PageProps) {
+    console.log(params);
+
     const blog = await sanityFetch(
         POST_QUERY.getBlog({ slug: 'exploring-the-world-anew-the-adventure-of-journeys-by-land-and-sea' }),
         SANITY_QUERY_OPTION
