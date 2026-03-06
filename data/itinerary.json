@@ -1,0 +1,210 @@
+{
+  "customerName": "Aabhas Vincent",
+  "destinationName": "Bali",
+  "guestCount": 2,
+  "image": {
+    "_type": "image",
+    "asset": {
+      "_ref": "image-7819ab2d7532b76bce754109d8cc9473a960e7a5-2048x1536-jpg",
+      "_type": "reference"
+    }
+  },
+  "itinerary": [
+    {
+      "destinationHotels": "Marriot Huts",
+      "destination": "Ubud",
+      "destinationItinerary": [
+        {
+          "activities": [
+            {
+              "activityType": "Bali Swing",
+              "transfers": {
+                "transferSteps": {
+                  "from": "Hotel",
+                  "to": "Bali Swing"
+                },
+                "transferType": "Private SUV"
+              }
+            }
+          ],
+          "day": "26-Jan-2026",
+          "stay": {
+            "checkInDate": "26-Jan-2026",
+            "checkoutDate": "29-Jan-2026",
+            "inclusions": [
+              {
+                "inclusion": true,
+                "inclusionType": "Breakfast"
+              },
+              {
+                "inclusionType": "Lunch"
+              },
+              {
+                "inclusionType": "Dinner"
+              }
+            ],
+            "roomType": "2 Deluxe | 1 Superior",
+            "stayLink": "https://www.Hotel-1.com",
+            "stayName": "Luxe Huts Marriott",
+            "transfers": {
+              "transferSteps": {
+                "_type": "document",
+                "from": "Airport",
+                "to": "Hotel"
+              },
+              "transferType": "Private SUV"
+            }
+          },
+          "title": "Day 1 - Arrival in Ubud"
+        },
+        {
+          "activities": [
+            {
+              "activityType": "Rice Terrace",
+              "transfers": {
+                "transferSteps": {
+                  "from": "Hotel",
+                  "to": "Bali Swing"
+                },
+                "transferType": "Private SUV"
+              }
+            }
+          ],
+          "day": "26-Jan-2026",
+          "stay": {
+            "checkInDate": "26-Jan-2026",
+            "checkoutDate": "29-Jan-2026",
+            "guestCount": 2,
+            "inclusions": [
+              {
+                "inclusion": true,
+                "inclusionType": "Breakfast"
+              },
+              {
+                "inclusionType": "Lunch"
+              },
+              {
+                "inclusionType": "Dinner"
+              }
+            ],
+            "roomType": "Delux",
+            "stayLink": "https://www.Hotel-1.com",
+            "stayName": "Luxe Huts Marriott",
+            "transfers": {
+              "_type": "document",
+              "transferSteps": {
+                "_type": "document",
+                "from": "Airport",
+                "to": "Hotel"
+              },
+              "transferType": "Private SUV"
+            }
+          },
+          "title": "Day 2 - Rice Terrace"
+        }
+      ],
+      "title": "Ubud",
+      "destinationImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a788318f9c6477ff76a5e40276e4386ac7ffd327-2048x1365-jpg",
+          "_type": "reference"
+        }
+      }
+    },
+    {
+      "destinationHotels": "Marriot Suites",
+      "_key": "70120a71b73adcf04d94189f3a267e05",
+      "date": "29-Jan-2026",
+      "destination": "Semniyk",
+      "destinationItinerary": [
+        {
+          "_key": "3ada46b9d951",
+          "day": "26-Jan-2026",
+          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. You can visit Goa Gajah, the ancient Elephant Cave, or relax at the beautiful Ubud Water Palace. Stroll through the Ubud Art Market or explore the historic Ubud Royal Palace, soaking in the vibrant local atmosphere. Later, return to the hotel for overnight stay.",
+          "stay": {
+            "_type": "document",
+            "checkInDate": "26-Jan-2026",
+            "checkoutDate": "29-Jan-2026",
+            "inclusions": [
+              {
+                "_key": "427b7defd517",
+                "inclusion": true,
+                "inclusionType": "Breakfast"
+              },
+              {
+                "_key": "036ce5ae49ff",
+                "inclusionType": "Lunch"
+              },
+              {
+                "_key": "b52e65dbefd5",
+                "inclusionType": "Dinner"
+              }
+            ],
+            "stayLink": "https://www.Hotel-1.com",
+            "stayName": "Hotel 2"
+          },
+          "title": "Day 3 - Arrival in Ubud"
+        }
+      ],
+      "title": "Semniyk",
+      "destinationImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-31f10b4514ada9416cb47b354bec59a0113982f7-1600x1069-jpg",
+          "_type": "reference"
+        }
+      }
+    },
+    {
+      "destinationHotels": "Sun and Sky Villas",
+      "_key": "006f6b91e3f7cd1b8fa832e1f73f8552",
+      "destination": "Danpesar",
+      "destinationItinerary": [
+        {
+          "_key": "3ada46b9d951",
+          "day": "26-Jan-2026",
+          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. You can visit Goa Gajah, the ancient Elephant Cave, or relax at the beautiful Ubud Water Palace. Stroll through the Ubud Art Market or explore the historic Ubud Royal Palace, soaking in the vibrant local atmosphere. Later, return to the hotel for overnight stay.",
+          "stay": {
+            "_type": "document",
+            "checkInDate": "26-Jan-2026",
+            "checkoutDate": "29-Jan-2026",
+            "inclusions": [
+              {
+                "_key": "427b7defd517",
+                "inclusion": true,
+                "inclusionType": "Breakfast"
+              },
+              {
+                "_key": "036ce5ae49ff",
+                "inclusionType": "Lunch"
+              },
+              {
+                "_key": "b52e65dbefd5",
+                "inclusionType": "Dinner"
+              }
+            ],
+            "stayLink": "https://www.Hotel-1.com",
+            "stayName": "Hotel 3"
+          },
+          "title": "Day 4 - Arrival in Ubud"
+        }
+      ],
+      "title": "Nusa Penida",
+      "destinationImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-1f1b5b25101d76653e24bb006b376453e2fece28-2048x1534-jpg",
+          "_type": "reference"
+        }
+      }
+    }
+  ],
+  "itineraryName": "Bali Bliss",
+  "pricing": 15000,
+  "slug": {
+    "_type": "slug",
+    "current": "bali-itinerary-jaao-na"
+  },
+  "title": "BALI ITINERARY PARENT"
+}

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
-import { itineraryData } from "./page";
+import itineraryData from "@/data/itinerary.json";
 
 interface ItineraryAccordionProps {
     itinerary: typeof itineraryData.itinerary;
