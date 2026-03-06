@@ -57,10 +57,16 @@ export const POST_QUERY = {
     name: "blogs",
     query: `*[_type == "blog"] | order(date desc){_createdAt, blogHeroImage, author, slug, title, date}`,
   },
-  getblog(blogSlug: { slug: string }) {
+  getBlog(blogSlug: { slug: string }) {
     return {
       name: `Blog - ${blogSlug}`,
       query: `*[_type == "blog" && slug.current == '${blogSlug.slug}']{blogContent, blogHeroImage, author, slug, title, date, subtitle}`,
+    };
+  },
+  getItinerary(itinerarySlug: { slug: string }) {
+    return {
+      name: `Blog - ${itinerarySlug}`,
+      query: `*[_type == "itinerary" && slug.current == '${itinerarySlug.slug}']`,
     };
   },
   blogsList: {

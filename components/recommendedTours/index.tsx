@@ -134,7 +134,7 @@ const RecommendedToursSlider = ({
       onClick={nextSlide}
       className={`absolute right-5 top-[40%] -translate-y-1/2 z-10 w-12 h-12 bg-background shadow-xl rounded-full flex items-center justify-center transition-all duration-200 -mr-6 group ${isLastCardVisible
         ? "opacity-50 cursor-not-allowed"
-        : "hover:bg-gray-200 cursor-pointer"
+        : "hover:bg-gray-200"
         }`}
       disabled={isLastCardVisible}
     >
@@ -205,7 +205,7 @@ const RecommendedToursSlider = ({
                       <Link
                         href={`/destination/${tour.countryName}/tours/${tour.slug.current}`}
                       >
-                        <div className="bg-background rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer">
+                        <div className="bg-background rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
                           <div className="relative h-64 overflow-hidden">
                             <Image
                               src={

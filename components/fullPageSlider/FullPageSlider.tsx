@@ -55,7 +55,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
             <div className="relative inset-0 bg-theme-primary flex items-center justify-center z-10 overflow-hidden">
                 <button
                     onClick={() => startSlide('left')}
-                    className="absolute left-0 md:left-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 hidden md:flex items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute left-0 md:left-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 hidden md:flex items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50"
                     aria-label="Previous"
                     disabled={isAnimating}
                 >
@@ -104,7 +104,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
 
                 <button
                     onClick={() => startSlide('right')}
-                    className="absolute right-0 md:right-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hidden md:flex items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute right-0 md:right-8 -bottom-4 md:top-1/2 -translate-y-1/2 w-10 h-10 rounded-full hidden md:flex items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 "
                     aria-label="Next"
                     disabled={isAnimating}
                 >
@@ -152,7 +152,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
             <div className='relative'>
                 <button
                     onClick={() => startSlide('left')}
-                    className="absolute left-0 -bottom-4 -translate-y-1/4 w-10 h-10 flex md:hidden items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute left-0 -bottom-4 -translate-y-1/4 w-10 h-10 flex md:hidden items-center rounded-full justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 "
                     aria-label="Previous"
                     disabled={isAnimating}
                 >
@@ -165,7 +165,7 @@ const FullPageSlider = ({ reviewContent }: { reviewContent: IReviewContent[] }) 
                 </div>
                 <button
                     onClick={() => startSlide('right')}
-                    className="absolute right-0 -bottom-4 md:top-1/2 -translate-y-1/4 w-10 h-10 rounded-full flex md:hidden items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 cursor-pointer"
+                    className="absolute right-0 -bottom-4 md:top-1/2 -translate-y-1/4 w-10 h-10 rounded-full flex md:hidden items-center justify-center hover:border-2 hover:border-slate-200 hover:scale-105 transition-transform duration-800 z-50 "
                     aria-label="Next"
                     disabled={isAnimating}
                 >

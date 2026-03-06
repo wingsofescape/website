@@ -32,7 +32,6 @@ export default async function DestinationToursPage({
     <div className="bg-background">
       {/* Hero Section */}
       <HeroBanner destination={destination} />
-
       <div className="bg-background rounded-lg p-8 lg:p-6 flex justify-center">
         <div className="max-w-4xl">
           <h2 className="text-2xl lg:text-3xl mb-2 font-bold text-theme-primary-dark">

@@ -14,7 +14,7 @@ const ContactUs = () => {
         {" "}
         Quick Support
       </h2>
-      <div className="card-container flex flex-col md:flex-row gap-4 md:gap-8 w-full md:w-2/3 p-8">
+      <div className="card-container flex flex-col md:flex-row gap-4 md:gap-8 w-full md:w-2/3 p-2">
         <div className="card rounded-2xl w-full shadow-xl p-6 md:h-50 md:w-1/3 flex flex-row-reverse md:flex-col justify-between relative">
           <div className="iconContainer">
             <svg
@@ -70,13 +70,8 @@ const ContactUs = () => {
           <div className="contentBox">
             <h3 className="text-md font-semibold mb-5">Email us</h3>
             <a href="mailto:bookings@wingsofescape.com" className="w-full md:w-1/3">
-              <p className="break-words text-xs text-theme-primary-light">
+              <p className="wrap-break-word text-xs text-theme-primary-light">
                 bookings@wingsofescape.com
-              </p>
-            </a>
-            <a href="mailto:wingsofescape@gmail.com" className="w-full md:w-1/3">
-              <p className="break-words text-xs text-theme-primary-light">
-                wingsofescape@gmail.com
               </p>
             </a>
           </div>

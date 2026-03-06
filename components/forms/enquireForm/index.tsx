@@ -120,7 +120,7 @@ export default function EnquireNow() {
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
+                  className="border rounded-full  h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setAdults(Math.max(1, adults - 1))}
                 >
                   -
@@ -128,7 +128,7 @@ export default function EnquireNow() {
                 <span>{adults}</span>
                 <button
                   type="button"
-                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark  text-white hover:bg-theme-primary-light font-semibold"
+                  className="border rounded-full  h-8 w-8 bg-theme-primary-dark  text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setAdults(adults + 1)}
                 >
                   +
@@ -142,7 +142,7 @@ export default function EnquireNow() {
               <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
+                  className="border rounded-full  h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setChildren(Math.max(0, children - 1))}
                 >
                   -
@@ -150,7 +150,7 @@ export default function EnquireNow() {
                 <span>{children}</span>
                 <button
                   type="button"
-                  className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
+                  className="border rounded-full  h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
                   onClick={() => setChildren(children + 1)}
                 >
                   +
@@ -358,30 +358,30 @@ export default function EnquireNow() {
           value={details.message}
           onChange={(e) => setDetails({ ...details, message: e.target.value })}
         />
-        <div className="text-xs text-gray-600 mt-1">
+        <div className="text-xs text-gray-600 my-1">
           {details.message.length} / 1000 characters
         </div>
       </div>
       {/* Submit button could go here */}
-
-      <div className="mt-8 flex flex-col md:flex-row justify-start items-start gap-4">
+      {state?.message && (
+        <span
+          className={`text-sm px-4 py-2 ${state.message.includes("successfully") ||
+            state.message.includes("Thank you")
+            ? "text-green-800"
+            : "text-red-800"
+            }`}
+        >
+          {state.message}
+        </span>
+      )}
+      <div className="mt-4 flex flex-col md:flex-row justify-start items-start gap-4">
         <button
           type="submit"
-          className="text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary"
+          className="text-white font-light px-8 py-3 rounded transition-colors bg-theme-primary hover:bg-theme-primary-light"
         >
           Submit Form
         </button>
-        {state?.message && (
-          <div
-            className={`text-sm px-4 py-2 ${state.message.includes("successfully") ||
-              state.message.includes("Thank you")
-              ? "text-green-800"
-              : "text-red-800"
-              }`}
-          >
-            {state.message}
-          </div>
-        )}
+
         <div className="text-xs text-gray-600 max-w-lg">
           By proceeding, I understand that the personal data I provide will be
           used to deal with my request in accordance with the privacy policy.
