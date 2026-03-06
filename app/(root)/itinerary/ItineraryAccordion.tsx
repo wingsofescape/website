@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import { itineraryData } from "./page";
+
 interface ItineraryAccordionProps {
-    itinerary: typeof data.itinerary;
+    itinerary: typeof itineraryData.itinerary;
 }
 export const ItineraryAccordion = ({ itinerary }: ItineraryAccordionProps) => {
     const [expandedDays, setExpandedDays] = useState<string[]>([]);
