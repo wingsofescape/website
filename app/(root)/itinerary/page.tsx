@@ -28,47 +28,47 @@ export default async function Itinerary({ params }: PageProps) {
     if (!blog[0]) {
         return <div>Loading ...</div>;
     }
-    const ContentSection = (blogContent: IBlogContent[]) => {
-        return blogContent.map((content, index) => (
-            <div
-                key={index}
-                className="mb-1 flex flex-col align-center items-center text-left w-11/12 md:w-8/12"
-            >
-                <div className="contentSection my-5 ">
-                    <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
-                        {content.heading}
-                    </h3>
-                    <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">
-                        {content.subHeading}
-                    </h4>
-                    {content.paragraph.map((para, idx) => (
-                        <p key={idx} className="mb-2 text-theme-primary-dark text-md">
-                            {para}
-                        </p>
-                    ))}
-                </div>
+    // const ContentSection = (blogContent: IBlogContent[]) => {
+    //     return blogContent.map((content, index) => (
+    //         <div
+    //             key={index}
+    //             className="mb-1 flex flex-col align-center items-center text-left w-11/12 md:w-8/12"
+    //         >
+    //             <div className="contentSection my-5 ">
+    //                 <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
+    //                     {content.heading}
+    //                 </h3>
+    //                 <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">
+    //                     {content.subHeading}
+    //                 </h4>
+    //                 {content.paragraph.map((para, idx) => (
+    //                     <p key={idx} className="mb-2 text-theme-primary-dark text-md">
+    //                         {para}
+    //                     </p>
+    //                 ))}
+    //             </div>
 
-                {content.image && content.image.length > 0 && (
-                    <div className="imageSection mb-1 p-1 md:p-4 w-full ">
-                        {content.image.map((img, i) => (
-                            <Image
-                                key={i}
-                                src={urlFor(img?.asset)?.url()}
-                                alt={content.imagesDescription || ""}
-                                className="object-cover h-[40vh] md:h-[65vh]  md:w-11/12 mx-auto"
-                                width={1080}
-                                height={1920}
-                                placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-                            />
-                        ))}
-                    </div>
-                )}
-                <p className="text-gray-500 text-sm  text-center">
-                    {content.imagesDescription}
-                </p>
-            </div>
-        ));
-    };
+    //             {content.image && content.image.length > 0 && (
+    //                 <div className="imageSection mb-1 p-1 md:p-4 w-full ">
+    //                     {content.image.map((img, i) => (
+    //                         <Image
+    //                             key={i}
+    //                             src={urlFor(img?.asset)?.url()}
+    //                             alt={content.imagesDescription || ""}
+    //                             className="object-cover h-[40vh] md:h-[65vh]  md:w-11/12 mx-auto"
+    //                             width={1080}
+    //                             height={1920}
+    //                             placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+    //                         />
+    //                     ))}
+    //                 </div>
+    //             )}
+    //             <p className="text-gray-500 text-sm  text-center">
+    //                 {content.imagesDescription}
+    //             </p>
+    //         </div>
+    //     ));
+    // };
 
     const data = {
         "customerName": "Aabhas Vincent",
