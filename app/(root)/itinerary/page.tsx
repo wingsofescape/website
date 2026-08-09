@@ -1,135 +1,84 @@
-import Image from "next/image";
-import React from "react";
-import { urlFor } from "@/sanity/lib/image";
-import { POST_QUERY, SANITY_QUERY_OPTION } from "@/lib/constants";
-import { sanityFetch } from "@/sanity/lib/fetch";
-import { ItineraryAccordion } from "./ItineraryAccordion";
 import itineraryData from "@/data/itinerary.json";
-type PageProps = {
-    params: Promise<{ slug: string }>;
+import { urlFor } from "@/sanity/lib/image";
+
+const imageUrl = (image: { asset: unknown }) => urlFor(image).width(900).url();
+const navy = "#12213a";
+const body = "#5c6675";
+const soft = "#8991a0";
+const line = "#e6e8ec";
+const sand = "#f6f1e8";
+const sandLine = "#e9dfc9";
+const serif = "Georgia, serif";
+
+type ItineraryActivity = {
+    activityType: string;
+    transfers?: { transferType?: string };
 };
 
+type ItineraryStay = {
+    stayName: string;
+    roomType?: string;
+    inclusions?: { inclusion?: boolean; inclusionType: string }[];
+};
 
-export default async function Itinerary({ params }: PageProps) {
-    console.log(params);
+type ItineraryDay = {
+    title: string;
+    day: string;
+    description?: string;
+    activities?: ItineraryActivity[];
+    stay?: ItineraryStay;
+};
 
-    const blog = await sanityFetch(
-        POST_QUERY.getBlog({ slug: 'exploring-the-world-anew-the-adventure-of-journeys-by-land-and-sea' }),
-        SANITY_QUERY_OPTION
+const totalNights = itineraryData.itinerary.reduce(
+    (total, destination) => total + destination.destinationItinerary.length,
+    0,
+);
+
+export default function Itinerary() {
+    const firstDay = itineraryData.itinerary[0]?.destinationItinerary[0];
+    const lastDay = itineraryData.itinerary.at(-1)?.destinationItinerary.at(-1);
+    const dateRange = firstDay && lastDay ? `${firstDay.day} - ${lastDay.day}` : "Your journey dates";
+    const allDays = itineraryData.itinerary.flatMap((destination) =>
+        (destination.destinationItinerary as ItineraryDay[]).map((day) => ({ ...day, destination: destination.destination })),
     );
-    const itinerary = await sanityFetch(
-        POST_QUERY.getItinerary({ slug: 'bali-itinerary-jaao-na' }),
-        SANITY_QUERY_OPTION
-    );
-
-    console.log(itinerary[0]);
-
-    if (!blog[0]) {
-        return <div>Loading ...</div>;
-    }
-    // const ContentSection = (blogContent: IBlogContent[]) => {
-    //     return blogContent.map((content, index) => (
-    //         <div
-    //             key={index}
-    //             className="mb-1 flex flex-col align-center items-center text-left w-11/12 md:w-8/12"
-    //         >
-    //             <div className="contentSection my-5 ">
-    //                 <h3 className="text-2xl font-semibold mb-6 mt-2 text-theme-primary-dark">
-    //                     {content.heading}
-    //                 </h3>
-    //                 <h4 className="text-xl font-semibold mb-2 text-theme-primary-dark">
-    //                     {content.subHeading}
-    //                 </h4>
-    //                 {content.paragraph.map((para, idx) => (
-    //                     <p key={idx} className="mb-2 text-theme-primary-dark text-md">
-    //                         {para}
-    //                     </p>
-    //                 ))}
-    //             </div>
-
-    //             {content.image && content.image.length > 0 && (
-    //                 <div className="imageSection mb-1 p-1 md:p-4 w-full ">
-    //                     {content.image.map((img, i) => (
-    //                         <Image
-    //                             key={i}
-    //                             src={urlFor(img?.asset)?.url()}
-    //                             alt={content.imagesDescription || ""}
-    //                             className="object-cover h-[40vh] md:h-[65vh]  md:w-11/12 mx-auto"
-    //                             width={1080}
-    //                             height={1920}
-    //                             placeholder={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-    //                         />
-    //                     ))}
-    //                 </div>
-    //             )}
-    //             <p className="text-gray-500 text-sm  text-center">
-    //                 {content.imagesDescription}
-    //             </p>
-    //         </div>
-    //     ));
-    // };
-
-
-
-
+    const inclusions = Array.from(new Set(allDays.flatMap((day) => day.stay?.inclusions?.filter((item) => item.inclusion).map((item) => item.inclusionType) || [])));
+    const activities = Array.from(new Set(allDays.flatMap((day) => day.activities?.map((activity) => activity.activityType) || [])));
+    const total = itineraryData.pricing.toLocaleString("en-IN");
 
     return (
-        <div className="flex flex-col w-full">
-            <div className="flex flex-col md:flex-row w-full">
-                <div
-                    className="blogHeroImage relative overflow-hidden w-full  h-[30vh] md:h-[70vh]">
-                    <Image
-                        alt="Page Banner Image"
-                        src={urlFor(data.image.asset)?.url()}
-                        className="object-cover h-full"
-                        fill
-                        style={{
-                            transition: "transform 0.1s linear",
-                            zIndex: 1,
-                        }}
-                    />
-                    <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-white z-10">
-                        <p className="text-5xl text-white font-serif text-nowrap">
-                            {data.customerName}
-                        </p>
-                        <p className=" text-slate-400 font-light mt-2">
-                            {data.destinationName} Itinerary
-                        </p>
-                    </div>
+        <main className="bg-white px-5 pb-24 pt-6 font-sans text-[#12213a] md:px-12 md:pt-10">
+            <section className="mx-auto max-w-[1180px]">
+                <div className="max-w-[820px] rounded-[14px] bg-gradient-to-br from-[#12213a] to-[#1b3358] px-6 py-7 text-white md:px-12 md:pb-10 md:pt-11">
+                    <p className="mb-[22px] text-[11px] text-[#a9b6c9] md:text-[12.5px]">Home <span className="mx-1.5 opacity-60">›</span> {itineraryData.destinationName} <span className="mx-1.5 opacity-60">›</span> Private Itinerary</p>
+                    <p className="mb-[18px] inline-block rounded-full border border-white/25 px-3.5 py-1 text-[10px] uppercase tracking-[1px] text-[#c9d3e2] md:text-xs md:tracking-[1.5px]">Prepared for {itineraryData.customerName}</p>
+                    <h1 className="mb-5 max-w-[560px] text-[27px] leading-tight md:text-4xl" style={{ fontFamily: serif }}>{itineraryData.itineraryName}: Art, Craft &amp; Celebration</h1>
+                    <div className="mb-[18px] flex flex-wrap gap-2.5">{itineraryData.itinerary.map((destination) => <span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]" key={destination.title}>{destination.destination} · {destination.destinationItinerary.length}N</span>)}<span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]">◷ {dateRange}</span><span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]">{itineraryData.guestCount} Adults</span></div>
+                    <p className="text-[13.5px] text-[#c9d3e2]">Total for this trip <strong className="ml-1 text-[21px] text-white" style={{ fontFamily: serif }}>₹ {total}</strong></p>
                 </div>
-                {/* <div
-                    className="heading right-0 w-full md:w-2/5 flex flex-col justify-center px-2 py-10 md:p-10 z-200 text-theme-primary-dark mx-auto"
-                    style={{
-                        transition: "transform 0.1s linear",
-                    }}
-                >
-                    <h2 className="text-xl font-semibold mb-2 leading-snug">
-                        {data.destinationName} for {data.customerName}
-                    </h2>
-                    <div className="bg-slate-400 w-fit px-4 rounded-xl my-2">
-                        6D/5N
-                    </div>
-                    {data.itinerary.map(content =>
-                        <div className="flex justify-left items-center gap-4 bg-theme-primary-accent/30 m-2 rounded-md px-4 w-3/4">
-                            <span className="w-3 h-3 rounded-full bg-theme-primary-accent flex z-10" />
-                            <div className="text-center py-2 text-sm font-bold flex gap-3 justify-between items-center w-full">
-                                <div className="flex flex-col text-left">
-                                    <span>{content.destination.toUpperCase()}
-                                    </span>
-                                    <span className="text-sm text-slate-400 font-light">
-                                        {content.destinationHotels.toUpperCase()}
-                                    </span>
-                                </div>
-                                <span className="font-light text-slate-400">{content.destinationItinerary.length} D</span>
-                            </div>
-                        </div>
-                    )}
-
-                </div> */}
-            </div>
-            <section className="mx-auto w-full pt-4">
-                <ItineraryAccordion itinerary={itineraryData.itinerary} />
             </section>
-        </div>
+
+            <div className="mx-auto grid max-w-[1180px] items-start gap-10 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
+                <div className="min-w-0">
+                    <section className="mb-12"><h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>Itinerary</h2>{itineraryData.itinerary.map((destination) => <div key={destination.title}>
+                        <div className="my-[18px] flex items-center justify-between rounded-[10px] bg-[#12213a] px-[22px] py-9 text-white md:my-[34px] md:px-[30px] md:py-[52px]" style={{ fontFamily: serif }}><span className="text-[17px]">{destination.destination}</span><small className="font-sans text-xs tracking-wide text-[#c9d3e2]">{destination.destinationItinerary.length} NIGHTS</small></div>
+                        {(destination.destinationItinerary as ItineraryDay[]).map((day, index) => <article className="border-b px-1 pb-[26px] pt-[18px]" style={{ borderColor: line }} key={`${destination.title}-${day.title}-${index}`}>
+                            <div className="mb-2 flex items-baseline gap-3"><span className="rounded-full border px-3 py-[3px] text-[12.5px]" style={{ borderColor: sandLine, backgroundColor: sand, fontFamily: serif }}>Day {index + 1}</span><small className="text-xs" style={{ color: soft }}>{day.day}</small></div>
+                            <h3 className="mb-2 text-[19px]" style={{ fontFamily: serif }}>{day.title}</h3><p className="mb-3.5 max-w-[650px] text-sm leading-[1.7]" style={{ color: body }}>{day.description || `Explore the highlights of ${destination.destination} at your own pace.`}</p>
+                            <div className="mb-3.5 flex gap-2.5 overflow-hidden"><img className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]" src={imageUrl(destination.destinationImage)} alt={`${destination.destination} landscape`} /><img className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]" src={imageUrl(destination.destinationImage)} alt={`${destination.destination} travel experience`} /></div>
+                            {day.activities?.map((activity) => <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-3 text-[13px]" key={activity.activityType}><span className="grid h-[26px] w-[26px] place-items-center rounded-[7px] border bg-white" style={{ borderColor: line }}>✦</span>{activity.activityType}{activity.transfers?.transferType && <small className="ml-auto text-xs" style={{ color: soft }}>{activity.transfers.transferType}</small>}</div>)}
+                            {day.stay && <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-3 text-[13px]"><span className="grid h-[26px] w-[26px] place-items-center rounded-[7px] border bg-white" style={{ borderColor: line }}>⌂</span>Stay at — {day.stay.stayName}<small className="ml-auto text-xs" style={{ color: soft }}>{day.stay.roomType || "Selected room"}</small></div>}
+                        </article>)}
+                    </div>)}</section>
+
+                    <section className="mb-12"><h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>Stays</h2>{itineraryData.itinerary.map((destination) => { const stay = (destination.destinationItinerary as ItineraryDay[]).find((day) => day.stay)?.stay; if (!stay) return null; return <div className="mb-2.5 flex gap-4 rounded-xl border p-3.5" style={{ borderColor: line }} key={`${destination.title}-stay`}><img className="h-[76px] w-[100px] shrink-0 rounded-lg object-cover" src={imageUrl(destination.destinationImage)} alt={stay.stayName} /><div><h3 className="mt-1 text-base" style={{ fontFamily: serif }}>{stay.stayName}</h3><p className="text-[12.5px]" style={{ color: soft }}>{stay.roomType || "Selected room"} · {inclusions.join(", ") || "Breakfast included"}</p></div></div>; })}</section>
+                    <section className="mb-12"><h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>Trip Highlights</h2><div className="grid gap-4 md:grid-cols-3">{activities.slice(0, 3).map((activity, index) => <div className="rounded-xl bg-[#f5f6f8] p-[18px]" key={activity}><span className="mb-2.5 grid h-[38px] w-[38px] place-items-center rounded-[10px] bg-[#12213a] text-white">{["⛰", "◌", "✦"][index]}</span><h3 className="mb-1 text-[15px]" style={{ fontFamily: serif }}>{activity}</h3><p className="text-[12.5px]" style={{ color: soft }}>Curated for your {itineraryData.destinationName} journey</p></div>)}</div></section>
+                    <section className="mb-12"><h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>Essential Details</h2><div className="rounded-xl border px-6 py-[22px]" style={{ borderColor: sandLine, backgroundColor: sand }}><h3 className="mb-3 text-base" style={{ fontFamily: serif }}>▣ Advisory</h3><ul className="m-0 list-disc space-y-1.5 pl-5 text-[13.5px] leading-7" style={{ color: body }}><li>Booking requests are subject to availability and final confirmation.</li><li>Breakfast is included where specified in your stay details.</li><li>Valid passport with 6+ months validity is required for all travellers.</li></ul></div></section>
+                    <section className="mb-12"><h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>What&apos;s Included</h2><div className="grid gap-6 md:grid-cols-2"><div><h3 className="mb-2.5 text-[13px] uppercase tracking-wide" style={{ color: soft, fontFamily: serif }}>Inclusions</h3><ul className="m-0 grid list-none gap-2 p-0 text-[13.5px]" style={{ color: body }}>{[`${totalNights} nights' accommodation as listed`, ...inclusions, "Private inter-hotel transfers"].map((item) => <li className="flex gap-2 leading-6" key={item}><b className="text-[#2f7a4f]">✓</b>{item}</li>)}</ul></div><div><h3 className="mb-2.5 text-[13px] uppercase tracking-wide" style={{ color: soft, fontFamily: serif }}>Exclusions</h3><ul className="m-0 grid list-none gap-2 p-0 text-[13.5px]" style={{ color: body }}><li className="flex gap-2 leading-6"><b className="text-[#b5545a]">×</b>International flights</li><li className="flex gap-2 leading-6"><b className="text-[#b5545a]">×</b>Visa fees</li><li className="flex gap-2 leading-6"><b className="text-[#b5545a]">×</b>Personal expenses &amp; tips</li><li className="flex gap-2 leading-6"><b className="text-[#b5545a]">×</b>Travel insurance</li></ul></div></div></section>
+                </div>
+
+                <aside className="sticky top-6 rounded-[14px] border bg-white p-6 shadow-[0_10px_30px_rgba(18,33,58,0.08)] max-md:hidden" style={{ borderColor: line }}><h2 className="mb-4 text-[17px]" style={{ fontFamily: serif }}>Fare Breakdown</h2><div className="flex justify-between border-b py-2 text-[13.5px]" style={{ borderColor: line, color: body }}><span>{itineraryData.guestCount} Adults</span><span>₹ {Math.round(itineraryData.pricing * 0.94).toLocaleString("en-IN")}</span></div><div className="flex justify-between border-b py-2 text-[13.5px]" style={{ borderColor: line, color: body }}><span>Taxes &amp; fees</span><span>₹ {Math.round(itineraryData.pricing * 0.06).toLocaleString("en-IN")}</span></div><div className="mt-1 flex justify-between border-t pt-3.5 text-base" style={{ borderColor: navy, fontFamily: serif }}><span>Total</span><span>₹ {total}</span></div><button className="mt-[18px] w-full rounded-[10px] px-3 py-[13px] text-[15px] text-white" style={{ backgroundColor: navy, fontFamily: serif }}>Accept &amp; Book</button><button className="mt-2.5 w-full rounded-[10px] border-[1.5px] bg-white px-3 py-[13px] text-[15px]" style={{ borderColor: navy, color: navy, fontFamily: serif }}>Request Changes</button><p className="mt-3 text-center text-[11.5px] leading-normal" style={{ color: soft }}>Our team will be in touch on WhatsApp within a few hours.</p></aside>
+            </div>
+            <div className="fixed inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 border-t bg-white px-5 py-3 shadow-[0_-6px_20px_rgba(18,33,58,0.06)] md:hidden" style={{ borderColor: line }}><strong className="text-base" style={{ fontFamily: serif }}>₹ {total}<small className="mt-0.5 block font-sans text-[11px] font-normal" style={{ color: soft }}>Total for {itineraryData.guestCount} adults</small></strong><button className="rounded-[10px] px-4 py-2.5 text-[15px] text-white" style={{ backgroundColor: navy, fontFamily: serif }}>Accept &amp; Book</button></div>
+        </main >
     );
 }
