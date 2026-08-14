@@ -54,6 +54,7 @@ export async function submitFormData(prevState: any, formData: FormData) {
       }
     } catch (e) {
       parsedDates = [];
+      console.log("Failed to parse dates:", e);
     }
 
 
