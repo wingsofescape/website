@@ -20,9 +20,7 @@ model userQuery {
   name             String?
   phoneNumber      String
   queryDestination String
-  numberOfDays     Int
   message          String
   budget           String
-  travelMonth      String
-  year             String
+  dates            String
 }

@@ -1,24 +1,10 @@
 "use client";
 import { submitFormData } from "@/lib/actions/query.actions";
 import React, { useState, useActionState, useEffect } from "react";
-
-const months = [
-  "Any month",
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-const years = ["Any year", "2026", "2027", "2028"];
+import Calendar from 'react-calendar';
+import '../../../app/global.css';
+import 'react-calendar/dist/Calendar.css';
+import { LooseValue } from "react-calendar/dist/shared/types.js";
 
 const budgets = [
   "Select your budget (per pax.)",
@@ -41,33 +27,42 @@ export default function EnquireNow() {
     setDestinations(stored ? JSON.parse(stored) : []);
   }, []);
 
-  const [adults, setAdults] = useState(2);
-  const [children, setChildren] = useState(0);
-  const [followUp, setFollowUp] = useState({
-    email: true,
-    phone: true,
-    text: true,
-  });
-  const [details, setDetails] = useState({
+
+  const [form, setForm] = useState({
+    // guest details
+    adults: 2,
+    children: 0,
+    // follow up preferences
+    followUp: { email: true, phone: true, text: true },
+    // travel
+    dates: [] as Date[],
+    flightsBooked: 'No',
+    destination: "Other",
+    // personal
     firstName: "",
     lastName: "",
     phone: "",
     email: "",
-    destination: "Other",
-    month: "Any month",
-    year: "Any year",
+    // preferences
     budget: "Select your budget *",
     availability: "Any time",
     message: "",
   });
 
+  const formatDateOnly = (d: Date | string | undefined | null) => {
+    if (!d) return null;
+    const date = typeof d === "string" ? new Date(d) : d;
+    // use local date parts to avoid timezone shifts
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
   const [state, formAction] = useActionState(submitFormData, { message: "" });
 
-  const handleFollowUpChange = (type: string) => {
-    setFollowUp({
-      ...followUp,
-      [type]: !followUp[type as keyof typeof followUp],
-    });
+  const handleFollowUpChange = (type: keyof typeof form.followUp) => {
+    setForm((prev) => ({ ...prev, followUp: { ...prev.followUp, [type]: !prev.followUp[type] } }));
   };
 
   return (
@@ -75,17 +70,24 @@ export default function EnquireNow() {
       className="flex flex-col p-6 w-full md:w-1/2 mx-auto enquire-form items-left text-theme-primary-dark"
       action={formAction}
     >
-      {/* Hidden inputs for state values */}
-      <input type="hidden" name="adults" value={adults} />
-      <input type="hidden" name="children" value={children} />
-      <input type="hidden" name="month" value={details.month} />
-      <input type="hidden" name="year" value={details.year} />
-      <input type="hidden" name="budget" value={details.budget} />
-      <input type="hidden" name="availability" value={details.availability} />
-      <input type="hidden" name="message" value={details.message} />
+      {/* Hidden inputs for state values (keeps form action payload consistent) */}
+      <input type="hidden" name="adults" value={String(form.adults)} />
+      <input type="hidden" name="children" value={String(form.children)} />
+      <input type="hidden" name="budget" value={form.budget} />
+      <input type="hidden" name="availability" value={form.availability} />
+      <input type="hidden" name="message" value={form.message} />
+      <input type="hidden" name="flightsBooked" value={String(form.flightsBooked)} />
+      <input
+        type="hidden"
+        name="dates"
+        value={JSON.stringify(
+          (form.dates || []).map((d) => formatDateOnly(d) || null),
+        )}
+      />
 
       {/* Top Row */}
-      <div className="flex flex-col gap-2 mb-8">
+      <div className="flex flex-col gap-8 mb-8">
+        <h2 className="text-2xl font-bold test-white mb-2">Destination Details</h2>
         <div className="w-full">
           <label
             id="destinationLabel"
@@ -96,24 +98,20 @@ export default function EnquireNow() {
           <select
             name="destination"
             className="border rounded px-3 py-2 w-full"
-            value={details.destination}
-            onChange={(e) =>
-              setDetails({ ...details, destination: e.target.value })
-            }
+            value={form.destination}
+            onChange={(e) => setForm((p) => ({ ...p, destination: e.target.value }))}
           >
             {destinations.map((d: { destinationHeading: string }) => (
               <option key={d.destinationHeading} value={d.destinationHeading} className="h-[50vh]">
                 {d.destinationHeading}
               </option>
             ))}
-            <option key={'other'} value={'other'} className="h-[50vh]">
-              Other
-            </option>
+            <option key={'other'} value={'other'} className="h-[50vh]">Other</option>
           </select>
         </div>
         <div className="w-full">
           <label className="block font-bold test-white mb-2 text-lg">
-            Guests
+            Guests Count
           </label>
           <div className="flex items-center gap-6">
             <div>
@@ -121,15 +119,15 @@ export default function EnquireNow() {
                 <button
                   type="button"
                   className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
-                  onClick={() => setAdults(Math.max(1, adults - 1))}
+                  onClick={() => setForm((p) => ({ ...p, adults: Math.max(1, p.adults - 1) }))}
                 >
                   -
                 </button>
-                <span>{adults}</span>
+                <span>{form.adults}</span>
                 <button
                   type="button"
                   className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark  text-white hover:bg-theme-primary-light font-semibold"
-                  onClick={() => setAdults(adults + 1)}
+                  onClick={() => setForm((p) => ({ ...p, adults: p.adults + 1 }))}
                 >
                   +
                 </button>
@@ -143,15 +141,15 @@ export default function EnquireNow() {
                 <button
                   type="button"
                   className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
-                  onClick={() => setChildren(Math.max(0, children - 1))}
+                  onClick={() => setForm((p) => ({ ...p, children: Math.max(0, p.children - 1) }))}
                 >
                   -
                 </button>
-                <span>{children}</span>
+                <span>{form.children}</span>
                 <button
                   type="button"
                   className="border rounded-full cursor-pointer h-8 w-8 bg-theme-primary-dark text-white hover:bg-theme-primary-light font-semibold"
-                  onClick={() => setChildren(children + 1)}
+                  onClick={() => setForm((p) => ({ ...p, children: p.children + 1 }))}
                 >
                   +
                 </button>
@@ -162,37 +160,13 @@ export default function EnquireNow() {
             </div>
           </div>
         </div>
+
         <div className="w-full">
           <label className="block font-bold test-white mb-2 text-lg">
-            When would you like to go?
+            When are you planning to travel? *
           </label>
           <div className="flex gap-2">
-            <select
-              className="border rounded px-3 py-2 w-1/2"
-              name="month"
-              value={details.month}
-              onChange={(e) =>
-                setDetails({ ...details, month: e.target.value })
-              }
-            >
-              {months.map((m) => (
-                <option key={m} value={m}>
-                  {m}
-                </option>
-              ))}
-            </select>
-            <select
-              className="border rounded px-3 py-2 w-1/2"
-              name="year"
-              value={details.year}
-              onChange={(e) => setDetails({ ...details, year: e.target.value })}
-            >
-              {years.map((y) => (
-                <option key={y} value={y}>
-                  {y}
-                </option>
-              ))}
-            </select>
+            <Calendar onChange={(val) => setForm((form) => ({ ...form, dates: val as Date[] }))} value={form.dates as LooseValue} selectRange className="h-fit w-fit" />
           </div>
         </div>
         <div className="w-full">
@@ -202,8 +176,8 @@ export default function EnquireNow() {
           <select
             className="w-full border rounded px-3 py-2"
             name="budget"
-            value={details.budget}
-            onChange={(e) => setDetails({ ...details, budget: e.target.value })}
+            value={form.budget}
+            onChange={(e) => setForm((p) => ({ ...p, budget: e.target.value }))}
           >
             {budgets.map((b) => (
               <option key={b} value={b}>
@@ -212,6 +186,23 @@ export default function EnquireNow() {
             ))}
           </select>
         </div>
+      </div>
+
+      {/* FLights details section */}
+      <div>
+        <h2 className="text-2xl font-bold test-white mb-2">Flight Details</h2>
+        <p className="mb-2 text-theme-primary">
+          Are your flights already booked?
+        </p>
+
+        <input
+          type="checkbox"
+          name="flightsBooked"
+          checked={form.flightsBooked === 'Yes'}
+          onChange={() => setForm((p) => ({ ...p, flightsBooked: p.flightsBooked === 'Yes' ? 'No' : 'Yes' }))}
+          className="accent-theme-primary"
+        />
+        <label className="ml-2 text-theme-primary">Yes, my flights are booked</label>
       </div>
 
       {/* Your Details */}
@@ -226,20 +217,16 @@ export default function EnquireNow() {
             name="firstName"
             className="border rounded px-3 py-2"
             placeholder="First name *"
-            value={details.firstName}
-            onChange={(e) =>
-              setDetails({ ...details, firstName: e.target.value })
-            }
+            value={form.firstName}
+            onChange={(e) => setForm((p) => ({ ...p, firstName: e.target.value }))}
           // required
           />
           <input
             name="lastName"
             className="border rounded px-3 py-2"
             placeholder="Last name *"
-            value={details.lastName}
-            onChange={(e) =>
-              setDetails({ ...details, lastName: e.target.value })
-            }
+            value={form.lastName}
+            onChange={(e) => setForm((p) => ({ ...p, lastName: e.target.value }))}
           // required
           />
           <div className="flex">
@@ -261,10 +248,8 @@ export default function EnquireNow() {
               name="phone"
               className="border-t border-b border-r rounded-r px-3 py-2 flex-1"
               placeholder="Phone number *"
-              value={details.phone}
-              onChange={(e) =>
-                setDetails({ ...details, phone: e.target.value })
-              }
+              value={form.phone}
+              onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
               // required
               type="tel"
             />
@@ -273,8 +258,8 @@ export default function EnquireNow() {
             name="email"
             className="border rounded px-3 py-2"
             placeholder="Email address *"
-            value={details.email}
-            onChange={(e) => setDetails({ ...details, email: e.target.value })}
+            value={form.email}
+            onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
             // required
             type="email"
             autoComplete=""
@@ -290,7 +275,7 @@ export default function EnquireNow() {
                 <input
                   name="followUpEmail"
                   type="checkbox"
-                  checked={followUp.email}
+                  checked={form.followUp.email}
                   onChange={() => handleFollowUpChange("email")}
                   className="accent-theme-primary"
                 />
@@ -300,7 +285,7 @@ export default function EnquireNow() {
                 <input
                   name="followUpPhone"
                   type="checkbox"
-                  checked={followUp.phone}
+                  checked={form.followUp.phone}
                   onChange={() => handleFollowUpChange("phone")}
                   className="accent-theme-primary"
                 />
@@ -310,7 +295,7 @@ export default function EnquireNow() {
                 <input
                   name="followUpText"
                   type="checkbox"
-                  checked={followUp.text}
+                  checked={form.followUp.text}
                   onChange={() => handleFollowUpChange("text")}
                   className="accent-theme-primary"
                 />
@@ -325,10 +310,8 @@ export default function EnquireNow() {
             <select
               className="w-full border rounded px-3 py-2"
               name="availability"
-              value={details.availability}
-              onChange={(e) =>
-                setDetails({ ...details, availability: e.target.value })
-              }
+              value={form.availability}
+              onChange={(e) => setForm((p) => ({ ...p, availability: e.target.value }))}
             >
               {availabilities.map((a) => (
                 <option key={a} value={a}>
@@ -355,22 +338,25 @@ export default function EnquireNow() {
           name="message"
           maxLength={1000}
           placeholder="Hotels, experiences or anything else that you have though off...."
-          value={details.message}
-          onChange={(e) => setDetails({ ...details, message: e.target.value })}
+          value={form.message}
+          onChange={(e) => setForm((p) => ({ ...p, message: e.target.value }))}
         />
         <div className="text-xs text-gray-600 mt-1">
-          {details.message.length} / 1000 characters
+          {form.message.length} / 1000 characters
         </div>
       </div>
       {/* Submit button could go here */}
 
       <div className="mt-8 flex flex-col md:flex-row justify-start items-start gap-4">
-        <button
-          type="submit"
-          className="text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary"
-        >
-          Submit Form
-        </button>
+        <div className="flex gap-3">
+
+          <button
+            type="submit"
+            className="text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary"
+          >
+            Submit Form
+          </button>
+        </div>
         {state?.message && (
           <div
             className={`text-sm px-4 py-2 ${state.message.includes("successfully") ||
@@ -387,6 +373,7 @@ export default function EnquireNow() {
           used to deal with my request in accordance with the privacy policy.
         </div>
       </div>
+
     </form>
   );
 }
