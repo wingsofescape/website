@@ -43,13 +43,6 @@ const Destination = async ({ params }: PageProps) => {
 
       <section className="py-8 px-4 lg:px-12 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          {/* <div className="mb-8">
-            <div className="flex flex-wrap justify-center lg:justify-start border-b border-gray-200 text-theme-primary-dark">
-              {destination.destinationContent["holidaysOverview"].title}
-              {/* {destination.destinationContent["tourIdeas"].title}
-            </div>
-          </div> */}
-
           <div className="bg-background  shadow-sm  p-6">
             <div className="max-w-full">
               <h2 className="text-2xl lg:text-3xl font-bold text-theme-primary-dark  mb-6">
