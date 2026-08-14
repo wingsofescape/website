@@ -27,7 +27,6 @@ export default function EnquireNow() {
     setDestinations(stored ? JSON.parse(stored) : []);
   }, []);
 
-  const [showPreview, setShowPreview] = useState(false);
 
   const [form, setForm] = useState({
     // guest details
@@ -350,13 +349,7 @@ export default function EnquireNow() {
 
       <div className="mt-8 flex flex-col md:flex-row justify-start items-start gap-4">
         <div className="flex gap-3">
-          <button
-            type="button"
-            onClick={() => setShowPreview((s) => !s)}
-            className="border px-4 py-2 rounded bg-white"
-          >
-            {showPreview ? "Hide Preview" : "Preview Data"}
-          </button>
+
           <button
             type="submit"
             className="text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary"
@@ -380,23 +373,7 @@ export default function EnquireNow() {
           used to deal with my request in accordance with the privacy policy.
         </div>
       </div>
-      {/* Preview panel for debugging: shows a formatted JSON copy of the final payload */}
-      {showPreview && (
-        <div className="mt-6 rounded border p-4 bg-white">
-          <h3 className="mb-2 font-semibold">Form payload preview</h3>
-          <pre className="max-h-80 overflow-auto text-xs">
-            {JSON.stringify(
-              {
-                ...form,
-                // present dates as YYYY-MM-DD for preview/submission
-                dates: (form.dates || []).map((d) => formatDateOnly(d) || null),
-              },
-              null,
-              2,
-            )}
-          </pre>
-        </div>
-      )}
+
     </form>
   );
 }
