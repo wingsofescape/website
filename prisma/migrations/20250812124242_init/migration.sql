@@ -14,11 +14,9 @@ CREATE TABLE "public"."userQuery" (
     "name" TEXT,
     "phoneNumber" TEXT NOT NULL,
     "queryDestination" TEXT NOT NULL,
-    "numberOfDays" INTEGER NOT NULL,
+    "dates" TEXT NOT NULL,
     "message" TEXT,
     "budget" TEXT,
-    "travelMonth" TEXT,
-    "year" TEXT,
 
     CONSTRAINT "userQuery_pkey" PRIMARY KEY ("id")
 );
