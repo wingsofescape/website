@@ -70,16 +70,27 @@ export async function submitFormData(prevState: any, formData: FormData) {
         dates: JSON.stringify(parsedDates || []),
       },
     });
-    // ensure email body contains normalized dates array
 
-    await resend.emails.send({
-      from: 'bookings@wingsofescape.com',
-      to: 'wingsofescape@gmail.com',
-      subject: 'New Enquiry Submitted',
-      html: `<h1>New Enquiry Submitted</h1>
-      <pre>${JSON.stringify(formFields, null, 2)}</pre>`,
-      text: `A New Enquiry have been Submitted  ${JSON.stringify(formFields, null, 2)} `,
-    });
+    // ensure email body contains normalized dates array
+    try {
+
+      const { data, error } = await resend.emails.send({
+        from: 'bookings@wingsofescape.com',
+        to: 'wingsofescape@gmail.com',
+        subject: 'New Enquiry Submitted',
+        html: `<h1>New Enquiry Submitted</h1>
+    <pre>${JSON.stringify(formFields, null, 2)}</pre>`,
+        text: `A New Enquiry have been Submitted  ${JSON.stringify(formFields, null, 2)} `,
+      });
+      if (error) {
+        console.error("Resend Error Object:", error);
+      } else {
+        console.log("Resend Success Data:", data); // Check for an ID
+      }
+    } catch (emailError) {
+      console.error("Error sending email:", emailError);
+    }
+
     return {
       message:
         "Thank you! Your enquiry has been submitted successfully. We'll be in touch soon.",
