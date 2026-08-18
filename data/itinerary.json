@@ -2,10 +2,11 @@
   "customerName": "Aabhas Vincent",
   "destinationName": "Bali",
   "guestCount": 2,
+  "kidsCount": 1,
   "image": {
     "_type": "image",
     "asset": {
-      "_ref": "image-7819ab2d7532b76bce754109d8cc9473a960e7a5-2048x1536-jpg",
+      "_ref": "image-0da7c79a2d9b8aad8302ef93a8aa8290d5403ef9-1600x1600-jpg",
       "_type": "reference"
     }
   },
@@ -121,7 +122,7 @@
         {
           "_key": "3ada46b9d951",
           "day": "26-Jan-2026",
-          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. You can visit Goa Gajah, the ancient Elephant Cave, or relax at the beautiful Ubud Water Palace. Stroll through the Ubud Art Market or explore the historic Ubud Royal Palace, soaking in the vibrant local atmosphere. Later, return to the hotel for overnight stay.",
+          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. ",
           "stay": {
             "_type": "document",
             "checkInDate": "26-Jan-2026",
@@ -144,7 +145,7 @@
             "stayLink": "https://www.Hotel-1.com",
             "stayName": "Hotel 2"
           },
-          "title": "Day 3 - Arrival in Ubud"
+          "title": "Day 3 - Arrival in Semniyk"
         }
       ],
       "title": "Semniyk",
@@ -164,7 +165,7 @@
         {
           "_key": "3ada46b9d951",
           "day": "26-Jan-2026",
-          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. You can visit Goa Gajah, the ancient Elephant Cave, or relax at the beautiful Ubud Water Palace. Stroll through the Ubud Art Market or explore the historic Ubud Royal Palace, soaking in the vibrant local atmosphere. Later, return to the hotel for overnight stay.",
+          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. ",
           "stay": {
             "_type": "document",
             "checkInDate": "26-Jan-2026",
@@ -187,10 +188,10 @@
             "stayLink": "https://www.Hotel-1.com",
             "stayName": "Hotel 3"
           },
-          "title": "Day 4 - Arrival in Ubud"
+          "title": "Day 4 - Arrival in Danpesar"
         }
       ],
-      "title": "Nusa Penida",
+      "title": "Danpesar",
       "destinationImage": {
         "_type": "image",
         "asset": {
@@ -201,7 +202,7 @@
     }
   ],
   "itineraryName": "Bali Bliss",
-  "pricing": 15000,
+  "pricing": 150000,
   "slug": {
     "_type": "slug",
     "current": "bali-itinerary-jaao-na"
