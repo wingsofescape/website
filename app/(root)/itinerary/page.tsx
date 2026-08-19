@@ -73,88 +73,49 @@ export default function Itinerary() {
                 <div className="max-w-[820px] rounded-[14px] bg-gradient-to-br from-[#12213a] to-[#1b3358] px-6 py-7 text-white md:px-12 md:pb-10 md:pt-11">
                     <p className="mb-[22px] text-[11px] text-[#a9b6c9] md:text-[12.5px]">Home <span className="mx-1.5 opacity-60">›</span> {itineraryData.destinationName} <span className="mx-1.5 opacity-60">›</span> Private Itinerary</p>
                     <p className="mb-[18px] inline-block rounded-full border border-white/25 px-3.5 py-1 text-[10px] uppercase tracking-[1px] text-[#c9d3e2] md:text-xs md:tracking-[1.5px]">Prepared for {itineraryData.customerName}</p>
-                    <h1 className="mb-5 max-w-[560px] text-[27px] leading-tight md:text-4xl" style={{ fontFamily: serif }}>{itineraryData.itineraryName}</h1>
+                    <h1 className="mb-5 max-w-[560px] text-[27px] leading-tight md:text-4xl" >{itineraryData.itineraryName}</h1>
                     <div className="mb-[18px] flex flex-wrap gap-2.5">{itineraryData.itinerary.map((destination) => <span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]" key={destination.title}>{destination.destination} · {destination.destinationItinerary.length}N</span>)}<span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]">◷ {dateRange}</span><span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]">{itineraryData.guestCount} Adults</span></div>
-                    <p className="text-[13.5px] text-[#c9d3e2]">Total for this trip <strong className="ml-1 text-[21px] text-white" style={{ fontFamily: serif }}>₹ {total}</strong></p>
+                    <p className="text-[13.5px] text-[#c9d3e2]">Total for this trip <strong className="ml-1 text-[21px] text-white" >₹ {total}</strong></p>
                 </div>
             </section> */}
 
-            <div
-                className="blogHeroImage relative overflow-hidden"
-                style={{
-                    height: "75vh",
-                }}
-            >
-                <Image
-                    alt="Page Banner Image"
-                    src={urlFor(itineraryData.image.asset)?.url()}
-                    className="object-cover"
-                    fill
-                    style={{
-                        transition: "transform 0.1s linear",
-                        zIndex: 1,
-                    }}
-                />
-                <div className="overlay opacity-50 bg-background h-full absolute top-0 left-0 w-full md:w-1/2 z-10" />
-                <div
-                    className="heading absolute bottom-50 left-25 w-full md:w-2/5 flex flex-col justify-center p-10 z-10"
-                    style={{
-                        transition: "transform 0.1s linear",
-                    }}
-                >
-                    <h2 className="text-xl md:text-5xl font-semibold mb-2 leading-snug text-theme-primary-dark italic">
-                        <span className="text-2xl mr-2"> Curated for </span>{" "}
-                        {itineraryData.customerName}
-                    </h2>
-                    <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-theme-primary-dark">
-                        {itineraryData.itineraryName}
-                    </h2>
 
-                    <div className="flex flex-col md:flex-row gap-10 mb-1 align-bottom">
-                        <span className="text-xl md:text-xl font-semibold mb-4 leading-snug text-theme-primary-dark">
-                            {itineraryData.guestCount} adults · {itineraryData.kidsCount} kids
-                        </span>
-                        <span className="text-xl md:text-sm font-semibold mb-4 leading-snug text-theme-primary-dark">
-                            {dateRange}
-                        </span>
-                    </div>
 
-                    {itineraryData.itinerary?.length && (
-                        <div className="pills flex gap-6">
-                            {itineraryData.itinerary.map((destination) => (
-                                <div
-                                    className="bg-theme-primary-dark text-white rounded-4xl px-7 py-2 text-xs opacity-70 pointer-events-none"
-                                    key={destination.title}
-                                >
-                                    {destination.title} ·{" "}
-                                    {destination.destinationItinerary.length}N
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                    {/*<strong className="text-theme-primary-dark">
-                        - {blogsData[0].author}
-                    </strong>
-                    <strong className="text-theme-primary-dark">
-                        {blogsData[0].date}
-                    </strong> */}
-                </div>
-            </div>
-
-            {/* <div className="hidden lg:block">
+            <div className="hidden lg:block">
                 <div className="relative">
                     <div className="inset-0 flex">
                         <div className="bg-theme-primary-dark text-white flex flex-col items-left pl-10 pr-25 py-5 w-1/2">
-                            <div className="w-full max-w-2xl mx-auto my-15">
-                                <h1 className="text-xl xl:text-4xl font-bold mb-6 leading-tight ">
-                                    {itineraryData.itineraryName}
-                                </h1>
-                                <p className="text-white mb-8 text-xs leading-relaxed font-extralight">
-                                    {itineraryData.title}
-                                </p>
-                                <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-white">
-                                    Curated for {itineraryData.customerName}
+                            <div className="w-full max-w-2xl mx-auto my-15 text-white">
+                                <h2 className="text-xl md:text-5xl font-semibold mb-2 leading-snug text-white italic">
+                                    <span className="text-2xl mr-2"> Curated for </span>{" "}
+                                    {itineraryData.customerName}
                                 </h2>
+                                <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-white">
+                                    {itineraryData.itineraryName}
+                                </h2>
+
+                                <div className="flex flex-col md:flex-row gap-10 mb-1 align-bottom">
+                                    <span className="text-xl md:text-xl font-semibold mb-4 leading-snug text-white">
+                                        {itineraryData.guestCount} adults · {itineraryData.kidsCount} kids
+                                    </span>
+                                    <span className="text-xl md:text-sm font-semibold mb-4 leading-snug text-white">
+                                        {dateRange}
+                                    </span>
+                                </div>
+
+                                {itineraryData.itinerary?.length && (
+                                    <div className="pills flex gap-6">
+                                        {itineraryData.itinerary.map((destination) => (
+                                            <div
+                                                className="bg-theme-primary-dark text-white rounded-4xl px-7 py-2 text-xs opacity-70 pointer-events-none"
+                                                key={destination.title}
+                                            >
+                                                {destination.title} ·{" "}
+                                                {destination.destinationItinerary.length}N
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
 
@@ -172,7 +133,7 @@ export default function Itinerary() {
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
 
             <div className="mx-auto grid max-w-[1180px] items-start gap-10 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
                 <div className="min-w-0">
@@ -180,8 +141,8 @@ export default function Itinerary() {
                         {itineraryData.itinerary.map((destination) => (
                             <div key={destination.title}>
                                 <div
-                                    className="flex items-center justify-between rounded-[10px] bg-[#12213a] px-[22px] py-9 text-white md:mb-[24px] md:px-[30px] md:py-[22px]"
-                                    style={{ fontFamily: serif }}
+                                    className="flex items-center justify-between rounded-t-[10px]  bg-[#12213a] px-[22px] py-9 text-white md:px-[30px] md:py-[15px]"
+
                                 >
                                     <span className="text-[17px]">{destination.destination}</span>
                                     <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
@@ -189,100 +150,125 @@ export default function Itinerary() {
                                     </small>
                                 </div>
                                 <div
-                                    className="flex items-center justify-between rounded-[10px] bg-[#12213a] px-[22px] py-9 text-white md:mb-[24px] md:px-[30px] md:py-[22px]"
-                                    style={{ fontFamily: serif, backgroundImage: `url(${imageUrl(destination.destinationImage)})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                                    className="flex items-center justify-between bg-[#12213a] px-[22px] py-9 text-white md:mb-[14px] md:px-[30px] md:py-[22px]"
+                                    style={{ fontFamily: serif, backgroundImage: `url(${imageUrl(destination.destinationImage)})`, backgroundSize: "cover", backgroundPosition: "center", height: "200px", color: "white", borderRadius: "0 0 10px 10px", borderTop: "1px solid rgba(255, 255, 255, 0.2)" }}
                                 >
-                                    <span className="text-[17px]">{destination.destination}</span>
-                                    <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
-                                        {destination.destinationItinerary.length} NIGHTS
-                                    </small>
+
                                 </div>
                                 {(destination.destinationItinerary as ItineraryDay[]).map(
                                     (day, index) => (
                                         <article
-                                            className="border-b px-1 pb-[26px] pt-[18px]"
+                                            className="pb-[26px] "
                                             style={{ borderColor: line }}
                                             key={`${destination.title}-${day.title}-${index}`}
                                         >
-                                            <div className="mb-2 flex items-baseline gap-3">
-                                                <span
-                                                    className="rounded-full border px-3 py-[3px] text-[12.5px]"
-                                                    style={{
-                                                        borderColor: sandLine,
-                                                        backgroundColor: sand,
-                                                        fontFamily: serif,
-                                                    }}
-                                                >
-                                                    Day {index + 1}
-                                                </span>
-                                                <small className="text-xs" style={{ color: soft }}>
-                                                    {day.day}
-                                                </small>
-                                            </div>
-                                            <h3
-                                                className="mb-2 text-[19px]"
-                                                style={{ fontFamily: serif }}
-                                            >
-                                                {day.title}
-                                            </h3>
-                                            <p
-                                                className="mb-3.5 max-w-[650px] text-sm leading-[1.7]"
-                                                style={{ color: body }}
-                                            >
-                                                {day.description ||
-                                                    `Explore the highlights of ${destination.destination} at your own pace.`}
-                                            </p>
-                                            <div className="mb-3.5 flex gap-2.5 overflow-hidden">
-                                                <img
-                                                    className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                    src={imageUrl(destination.destinationImage)}
-                                                    alt={`${destination.destination} landscape`}
-                                                />
-                                                <img
-                                                    className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                    src={imageUrl(destination.destinationImage)}
-                                                    alt={`${destination.destination} travel experience`}
-                                                />
-                                            </div>
-                                            {day.activities?.map((activity) => (
-                                                <div
-                                                    className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-3 text-[13px]"
-                                                    key={activity.activityType}
-                                                >
+                                            <div className="mt-5 flex items-baseline justify-between gap-3 border-t-1 border-[#e6e8ec] py-2" style={{ borderColor: line }}>
+                                                <div className="flex items-center gap-3 align-between" >
+
+                                                    {/* <span
+                                                        className="rounded-full border px-3 py-[3px] text-[12.5px]"
+                                                        style={{
+                                                            borderColor: sandLine,
+                                                            backgroundColor: sand,
+                                                            fontFamily: serif,
+                                                            cursor: "pointer"
+                                                        }}
+                                                    >
+                                                        Day {index + 1}
+                                                    </span> */}
                                                     <span
-                                                        className="grid h-[26px] w-[26px] place-items-center rounded-[7px] border bg-white"
+                                                        className="grid h-[26px] w-[26px] place-items-center rounded-[7px] bg-white"
                                                         style={{ borderColor: line }}
                                                     >
                                                         ✦
                                                     </span>
-                                                    {activity.activityType}
-                                                    {activity.transfers?.transferType && (
+                                                    <span
+                                                        className="text-[19px] font-medium"
+
+                                                    >
+                                                        {day.title}
+                                                    </span>
+                                                    <small className="text-xs" style={{ color: soft }}>
+                                                        {day.day}
+                                                    </small>
+                                                </div>
+
+                                                <svg
+                                                    className={`w-4 h-4 transition-transform ml-2 ${false ? "rotate-180" : ""
+                                                        }`}
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M19 9l-7 7-7-7"
+                                                    />
+                                                </svg>
+                                            </div>
+                                            <div className={`ml-10 `} >
+                                                <p
+                                                    className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
+                                                    style={{ color: body }}
+                                                >
+                                                    {day.description ||
+                                                        `Explore the highlights of ${destination.destination} at your own pace.`}
+                                                </p>
+                                                <div className="mb-3.5 flex gap-2.5 overflow-hidden">
+                                                    <img
+                                                        className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
+                                                        src={imageUrl(destination.destinationImage)}
+                                                        alt={`${destination.destination} landscape`}
+                                                    />
+                                                    <img
+                                                        className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
+                                                        src={imageUrl(destination.destinationImage)}
+                                                        alt={`${destination.destination} travel experience`}
+                                                    />
+                                                </div>
+                                                {day.stay && (
+                                                    <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-2 text-[13px]">
+                                                        <span
+                                                            className="grid h-[26px] w-[26px] place-items-center rounded-[7px]  "
+                                                            style={{ borderColor: line }}
+                                                        >
+                                                            🏨
+                                                        </span>
+                                                        Stay at — {day.stay.stayName}
                                                         <small
                                                             className="ml-auto text-xs"
                                                             style={{ color: soft }}
                                                         >
-                                                            {activity.transfers.transferType}
+                                                            {day.stay.roomType || "Selected room"}
                                                         </small>
-                                                    )}
-                                                </div>
-                                            ))}
-                                            {day.stay && (
-                                                <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-3 text-[13px]">
-                                                    <span
-                                                        className="grid h-[26px] w-[26px] place-items-center rounded-[7px] border bg-white"
-                                                        style={{ borderColor: line }}
+                                                    </div>
+                                                )}
+                                                {day.activities?.map((activity) => (
+                                                    <div
+                                                        className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-2 text-[13px]"
+                                                        key={activity.activityType}
                                                     >
-                                                        ⌂
-                                                    </span>
-                                                    Stay at — {day.stay.stayName}
-                                                    <small
-                                                        className="ml-auto text-xs"
-                                                        style={{ color: soft }}
-                                                    >
-                                                        {day.stay.roomType || "Selected room"}
-                                                    </small>
-                                                </div>
-                                            )}
+                                                        <span
+                                                            className="grid h-[26px] w-[26px] place-items-center rounded-[7px]  "
+                                                            style={{ borderColor: line }}
+                                                        >
+                                                            ✦
+                                                        </span>
+                                                        {activity.activityType}
+                                                        {activity.transfers?.transferType && (
+                                                            <small
+                                                                className="ml-auto text-xs"
+                                                                style={{ color: soft }}
+                                                            >
+                                                                {activity.transfers.transferType}
+                                                            </small>
+                                                        )}
+                                                    </div>
+                                                ))}
+
+                                            </div>
                                         </article>
                                     ),
                                 )}
@@ -291,7 +277,7 @@ export default function Itinerary() {
                     </section>
 
                     <section className="mb-12">
-                        <h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>
+                        <h2 className="mb-3.5 text-[26px]" >
                             Stays
                         </h2>
                         {itineraryData.itinerary.map((destination) => {
@@ -313,7 +299,7 @@ export default function Itinerary() {
                                     <div>
                                         <h3
                                             className="mt-1 text-base"
-                                            style={{ fontFamily: serif }}
+
                                         >
                                             {stay.stayName}
                                         </h3>
@@ -327,8 +313,8 @@ export default function Itinerary() {
                         })}
                     </section>
 
-                    <section className="mb-12">
-                        <h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>
+                    {/* <section className="mb-12">
+                        <h2 className="mb-3.5 text-[26px]" >
                             Trip Highlights
                         </h2>
                         <div className="grid gap-4 md:grid-cols-3">
@@ -342,7 +328,7 @@ export default function Itinerary() {
                                     </span>
                                     <h3
                                         className="mb-1 text-[15px]"
-                                        style={{ fontFamily: serif }}
+
                                     >
                                         {activity}
                                     </h3>
@@ -352,17 +338,17 @@ export default function Itinerary() {
                                 </div>
                             ))}
                         </div>
-                    </section>
+                    </section> */}
 
-                    <section className="mb-12">
-                        <h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>
+                    {/* <section className="mb-12">
+                        <h2 className="mb-3.5 text-[26px]" >
                             Essential Details
                         </h2>
                         <div
                             className="rounded-xl border px-6 py-[22px]"
                             style={{ borderColor: sandLine, backgroundColor: sand }}
                         >
-                            <h3 className="mb-3 text-base" style={{ fontFamily: serif }}>
+                            <h3 className="mb-3 text-base" >
                                 ▣ Advisory
                             </h3>
                             <ul
@@ -382,17 +368,17 @@ export default function Itinerary() {
                                 </li>
                             </ul>
                         </div>
-                    </section>
+                    </section> */}
 
                     <section className="mb-12">
-                        <h2 className="mb-3.5 text-[26px]" style={{ fontFamily: serif }}>
+                        <h2 className="mb-3.5 text-[26px]" >
                             What&apos;s Included
                         </h2>
                         <div className="grid gap-6 md:grid-cols-2">
                             <div>
                                 <h3
                                     className="mb-2.5 text-[13px] uppercase tracking-wide"
-                                    style={{ color: soft, fontFamily: serif }}
+                                    style={{ color: soft }}
                                 >
                                     Inclusions
                                 </h3>
@@ -415,7 +401,7 @@ export default function Itinerary() {
                             <div>
                                 <h3
                                     className="mb-2.5 text-[13px] uppercase tracking-wide"
-                                    style={{ color: soft, fontFamily: serif }}
+                                    style={{ color: soft }}
                                 >
                                     Exclusions
                                 </h3>
@@ -447,7 +433,7 @@ export default function Itinerary() {
                     className="sticky top-10 rounded-[14px] border bg-white p-6 shadow-[0_10px_30px_rgba(18,33,58,0.08)] max-md:hidden"
                     style={{ borderColor: line }}
                 >
-                    <h2 className="mb-4 text-[17px]" style={{ fontFamily: serif }}>
+                    <h2 className="mb-4 text-[17px]" >
                         Fare Breakdown
                     </h2>
                     <div
@@ -472,20 +458,20 @@ export default function Itinerary() {
                     </div>
                     <div
                         className="mt-1 flex justify-between border-t pt-3.5 text-base"
-                        style={{ borderColor: navy, fontFamily: serif }}
+                        style={{ borderColor: navy }}
                     >
                         <span>Total</span>
                         <span>₹ {total}</span>
                     </div>
                     <button
                         className="mt-[18px] w-full rounded-[10px] px-3 py-[13px] text-[15px] text-white"
-                        style={{ backgroundColor: navy, fontFamily: serif }}
+                        style={{ backgroundColor: navy }}
                     >
                         Accept &amp; Book
                     </button>
                     <button
                         className="mt-2.5 w-full rounded-[10px] border-[1.5px] bg-white px-3 py-[13px] text-[15px]"
-                        style={{ borderColor: navy, color: navy, fontFamily: serif }}
+                        style={{ borderColor: navy, color: navy }}
                     >
                         Request Changes
                     </button>
@@ -502,7 +488,7 @@ export default function Itinerary() {
                 className="fixed inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 border-t bg-white px-5 py-3 shadow-[0_-6px_20px_rgba(18,33,58,0.06)] md:hidden"
                 style={{ borderColor: line }}
             >
-                <strong className="text-base" style={{ fontFamily: serif }}>
+                <strong className="text-base" >
                     ₹ {total}
                     <small
                         className="mt-0.5 block font-sans text-[11px] font-normal"
@@ -513,7 +499,7 @@ export default function Itinerary() {
                 </strong>
                 <button
                     className="rounded-[10px] px-4 py-2.5 text-[15px] text-white"
-                    style={{ backgroundColor: navy, fontFamily: serif }}
+                    style={{ backgroundColor: navy }}
                 >
                     Accept &amp; Book
                 </button>
