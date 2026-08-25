@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "../global.css";
 import { APP_NAME, APP_DESCRIPTION, SERVER_URL } from "@/lib/constants";
 import Footer from "@/components/shared/footer";
@@ -28,7 +29,10 @@ export default function RootLayout({
     <>
       <Header />
       <html lang="en">
-        <body className={`${inter.className} antialiased flex flex-col justify-between`}>{children}</body>
+        <body className={`${inter.className} antialiased flex flex-col justify-between`}>
+          {children}
+          <Analytics />
+        </body>
       </html>
       <Footer />
     </>
