@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import itineraryData from "@/data/itinerary.json";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
+import Link from "next/link";
 
 const imageUrl = (image: { asset: unknown }) => urlFor(image).width(900).url();
 const navy = "#12213a";
@@ -36,6 +40,29 @@ const totalNights = itineraryData.itinerary.reduce(
 );
 
 export default function Itinerary() {
+    const whatsapp = "/logos/whatsapp.png";
+
+    const firstDestination = itineraryData.itinerary[0];
+    const firstDayKeys = firstDestination
+        ? firstDestination.destinationItinerary.map(
+            (day, index) => `${firstDestination.title}-${day.title}-${index}`,
+        )
+        : [];
+    const [openDayKeys, setOpenDayKeys] = useState<Set<string>>(
+        () => new Set(firstDayKeys),
+    );
+    const toggleDay = (dayKey: string) => {
+        setOpenDayKeys((currentKeys) => {
+            const nextKeys = new Set(currentKeys);
+            if (nextKeys.has(dayKey)) {
+                nextKeys.delete(dayKey);
+            } else {
+                nextKeys.add(dayKey);
+            }
+            return nextKeys;
+        });
+    };
+
     const firstDay = itineraryData.itinerary[0]?.destinationItinerary[0];
     const lastDay = itineraryData.itinerary.at(-1)?.destinationItinerary.at(-1);
     const dateRange =
@@ -138,19 +165,19 @@ export default function Itinerary() {
             <div className="mx-auto grid max-w-[1180px] items-start gap-10 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
                 <div className="min-w-0">
                     <section className="mb-12">
-                        {itineraryData.itinerary.map((destination) => (
+                        {itineraryData.itinerary.map((destination, index) => (
                             <div key={destination.title}>
                                 <div
-                                    className="flex items-center justify-between rounded-t-[10px]  bg-[#12213a] px-[22px] py-9 text-white md:px-[30px] md:py-[15px]"
+                                    className={`flex items-center justify-between rounded-t-[10px] bg-theme-primary-dark px-10 py-9 text-white md:px-12 md:py-4 ${index === 0 ? '' : 'mt-10'}`}
 
                                 >
-                                    <span className="text-[17px]">{destination.destination}</span>
+                                    <span className="text-lg">{destination.destination}</span>
                                     <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
-                                        {destination.destinationItinerary.length} NIGHTS
+                                        {destination.destinationItinerary.length}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
                                     </small>
                                 </div>
                                 <div
-                                    className="flex items-center justify-between bg-[#12213a] px-[22px] py-9 text-white md:mb-[14px] md:px-[30px] md:py-[22px]"
+                                    className="flex items-center justify-between bg-theme-primary-dark px-[22px] py-9 text-white md:mb-[14px] md:px-[30px] md:py-[22px]"
                                     style={{ fontFamily: serif, backgroundImage: `url(${imageUrl(destination.destinationImage)})`, backgroundSize: "cover", backgroundPosition: "center", height: "200px", color: "white", borderRadius: "0 0 10px 10px", borderTop: "1px solid rgba(255, 255, 255, 0.2)" }}
                                 >
 
@@ -158,11 +185,24 @@ export default function Itinerary() {
                                 {(destination.destinationItinerary as ItineraryDay[]).map(
                                     (day, index) => (
                                         <article
-                                            className="pb-[26px] "
+                                            className="pb-2"
                                             style={{ borderColor: line }}
                                             key={`${destination.title}-${day.title}-${index}`}
                                         >
-                                            <div className="mt-5 flex items-baseline justify-between gap-3 border-t-1 border-[#e6e8ec] py-2" style={{ borderColor: line }}>
+                                            <div
+                                                className="mt-2 flex cursor-pointer items-baseline justify-between gap-3  border-[#e6e8ec] py-2"
+                                                style={{ borderColor: line }}
+                                                role="button"
+                                                tabIndex={0}
+                                                aria-expanded={openDayKeys.has(`${destination.title}-${day.title}-${index}`)}
+                                                onClick={() => toggleDay(`${destination.title}-${day.title}-${index}`)}
+                                                onKeyDown={(event) => {
+                                                    if (event.key === "Enter" || event.key === " ") {
+                                                        event.preventDefault();
+                                                        toggleDay(`${destination.title}-${day.title}-${index}`);
+                                                    }
+                                                }}
+                                            >
                                                 <div className="flex items-center gap-3 align-between" >
 
                                                     {/* <span
@@ -194,81 +234,82 @@ export default function Itinerary() {
                                                 </div>
 
                                                 <svg
-                                                    className={`w-4 h-4 transition-transform ml-2 ${false ? "rotate-180" : ""
+                                                    className={`ml-2 h-4 w-4 transition-transform ${openDayKeys.has(`${destination.title}-${day.title}-${index}`) ? "rotate-180" : ""
                                                         }`}
                                                     fill="none"
                                                     stroke="currentColor"
                                                     viewBox="0 0 24 24"
                                                 >
                                                     <path
-                                                        strokeLinecap="round"
                                                         strokeLinejoin="round"
                                                         strokeWidth={2}
                                                         d="M19 9l-7 7-7-7"
                                                     />
                                                 </svg>
                                             </div>
-                                            <div className={`ml-10 `} >
-                                                <p
-                                                    className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
-                                                    style={{ color: body }}
-                                                >
-                                                    {day.description ||
-                                                        `Explore the highlights of ${destination.destination} at your own pace.`}
-                                                </p>
-                                                <div className="mb-3.5 flex gap-2.5 overflow-hidden">
-                                                    <img
-                                                        className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                        src={imageUrl(destination.destinationImage)}
-                                                        alt={`${destination.destination} landscape`}
-                                                    />
-                                                    <img
-                                                        className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                        src={imageUrl(destination.destinationImage)}
-                                                        alt={`${destination.destination} travel experience`}
-                                                    />
-                                                </div>
-                                                {day.stay && (
-                                                    <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-2 text-[13px]">
-                                                        <span
-                                                            className="grid h-[26px] w-[26px] place-items-center rounded-[7px]  "
-                                                            style={{ borderColor: line }}
-                                                        >
-                                                            🏨
-                                                        </span>
-                                                        Stay at — {day.stay.stayName}
-                                                        <small
-                                                            className="ml-auto text-xs"
-                                                            style={{ color: soft }}
-                                                        >
-                                                            {day.stay.roomType || "Selected room"}
-                                                        </small>
-                                                    </div>
-                                                )}
-                                                {day.activities?.map((activity) => (
-                                                    <div
-                                                        className="mt-2 flex items-center gap-2 rounded-[10px] bg-[#f5f6f8] px-4 py-2 text-[13px]"
-                                                        key={activity.activityType}
+                                            {openDayKeys.has(`${destination.title}-${day.title}-${index}`) && (
+                                                <div className="ml-10">
+                                                    <p
+                                                        className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
+                                                        style={{ color: body }}
                                                     >
-                                                        <span
-                                                            className="grid h-[26px] w-[26px] place-items-center rounded-[7px]  "
-                                                            style={{ borderColor: line }}
-                                                        >
-                                                            ✦
-                                                        </span>
-                                                        {activity.activityType}
-                                                        {activity.transfers?.transferType && (
+                                                        {day.description ||
+                                                            `Explore the highlights of ${destination.destination} at your own pace.`}
+                                                    </p>
+                                                    <div className="mb-3.5 flex gap-2.5 overflow-hidden">
+                                                        <img
+                                                            className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
+                                                            src={imageUrl(destination.destinationImage)}
+                                                            alt={`${destination.destination} landscape`}
+                                                        />
+                                                        <img
+                                                            className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
+                                                            src={imageUrl(destination.destinationImage)}
+                                                            alt={`${destination.destination} travel experience`}
+                                                        />
+                                                    </div>
+                                                    {day.stay && (
+                                                        <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
+                                                            <span
+                                                                className="grid h-8 w-8 place-items-center rounded-[7px]  "
+                                                                style={{ borderColor: line }}
+                                                            >
+                                                                🏨
+                                                            </span>
+                                                            Stay at — {day.stay.stayName}
                                                             <small
                                                                 className="ml-auto text-xs"
                                                                 style={{ color: soft }}
                                                             >
-                                                                {activity.transfers.transferType}
+                                                                {day.stay.roomType || "Selected room"}
                                                             </small>
-                                                        )}
-                                                    </div>
-                                                ))}
+                                                        </div>
+                                                    )}
+                                                    {day.activities?.map((activity) => (
+                                                        <div
+                                                            className="mt-2 mb-10 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-[13px]"
+                                                            key={activity.activityType}
+                                                        >
+                                                            <span
+                                                                className="grid h-8 w-[26px] place-items-center rounded-[7px]  "
+                                                                style={{ borderColor: line }}
+                                                            >
+                                                                ✦
+                                                            </span>
+                                                            {activity.activityType}
+                                                            {activity.transfers?.transferType && (
+                                                                <small
+                                                                    className="ml-auto text-xs"
+                                                                    style={{ color: soft }}
+                                                                >
+                                                                    {activity.transfers.transferType}
+                                                                </small>
+                                                            )}
+                                                        </div>
+                                                    ))}
 
-                                            </div>
+                                                </div>
+                                            )}
                                         </article>
                                     ),
                                 )}
@@ -433,12 +474,11 @@ export default function Itinerary() {
                     className="sticky top-10 rounded-[14px] border bg-white p-6 shadow-[0_10px_30px_rgba(18,33,58,0.08)] max-md:hidden"
                     style={{ borderColor: line }}
                 >
-                    <h2 className="mb-4 text-[17px]" >
+                    <h2 className="mb-4 text-xl" >
                         Fare Breakdown
                     </h2>
                     <div
-                        className="flex justify-between border-b py-2 text-[13.5px]"
-                        style={{ borderColor: line, color: body }}
+                        className="flex justify-between py-2 text-sm text-theme-primary-light"
                     >
                         <span>{itineraryData.guestCount} Adults</span>
                         <span>
@@ -447,8 +487,7 @@ export default function Itinerary() {
                         </span>
                     </div>
                     <div
-                        className="flex justify-between border-b py-2 text-[13.5px]"
-                        style={{ borderColor: line, color: body }}
+                        className="flex justify-between py-2 text-sm text-theme-primary-light"
                     >
                         <span>Taxes &amp; fees</span>
                         <span>
@@ -457,30 +496,59 @@ export default function Itinerary() {
                         </span>
                     </div>
                     <div
-                        className="mt-1 flex justify-between border-t pt-3.5 text-base"
-                        style={{ borderColor: navy }}
+                        className="mt-1 flex justify-between align-middle border-t border-slate-300 pt-3.5 text-base"
                     >
                         <span>Total</span>
-                        <span>₹ {total}</span>
+                        <span className="font-[700] text-2xl">₹ {total}</span>
                     </div>
                     <button
-                        className="mt-[18px] w-full rounded-[10px] px-3 py-[13px] text-[15px] text-white"
+                        className="mt-6 w-full rounded-[10px] px-3 py-[13px] text-md text-white flex items-center justify-center gap-6 transition-transform duration-300 hover:translate-y-[-2px]"
                         style={{ backgroundColor: navy }}
                     >
-                        Accept &amp; Book
+                        <span>
+                            Accept &amp; Book
+                        </span>
+                        <svg
+                            className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M9 5l7 7-7 7"
+                            />
+                        </svg>
                     </button>
                     <button
-                        className="mt-2.5 w-full rounded-[10px] border-[1.5px] bg-white px-3 py-[13px] text-[15px]"
-                        style={{ borderColor: navy, color: navy }}
+                        className="mt-2.5 w-4/5 bg-white px-3 py-5 text-xs flex justify-center mx-auto"
                     >
-                        Request Changes
+                        <span className="mr-2"><svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                        </svg>
+                        </span>
+                        <span>
+
+                            Request Changes
+                        </span>
                     </button>
-                    <p
-                        className="mt-3 text-center text-[11.5px] leading-normal"
-                        style={{ color: soft }}
+                    <div
+                        className="text-center text-xs leading-tight flex items-center justify-center gap-2 w-4/5 mx-auto"
                     >
-                        Our team will be in touch on WhatsApp within a few hours.
-                    </p>
+
+                        <Image
+                            src={whatsapp}
+                            alt="WhatsApp"
+                            width={100}
+                            height={100}
+                            className="inline-block mr-1 !h-10 !w-10 md:!h-8 md:!w-12"
+                        />
+                        <span className="text-xs font-ultralight leading-tight text-left text-slate-400">
+                            Our team will be in touch on WhatsApp within a few hours.
+                        </span>
+                    </div>
                 </aside>
             </div>
 
