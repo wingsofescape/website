@@ -65,9 +65,19 @@ export const POST_QUERY = {
   },
   getItinerary(itinerarySlug: { slug: string }) {
     return {
-      name: `Blog - ${itinerarySlug}`,
+      name: `Itinerary - ${itinerarySlug.slug}`,
       query: `*[_type == "itinerary" && slug.current == '${itinerarySlug.slug}']`,
     };
+  },
+  getCuratedItinerary(itinerarySlug: { slug: string }) {
+    return {
+      name: `Itinerary - ${itinerarySlug.slug}`,
+      query: `*[_type == "itinerary" && slug.current == '${itinerarySlug.slug}']`,
+    };
+  },
+  itinerariesList: {
+    name: "Itineraries List",
+    query: `*[_type == "itinerary" && defined(slug.current)]{"slug": slug.current}`,
   },
   blogsList: {
     name: "blogsList",

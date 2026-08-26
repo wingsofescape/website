@@ -1,26 +1,75 @@
 {
+  "_createdAt": "2025-11-20T19:21:45Z",
+  "_id": "7a60a711-6d46-4b25-bc21-4a1ab4ba69a6",
+  "_originalId": "7a60a711-6d46-4b25-bc21-4a1ab4ba69a6",
+  "_rev": "tElM0yMR345X4wPAHgMYSd",
+  "_system": {
+    "base": {
+      "id": "3a6c3556-326c-4133-aaf3-ad691d94e7e9",
+      "rev": "VlO4UGo1wzVETmWpEtWoGS"
+    }
+  },
+  "_type": "itinerary",
+  "_updatedAt": "2027-08-26T15:19:11Z",
   "customerName": "Aabhas Vincent",
   "destinationName": "Bali",
-  "guestCount": 2,
-  "kidsCount": 1,
+  "guestCount": 3,
   "image": {
     "_type": "image",
     "asset": {
-      "_ref": "image-0da7c79a2d9b8aad8302ef93a8aa8290d5403ef9-1600x1600-jpg",
+      "_ref": "image-f8cc4851eef1748b376b1862bd4d427e42fc75f4-640x420-webp",
       "_type": "reference"
     }
   },
   "itinerary": [
     {
-      "destinationHotels": "Marriot Huts",
+      "_key": "c9a9817e1f6a",
+      "date": "26-28 Jan 2027",
       "destination": "Ubud",
+      "destinationImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-9744d40a58489da6a67d91c1cb48f717a6c29b9a-1170x780-avif",
+          "_type": "reference"
+        }
+      },
       "destinationItinerary": [
         {
+          "_key": "3ada46b9d951",
           "activities": [
             {
+              "_key": "2a508ab04b0f",
               "activityType": "Bali Swing",
+              "images": [
+                {
+                  "_key": "e408cef366c6",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-fdef0f3b253ece8da65945b2a19a27c612ae0168-669x446-jpg",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "48b5b906e3ff",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-e9ddedd33420d933a1969b54816c7edc166b6718-500x625-webp",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "519b7884e4ea",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-425e5111f377b89dc3d94d23363c5777103af221-800x1000-webp",
+                    "_type": "reference"
+                  }
+                }
+              ],
               "transfers": {
+                "_type": "document",
                 "transferSteps": {
+                  "_type": "document",
                   "from": "Hotel",
                   "to": "Bali Swing"
                 },
@@ -28,26 +77,60 @@
               }
             }
           ],
-          "day": "26-Jan-2026",
+          "day": "26-Jan-2027",
+          "description": "Explore the highlights of Ubud at your own pace. Check-in at Alila Ubud and experience their prime hospitality.",
           "stay": {
-            "checkInDate": "26-Jan-2026",
-            "checkoutDate": "29-Jan-2026",
+            "_type": "document",
+            "checkInDate": "26-Jan-2027",
+            "checkoutDate": "28-Jan-2027",
+            "images": [
+              {
+                "_key": "7a970116aff8",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-40bb0c63f1ceedd63401253c7766207d9b4c1c76-768x576-jpg",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "8af37d247491",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-8741aa5fc24878b04eb1935f52112eee89e4c0ad-720x900-jpg",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "c8edd8b3e07f",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-e52479784e133de18c8b91f1c1f35d2f27a6d1ee-560x373-jpg",
+                  "_type": "reference"
+                }
+              }
+            ],
             "inclusions": [
               {
+                "_key": "427b7defd517",
                 "inclusion": true,
                 "inclusionType": "Breakfast"
               },
               {
+                "_key": "036ce5ae49ff",
                 "inclusionType": "Lunch"
               },
               {
+                "_key": "b52e65dbefd5",
                 "inclusionType": "Dinner"
               }
             ],
-            "roomType": "2 Deluxe | 1 Superior",
-            "stayLink": "https://www.Hotel-1.com",
-            "stayName": "Luxe Huts Marriott",
+            "roomChange": false,
+            "roomCount": 1,
+            "roomType": "1 Superior",
+            "stayLink": "https://www.instagram.com/alilaubud/?hl=en",
+            "stayName": "Alila Ubud ",
             "transfers": {
+              "_type": "document",
               "transferSteps": {
                 "_type": "document",
                 "from": "Airport",
@@ -59,11 +142,49 @@
           "title": "Day 1 - Arrival in Ubud"
         },
         {
+          "_key": "d326d93db5e39e4f7e7d7e3670bd1388",
           "activities": [
             {
+              "_key": "2a508ab04b0f",
               "activityType": "Rice Terrace",
+              "images": [
+                {
+                  "_key": "1d9985d8507f",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-822d8e3bb820988f153b2d37278efb0fae0c7040-680x510-webp",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "b41ae73f2d49",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-74255ae0c08194e0259ab194d2c643923855a518-680x510-webp",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "68b44d78583f",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-6ba32b06d5e18829af5f68eb97b7561acd84fdd0-1080x907-jpg",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "d95f6b2f22a9",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-2a16d7e13f660c3fddcda474805080c1da3d88c5-1000x1250-webp",
+                    "_type": "reference"
+                  }
+                }
+              ],
               "transfers": {
+                "_type": "document",
                 "transferSteps": {
+                  "_type": "document",
                   "from": "Hotel",
                   "to": "Bali Swing"
                 },
@@ -71,26 +192,11 @@
               }
             }
           ],
-          "day": "26-Jan-2026",
+          "day": "27-Jan-2027",
+          "description": "Rice terrace tour.",
           "stay": {
-            "checkInDate": "26-Jan-2026",
-            "checkoutDate": "29-Jan-2026",
-            "guestCount": 2,
-            "inclusions": [
-              {
-                "inclusion": true,
-                "inclusionType": "Breakfast"
-              },
-              {
-                "inclusionType": "Lunch"
-              },
-              {
-                "inclusionType": "Dinner"
-              }
-            ],
-            "roomType": "Delux",
-            "stayLink": "https://www.Hotel-1.com",
-            "stayName": "Luxe Huts Marriott",
+            "_type": "document",
+            "roomChange": false,
             "transfers": {
               "_type": "document",
               "transferSteps": {
@@ -101,32 +207,89 @@
               "transferType": "Private SUV"
             }
           },
-          "title": "Day 2 - Rice Terrace"
+          "title": "Day 2 - Transfer to Alila Ubud | Rice Terraces"
         }
-      ],
-      "title": "Ubud",
-      "destinationImage": {
-        "_type": "image",
-        "asset": {
-          "_ref": "image-a71b02827f13238d55ac8abc2d25797f2ec2a0ed-1536x1024-jpg",
-          "_type": "reference"
-        }
-      }
+      ]
     },
     {
-      "destinationHotels": "Marriot Suites",
       "_key": "70120a71b73adcf04d94189f3a267e05",
-      "date": "29-Jan-2026",
+      "date": "28-Jan-2027",
       "destination": "Semniyk",
+      "destinationImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-a0b7e36cbd1f17ed2310c01381172414159f5783-2560x1918-webp",
+          "_type": "reference"
+        }
+      },
       "destinationItinerary": [
         {
           "_key": "3ada46b9d951",
-          "day": "26-Jan-2026",
-          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. ",
+          "activities": [
+            {
+              "_key": "38e5ecca0d49",
+              "activityDescription": "Visit the Finns Beach club in Semniyak and experience the nightlife of Bali.",
+              "activityType": "Finns Beach Club",
+              "images": [
+                {
+                  "_key": "ddfe78a26974",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-9f780ac065072fbc5842c8ab42441289814895a3-900x506-jpg",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "949e58e8c0fe",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-a843d840748d7ca76c5fe49c815cef4911a2b843-900x500-jpg",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "e649944f9e59",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-864e71d8fea43489243bc817a5f282ca25e88dfd-900x500-jpg",
+                    "_type": "reference"
+                  }
+                }
+              ]
+            }
+          ],
+          "day": "26-Jan-2027",
+          "description": "Welcome to Seminyak",
           "stay": {
             "_type": "document",
-            "checkInDate": "26-Jan-2026",
-            "checkoutDate": "29-Jan-2026",
+            "checkInDate": "28-Jan-2027",
+            "checkoutDate": "29-Jan-2027",
+            "images": [
+              {
+                "_key": "1d63e17d53f8",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-e16734d95fa2815ffbd1f0a205fe019dd419dac1-900x500-jpg",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "34a4e9d8fe30",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-3d8e46383f0472fe26ba294b31bd19b98f21d8e6-1000x664-jpg",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "3e10aa3ea031",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-1f15754ea98c1e1a03bd56fef2cd392205c20f31-1000x667-jpg",
+                  "_type": "reference"
+                }
+              }
+            ],
             "inclusions": [
               {
                 "_key": "427b7defd517",
@@ -142,34 +305,94 @@
                 "inclusionType": "Dinner"
               }
             ],
+            "roomCount": 1,
+            "roomType": "Superior",
             "stayLink": "https://www.Hotel-1.com",
-            "stayName": "Hotel 2"
+            "stayName": "Alila Seminyak"
           },
-          "title": "Day 3 - Arrival in Semniyk"
+          "title": "Arrival in Semniyak"
         }
-      ],
-      "title": "Semniyk",
-      "destinationImage": {
-        "_type": "image",
-        "asset": {
-          "_ref": "image-31f10b4514ada9416cb47b354bec59a0113982f7-1600x1069-jpg",
-          "_type": "reference"
-        }
-      }
+      ]
     },
     {
-      "destinationHotels": "Sun and Sky Villas",
       "_key": "006f6b91e3f7cd1b8fa832e1f73f8552",
-      "destination": "Danpesar",
+      "date": "29 Jan 2027",
+      "destination": "Nusa Dua",
+      "destinationImage": {
+        "_type": "image",
+        "asset": {
+          "_ref": "image-54e1c14cb32ce3318ca8afabca1bf465e2f1bd1a-2560x1706-webp",
+          "_type": "reference"
+        }
+      },
       "destinationItinerary": [
         {
           "_key": "3ada46b9d951",
-          "day": "26-Jan-2026",
-          "description": "Welcome to Bali! Upon your arrival at the Denpasar airport, you'll be transferred to your hotel in Ubud. After check-in, relax for a while. You will spend the rest of the day at leisure, exploring the iconic landmarks of Ubud. ",
+          "activities": [
+            {
+              "_key": "fd51987040ac",
+              "activityDescription": "Stroll on Nusa Dua beach.",
+              "activityType": "Nusa Dua Beach",
+              "images": [
+                {
+                  "_key": "b455f8ecd72a",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-54e1c14cb32ce3318ca8afabca1bf465e2f1bd1a-2560x1706-webp",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "3d625a789599",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-38a2a6988fc91280fa4f9ad0f0dc94cb1d3b0a80-900x500-jpg",
+                    "_type": "reference"
+                  }
+                },
+                {
+                  "_key": "fcb5c34aa2b5",
+                  "_type": "image",
+                  "asset": {
+                    "_ref": "image-e60f961d12849c6dd53017c1a7bd609b5c2f52dd-800x450-webp",
+                    "_type": "reference"
+                  }
+                }
+              ]
+            }
+          ],
+          "day": "29-Jan-2027",
+          "description": "Leisure Day in Nusa Dua, stroll on beach, experience the sunrise and sunsets of this beautiful paradise.",
           "stay": {
             "_type": "document",
-            "checkInDate": "26-Jan-2026",
-            "checkoutDate": "29-Jan-2026",
+            "checkInDate": "29-Jan-2027",
+            "checkoutDate": "29-Jan-2027",
+            "images": [
+              {
+                "_key": "ee48b15a1161",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-74b2cd180c6b5472206cc6b1e6411785a7d0c3c4-540x351-webp",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "edac5c667d62",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-6cc60083422bbf67c0d5f293ef0ccce204b54c51-540x335-avif",
+                  "_type": "reference"
+                }
+              },
+              {
+                "_key": "228137aa45df",
+                "_type": "image",
+                "asset": {
+                  "_ref": "image-0b9ad4b8585d93b58ef024c6998dc8686869b9ce-1024x768-jpg",
+                  "_type": "reference"
+                }
+              }
+            ],
             "inclusions": [
               {
                 "_key": "427b7defd517",
@@ -185,27 +408,21 @@
                 "inclusionType": "Dinner"
               }
             ],
-            "stayLink": "https://www.Hotel-1.com",
-            "stayName": "Hotel 3"
+            "roomCount": 1,
+            "roomType": "Deluxe",
+            "stayLink": "https://www.kempinski.com/en/the-apurva-kempinski-bali",
+            "stayName": "The Apurva Kempinski Bali"
           },
-          "title": "Day 4 - Arrival in Danpesar"
+          "title": "Arrival in Nusa Dua"
         }
-      ],
-      "title": "Danpesar",
-      "destinationImage": {
-        "_type": "image",
-        "asset": {
-          "_ref": "image-1f1b5b25101d76653e24bb006b376453e2fece28-2048x1534-jpg",
-          "_type": "reference"
-        }
-      }
+      ]
     }
   ],
   "itineraryName": "Bali Bliss",
-  "pricing": 150000,
+  "pricing": 15000,
   "slug": {
     "_type": "slug",
-    "current": "bali-itinerary-jaao-na"
+    "current": "aabhas-vincent-bali-bliss-v01"
   },
-  "title": "BALI ITINERARY PARENT"
+  "title": "Bali Itinerary | Aabhas"
 }

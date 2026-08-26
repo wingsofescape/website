@@ -1,26 +1,37 @@
 "use client";
-
-import { useState } from "react";
-import itineraryData from "@/data/itinerary.json";
+import { useEffect, useState } from "react";
+import defaultItineraryData from "@/data/itinerary.json";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 
 const imageUrl = (image: { asset: unknown }) => urlFor(image).width(900).url();
-const navy = "#12213a";
-const body = "#5c6675";
-const soft = "#8991a0";
-const line = "#e6e8ec";
-const serif = "Georgia, serif";
 
 type ItineraryActivity = {
     activityType: string;
-    transfers?: { transferType?: string };
+    images?: { asset: { _ref: string; _type: string } }[];
+    activityDescription?: string;
+    transfers?: {
+        transferType?: string;
+        transferSteps?: { from?: string; to?: string; via?: string };
+    };
 };
 
+type ItineraryImage = { asset: { _ref: string; _type: string } };
+
 type ItineraryStay = {
-    stayName: string;
+    stayName?: string;
     roomType?: string;
+    stayLink?: string;
+    checkInDate?: string;
+    checkoutDate?: string;
+    roomCount?: number;
+    roomChange?: boolean;
+    images?: ItineraryImage[];
     inclusions?: { inclusion?: boolean; inclusionType: string }[];
+    transfers?: {
+        transferType?: string;
+        transferSteps?: { from?: string; to?: string; via?: string };
+    };
 };
 
 type ItineraryDay = {
@@ -31,18 +42,101 @@ type ItineraryDay = {
     stay?: ItineraryStay;
 };
 
-const totalNights = itineraryData.itinerary.reduce(
-    (total, destination) => total + destination.destinationItinerary.length,
-    0,
-);
+type ItineraryData = typeof defaultItineraryData;
+type ItineraryDestination = ItineraryData["itinerary"][number];
 
-export default function Itinerary() {
+const dayKey = (destination: ItineraryDestination, day: ItineraryDay, index: number) =>
+    `${destination.destination}-${day.title}-${index}`;
+
+const resolveStay = (
+    days: ItineraryDay[],
+    dayIndex: number,
+): ItineraryStay | undefined => {
+    const currentStay = days[dayIndex]?.stay;
+    const previousStay = dayIndex > 0 ? resolveStay(days, dayIndex - 1) : undefined;
+
+    if (!currentStay && !previousStay) return undefined;
+
+    return {
+        ...previousStay,
+        ...currentStay,
+        images: currentStay?.images?.length
+            ? currentStay.images
+            : previousStay?.images,
+        inclusions: currentStay?.inclusions?.length
+            ? currentStay.inclusions
+            : previousStay?.inclusions,
+        transfers: currentStay?.transfers || previousStay?.transfers,
+    };
+};
+
+export default function Itinerary({
+    itineraryData = defaultItineraryData,
+}: {
+    itineraryData?: ItineraryData;
+}) {
+    const totalNights = itineraryData.itinerary.reduce(
+        (total, destination) => total + destination.destinationItinerary.length,
+        0,
+    );
+
     const whatsapp = "/logos/whatsapp.png";
+    const [activeStay, setActiveStay] = useState<{
+        name: string;
+        images: ItineraryImage[];
+    } | null>(null);
+    const [activeStayImageIndex, setActiveStayImageIndex] = useState(0);
+
+    const openStayGallery = (stay: ItineraryStay) => {
+        if (!stay.images?.length) return;
+        setActiveStay({
+            name: stay.stayName || "Stay",
+            images: stay.images,
+        });
+        setActiveStayImageIndex(0);
+    };
+
+    const closeStayGallery = () => setActiveStay(null);
+
+    const showPreviousStayImage = () => {
+        if (!activeStay) return;
+        setActiveStayImageIndex((currentIndex) =>
+            currentIndex === 0 ? activeStay.images.length - 1 : currentIndex - 1,
+        );
+    };
+
+    const showNextStayImage = () => {
+        if (!activeStay) return;
+        setActiveStayImageIndex((currentIndex) =>
+            currentIndex === activeStay.images.length - 1 ? 0 : currentIndex + 1,
+        );
+    };
+
+    useEffect(() => {
+        if (!activeStay) return;
+
+        const handleGalleryKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") closeStayGallery();
+            if (event.key === "ArrowLeft") {
+                setActiveStayImageIndex((currentIndex) =>
+                    currentIndex === 0 ? activeStay.images.length - 1 : currentIndex - 1,
+                );
+            }
+            if (event.key === "ArrowRight") {
+                setActiveStayImageIndex((currentIndex) =>
+                    currentIndex === activeStay.images.length - 1 ? 0 : currentIndex + 1,
+                );
+            }
+        };
+
+        document.addEventListener("keydown", handleGalleryKeyDown);
+        return () => document.removeEventListener("keydown", handleGalleryKeyDown);
+    }, [activeStay]);
 
     const firstDestination = itineraryData.itinerary[0];
     const firstDayKeys = firstDestination
         ? firstDestination.destinationItinerary.map(
-            (day, index) => `${firstDestination.title}-${day.title}-${index}`,
+            (day, index) => dayKey(firstDestination, day, index),
         )
         : [];
     const [openDayKeys, setOpenDayKeys] = useState<Set<string>>(
@@ -66,12 +160,14 @@ export default function Itinerary() {
         firstDay && lastDay
             ? `${firstDay.day} - ${lastDay.day}`
             : "Your journey dates";
-    const allDays = itineraryData.itinerary.flatMap((destination) =>
-        (destination.destinationItinerary as ItineraryDay[]).map((day) => ({
+    const allDays = itineraryData.itinerary.flatMap((destination) => {
+        const days = destination.destinationItinerary as ItineraryDay[];
+        return days.map((day, dayIndex) => ({
             ...day,
+            stay: resolveStay(days, dayIndex),
             destination: destination.destination,
-        })),
-    );
+        }));
+    });
     const inclusions = Array.from(
         new Set(
             allDays.flatMap(
@@ -92,19 +188,7 @@ export default function Itinerary() {
     const total = itineraryData.pricing.toLocaleString("en-IN");
 
     return (
-        <div className="bg-white  pb-24  font-sans text-[#12213a] ">
-            {/* <section className="mx-auto max-w-[1180px]">
-                <div className="max-w-[820px] rounded-[14px] bg-gradient-to-br from-[#12213a] to-[#1b3358] px-6 py-7 text-white md:px-12 md:pb-10 md:pt-11">
-                    <p className="mb-[22px] text-[11px] text-[#a9b6c9] md:text-[12.5px]">Home <span className="mx-1.5 opacity-60">›</span> {itineraryData.destinationName} <span className="mx-1.5 opacity-60">›</span> Private Itinerary</p>
-                    <p className="mb-[18px] inline-block rounded-full border border-white/25 px-3.5 py-1 text-[10px] uppercase tracking-[1px] text-[#c9d3e2] md:text-xs md:tracking-[1.5px]">Prepared for {itineraryData.customerName}</p>
-                    <h1 className="mb-5 max-w-[560px] text-[27px] leading-tight md:text-4xl" >{itineraryData.itineraryName}</h1>
-                    <div className="mb-[18px] flex flex-wrap gap-2.5">{itineraryData.itinerary.map((destination) => <span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]" key={destination.title}>{destination.destination} · {destination.destinationItinerary.length}N</span>)}<span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]">◷ {dateRange}</span><span className="rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[13px] text-[#eef1f6]">{itineraryData.guestCount} Adults</span></div>
-                    <p className="text-[13.5px] text-[#c9d3e2]">Total for this trip <strong className="ml-1 text-[21px] text-white" >₹ {total}</strong></p>
-                </div>
-            </section> */}
-
-
-
+        <div className="bg-white  pb-24 font-sans text-[#12213a]">
             <div className="hidden lg:block">
                 <div className="relative">
                     <div className="inset-0 flex">
@@ -120,7 +204,7 @@ export default function Itinerary() {
 
                                 <div className="flex flex-col md:flex-row gap-10 mb-1 align-bottom">
                                     <span className="text-xl md:text-xl font-semibold mb-4 leading-snug text-white">
-                                        {itineraryData.guestCount} adults · {itineraryData.kidsCount} kids
+                                        {itineraryData.guestCount} adults
                                     </span>
                                     <span className="text-xl md:text-sm font-semibold mb-4 leading-snug text-white">
                                         {dateRange}
@@ -132,9 +216,9 @@ export default function Itinerary() {
                                         {itineraryData.itinerary.map((destination) => (
                                             <div
                                                 className="bg-theme-primary-dark text-white rounded-4xl px-7 py-2 text-xs opacity-70 pointer-events-none"
-                                                key={destination.title}
+                                                key={destination.destination}
                                             >
-                                                {destination.title} ·{" "}
+                                                {destination.destination} ·{" "}
                                                 {destination.destinationItinerary.length}N
                                             </div>
                                         ))}
@@ -163,7 +247,7 @@ export default function Itinerary() {
                 <div className="min-w-0">
                     <section className="mb-12">
                         {itineraryData.itinerary.map((destination, index) => (
-                            <div key={destination.title}>
+                            <div key={destination.destination}>
                                 <div
                                     className={`flex items-center justify-between rounded-t-[10px] bg-theme-primary-dark px-10 py-9 text-white md:px-12 md:py-4 ${index === 0 ? '' : 'mt-10'}`}
 
@@ -173,142 +257,134 @@ export default function Itinerary() {
                                         {destination.destinationItinerary.length}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
                                     </small>
                                 </div>
+                                {/* Destination image */}
                                 <div
                                     className="flex items-center justify-between bg-theme-primary-dark px-[22px] py-9 text-white md:mb-[14px] md:px-[30px] md:py-[22px]"
-                                    style={{ fontFamily: serif, backgroundImage: `url(${imageUrl(destination.destinationImage)})`, backgroundSize: "cover", backgroundPosition: "center", height: "200px", color: "white", borderRadius: "0 0 10px 10px", borderTop: "1px solid rgba(255, 255, 255, 0.2)" }}
+                                    style={{ backgroundImage: `url(${imageUrl(destination.destinationImage)})`, backgroundSize: "cover", backgroundPosition: "center", height: "200px", color: "white", borderRadius: "0 0 10px 10px", borderTop: "1px solid rgba(255, 255, 255, 0.2)" }}
                                 >
 
                                 </div>
+                                {/* //Destination days itinerary start here  Day 1 , Day 2 etc. */}
                                 {(destination.destinationItinerary as ItineraryDay[]).map(
-                                    (day, index) => (
-                                        <article
-                                            className="pb-2"
-                                            style={{ borderColor: line }}
-                                            key={`${destination.title}-${day.title}-${index}`}
-                                        >
-                                            <div
-                                                className="mt-2 flex cursor-pointer items-baseline justify-between gap-3 border-[#e6e8ec] py-2 border-t-1"
-                                                style={{ borderColor: line }}
-                                                role="button"
-                                                tabIndex={0}
-                                                aria-expanded={openDayKeys.has(`${destination.title}-${day.title}-${index}`)}
-                                                onClick={() => toggleDay(`${destination.title}-${day.title}-${index}`)}
-                                                onKeyDown={(event) => {
-                                                    if (event.key === "Enter" || event.key === " ") {
-                                                        event.preventDefault();
-                                                        toggleDay(`${destination.title}-${day.title}-${index}`);
-                                                    }
-                                                }}
+                                    (day, index, days) => {
+                                        const stay = resolveStay(days, index);
+                                        return (
+                                            <article
+                                                className="pb-2"
+                                                key={`${day.title}-${day.title}-${index}`}
                                             >
-                                                <div className="flex items-center gap-3 align-between" >
-
-                                                    {/* <span
-                                                        className="rounded-full border px-3 py-[3px] text-[12.5px]"
-                                                        style={{
-                                                            borderColor: sandLine,
-                                                            backgroundColor: sand,
-                                                            fontFamily: serif,
-                                                            cursor: "pointer"
-                                                        }}
-                                                    >
-                                                        Day {index + 1}
-                                                    </span> */}
-                                                    <span
-                                                        className="grid h-[26px] w-[26px] place-items-center rounded-[7px] bg-white"
-                                                        style={{ borderColor: line }}
-                                                    >
-                                                        ✦
-                                                    </span>
-                                                    <span
-                                                        className="text-[19px] font-medium"
-
-                                                    >
-                                                        {day.title}
-                                                    </span>
-                                                    <small className="text-xs" style={{ color: soft }}>
-                                                        {day.day}
-                                                    </small>
-                                                </div>
-
-                                                <svg
-                                                    className={`ml-2 h-4 w-4 transition-transform ${openDayKeys.has(`${destination.title}-${day.title}-${index}`) ? "rotate-180" : ""
-                                                        }`}
-                                                    fill="none"
-                                                    stroke="currentColor"
-                                                    viewBox="0 0 24 24"
+                                                <div
+                                                    className="mt-2 flex cursor-pointer items-baseline justify-between gap-3 border-[#e6e8ec] py-2"
+                                                    role="button"
+                                                    tabIndex={0}
+                                                    aria-expanded={openDayKeys.has(dayKey(destination, day, index))}
+                                                    onClick={() => toggleDay(dayKey(destination, day, index))}
+                                                    onKeyDown={(event) => {
+                                                        if (event.key === "Enter" || event.key === " ") {
+                                                            event.preventDefault();
+                                                            toggleDay(dayKey(destination, day, index));
+                                                        }
+                                                    }}
                                                 >
-                                                    <path
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M19 9l-7 7-7-7"
-                                                    />
-                                                </svg>
-                                            </div>
-                                            {openDayKeys.has(`${destination.title}-${day.title}-${index}`) && (
-                                                <div className="ml-10">
-                                                    <p
-                                                        className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
-                                                        style={{ color: body }}
-                                                    >
-                                                        {day.description ||
-                                                            `Explore the highlights of ${destination.destination} at your own pace.`}
-                                                    </p>
-                                                    <div className="mb-3.5 flex gap-2.5 overflow-hidden">
-                                                        <img
-                                                            className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                            src={imageUrl(destination.destinationImage)}
-                                                            alt={`${destination.destination} landscape`}
-                                                        />
-                                                        <img
-                                                            className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                            src={imageUrl(destination.destinationImage)}
-                                                            alt={`${destination.destination} travel experience`}
-                                                        />
-                                                    </div>
-                                                    {day.stay && (
-                                                        <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
-                                                            <span
-                                                                className="grid h-8 w-8 place-items-center rounded-[7px]  "
-                                                                style={{ borderColor: line }}
-                                                            >
-                                                                🏨
-                                                            </span>
-                                                            Stay at — {day.stay.stayName}
-                                                            <small
-                                                                className="ml-auto text-xs"
-                                                                style={{ color: soft }}
-                                                            >
-                                                                {day.stay.roomType || "Selected room"}
-                                                            </small>
-                                                        </div>
-                                                    )}
-                                                    {day.activities?.map((activity) => (
-                                                        <div
-                                                            className="mt-2 mb-10 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-[13px]"
-                                                            key={activity.activityType}
+                                                    <div className="flex items-center gap-3 align-between" >
+                                                        <span
+                                                            className="grid h-[26px] w-[26px] place-items-center rounded-[7px] bg-white"
+
                                                         >
-                                                            <span
-                                                                className="grid h-8 w-[26px] place-items-center rounded-[7px]  "
-                                                                style={{ borderColor: line }}
-                                                            >
-                                                                ✦
-                                                            </span>
-                                                            {activity.activityType}
-                                                            {activity.transfers?.transferType && (
+                                                            ✦
+                                                        </span>
+                                                        <span
+                                                            className="text-[19px] font-medium"
+                                                        >
+                                                            {day.title}
+                                                        </span>
+                                                        <small className="text-xs" >
+                                                            {day.day}
+                                                        </small>
+                                                    </div>
+
+                                                    <svg
+                                                        className={`ml-2 h-4 w-4 transition-transform ${openDayKeys.has(dayKey(destination, day, index)) ? "rotate-180" : ""
+                                                            }`}
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={2}
+                                                            d="M19 9l-7 7-7-7"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                                {openDayKeys.has(dayKey(destination, day, index)) && (
+                                                    <div className="ml-10">
+                                                        <p
+                                                            className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
+                                                        >
+                                                            {day.description ||
+                                                                `Explore the highlights of ${destination.destination} at your own pace.`}
+                                                        </p>
+                                                        <div className="mb-3.5 flex gap-2.5 overflow-hidden">
+                                                            {day.activities?.flatMap((activity) => activity.images || []).map((image, imageIndex) =>
+                                                                <img
+                                                                    className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
+                                                                    src={imageUrl(image)}
+                                                                    alt={`${destination.destination} activity ${imageIndex + 1}`}
+                                                                    key={`${day.title}-activity-image-${imageIndex}`}
+                                                                />
+                                                            )}
+
+                                                        </div>
+                                                        {stay && (
+                                                            <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
+                                                                <span
+                                                                    className="grid h-8 w-8 place-items-center rounded-[7px]  "
+
+                                                                >
+                                                                    🏨
+                                                                </span>
+                                                                Stay at — {stay.stayName || "Selected property"}
                                                                 <small
                                                                     className="ml-auto text-xs"
-                                                                    style={{ color: soft }}
                                                                 >
-                                                                    {activity.transfers.transferType}
+                                                                    {stay.roomType || "Selected room"}
                                                                 </small>
-                                                            )}
-                                                        </div>
-                                                    ))}
+                                                            </div>
+                                                        )}
+                                                        {day.activities?.map((activity) => (
+                                                            <div
+                                                                className="mt-2 mb-10 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-[13px]"
+                                                                key={activity.activityType}
+                                                            >
+                                                                <span
+                                                                    className="grid h-8 w-[26px] place-items-center rounded-[7px]  "
 
-                                                </div>
-                                            )}
-                                        </article>
-                                    ),
+                                                                >
+                                                                    ✦
+                                                                </span>
+                                                                {activity.activityType}
+                                                                {activity.activityDescription && (
+                                                                    <span className="text-xs text-slate-400" >
+                                                                        {activity.activityDescription}
+                                                                    </span>
+                                                                )}
+                                                                {activity.transfers?.transferType && (
+                                                                    <small
+                                                                        className="ml-auto text-xs"
+
+                                                                    >
+                                                                        {activity.transfers.transferType}
+                                                                    </small>
+                                                                )}
+                                                            </div>
+                                                        ))}
+
+                                                    </div>
+                                                )}
+                                            </article>
+                                        );
+                                    },
                                 )}
                             </div>
                         ))}
@@ -319,95 +395,75 @@ export default function Itinerary() {
                             Stays
                         </h2>
                         {itineraryData.itinerary.map((destination) => {
-                            const stay = (
-                                destination.destinationItinerary as ItineraryDay[]
-                            ).find((day) => day.stay)?.stay;
+                            const days = destination.destinationItinerary as ItineraryDay[];
+                            const stay = days
+                                .map((_, dayIndex) => resolveStay(days, dayIndex))
+                                .find(Boolean);
                             if (!stay) return null;
                             return (
                                 <div
-                                    className="mb-2.5 flex gap-4 rounded-xl  p-3.5"
-                                    style={{ borderColor: line }}
-                                    key={`${destination.title}-stay`}
-                                >
-                                    <img
-                                        className="h-[76px] w-[100px] shrink-0 rounded-lg object-cover"
-                                        src={imageUrl(destination.destinationImage)}
-                                        alt={stay.stayName}
-                                    />
-                                    <div>
-                                        <h3
-                                            className="mt-1 text-base"
+                                    className="mb-5 rounded-xl p-3.5"
 
-                                        >
-                                            {stay.stayName}
-                                        </h3>
-                                        <p className="text-[12.5px]" style={{ color: soft }}>
-                                            {stay.roomType || "Selected room"} ·{" "}
-                                            {inclusions.join(", ") || "Breakfast included"}
-                                        </p>
+                                    key={`${destination.destination}-stay`}
+                                >
+                                    <div className="mb-3 flex gap-4">
+                                        <div>
+                                            <h3 className="mt-1 flex items-center gap-2 text-base">
+                                                {stay.stayName || "Selected property"}
+                                                {stay.stayLink && (
+                                                    <a
+                                                        className="text-[#12213a] transition-opacity hover:opacity-60"
+                                                        href={stay.stayLink}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        aria-label={`Open ${stay.stayName || "property"} website`}
+                                                        title="Open property website"
+                                                    >
+                                                        <svg
+                                                            className="h-4 w-4"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="1.8"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path d="M14 4h6v6" />
+                                                            <path d="M10 14 20 4" />
+                                                            <path d="M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4" />
+                                                        </svg>
+                                                    </a>
+                                                )}
+                                            </h3>
+                                            <p className="text-[12.5px]" >
+                                                {stay.roomType || "Selected room"} ·{" "}
+                                                {inclusions.join(", ") || "Breakfast included"}
+                                            </p>
+                                        </div>
                                     </div>
+                                    {stay.images && stay.images.length > 0 && (
+                                        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
+                                            {stay.images.map((image, imageIndex) => (
+                                                <button
+                                                    className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
+                                                    type="button"
+                                                    onClick={() => openStayGallery(stay)}
+                                                    aria-label={`Open ${stay.stayName || "stay"} image ${imageIndex + 1}`}
+                                                    key={`${destination.destination}-stay-image-${imageIndex}`}
+                                                >
+                                                    <img
+                                                        className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                        src={imageUrl(image)}
+                                                        alt={`${stay.stayName || "Stay"} image ${imageIndex + 1}`}
+                                                    />
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             );
                         })}
                     </section>
-
-                    {/* <section className="mb-12">
-                        <h2 className="mb-3.5 text-[26px]" >
-                            Trip Highlights
-                        </h2>
-                        <div className="grid gap-4 md:grid-cols-3">
-                            {activities.slice(0, 3).map((activity, index) => (
-                                <div
-                                    className="rounded-xl bg-[#f5f6f8] p-[18px]"
-                                    key={activity}
-                                >
-                                    <span className="mb-2.5 grid h-[38px] w-[38px] place-items-center rounded-[10px] bg-[#12213a] text-white">
-                                        {["⛰", "◌", "✦"][index]}
-                                    </span>
-                                    <h3
-                                        className="mb-1 text-[15px]"
-
-                                    >
-                                        {activity}
-                                    </h3>
-                                    <p className="text-[12.5px]" style={{ color: soft }}>
-                                        Curated for your {itineraryData.destinationName} journey
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </section> */}
-
-                    {/* <section className="mb-12">
-                        <h2 className="mb-3.5 text-[26px]" >
-                            Essential Details
-                        </h2>
-                        <div
-                            className="rounded-xl border px-6 py-[22px]"
-                            style={{ borderColor: sandLine, backgroundColor: sand }}
-                        >
-                            <h3 className="mb-3 text-base" >
-                                ▣ Advisory
-                            </h3>
-                            <ul
-                                className="m-0 list-disc space-y-1.5 pl-5 text-[13.5px] leading-7"
-                                style={{ color: body }}
-                            >
-                                <li>
-                                    Booking requests are subject to availability and final
-                                    confirmation.
-                                </li>
-                                <li>
-                                    Breakfast is included where specified in your stay details.
-                                </li>
-                                <li>
-                                    Valid passport with 6+ months validity is required for all
-                                    travellers.
-                                </li>
-                            </ul>
-                        </div>
-                    </section> */}
-
                     <section className="mb-12">
                         <h2 className="mb-3.5 text-[26px]" >
                             What&apos;s Included
@@ -416,13 +472,11 @@ export default function Itinerary() {
                             <div>
                                 <h3
                                     className="mb-2.5 text-[13px] uppercase tracking-wide"
-                                    style={{ color: soft }}
                                 >
                                     Inclusions
                                 </h3>
                                 <ul
                                     className="m-0 grid list-none gap-2 p-0 text-[13.5px]"
-                                    style={{ color: body }}
                                 >
                                     {[
                                         `${totalNights} nights' accommodation as listed`,
@@ -439,13 +493,11 @@ export default function Itinerary() {
                             <div>
                                 <h3
                                     className="mb-2.5 text-[13px] uppercase tracking-wide"
-                                    style={{ color: soft }}
                                 >
                                     Exclusions
                                 </h3>
                                 <ul
                                     className="m-0 grid list-none gap-2 p-0 text-[13.5px]"
-                                    style={{ color: body }}
                                 >
                                     <li className="flex gap-2 leading-6">
                                         <b className="text-[#b5545a]">×</b>International flights
@@ -469,7 +521,6 @@ export default function Itinerary() {
 
                 <aside
                     className="sticky top-10 rounded-[14px] border bg-white p-6 shadow-[0_10px_30px_rgba(18,33,58,0.08)] max-md:hidden"
-                    style={{ borderColor: line }}
                 >
                     <h2 className="mb-4 text-xl" >
                         Fare Breakdown
@@ -499,8 +550,7 @@ export default function Itinerary() {
                         <span className="font-[700] text-2xl">₹ {total}</span>
                     </div>
                     <button
-                        className="mt-6 w-full rounded-[10px] px-3 py-[13px] text-md text-white flex items-center justify-center gap-6 transition-transform duration-300 hover:translate-y-[-2px]"
-                        style={{ backgroundColor: navy }}
+                        className="mt-6 w-full rounded-[10px] px-3 py-[13px] text-md text-white flex items-center justify-center gap-6 transition-transform duration-300 hover:translate-y-[-2px] bg-theme-primary-dark"
                     >
                         <span>
                             Accept &amp; Book
@@ -549,26 +599,57 @@ export default function Itinerary() {
                 </aside>
             </div>
 
-            <div
-                className="fixed inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 border-t bg-white px-5 py-3 shadow-[0_-6px_20px_rgba(18,33,58,0.06)] md:hidden"
-                style={{ borderColor: line }}
-            >
-                <strong className="text-base" >
-                    ₹ {total}
-                    <small
-                        className="mt-0.5 block font-sans text-[11px] font-normal"
-                        style={{ color: soft }}
-                    >
-                        Total for {itineraryData.guestCount} adults
-                    </small>
-                </strong>
-                <button
-                    className="rounded-[10px] px-4 py-2.5 text-[15px] text-white"
-                    style={{ backgroundColor: navy }}
+            {activeStay && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 md:p-10"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`${activeStay.name} gallery`}
+                    onClick={closeStayGallery}
                 >
-                    Accept &amp; Book
-                </button>
-            </div>
+                    <div
+                        className="relative flex h-full w-full max-w-5xl items-center justify-center"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <img
+                            className="max-h-[82vh] max-w-full rounded-lg object-contain"
+                            src={imageUrl(activeStay.images[activeStayImageIndex])}
+                            alt={`${activeStay.name} image ${activeStayImageIndex + 1}`}
+                        />
+                        <button
+                            className="absolute right-0 top-0 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-2xl text-[#12213a] shadow-lg"
+                            type="button"
+                            onClick={closeStayGallery}
+                            aria-label="Close gallery"
+                        >
+                            ×
+                        </button>
+                        {activeStay.images.length > 1 && (
+                            <>
+                                <button
+                                    className="absolute left-0 grid h-12 w-12 place-items-center rounded-full bg-white/90 text-3xl text-[#12213a] shadow-lg transition-transform hover:scale-105"
+                                    type="button"
+                                    onClick={showPreviousStayImage}
+                                    aria-label="Previous stay image"
+                                >
+                                    ‹
+                                </button>
+                                <button
+                                    className="absolute right-0 grid h-12 w-12 place-items-center rounded-full bg-white/90 text-3xl text-[#12213a] shadow-lg transition-transform hover:scale-105"
+                                    type="button"
+                                    onClick={showNextStayImage}
+                                    aria-label="Next stay image"
+                                >
+                                    ›
+                                </button>
+                            </>
+                        )}
+                        <p className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
+                            {activeStayImageIndex + 1} / {activeStay.images.length}
+                        </p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
