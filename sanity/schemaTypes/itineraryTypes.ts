@@ -48,8 +48,8 @@ export const itineraryType = defineType({
                     type: "object",
                     fields: [
                         defineField({ name: "destination", title: "Destination", type: "string" }),
-                        defineField({ name: "title", title: "Title", type: "string" }),
-                        defineField({ name: "date", title: "Date", type: "string" }),
+                        // defineField({ name: "title", title: "Title", type: "string" }),
+                        defineField({ name: "date", title: "Date Range", type: "string" }),
                         defineField({ name: "destinationImage", title: "Destination Image", type: "image" }),
                         defineField({
                             name: "destinationItinerary", title: "Destination Itinerary", type: "array",
@@ -87,7 +87,7 @@ export const itineraryType = defineType({
                                                     of: [
                                                         {
                                                             name: "image",
-                                                            title: "Staye Image",
+                                                            title: "Stay Images",
                                                             type: "image",
                                                         },
                                                     ]
@@ -115,16 +115,19 @@ export const itineraryType = defineType({
                                                     type: "object",
                                                     fields: [
                                                         defineField({
-                                                            name: "activityType", title: "Name of the Activity", type: "string",
+                                                            name: "activityType", title: "Activity Name", type: "string",
+                                                        }),
+                                                        defineField({
+                                                            name: "activityDescription", title: "Activity Description", type: "text",
                                                         }),
                                                         defineField({
                                                             name: "images",
-                                                            title: "Stay Imagery",
+                                                            title: "Activity Imagery",
                                                             type: "array",
                                                             of: [
                                                                 {
                                                                     name: "image",
-                                                                    title: "Staye Image",
+                                                                    title: "Activity Image",
                                                                     type: "image",
                                                                 },
                                                             ]
