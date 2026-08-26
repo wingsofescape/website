@@ -4,15 +4,12 @@ import { useState } from "react";
 import itineraryData from "@/data/itinerary.json";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
-import Link from "next/link";
 
 const imageUrl = (image: { asset: unknown }) => urlFor(image).width(900).url();
 const navy = "#12213a";
 const body = "#5c6675";
 const soft = "#8991a0";
 const line = "#e6e8ec";
-const sand = "#f6f1e8";
-const sandLine = "#e9dfc9";
 const serif = "Georgia, serif";
 
 type ItineraryActivity = {
@@ -85,13 +82,13 @@ export default function Itinerary() {
             ),
         ),
     );
-    const activities = Array.from(
-        new Set(
-            allDays.flatMap(
-                (day) => day.activities?.map((activity) => activity.activityType) || [],
-            ),
-        ),
-    );
+    // const activities = Array.from(
+    //     new Set(
+    //         allDays.flatMap(
+    //             (day) => day.activities?.map((activity) => activity.activityType) || [],
+    //         ),
+    //     ),
+    // );
     const total = itineraryData.pricing.toLocaleString("en-IN");
 
     return (
@@ -190,7 +187,7 @@ export default function Itinerary() {
                                             key={`${destination.title}-${day.title}-${index}`}
                                         >
                                             <div
-                                                className="mt-2 flex cursor-pointer items-baseline justify-between gap-3  border-[#e6e8ec] py-2"
+                                                className="mt-2 flex cursor-pointer items-baseline justify-between gap-3 border-[#e6e8ec] py-2 border-t-1"
                                                 style={{ borderColor: line }}
                                                 role="button"
                                                 tabIndex={0}
@@ -328,7 +325,7 @@ export default function Itinerary() {
                             if (!stay) return null;
                             return (
                                 <div
-                                    className="mb-2.5 flex gap-4 rounded-xl border p-3.5"
+                                    className="mb-2.5 flex gap-4 rounded-xl  p-3.5"
                                     style={{ borderColor: line }}
                                     key={`${destination.title}-stay`}
                                 >
