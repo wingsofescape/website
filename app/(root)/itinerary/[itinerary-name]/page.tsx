@@ -12,7 +12,7 @@ export async function generateStaticParams() {
         POST_QUERY.itinerariesList,
         SANITY_QUERY_OPTION,
     );
-
+    console.log('generateStaticParams — itineraries:', itineraries.toString());
     return itineraries.map(({ slug }: { slug: string }) => ({
         "itinerary-name": slug,
     }));
