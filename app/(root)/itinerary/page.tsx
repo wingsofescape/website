@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import defaultItineraryData from "@/data/itinerary.json";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
-
+import { Ephesis } from "next/font/google";
 const imageUrl = (image: { asset: unknown }) => urlFor(image).width(900).url();
 
 type ItineraryActivity = {
@@ -69,6 +69,11 @@ const resolveStay = (
         transfers: currentStay?.transfers || previousStay?.transfers,
     };
 };
+const ephesis = Ephesis({
+    subsets: ["latin"],
+    weight: "400",
+    variable: "--font-serif",
+});
 
 export default function Itinerary({
     itineraryData = defaultItineraryData,
@@ -193,20 +198,21 @@ export default function Itinerary({
                 <div className="relative">
                     <div className="inset-0 flex">
                         <div className="bg-theme-primary-dark text-white flex flex-col items-left pl-10 pr-25 py-5 w-1/2">
-                            <div className="w-full max-w-2xl mx-auto my-15 text-white">
-                                <h2 className="text-xl md:text-5xl font-semibold mb-2 leading-snug text-white italic">
-                                    <span className="text-2xl mr-2"> Curated for </span>{" "}
-                                    {itineraryData.customerName}
-                                </h2>
-                                <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-white">
-                                    {itineraryData.itineraryName}
-                                </h2>
+                            <div className="w-full max-w-2xl mx-auto my-15 text-white absolute top-1/3 -translate-y-1/2">
+                                {/* <h2 className={`text-xl md:text-5xl font-light leading-snug text-white italics`}>
+                                    <span className={`text-sm mr-2`}> custom curation for </span>
+                                </h2> */}
+                                <span className={`${ephesis.className} font-bold`} style={{ fontSize: '5.5rem' }}> {itineraryData.customerName}  </span>
 
-                                <div className="flex flex-col md:flex-row gap-10 mb-1 align-bottom">
-                                    <span className="text-xl md:text-xl font-semibold mb-4 leading-snug text-white">
+                                {/* <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-white">
+                                    {itineraryData.itineraryName}
+                                </h2> */}
+
+                                <div className="flex flex-col md:flex-row gap-10 my-4 align-bottom">
+                                    <span className="text-xl md:text-sm mb-4 leading-snug text-white">
                                         {itineraryData.guestCount} adults
                                     </span>
-                                    <span className="text-xl md:text-sm font-semibold mb-4 leading-snug text-white">
+                                    <span className="text-xl md:text-sm mb-4 leading-snug text-white">
                                         {dateRange}
                                     </span>
                                 </div>
@@ -215,7 +221,7 @@ export default function Itinerary({
                                     <div className="pills flex gap-6">
                                         {itineraryData.itinerary.map((destination) => (
                                             <div
-                                                className="bg-theme-primary-dark text-white rounded-4xl px-7 py-2 text-xs opacity-70 pointer-events-none"
+                                                className="bg-theme-primary-light text-white rounded-4xl px-7 py-2 text-xs opacity-90 pointer-events-none"
                                                 key={destination.destination}
                                             >
                                                 {destination.destination} ·{" "}
