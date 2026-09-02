@@ -5,15 +5,6 @@
     }
   },
   "navigation": {
-    "holidayIdeas": {
-      "label": "Holiday Ideas",
-      "items": [
-        { "name": "Beach Holidays", "href": "/holidays/beach" },
-        { "name": "Adventure", "href": "/holidays/adventure" },
-        { "name": "Family Trips", "href": "/holidays/family" },
-        { "name": "Luxury Escapes", "href": "/holidays/luxury" }
-      ]
-    },
     "inspiration": {
       "label": "Inspiration",
       "items": [
@@ -30,9 +21,6 @@
         { "name": "Testimonials", "href": "/testimonials" }
       ]
     }
-  },
-  "searchBar": {
-    "placeholder": "Search"
   },
   "cta": {
     "button": {

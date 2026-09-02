@@ -77,7 +77,7 @@ const Header = () => {
             (item: { href: string; name: string }, index: number) => (
               <div
                 key={index}
-                className="px-4 py-2 cursor-pointer text-xs font-semibold hover:underline"
+                className="px-4 py-2 text-xs font-semibold hover:underline"
                 onClick={() => {
                   handleDestinationClick(item.href);
                 }}
@@ -175,29 +175,17 @@ const Header = () => {
             openDropdown={openDropdown}
             setOpenDropdown={setOpenDropdown}
           />
-          {/* {renderDropdown(headerData.navigation.contactUs)} */}
-
-          {/* {renderDropdown(headerData.navigation.inspiration)}
-          {renderDropdown(headerData.navigation.aboutUs)} */}
-          {/* Search Bar */}
-          {/* <form className="ml-2 hidden lg:block">
-            <input
-              type="text"
-              placeholder={headerData.searchBar.placeholder}
-              className="rounded-full px-4 py-2 border border-theme-primary-dark focus:outline-none focus:ring-2 focus:ring-theme-primary-light w-32 text-theme-primary"
-            />
-          </form> */}
         </nav>
 
         {/* Desktop CTA Button */}
         {!pathname.includes("enquireNow") && (
           <div
-            className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 group cursor-pointer group"
+            className="hidden lg:flex ml-2 h-full items-center px-6 bg-theme-primary text-white font-semibold uppercase tracking-wide transition-colors duration-200 group group"
             onClick={() => (window.location.href = headerData.cta.button.href)}
           >
             <button
               type="button"
-              className="flex items-center focus:outline-none cursor-pointer group-hover:rounded-xl group-hover:ring hover:ring-2 px-3 py-2 antialiased transition-all duration-300 text-xs"
+              className="flex items-center focus:outline-none group-hover:rounded-xl group-hover:ring hover:ring-2 px-3 py-2 antialiased transition-all duration-300 text-xs"
             >
               {headerData.cta.button.text}
 
@@ -294,17 +282,6 @@ const Header = () => {
                 />
                 <MobileDropdown section={headerData.navigation.inspiration} />
                 <MobileDropdown section={headerData.navigation.contactUs} />
-
-                {/* Mobile Search */}
-                {/* <div className="p-4 border-b border-gray-200">
-                  <form>
-                    <input
-                      type="text"
-                      placeholder={headerData.searchBar.placeholder}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary-light text-gray-800"
-                    />
-                  </form>
-                </div> */}
               </div>
 
               {/* Mobile CTA Button */}
