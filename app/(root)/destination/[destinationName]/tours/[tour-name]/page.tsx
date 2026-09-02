@@ -45,7 +45,7 @@ const TourDetailsPage = async ({
         {/* Timeline & Circle */}
         <div className="flex flex-col items-center mr-2 md:mr-6 min-w-[56px]">
           {/* Circle */}
-          <div className="w-12 h-16 rounded-full bg-theme-primary-light flex items-center justify-center text-white font-bold text-xs z-10 border-3 border-gray-400 botder-opacity-20">
+          <div className="w-12 h-16 rounded-full bg-theme-primary-light flex items-center justify-center text-white font-bold text-xs z-10 border-3 border-gray-400 border-opacity-20">
             <div className="text-center py-2">
               <span className="block text-[10px] font-normal">Day</span>
               <span className="block text-lg">{day.day}</span>

@@ -56,7 +56,7 @@ export default function Reviews() {
                             </div>
                             <div className="contentBox">
                                 <Link href="https://www.instagram.com/wingsofescape_?igsh=eDgwOXRoeWc0ODh4&utm_source=qr" target="_blank" rel="noopener noreferrer">
-                                    <h3 className="text-xs md:text-lg font-extralight mb-5 text-theme-primary-dark cursor-pointer underline">Instagram</h3>
+                                    <h3 className="text-xs md:text-lg font-extralight mb-5 text-theme-primary-dark  underline">Instagram</h3>
                                 </Link>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ export default function Reviews() {
                             </div>
                             <div className="contentBox">
                                 <Link href="https://www.google.com/search?q=wings+of+escape&rlz=1C1CHBF_enIN1128IN1128&oq=wings+of+escape&gs_lcrp=EgZjaHJvbWUyDggAEEUYJxg5GIAEGIoFMggIARAAGBYYHjIICAIQABgWGB4yCAgDEAAYFhgeMggIBBAAGBYYHjIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDU5ODVqMGo3qAIIsAIB8QWXTLWSeHEMQfEFl0y1knhxDEE&sourceid=chrome&ie=UTF-8#" target="_blank" rel="noopener noreferrer">
-                                    <h3 className="text-xs md:text-lg font-extralight mb-5 text-theme-primary-dark cursor-pointer underline" >Google Reviews</h3>
+                                    <h3 className="text-xs md:text-lg font-extralight mb-5 text-theme-primary-dark  underline" >Google Reviews</h3>
                                 </Link>
                             </div>
                         </div>

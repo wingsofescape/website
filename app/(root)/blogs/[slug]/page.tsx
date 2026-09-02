@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 
 export default async function Blogs({ params }: PageProps) {
   const blog = await sanityFetch(
-    POST_QUERY.getblog(await params),
+    POST_QUERY.getBlog(await params),
     SANITY_QUERY_OPTION
   );
 
@@ -68,7 +68,6 @@ export default async function Blogs({ params }: PageProps) {
   return (
     <div>
       <div
-        // ref={bannerRef}
         className="blogHeroImage relative overflow-hidden"
         style={{
           height: "90vh",
@@ -80,7 +79,6 @@ export default async function Blogs({ params }: PageProps) {
           className="object-cover"
           fill
           style={{
-            // transform: `translateY(${offsetY * 0.5}px) scale(1.08)`,
             transition: "transform 0.1s linear",
             zIndex: 1,
           }}
