@@ -79,6 +79,10 @@ export const POST_QUERY = {
     name: "Itineraries List",
     query: `*[_type == "itinerary" && defined(slug.current)]{"slug": slug.current}`,
   },
+  adminItinerariesList: {
+    name: "Admin Itineraries List",
+    query: `*[_type == "itinerary" && defined(slug.current)] | order(_createdAt desc){_id, _createdAt, title, itineraryName, customerName, guestCount, slug, itinerary[]{destination}}`,
+  },
   blogsList: {
     name: "blogsList",
     query: `*[_type == "blog" && defined(slug.current)]{"slug": slug.current}`,

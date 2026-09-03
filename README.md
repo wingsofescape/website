@@ -1,49 +1,113 @@
-# WingsOfEscape - Premium Travel & Exploration Platform
+# Wings of Escape
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+The Wings of Escape website is a Next.js travel platform backed by Sanity CMS. It contains public destination, tour, blog, itinerary, testimonial, and contact pages, plus an embedded Sanity Studio for content management.
 
-WingsOfEscape is a sophisticated travel platform designed to help users discover and explore extraordinary destinations with elegance and style.
+## Requirements
 
-## Features
+- Node.js 20 or later
+- npm
+- A Sanity project with the required schemas and dataset
+- Access to the configured Neon database if database-backed features are used
 
-- 🌍 Interactive destination exploration
-- 📱 Fully responsive design with mobile-first approach
-- 🎯 Feature flag system for A/B testing
-- 📝 JSON-based CMS for content management
-- 🎨 Elegant typography with serif fonts and gradient effects
-- 📞 Contact form with server-side actions
+## Local setup
 
-## Getting Started
+Install dependencies:
 
-First, run the development server:
+```bash
+npm install
+```
+
+Create a local `.env` file. Do not commit this file or place credentials in this README.
+
+```env
+NEXT_PUBLIC_APP_NAME=Wings of Escape
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+NEXT_PUBLIC_SANITY_API_VERSION=2025-08-19
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-sanity-project-id
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_READ_TOKEN=your-sanity-read-token
+DATABASE_URL=your-database-connection-string
+RESEND_KEY=your-resend-api-key
+
+# Required for the deployed admin itinerary inventory
+ADMIN_ROUTE_USERNAME=your-admin-username
+ADMIN_ROUTE_PASSWORD=your-admin-password
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). If port 3000 is already in use, Next.js will select another available port and print it in the terminal.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Useful commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev          # Start the development server with Turbopack
+npm run build        # Create a production build
+npm run start        # Serve the production build
+npm run postinstall  # Generate the Prisma client
+```
 
-## Learn More
+## Sanity CMS
 
-To learn more about Next.js, take a look at the following resources:
+The Sanity Studio is available at:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+http://localhost:3000/studio
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The schemas are in `sanity/schemaTypes`. After creating and publishing content in Sanity, the public website reads it through the queries in `lib/constants/index.ts`.
 
-## Deploy on Vercel
+### Blogs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Create and publish a blog in Sanity Studio.
+2. The blog appears on `/blogs`.
+3. Its published slug links to `/blogs/{slug}`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Itineraries
+
+1. Create and publish an itinerary in Sanity Studio.
+2. Use its published slug with `/itinerary/{slug}`.
+3. New itinerary slugs are generated at runtime and revalidated periodically, so a full website rebuild is not normally required. Sanity/CDN caching can delay a new record briefly.
+
+The base `/itinerary` path displays the local fallback itinerary data from `data/itinerary.json` when no custom data is passed to the component. Published customer itineraries use the slug route above.
+
+## Admin itinerary inventory
+
+The admin-only itinerary list is available at:
+
+```text
+/itinerary/listAll-adminonly
+```
+
+In local development, the route is available without credentials. In deployed environments, it is protected by HTTP Basic Authentication using `ADMIN_ROUTE_USERNAME` and `ADMIN_ROUTE_PASSWORD`.
+
+The middleware fails closed and returns `404` when those production credentials are missing. Keep the route URL and credentials private because the page lists customer and itinerary information.
+
+## Project structure
+
+```text
+app/                 Next.js routes and layouts
+components/          Reusable UI components
+data/                Local fallback and static content data
+lib/                 Queries, constants, and server actions
+prisma/              Prisma schema and migrations
+sanity/              Sanity client, schemas, and Studio configuration
+public/              Images, logos, and videos
+utils/               Shared utility functions
+middleware.ts        Admin itinerary route protection
+```
+
+## Production deployment
+
+Run the production build locally before deploying:
+
+```bash
+npm run build
+npm run start
+```
+
+Set all required environment variables in the deployment platform. In particular, configure the Sanity read token, database connection string, email API key, and admin route credentials through the platform's secret/environment-variable settings rather than committing them to the repository.
