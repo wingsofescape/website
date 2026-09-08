@@ -197,17 +197,10 @@ export default function Itinerary({
             <div className="hidden lg:block">
                 <div className="relative">
                     <div className="inset-0 flex">
-                        <div className="bg-theme-primary-dark text-white flex flex-col items-left pl-10 pr-25 py-5 w-1/2">
-                            <div className="w-full max-w-2xl mx-auto my-15 text-white absolute top-1/3 -translate-y-1/2">
-                                {/* <h2 className={`text-xl md:text-5xl font-light leading-snug text-white italics`}>
-                                    <span className={`text-sm mr-2`}> custom curation for </span>
-                                </h2> */}
+                        <div className="bg-theme-primary-dark text-white flex flex-col items-left pl-25 pr-25 py-5 w-1/2">
+                            <div className="w-full max-w-2xl mx-auto my-15 text-white absolute top-1/3 -translate-y-1/3">
+
                                 <span className={`${ephesis.className} font-bold`} style={{ fontSize: '5.5rem' }}> {itineraryData.customerName}  </span>
-
-                                {/* <h2 className="text-xl md:text-3xl font-semibold mb-2 leading-snug text-white">
-                                    {itineraryData.itineraryName}
-                                </h2> */}
-
                                 <div className="flex flex-col md:flex-row gap-10 my-4 align-bottom">
                                     <span className="text-xl md:text-sm mb-4 leading-snug text-white">
                                         {itineraryData.guestCount} adults
@@ -249,227 +242,265 @@ export default function Itinerary({
                 </div>
             </div>
 
-            <div className="mx-auto grid max-w-[1180px] items-start gap-10 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
+            <div className="mx-auto grid max-w-[70%] items-start gap-20 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
+
                 <div className="min-w-0">
-                    <section className="mb-12">
-                        {itineraryData.itinerary.map((destination, index) => (
-                            <div key={destination.destination}>
+                    {/* Stays Section */}
+                    <section className="mb-12 flex flex-row gap-10">
+                        <div>
+                            <div className="days">
                                 <div
-                                    className={`flex items-center justify-between rounded-t-[10px] bg-theme-primary-dark px-10 py-9 text-white md:px-12 md:py-4 ${index === 0 ? '' : 'mt-10'}`}
+                                    className={`relative`}
 
                                 >
-                                    <span className="text-lg">{destination.destination}</span>
-                                    <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
-                                        {destination.destinationItinerary.length}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
-                                    </small>
-                                </div>
-                                {/* Destination image */}
-                                <div
-                                    className="flex items-center justify-between bg-theme-primary-dark px-[22px] py-9 text-white md:mb-[14px] md:px-[30px] md:py-[22px]"
-                                    style={{ backgroundImage: `url(${imageUrl(destination.destinationImage)})`, backgroundSize: "cover", backgroundPosition: "center", height: "200px", color: "white", borderRadius: "0 0 10px 10px", borderTop: "1px solid rgba(255, 255, 255, 0.2)" }}
-                                >
-
-                                </div>
-                                {/* //Destination days itinerary start here  Day 1 , Day 2 etc. */}
-                                {(destination.destinationItinerary as ItineraryDay[]).map(
-                                    (day, index, days) => {
-                                        const stay = resolveStay(days, index);
-                                        return (
-                                            <article
-                                                className="pb-2"
-                                                key={`${day.title}-${day.title}-${index}`}
-                                            >
+                                    {itineraryData.itinerary?.length && (
+                                        <div className="pills flex gap-6">
+                                            {itineraryData.itinerary.map((destination) => (
                                                 <div
-                                                    className="mt-2 flex cursor-pointer items-baseline justify-between gap-3 border-[#e6e8ec] py-2"
-                                                    role="button"
-                                                    tabIndex={0}
-                                                    aria-expanded={openDayKeys.has(dayKey(destination, day, index))}
-                                                    onClick={() => toggleDay(dayKey(destination, day, index))}
-                                                    onKeyDown={(event) => {
-                                                        if (event.key === "Enter" || event.key === " ") {
-                                                            event.preventDefault();
-                                                            toggleDay(dayKey(destination, day, index));
-                                                        }
-                                                    }}
+                                                    className="bg-theme-primary text-white rounded-4xl px-7 py-2 text-xs pointer-events-none"
+                                                    key={destination.destination}
                                                 >
-                                                    <div className="flex items-center gap-3 align-between" >
-                                                        <span
-                                                            className="grid h-[26px] w-[26px] place-items-center rounded-[7px] bg-white"
-
-                                                        >
-                                                            ✦
-                                                        </span>
-                                                        <span
-                                                            className="text-[19px] font-medium"
-                                                        >
-                                                            {day.title}
-                                                        </span>
-                                                        <small className="text-xs" >
-                                                            {day.day}
-                                                        </small>
-                                                    </div>
-
-                                                    <svg
-                                                        className={`ml-2 h-4 w-4 transition-transform ${openDayKeys.has(dayKey(destination, day, index)) ? "rotate-180" : ""
-                                                            }`}
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24"
-                                                    >
-                                                        <path
-                                                            strokeLinejoin="round"
-                                                            strokeWidth={2}
-                                                            d="M19 9l-7 7-7-7"
-                                                        />
-                                                    </svg>
+                                                    {destination.destination}
                                                 </div>
-                                                {openDayKeys.has(dayKey(destination, day, index)) && (
-                                                    <div className="ml-10">
-                                                        <p
-                                                            className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
-                                                        >
-                                                            {day.description ||
-                                                                `Explore the highlights of ${destination.destination} at your own pace.`}
-                                                        </p>
-                                                        <div className="mb-3.5 flex gap-2.5 overflow-hidden">
-                                                            {day.activities?.flatMap((activity) => activity.images || []).map((image, imageIndex) =>
-                                                                <img
-                                                                    className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                                    src={imageUrl(image)}
-                                                                    alt={`${destination.destination} activity ${imageIndex + 1}`}
-                                                                    key={`${day.title}-activity-image-${imageIndex}`}
-                                                                />
-                                                            )}
-
-                                                        </div>
-                                                        {stay && (
-                                                            <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
-                                                                <span
-                                                                    className="grid h-8 w-8 place-items-center rounded-[7px]  "
-
-                                                                >
-                                                                    🏨
-                                                                </span>
-                                                                Stay at — {stay.stayName || "Selected property"}
-                                                                <small
-                                                                    className="ml-auto text-xs"
-                                                                >
-                                                                    {stay.roomType || "Selected room"}
-                                                                </small>
-                                                            </div>
-                                                        )}
-                                                        {day.activities?.map((activity) => (
-                                                            <div
-                                                                className="mt-2 mb-10 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-[13px]"
-                                                                key={activity.activityType}
-                                                            >
-                                                                <span
-                                                                    className="grid h-8 w-[26px] place-items-center rounded-[7px]  "
-
-                                                                >
-                                                                    ✦
-                                                                </span>
-                                                                {activity.activityType}
-                                                                {activity.activityDescription && (
-                                                                    <span className="text-xs text-slate-400" >
-                                                                        {activity.activityDescription}
-                                                                    </span>
-                                                                )}
-                                                                {activity.transfers?.transferType && (
-                                                                    <small
-                                                                        className="ml-auto text-xs"
-
-                                                                    >
-                                                                        {activity.transfers.transferType}
-                                                                    </small>
-                                                                )}
-                                                            </div>
-                                                        ))}
-
-                                                    </div>
-                                                )}
-                                            </article>
-                                        );
-                                    },
-                                )}
-                            </div>
-                        ))}
-                    </section>
-
-                    <section className="mb-12">
-                        <h2 className="mb-3.5 text-[26px]" >
-                            Stays
-                        </h2>
-                        {itineraryData.itinerary.map((destination) => {
-                            const days = destination.destinationItinerary as ItineraryDay[];
-                            const stay = days
-                                .map((_, dayIndex) => resolveStay(days, dayIndex))
-                                .find(Boolean);
-                            if (!stay) return null;
-                            return (
-                                <div
-                                    className="mb-5 rounded-xl p-3.5"
-
-                                    key={`${destination.destination}-stay`}
-                                >
-                                    <div className="mb-3 flex gap-4">
-                                        <div>
-                                            <h3 className="mt-1 flex items-center gap-2 text-base">
-                                                {stay.stayName || "Selected property"}
-                                                {stay.stayLink && (
-                                                    <a
-                                                        className="text-[#12213a] transition-opacity hover:opacity-60"
-                                                        href={stay.stayLink}
-                                                        target="_blank"
-                                                        rel="noreferrer"
-                                                        aria-label={`Open ${stay.stayName || "property"} website`}
-                                                        title="Open property website"
-                                                    >
-                                                        <svg
-                                                            className="h-4 w-4"
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                            strokeWidth="1.8"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path d="M14 4h6v6" />
-                                                            <path d="M10 14 20 4" />
-                                                            <path d="M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4" />
-                                                        </svg>
-                                                    </a>
-                                                )}
-                                            </h3>
-                                            <p className="text-[12.5px]" >
-                                                {stay.roomType || "Selected room"} ·{" "}
-                                                {inclusions.join(", ") || "Breakfast included"}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    {stay.images && stay.images.length > 0 && (
-                                        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
-                                            {stay.images.map((image, imageIndex) => (
-                                                <button
-                                                    className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
-                                                    type="button"
-                                                    onClick={() => openStayGallery(stay)}
-                                                    aria-label={`Open ${stay.stayName || "stay"} image ${imageIndex + 1}`}
-                                                    key={`${destination.destination}-stay-image-${imageIndex}`}
-                                                >
-                                                    <img
-                                                        className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                                        src={imageUrl(image)}
-                                                        alt={`${stay.stayName || "Stay"} image ${imageIndex + 1}`}
-                                                    />
-                                                </button>
                                             ))}
                                         </div>
                                     )}
+
+                                    <div className="w-1/5 absolute -left-70 -top-5 flex items-center justify-end ">
+                                        <span className={`${ephesis.className} font-bold text-slate-500`} style={{ fontSize: '3.5rem' }}> Stays  </span>
+                                    </div>
                                 </div>
-                            );
-                        })}
+                            </div>
+                            {itineraryData.itinerary.map((destination, index) => {
+                                const days = destination.destinationItinerary as ItineraryDay[];
+                                const stay = days
+                                    .map((_, dayIndex) => resolveStay(days, dayIndex))
+                                    .find(Boolean);
+                                if (!stay) return null;
+                                if (index > 0) return null; // Only show stays for the first destination
+                                return (
+                                    <div
+                                        className="mb-5 rounded-xl p-3.5"
+
+                                        key={`${destination.destination}-stay`}
+                                    >
+                                        <div className="mb-3 flex gap-4">
+                                            <div>
+                                                <h3 className="mt-1 flex items-center gap-2 text-base">
+                                                    {stay.stayName || "Selected property"}
+                                                    {stay.stayLink && (
+                                                        <a
+                                                            className="text-[#12213a] transition-opacity hover:opacity-60"
+                                                            href={stay.stayLink}
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                            aria-label={`Open ${stay.stayName || "property"} website`}
+                                                            title="Open property website"
+                                                        >
+                                                            <svg
+                                                                className="h-4 w-4"
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round"
+                                                                strokeWidth="1.8"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path d="M14 4h6v6" />
+                                                                <path d="M10 14 20 4" />
+                                                                <path d="M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4" />
+                                                            </svg>
+                                                        </a>
+                                                    )}
+                                                </h3>
+                                                <p className="text-[12.5px]" >
+                                                    {stay.roomType || "Selected room"} ·{" "}
+                                                    {inclusions.join(", ") || "Breakfast included"}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        {stay.images && stay.images.length > 0 && (
+                                            <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
+                                                {stay.images.map((image, imageIndex) => (
+                                                    <button
+                                                        className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
+                                                        type="button"
+                                                        onClick={() => openStayGallery(stay)}
+                                                        aria-label={`Open ${stay.stayName || "stay"} image ${imageIndex + 1}`}
+                                                        key={`${destination.destination}-stay-image-${imageIndex}`}
+                                                    >
+                                                        <img
+                                                            className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                            src={imageUrl(image)}
+                                                            alt={`${stay.stayName || "Stay"} image ${imageIndex + 1}`}
+                                                        />
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+
                     </section>
+
+                    {/* Day wise Itinerary Section */}
+                    <section className="mb-12 flex flex-row gap-10">
+
+                        <div className="w-full relative">
+                            <div className="w-1/5 absolute -left-70 -top-5 flex items-center justify-end ">
+                                <span className={`${ephesis.className} font-bold text-slate-500`} style={{ fontSize: '3.5rem' }}> Itinerary  </span>
+                            </div>
+                            {itineraryData.itinerary.map((destination, index) => (
+                                <div key={destination.destination}>
+                                    <div
+                                        className={`flex items-center justify-between rounded-t-[10px] bg-theme-primary-dark px-10 py-9 text-white md:px-12 md:py-4 ${index === 0 ? '' : 'mt-10'}`}
+
+                                    >
+                                        <span className="text-lg">{destination.destination}</span>
+                                        <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
+                                            {destination.destinationItinerary.length}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
+                                        </small>
+                                    </div>
+
+                                    {/* Destination image */}
+                                    <div
+                                        className="flex items-center justify-between bg-theme-primary-dark px-[22px] py-9 text-white md:mb-[14px] md:px-[30px] md:py-[22px]"
+                                        style={{ backgroundImage: `url(${imageUrl(destination.destinationImage)})`, backgroundSize: "cover", backgroundPosition: "center", height: "200px", color: "white", borderRadius: "0 0 10px 10px", borderTop: "1px solid rgba(255, 255, 255, 0.2)" }}
+                                    >
+
+                                    </div>
+                                    {/* //Destination days itinerary start here  Day 1 , Day 2 etc. */}
+                                    {(destination.destinationItinerary as ItineraryDay[]).map(
+                                        (day, index, days) => {
+                                            const stay = resolveStay(days, index);
+                                            return (
+                                                <article
+                                                    className="pb-2"
+                                                    key={`${day.title}-${day.title}-${index}`}
+                                                >
+                                                    <div
+                                                        className="mt-2 flex cursor-pointer items-baseline justify-between gap-3 border-[#e6e8ec] py-2"
+                                                        role="button"
+                                                        tabIndex={0}
+                                                        aria-expanded={openDayKeys.has(dayKey(destination, day, index))}
+                                                        onClick={() => toggleDay(dayKey(destination, day, index))}
+                                                        onKeyDown={(event) => {
+                                                            if (event.key === "Enter" || event.key === " ") {
+                                                                event.preventDefault();
+                                                                toggleDay(dayKey(destination, day, index));
+                                                            }
+                                                        }}
+                                                    >
+                                                        <div className="flex items-center gap-3 align-between" >
+                                                            <span
+                                                                className="grid h-[26px] w-[26px] place-items-center rounded-[7px] bg-white"
+
+                                                            >
+                                                                ✦
+                                                            </span>
+                                                            <span
+                                                                className="text-[19px] font-medium"
+                                                            >
+                                                                {day.title}
+                                                            </span>
+                                                            <small className="text-xs" >
+                                                                {day.day}
+                                                            </small>
+                                                        </div>
+
+                                                        <svg
+                                                            className={`ml-2 h-4 w-4 transition-transform ${openDayKeys.has(dayKey(destination, day, index)) ? "rotate-180" : ""
+                                                                }`}
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path
+                                                                strokeLinejoin="round"
+                                                                strokeWidth={2}
+                                                                d="M19 9l-7 7-7-7"
+                                                            />
+                                                        </svg>
+                                                    </div>
+                                                    {openDayKeys.has(dayKey(destination, day, index)) && (
+                                                        <div className="ml-10">
+                                                            <p
+                                                                className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
+                                                            >
+                                                                {day.description ||
+                                                                    `Explore the highlights of ${destination.destination} at your own pace.`}
+                                                            </p>
+                                                            <div className="mb-3.5 flex gap-2.5 overflow-hidden">
+                                                                {day.activities?.flatMap((activity) => activity.images || []).map((image, imageIndex) =>
+                                                                    <img
+                                                                        className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
+                                                                        src={imageUrl(image)}
+                                                                        alt={`${destination.destination} activity ${imageIndex + 1}`}
+                                                                        key={`${day.title}-activity-image-${imageIndex}`}
+                                                                    />
+                                                                )}
+
+                                                            </div>
+                                                            {stay && (
+                                                                <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
+                                                                    <span
+                                                                        className="grid h-8 w-8 place-items-center rounded-[7px]  "
+
+                                                                    >
+                                                                        🏨
+                                                                    </span>
+                                                                    Stay at — {stay.stayName || "Selected property"}
+                                                                    <small
+                                                                        className="ml-auto text-xs"
+                                                                    >
+                                                                        {stay.roomType || "Selected room"}
+                                                                    </small>
+                                                                </div>
+                                                            )}
+                                                            {day.activities?.map((activity) => (
+                                                                <div
+                                                                    className="mt-2 mb-10 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-[13px]"
+                                                                    key={activity.activityType}
+                                                                >
+                                                                    {/* <span
+                                                                        className="grid h-8 w-[26px] place-items-center rounded-[7px]  "
+
+                                                                    >
+                                                                        ✦
+                                                                    </span> */}
+                                                                    <div>
+                                                                        {activity.activityType}
+                                                                        {activity.activityDescription && (
+                                                                            <p className="text-xs text-slate-400 ml-2" >
+                                                                                {"- "} {activity.activityDescription}
+                                                                            </p>
+                                                                        )}
+                                                                    </div>
+                                                                    {activity.transfers?.transferType && (
+                                                                        <small
+                                                                            className="ml-auto text-xs"
+
+                                                                        >
+                                                                            {activity.transfers.transferType}
+                                                                        </small>
+                                                                    )}
+                                                                </div>
+                                                            ))}
+
+                                                        </div>
+                                                    )}
+                                                </article>
+                                            );
+                                        },
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+
                     <section className="mb-12">
                         <h2 className="mb-3.5 text-[26px]" >
                             What&apos;s Included
