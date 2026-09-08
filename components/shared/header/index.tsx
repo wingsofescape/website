@@ -77,7 +77,7 @@ const Header = () => {
             (item: { href: string; name: string }, index: number) => (
               <div
                 key={index}
-                className="px-4 py-2 text-xs font-semibold hover:underline"
+                className="px-4 py-2 text-xs font-semibold hover:underline hover:cursor-pointer"
                 onClick={() => {
                   handleDestinationClick(item.href);
                 }}

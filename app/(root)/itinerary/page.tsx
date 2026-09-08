@@ -91,6 +91,11 @@ export default function Itinerary({
         images: ItineraryImage[];
     } | null>(null);
     const [activeStayImageIndex, setActiveStayImageIndex] = useState(0);
+    const [activeActivity, setActiveActivity] = useState<{
+        name: string;
+        images: ItineraryImage[];
+    } | null>(null);
+    const [activeActivityImageIndex, setActiveActivityImageIndex] = useState(0);
 
     const openStayGallery = (stay: ItineraryStay) => {
         if (!stay.images?.length) return;
@@ -117,6 +122,31 @@ export default function Itinerary({
         );
     };
 
+    const openActivityGallery = (activity: ItineraryActivity) => {
+        if (!activity.images?.length) return;
+        setActiveActivity({
+            name: activity.activityType,
+            images: activity.images,
+        });
+        setActiveActivityImageIndex(0);
+    };
+
+    const closeActivityGallery = () => setActiveActivity(null);
+
+    const showPreviousActivityImage = () => {
+        if (!activeActivity) return;
+        setActiveActivityImageIndex((currentIndex) =>
+            currentIndex === 0 ? activeActivity.images.length - 1 : currentIndex - 1,
+        );
+    };
+
+    const showNextActivityImage = () => {
+        if (!activeActivity) return;
+        setActiveActivityImageIndex((currentIndex) =>
+            currentIndex === activeActivity.images.length - 1 ? 0 : currentIndex + 1,
+        );
+    };
+
     useEffect(() => {
         if (!activeStay) return;
 
@@ -138,14 +168,29 @@ export default function Itinerary({
         return () => document.removeEventListener("keydown", handleGalleryKeyDown);
     }, [activeStay]);
 
-    const firstDestination = itineraryData.itinerary[0];
-    const firstDayKeys = firstDestination
-        ? firstDestination.destinationItinerary.map(
-            (day, index) => dayKey(firstDestination, day, index),
-        )
-        : [];
+    useEffect(() => {
+        if (!activeActivity) return;
+
+        const handleActivityGalleryKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") closeActivityGallery();
+            if (event.key === "ArrowLeft") showPreviousActivityImage();
+            if (event.key === "ArrowRight") showNextActivityImage();
+        };
+
+        document.addEventListener("keydown", handleActivityGalleryKeyDown);
+        return () => document.removeEventListener("keydown", handleActivityGalleryKeyDown);
+    }, [activeActivity]);
+
+    const allDayKeys = itineraryData.itinerary.flatMap((destination) =>
+        destination.destinationItinerary.map((day, index) =>
+            dayKey(destination, day, index),
+        ),
+    );
     const [openDayKeys, setOpenDayKeys] = useState<Set<string>>(
-        () => new Set(firstDayKeys),
+        () => new Set(allDayKeys),
+    );
+    const [selectedStayDestination, setSelectedStayDestination] = useState(
+        () => itineraryData.itinerary[0]?.destination ?? "",
     );
     const toggleDay = (dayKey: string) => {
         setOpenDayKeys((currentKeys) => {
@@ -242,7 +287,7 @@ export default function Itinerary({
                 </div>
             </div>
 
-            <div className="mx-auto grid max-w-[70%] items-start gap-20 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
+            <div className="mx-auto grid max-w-[60%] items-start gap-20 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
 
                 <div className="min-w-0">
                     {/* Stays Section */}
@@ -250,18 +295,24 @@ export default function Itinerary({
                         <div>
                             <div className="days">
                                 <div
-                                    className={`relative`}
-
+                                    className="relative"
                                 >
                                     {itineraryData.itinerary?.length && (
-                                        <div className="pills flex gap-6">
+                                        <div className="pills flex gap-6" role="tablist" aria-label="Stay destinations">
                                             {itineraryData.itinerary.map((destination) => (
-                                                <div
-                                                    className="bg-theme-primary text-white rounded-4xl px-7 py-2 text-xs pointer-events-none"
+                                                <button
+                                                    className={`rounded-4xl px-7 py-2 text-xs transition-colors ${selectedStayDestination === destination.destination
+                                                        ? "bg-theme-primary text-white"
+                                                        : "bg-slate-200 text-theme-primary hover:bg-slate-300"
+                                                        }`}
+                                                    type="button"
+                                                    role="tab"
+                                                    aria-selected={selectedStayDestination === destination.destination}
+                                                    onClick={() => setSelectedStayDestination(destination.destination)}
                                                     key={destination.destination}
                                                 >
                                                     {destination.destination}
-                                                </div>
+                                                </button>
                                             ))}
                                         </div>
                                     )}
@@ -271,76 +322,77 @@ export default function Itinerary({
                                     </div>
                                 </div>
                             </div>
-                            {itineraryData.itinerary.map((destination, index) => {
-                                const days = destination.destinationItinerary as ItineraryDay[];
-                                const stay = days
-                                    .map((_, dayIndex) => resolveStay(days, dayIndex))
-                                    .find(Boolean);
-                                if (!stay) return null;
-                                if (index > 0) return null; // Only show stays for the first destination
-                                return (
-                                    <div
-                                        className="mb-5 rounded-xl p-3.5"
+                            {itineraryData.itinerary
+                                .filter((destination) => destination.destination === selectedStayDestination)
+                                .map((destination) => {
+                                    const days = destination.destinationItinerary as ItineraryDay[];
+                                    const stay = days
+                                        .map((_, dayIndex) => resolveStay(days, dayIndex))
+                                        .find(Boolean);
+                                    if (!stay) return null;
+                                    return (
+                                        <div
+                                            className="mb-5 rounded-xl p-3.5"
 
-                                        key={`${destination.destination}-stay`}
-                                    >
-                                        <div className="mb-3 flex gap-4">
-                                            <div>
-                                                <h3 className="mt-1 flex items-center gap-2 text-base">
-                                                    {stay.stayName || "Selected property"}
-                                                    {stay.stayLink && (
-                                                        <a
-                                                            className="text-[#12213a] transition-opacity hover:opacity-60"
-                                                            href={stay.stayLink}
-                                                            target="_blank"
-                                                            rel="noreferrer"
-                                                            aria-label={`Open ${stay.stayName || "property"} website`}
-                                                            title="Open property website"
-                                                        >
-                                                            <svg
-                                                                className="h-4 w-4"
-                                                                fill="none"
-                                                                stroke="currentColor"
-                                                                strokeLinecap="round"
-                                                                strokeLinejoin="round"
-                                                                strokeWidth="1.8"
-                                                                viewBox="0 0 24 24"
+                                            key={`${destination.destination}-stay`}
+                                        >
+                                            <div className="mb-3 flex gap-4">
+                                                <div>
+                                                    <h3 className="mt-1 flex items-center gap-2 text-base">
+                                                        {stay.stayName || "Selected property"}
+                                                        {stay.stayLink && (
+                                                            <a
+                                                                className="text-[#12213a] transition-opacity hover:opacity-60"
+                                                                href={stay.stayLink}
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                aria-label={`Open ${stay.stayName || "property"} website`}
+                                                                title="Open property website"
                                                             >
-                                                                <path d="M14 4h6v6" />
-                                                                <path d="M10 14 20 4" />
-                                                                <path d="M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4" />
-                                                            </svg>
-                                                        </a>
-                                                    )}
-                                                </h3>
-                                                <p className="text-[12.5px]" >
-                                                    {stay.roomType || "Selected room"} ·{" "}
-                                                    {inclusions.join(", ") || "Breakfast included"}
-                                                </p>
+                                                                <svg
+                                                                    className="h-4 w-4"
+                                                                    fill="none"
+                                                                    stroke="currentColor"
+                                                                    strokeLinecap="round"
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth="1.8"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path d="M14 4h6v6" />
+                                                                    <path d="M10 14 20 4" />
+                                                                    <path d="M20 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4" />
+                                                                </svg>
+                                                            </a>
+                                                        )}
+                                                    </h3>
+                                                    <p className="text-[12.5px]" >
+                                                        {stay.roomType || "Selected room"} ·{" "}
+                                                        {inclusions.join(", ") || "Breakfast included"}
+                                                    </p>
+                                                </div>
                                             </div>
+                                            {stay.images && stay.images.length > 0 && (
+                                                <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
+                                                    {stay.images.map((image, imageIndex) => (
+                                                        <button
+                                                            className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
+                                                            type="button"
+                                                            onClick={() => openStayGallery(stay)}
+                                                            aria-label={`Open ${stay.stayName || "stay"} image ${imageIndex + 1}`}
+                                                            key={`${destination.destination}-stay-image-${imageIndex}`}
+                                                        >
+                                                            <img
+                                                                className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                                src={imageUrl(image)}
+                                                                alt={`${stay.stayName || "Stay"} image ${imageIndex + 1}`}
+                                                            />
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
-                                        {stay.images && stay.images.length > 0 && (
-                                            <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
-                                                {stay.images.map((image, imageIndex) => (
-                                                    <button
-                                                        className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
-                                                        type="button"
-                                                        onClick={() => openStayGallery(stay)}
-                                                        aria-label={`Open ${stay.stayName || "stay"} image ${imageIndex + 1}`}
-                                                        key={`${destination.destination}-stay-image-${imageIndex}`}
-                                                    >
-                                                        <img
-                                                            className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                                            src={imageUrl(image)}
-                                                            alt={`${stay.stayName || "Stay"} image ${imageIndex + 1}`}
-                                                        />
-                                                    </button>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
+                                    );
+                                })}
                         </div>
 
                     </section>
@@ -432,19 +484,8 @@ export default function Itinerary({
                                                                 {day.description ||
                                                                     `Explore the highlights of ${destination.destination} at your own pace.`}
                                                             </p>
-                                                            <div className="mb-3.5 flex gap-2.5 overflow-hidden">
-                                                                {day.activities?.flatMap((activity) => activity.images || []).map((image, imageIndex) =>
-                                                                    <img
-                                                                        className="h-[100px] w-[calc(50%-5px)] rounded-[10px] object-cover md:h-28 md:w-[170px]"
-                                                                        src={imageUrl(image)}
-                                                                        alt={`${destination.destination} activity ${imageIndex + 1}`}
-                                                                        key={`${day.title}-activity-image-${imageIndex}`}
-                                                                    />
-                                                                )}
-
-                                                            </div>
                                                             {stay && (
-                                                                <div className="mt-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
+                                                                <div className="mt-2 mb-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
                                                                     <span
                                                                         className="grid h-8 w-8 place-items-center rounded-[7px]  "
 
@@ -459,17 +500,14 @@ export default function Itinerary({
                                                                     </small>
                                                                 </div>
                                                             )}
+                                                            {/* <p className={` font-semibold text-slate-500`} >Experiences</p> */}
                                                             {day.activities?.map((activity) => (
+
                                                                 <div
-                                                                    className="mt-2 mb-10 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-[13px]"
+                                                                    className=" mb-2 flex items-center gap-2 rounded-[10px] px-4 py-2 text-[13px]"
                                                                     key={activity.activityType}
                                                                 >
-                                                                    {/* <span
-                                                                        className="grid h-8 w-[26px] place-items-center rounded-[7px]  "
 
-                                                                    >
-                                                                        ✦
-                                                                    </span> */}
                                                                     <div>
                                                                         {activity.activityType}
                                                                         {activity.activityDescription && (
@@ -488,6 +526,32 @@ export default function Itinerary({
                                                                     )}
                                                                 </div>
                                                             ))}
+                                                            <div className="mb-3.5 flex gap-2.5 overflow-hidden">
+                                                                {day.activities?.flatMap((activity) =>
+                                                                    (activity.images || []).map((image, imageIndex) => ({
+                                                                        activity,
+                                                                        image,
+                                                                        imageIndex,
+                                                                    })),
+                                                                ).map(({ activity, image, imageIndex }) =>
+                                                                    <button
+                                                                        className="group relative overflow-hidden rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#12213a]"
+                                                                        type="button"
+                                                                        onClick={() => openActivityGallery(activity)}
+                                                                        aria-label={`Open ${activity.activityType} image ${imageIndex + 1}`}
+                                                                        key={`${day.title}-${activity.activityType}-activity-image-${imageIndex}`}
+                                                                    >
+                                                                        <img
+                                                                            className="h-[100px] w-[calc(50vw-5px)] rounded-[10px] object-cover transition-transform duration-300 group-hover:scale-105 md:h-28 md:w-[170px]"
+                                                                            src={imageUrl(image)}
+                                                                            alt={`${activity.activityType} image ${imageIndex + 1}`}
+                                                                        />
+                                                                    </button>,
+                                                                )}
+
+                                                            </div>
+
+
 
                                                         </div>
                                                     )}
@@ -574,11 +638,11 @@ export default function Itinerary({
                     <div
                         className="flex justify-between py-2 text-sm text-theme-primary-light"
                     >
-                        <span>Taxes &amp; fees</span>
-                        <span>
+                        <span>* All inclusive of Taxes &amp; fees</span>
+                        {/* <span>
                             ₹{" "}
                             {Math.round(itineraryData.pricing * 0.06).toLocaleString("en-IN")}
-                        </span>
+                        </span> */}
                     </div>
                     <div
                         className="mt-1 flex justify-between align-middle border-t border-slate-300 pt-3.5 text-base"
@@ -683,6 +747,58 @@ export default function Itinerary({
                         )}
                         <p className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
                             {activeStayImageIndex + 1} / {activeStay.images.length}
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {activeActivity && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 md:p-10"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`${activeActivity.name} gallery`}
+                    onClick={closeActivityGallery}
+                >
+                    <div
+                        className="relative flex h-full w-full max-w-5xl items-center justify-center"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        <img
+                            className="max-h-[82vh] max-w-full rounded-lg object-contain"
+                            src={imageUrl(activeActivity.images[activeActivityImageIndex])}
+                            alt={`${activeActivity.name} image ${activeActivityImageIndex + 1}`}
+                        />
+                        <button
+                            className="absolute right-0 top-0 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-2xl text-[#12213a] shadow-lg"
+                            type="button"
+                            onClick={closeActivityGallery}
+                            aria-label="Close activity gallery"
+                        >
+                            ×
+                        </button>
+                        {activeActivity.images.length > 1 && (
+                            <>
+                                <button
+                                    className="absolute left-0 grid h-12 w-12 place-items-center rounded-full bg-white/90 text-3xl text-[#12213a] shadow-lg transition-transform hover:scale-105"
+                                    type="button"
+                                    onClick={showPreviousActivityImage}
+                                    aria-label="Previous activity image"
+                                >
+                                    ‹
+                                </button>
+                                <button
+                                    className="absolute right-0 grid h-12 w-12 place-items-center rounded-full bg-white/90 text-3xl text-[#12213a] shadow-lg transition-transform hover:scale-105"
+                                    type="button"
+                                    onClick={showNextActivityImage}
+                                    aria-label="Next activity image"
+                                >
+                                    ›
+                                </button>
+                            </>
+                        )}
+                        <p className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs text-white">
+                            {activeActivityImageIndex + 1} / {activeActivity.images.length}
                         </p>
                     </div>
                 </div>
