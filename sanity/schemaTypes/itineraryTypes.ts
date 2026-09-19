@@ -158,7 +158,7 @@ export const itineraryType = defineType({
             ]
         }),
         defineField({
-            name: "inclusions&exclusions",
+            name: "inclusionsexclusions",
             title: "Inclusions and Exclusions",
             type: "object",
             fields: [

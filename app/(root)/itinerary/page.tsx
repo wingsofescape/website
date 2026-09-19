@@ -44,7 +44,7 @@ type ItineraryDay = {
 
 type ItineraryData = typeof defaultItineraryData;
 type ItineraryDataWithTripDetails = ItineraryData & {
-    ["inclusions&exclusions"]?: {
+    ["inclusionsexclusions"]?: {
         inclusions?: string[];
         exclusions?: string[];
     };
