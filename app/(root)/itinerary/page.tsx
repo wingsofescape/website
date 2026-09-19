@@ -43,6 +43,12 @@ type ItineraryDay = {
 };
 
 type ItineraryData = typeof defaultItineraryData;
+type ItineraryDataWithTripDetails = ItineraryData & {
+    ["inclusions&exclusions"]?: {
+        inclusions?: string[];
+        exclusions?: string[];
+    };
+};
 type ItineraryDestination = ItineraryData["itinerary"][number];
 
 const dayKey = (destination: ItineraryDestination, day: ItineraryDay, index: number) =>
@@ -78,13 +84,8 @@ const ephesis = Ephesis({
 export default function Itinerary({
     itineraryData = defaultItineraryData,
 }: {
-    itineraryData?: ItineraryData;
+    itineraryData?: ItineraryDataWithTripDetails;
 }) {
-    const totalNights = itineraryData.itinerary.reduce(
-        (total, destination) => total + destination.destinationItinerary.length,
-        0,
-    );
-
     const whatsapp = "/logos/whatsapp.png";
     const [activeStay, setActiveStay] = useState<{
         name: string;
@@ -208,7 +209,7 @@ export default function Itinerary({
     const lastDay = itineraryData.itinerary.at(-1)?.destinationItinerary.at(-1);
     const dateRange =
         firstDay && lastDay
-            ? `${firstDay.day} - ${lastDay.day}`
+            ? `${firstDay.day} to ${lastDay.day}`
             : "Your journey dates";
     const allDays = itineraryData.itinerary.flatMap((destination) => {
         const days = destination.destinationItinerary as ItineraryDay[];
@@ -218,7 +219,7 @@ export default function Itinerary({
             destination: destination.destination,
         }));
     });
-    const inclusions = Array.from(
+    const stayInclusions = Array.from(
         new Set(
             allDays.flatMap(
                 (day) =>
@@ -228,13 +229,8 @@ export default function Itinerary({
             ),
         ),
     );
-    // const activities = Array.from(
-    //     new Set(
-    //         allDays.flatMap(
-    //             (day) => day.activities?.map((activity) => activity.activityType) || [],
-    //         ),
-    //     ),
-    // );
+    const tripInclusions = itineraryData["inclusions&exclusions"]?.inclusions || [];
+    const tripExclusions = itineraryData["inclusions&exclusions"]?.exclusions || [];
     const total = itineraryData.pricing.toLocaleString("en-IN");
 
     return (
@@ -287,7 +283,7 @@ export default function Itinerary({
                 </div>
             </div>
 
-            <div className="mx-auto grid max-w-[60%] items-start gap-20 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
+            <div className="mx-auto grid w-[70%] items-start gap-20 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
 
                 <div className="min-w-0">
                     {/* Stays Section */}
@@ -317,7 +313,7 @@ export default function Itinerary({
                                         </div>
                                     )}
 
-                                    <div className="w-1/5 absolute -left-70 -top-5 flex items-center justify-end ">
+                                    <div className="absolute left-0 -top-5 text-right -translate-x-[calc(100%+1rem)]">
                                         <span className={`${ephesis.className} font-bold text-slate-500`} style={{ fontSize: '3.5rem' }}> Stays  </span>
                                     </div>
                                 </div>
@@ -329,6 +325,11 @@ export default function Itinerary({
                                     const stay = days
                                         .map((_, dayIndex) => resolveStay(days, dayIndex))
                                         .find(Boolean);
+                                    const roomChangeStays = days.flatMap((day) =>
+                                        day.stay?.roomChange && day.stay.images?.length
+                                            ? [{ stay: day.stay, day: day.title, inclusions: day.stay.inclusions?.filter((item) => item.inclusion).map((item) => item.inclusionType) || [] }]
+                                            : [],
+                                    );
                                     if (!stay) return null;
                                     return (
                                         <div
@@ -367,7 +368,7 @@ export default function Itinerary({
                                                     </h3>
                                                     <p className="text-[12.5px]" >
                                                         {stay.roomType || "Selected room"} ·{" "}
-                                                        {inclusions.join(", ") || "Breakfast included"}
+                                                        {stayInclusions.join(", ") || "Breakfast included"}
                                                     </p>
                                                 </div>
                                             </div>
@@ -390,6 +391,38 @@ export default function Itinerary({
                                                     ))}
                                                 </div>
                                             )}
+                                            {roomChangeStays.length > 0 && (
+                                                <div className="mt-5 pt-4">
+                                                    <p className="mb-3 text-[12.5px]">
+                                                        {roomChangeStays[0]?.stay.roomType} ·{" "}
+                                                        {stayInclusions.join(", ") || "Breakfast included"}
+                                                    </p>
+                                                    {roomChangeStays.map(({ stay: roomChangeStay, day }) => (
+                                                        <div className="mb-4 last:mb-0" key={`${destination.destination}-${day}-room-change`}>
+                                                            <div className="grid grid-cols-2 gap-2 md:grid-cols-3 xl:grid-cols-5">
+                                                                {roomChangeStay.images?.map((image, imageIndex) => (
+                                                                    <button
+                                                                        className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
+                                                                        type="button"
+                                                                        onClick={() => openStayGallery({
+                                                                            ...roomChangeStay,
+                                                                            stayName: `${stay.stayName || "Stay"} - Room change`,
+                                                                        })}
+                                                                        aria-label={`Open room change image ${imageIndex + 1} for ${stay.stayName || "stay"}`}
+                                                                        key={`${destination.destination}-${day}-room-change-image-${imageIndex}`}
+                                                                    >
+                                                                        <img
+                                                                            className="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                                            src={imageUrl(image)}
+                                                                            alt={`${stay.stayName || "Stay"} room change image ${imageIndex + 1}`}
+                                                                        />
+                                                                    </button>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     );
                                 })}
@@ -401,7 +434,7 @@ export default function Itinerary({
                     <section className="mb-12 flex flex-row gap-10">
 
                         <div className="w-full relative">
-                            <div className="w-1/5 absolute -left-70 -top-5 flex items-center justify-end ">
+                            <div className="absolute left-0 -top-5 text-right transform -translate-x-[calc(100%+1rem)]">
                                 <span className={`${ephesis.className} font-bold text-slate-500`} style={{ fontSize: '3.5rem' }}> Itinerary  </span>
                             </div>
                             {itineraryData.itinerary.map((destination, index) => (
@@ -579,11 +612,7 @@ export default function Itinerary({
                                 <ul
                                     className="m-0 grid list-none gap-2 p-0 text-[13.5px]"
                                 >
-                                    {[
-                                        `${totalNights} nights' accommodation as listed`,
-                                        ...inclusions,
-                                        "Private inter-hotel transfers",
-                                    ].map((item) => (
+                                    {tripInclusions.map((item) => (
                                         <li className="flex gap-2 leading-6" key={item}>
                                             <b className="text-[#2f7a4f]">✓</b>
                                             {item}
@@ -597,22 +626,13 @@ export default function Itinerary({
                                 >
                                     Exclusions
                                 </h3>
-                                <ul
-                                    className="m-0 grid list-none gap-2 p-0 text-[13.5px]"
-                                >
-                                    <li className="flex gap-2 leading-6">
-                                        <b className="text-[#b5545a]">×</b>International flights
-                                    </li>
-                                    <li className="flex gap-2 leading-6">
-                                        <b className="text-[#b5545a]">×</b>Visa fees
-                                    </li>
-                                    <li className="flex gap-2 leading-6">
-                                        <b className="text-[#b5545a]">×</b>Personal expenses &amp;
-                                        tips
-                                    </li>
-                                    <li className="flex gap-2 leading-6">
-                                        <b className="text-[#b5545a]">×</b>Travel insurance
-                                    </li>
+                                <ul className="m-0 grid list-none gap-2 p-0 text-[13.5px]">
+                                    {tripExclusions.map((item) => (
+                                        <li className="flex gap-2 leading-6" key={item}>
+                                            <b className="text-[#b5545a]">×</b>
+                                            {item}
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
