@@ -229,8 +229,8 @@ export default function Itinerary({
             ),
         ),
     );
-    const tripInclusions = itineraryData["inclusions&exclusions"]?.inclusions || [];
-    const tripExclusions = itineraryData["inclusions&exclusions"]?.exclusions || [];
+    const tripInclusions = itineraryData["inclusionsexclusions"]?.inclusions || [];
+    const tripExclusions = itineraryData["inclusionsexclusions"]?.exclusions || [];
     const total = itineraryData.pricing.toLocaleString("en-IN");
 
     return (
@@ -243,13 +243,21 @@ export default function Itinerary({
 
                                 <span className={`${ephesis.className} font-bold`} style={{ fontSize: '5.5rem' }}> {itineraryData.customerName}  </span>
                                 <div className="flex flex-col md:flex-row gap-10 my-4 align-bottom">
-                                    <span className="text-xl md:text-sm mb-4 leading-snug text-white">
+                                    <span className="text-xl md:text-md mb-4 leading-snug text-white">
                                         {itineraryData.guestCount} adults
                                     </span>
-                                    <span className="text-xl md:text-sm mb-4 leading-snug text-white">
+                                    <p className="text-xl md:text-md mb-4 leading-snug text-white font-extralight">
                                         {dateRange}
-                                    </span>
+                                    </p>
                                 </div>
+                                {/* <div className="flex flex-col md:flex-row gap-10 my-4 align-bottom">
+                                    <span className={`${ephesis.className} text-xl md:text-md mb-4 leading-snug text-white`}>
+                                        {itineraryData.guestCount} adults
+                                    </span>
+                                    <p className={`${ephesis.className} text-xl md:text-md mb-4 leading-snug text-white font-extralight`}>
+                                        {dateRange}
+                                    </p>
+                                </div> */}
 
                                 {itineraryData.itinerary?.length && (
                                     <div className="pills flex gap-6">
@@ -283,13 +291,16 @@ export default function Itinerary({
                 </div>
             </div>
 
-            <div className="mx-auto grid w-[70%] items-start gap-20 pt-8 md:grid-cols-[minmax(0,1fr)_340px] md:pt-11">
+            <div className="mx-auto grid w-[70%] items-start gap-20 pt-8 md:grid-cols-[minmax(0,1fr)_340px]">
 
                 <div className="min-w-0">
                     {/* Stays Section */}
                     <section className="mb-12 flex flex-row gap-10">
                         <div>
                             <div className="days">
+                                <div className="mb-2">
+                                    <span className={`font-light text-theme-primary-light`} style={{ fontSize: '1.5rem' }}> Stays  </span>
+                                </div>
                                 <div
                                     className="relative"
                                 >
@@ -313,9 +324,7 @@ export default function Itinerary({
                                         </div>
                                     )}
 
-                                    <div className="absolute left-0 -top-5 text-right -translate-x-[calc(100%+1rem)]">
-                                        <span className={`${ephesis.className} font-bold text-slate-500`} style={{ fontSize: '3.5rem' }}> Stays  </span>
-                                    </div>
+
                                 </div>
                             </div>
                             {itineraryData.itinerary
@@ -433,9 +442,9 @@ export default function Itinerary({
                     {/* Day wise Itinerary Section */}
                     <section className="mb-12 flex flex-row gap-10">
 
-                        <div className="w-full relative">
-                            <div className="absolute left-0 -top-5 text-right transform -translate-x-[calc(100%+1rem)]">
-                                <span className={`${ephesis.className} font-bold text-slate-500`} style={{ fontSize: '3.5rem' }}> Itinerary  </span>
+                        <div className="w-full ">
+                            <div className="mb-2">
+                                <span className={`font-light text-theme-primary-light`} style={{ fontSize: '1.5rem' }}> Itinerary  </span>
                             </div>
                             {itineraryData.itinerary.map((destination, index) => (
                                 <div key={destination.destination}>
@@ -478,7 +487,7 @@ export default function Itinerary({
                                                             }
                                                         }}
                                                     >
-                                                        <div className="flex items-center gap-3 align-between" >
+                                                        <div className="flex items-center align-between gap-2" >
                                                             <span
                                                                 className="grid h-[26px] w-[26px] place-items-center rounded-[7px] bg-white"
 
@@ -490,24 +499,26 @@ export default function Itinerary({
                                                             >
                                                                 {day.title}
                                                             </span>
-                                                            <small className="text-xs" >
+
+                                                        </div>
+                                                        <div className="flex items-center gap-2" >
+                                                            <small className="text-xs ml-5" >
                                                                 {day.day}
                                                             </small>
+                                                            <svg
+                                                                className={`ml-2 h-4 w-4 transition-transform ${openDayKeys.has(dayKey(destination, day, index)) ? "rotate-180" : ""
+                                                                    }`}
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path
+                                                                    strokeLinejoin="round"
+                                                                    strokeWidth={2}
+                                                                    d="M19 9l-7 7-7-7"
+                                                                />
+                                                            </svg>
                                                         </div>
-
-                                                        <svg
-                                                            className={`ml-2 h-4 w-4 transition-transform ${openDayKeys.has(dayKey(destination, day, index)) ? "rotate-180" : ""
-                                                                }`}
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path
-                                                                strokeLinejoin="round"
-                                                                strokeWidth={2}
-                                                                d="M19 9l-7 7-7-7"
-                                                            />
-                                                        </svg>
                                                     </div>
                                                     {openDayKeys.has(dayKey(destination, day, index)) && (
                                                         <div className="ml-10">
