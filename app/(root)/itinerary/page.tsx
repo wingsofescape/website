@@ -211,7 +211,7 @@ export default function Itinerary({
     const lastDay = itineraryData.itinerary.at(-1)?.destinationItinerary.at(-1);
     const dateRange =
         firstDay && lastDay
-            ? `${firstDay.day} to ${lastDay.day}`
+            ? `${firstDay.day}\u00a0\u00a0\u00a0to\u00a0\u00a0\u00a0${lastDay.day}`
             : "Your journey dates";
     const allDays = itineraryData.itinerary.flatMap((destination) => {
         const days = destination.destinationItinerary as ItineraryDay[];
@@ -240,7 +240,7 @@ export default function Itinerary({
             <div className="lg:hidden">
                 {/* Mobile Hero Image */}
                 <div className="relative h-[7vh] md:h-80" style={{
-                    height: "70vh",
+                    height: "45vh",
                 }}>
                     <Image
                         src={urlFor(itineraryData.image.asset)?.url()}
@@ -252,7 +252,7 @@ export default function Itinerary({
                     />
                     <div className="overlay opacity-5 bg-background h-1/2 absolute bottom-0 right-0 w-full md:w-2/5 z-10" />
                     {/* Mobile Content */}
-                    <div className="absolute bottom-0 left-0 right-0 text-white px-4 py-4">
+                    {/* <div className="absolute bottom-0 left-0 right-0 text-white px-4 py-4">
                         <div className="flex flex-col md:flex-row gap-2 my-4 align-bottom">
                             <span className={`${ephesis.className} font-bold`} style={{ fontSize: '4.5rem' }}> {itineraryData.customerName}  </span>
                             <div className="flex  gap-10  align-bottom">
@@ -279,18 +279,18 @@ export default function Itinerary({
                             )}
                         </div>
 
-                    </div>
+                    </div> */}
                 </div>
                 {/* Mobile Content */}
-                <div className="bg-theme-primary-dark text-white px-4 py-4">
+                <div className="bg-theme-primary-dark text-white px-4 py-3">
                     <div className="flex flex-col md:flex-row gap-2 my-4 align-bottom">
-                        <span className={`${ephesis.className} font-bold`} style={{ fontSize: '4.5rem' }}> {itineraryData.customerName}  </span>
-                        <div className="flex  gap-10  align-bottom">
+                        <span className={`${ephesis.className} font-bold`} style={{ fontSize: '4rem' }}> {itineraryData.customerName}  </span>
+                        <div className="flex gap-10 align-bottom">
 
                             <p className="text-sm mb-4 leading-snug text-white">
                                 {itineraryData.guestCount} adults
                             </p>
-                            <p className="text-sm mb-4 leading-snug text-white font-extralight">
+                            <p className="text-sm mb-2 leading-snug text-white font- extralight">
                                 {dateRange}
                             </p>
                         </div>
