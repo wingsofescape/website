@@ -336,7 +336,7 @@ export default function Itinerary({
                                                 key={destination.destination}
                                             >
                                                 {destination.destination} ·{" "}
-                                                {destination.destinationItinerary.length}N
+                                                {destination.destinationItinerary.length - 1}N
                                             </div>
                                         ))}
                                     </div>
