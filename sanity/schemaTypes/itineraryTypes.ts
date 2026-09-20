@@ -156,6 +156,15 @@ export const itineraryType = defineType({
                     ],
                 }
             ]
+        }),
+        defineField({
+            name: "inclusionsexclusions",
+            title: "Inclusions and Exclusions",
+            type: "object",
+            fields: [
+                defineField({ name: "inclusions", title: "Inclusions", type: "array", of: [{ type: "string" }] }),
+                defineField({ name: "exclusions", title: "Exclusions", type: "array", of: [{ type: "string" }] }),
+            ]
         })
     ]
 })
