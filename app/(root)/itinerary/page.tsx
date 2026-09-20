@@ -302,7 +302,7 @@ export default function Itinerary({
                                         key={destination.destination}
                                     >
                                         {destination.destination} ·{" "}
-                                        {destination.destinationItinerary.length}N
+                                        {destination.destinationItinerary.length - 1}N
                                     </div>
                                 ))}
                             </div>
@@ -370,31 +370,32 @@ export default function Itinerary({
                                 <div className="mb-2">
                                     <span className={`font-light text-theme-primary-light text-3xl md:text-md`} > Stays  </span>
                                 </div>
-                                <div
-                                    className="relative"
-                                >
-                                    {itineraryData.itinerary?.length && (
-                                        <div className="pills flex gap-6" role="tablist" aria-label="Stay destinations">
-                                            {itineraryData.itinerary.map((destination) => (
-                                                <button
-                                                    className={`rounded-4xl px-7 py-2 text-xs transition-colors ${selectedStayDestination === destination.destination
-                                                        ? "bg-theme-primary text-white"
-                                                        : "bg-slate-200 text-theme-primary hover:bg-slate-300"
-                                                        }`}
-                                                    type="button"
-                                                    role="tab"
-                                                    aria-selected={selectedStayDestination === destination.destination}
-                                                    onClick={() => setSelectedStayDestination(destination.destination)}
-                                                    key={destination.destination}
-                                                >
-                                                    {destination.destination}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    )}
+                                {itineraryData.itinerary.length > 2 && (
+                                    <div
+                                        className="relative"
+                                    >
+                                        {itineraryData.itinerary.length && (
+                                            <div className="pills flex gap-6" role="tablist" aria-label="Stay destinations">
+                                                {itineraryData.itinerary.map((destination) => (
+                                                    <button
+                                                        className={`rounded-4xl px-7 py-2 text-xs transition-colors ${selectedStayDestination === destination.destination
+                                                            ? "bg-theme-primary text-white"
+                                                            : "bg-slate-200 text-theme-primary hover:bg-slate-300"
+                                                            }`}
+                                                        type="button"
+                                                        role="tab"
+                                                        aria-selected={selectedStayDestination === destination.destination}
+                                                        onClick={() => setSelectedStayDestination(destination.destination)}
+                                                        key={destination.destination}
+                                                    >
+                                                        {destination.destination}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        )}
 
 
-                                </div>
+                                    </div>)}
                             </div>
                             {itineraryData.itinerary
                                 .filter((destination) => destination.destination === selectedStayDestination)
@@ -417,7 +418,7 @@ export default function Itinerary({
                                         >
                                             <div className="mb-3 flex gap-4">
                                                 <div>
-                                                    <h3 className="mt-3 md:mt-1 flex items-center gap-2 text-base">
+                                                    <h3 className="my-3 md:mt-1 flex items-center gap-2 text-base">
                                                         {stay.stayName || "Selected property"}
                                                         {stay.stayLink && (
                                                             <a
@@ -451,7 +452,7 @@ export default function Itinerary({
                                                 </div>
                                             </div>
                                             {stay.images && stay.images.length > 0 && (
-                                                <div className="grid grid-cols-4 gap-2 md:grid-cols-3 xl:grid-cols-4">
+                                                <div className="grid grid-cols-3 gap-2 md:grid-cols-3 xl:grid-cols-4">
                                                     {stay.images.map((image, imageIndex) => (
                                                         <button
                                                             className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
@@ -477,7 +478,7 @@ export default function Itinerary({
                                                     </p>
                                                     {roomChangeStays.map(({ stay: roomChangeStay, day }) => (
                                                         <div className="mb-4 last:mb-0" key={`${destination.destination}-${day}-room-change`}>
-                                                            <div className="grid grid-cols-4 gap-2 md:grid-cols-3 xl:grid-cols-4">
+                                                            <div className="grid grid-cols-3 gap-2 md:grid-cols-3 xl:grid-cols-4">
                                                                 {roomChangeStay.images?.map((image, imageIndex) => (
                                                                     <button
                                                                         className="group relative overflow-hidden rounded-lg focus:outline-none focus:ring-2 focus:ring-[#12213a]"
@@ -512,7 +513,7 @@ export default function Itinerary({
                     <section className="mb-12 flex flex-row gap-10">
 
                         <div className="w-full ">
-                            <div className="mb-2">
+                            <div className="mb-5 border-t border-[#e6e8ec] pt-2">
                                 <span className={`font-light text-theme-primary-light text-3xl md:text-md`} > Itinerary  </span>
                             </div>
                             {itineraryData.itinerary.map((destination, index) => (
@@ -523,7 +524,7 @@ export default function Itinerary({
                                     >
                                         <span className="text-lg">{destination.destination}</span>
                                         <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
-                                            {destination.destinationItinerary.length}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
+                                            {destination.destinationItinerary.length - 1}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
                                         </small>
                                     </div>
 
