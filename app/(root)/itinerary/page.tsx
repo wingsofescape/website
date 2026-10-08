@@ -267,13 +267,13 @@ export default function Itinerary({
                         </div>
                         {itineraryData.itinerary?.length && (
                             <div className="pills flex gap-4">
-                                {itineraryData.itinerary.map((destination) => (
+                                {itineraryData.itinerary.map((destination, index) => (
                                     <div
                                         className="bg-theme-primary text-white rounded-4xl px-5 py-2 text-[9px] pointer-events-none opacity-100"
                                         key={destination.destination}
                                     >
                                         {destination.destination} ·{" "}
-                                        {destination.destinationItinerary.length}N
+                                        {index === itineraryData.itinerary.length - 1 ? `${destination.destinationItinerary.length - 1}N` : `${destination.destinationItinerary.length}N`}
                                     </div>
                                 ))}
                             </div>
@@ -301,13 +301,13 @@ export default function Itinerary({
 
                                 {itineraryData.itinerary?.length && (
                                     <div className="pills flex gap-6">
-                                        {itineraryData.itinerary.map((destination) => (
+                                        {itineraryData.itinerary.map((destination, index) => (
                                             <div
                                                 className="bg-theme-primary-light text-white rounded-4xl px-7 py-2 text-xs opacity-90 pointer-events-none"
                                                 key={destination.destination}
                                             >
                                                 {destination.destination} ·{" "}
-                                                {destination.destinationItinerary.length}N
+                                                {index === itineraryData.itinerary.length - 1 ? `${destination.destinationItinerary.length - 1}N` : `${destination.destinationItinerary.length}N`}
                                             </div>
                                         ))}
                                     </div>
@@ -390,16 +390,16 @@ export default function Itinerary({
                                             <div className="mb-3 flex gap-4">
                                                 <div>
                                                     <h3 className="my-3 md:mt-1 flex items-center gap-2 text-base">
-                                                        {stay.stayName || "Selected property"}
                                                         {stay.stayLink && (
                                                             <a
-                                                                className="text-[#12213a] transition-opacity hover:opacity-60"
+                                                                className="inline-flex items-center gap-2 text-[#12213a] transition-opacity hover:opacity-60"
                                                                 href={stay.stayLink}
                                                                 target="_blank"
                                                                 rel="noreferrer"
                                                                 aria-label={`Open ${stay.stayName || "property"} website`}
                                                                 title="Open property website"
                                                             >
+                                                                <span>{stay.stayName || "Selected property"}</span>
                                                                 <svg
                                                                     className="h-4 w-4"
                                                                     fill="none"
@@ -415,6 +415,7 @@ export default function Itinerary({
                                                                 </svg>
                                                             </a>
                                                         )}
+                                                        {!stay.stayLink && (stay.stayName || "Selected property")}
                                                     </h3>
                                                     <p className="text-[12.5px]" >
                                                         {stay.roomType || "Selected room"} ·{" "}
@@ -495,7 +496,8 @@ export default function Itinerary({
                                     >
                                         <span className="text-lg">{destination.destination}</span>
                                         <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
-                                            {destination.destinationItinerary.length}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
+
+                                            {index === itineraryData.itinerary.length - 1 ? `${destination.destinationItinerary.length - 1}` : `${destination.destinationItinerary.length}`}{destination.destinationItinerary.length === 1 ? " NIGHT" : " NIGHTS"}
                                         </small>
                                     </div>
 
