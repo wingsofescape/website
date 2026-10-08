@@ -251,35 +251,6 @@ export default function Itinerary({
                         className="object-cover"
                     />
                     <div className="overlay opacity-5 bg-background h-1/2 absolute bottom-0 right-0 w-full md:w-2/5 z-10" />
-                    {/* Mobile Content */}
-                    {/* <div className="absolute bottom-0 left-0 right-0 text-white px-4 py-4">
-                        <div className="flex flex-col md:flex-row gap-2 my-4 align-bottom">
-                            <span className={`${ephesis.className} font-bold`} style={{ fontSize: '4.5rem' }}> {itineraryData.customerName}  </span>
-                            <div className="flex  gap-10  align-bottom">
-
-                                <p className="text-sm mb-4 leading-snug text-white">
-                                    {itineraryData.guestCount} adults
-                                </p>
-                                <p className="text-sm mb-4 leading-snug text-white font-extralight">
-                                    {dateRange}
-                                </p>
-                            </div>
-                            {itineraryData.itinerary?.length && (
-                                <div className="pills flex gap-6">
-                                    {itineraryData.itinerary.map((destination) => (
-                                        <div
-                                            className="bg-theme-primary text-white rounded-4xl px-7 py-2 text-xs pointer-events-none opacity-100"
-                                            key={destination.destination}
-                                        >
-                                            {destination.destination} ·{" "}
-                                            {destination.destinationItinerary.length}N
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-
-                    </div> */}
                 </div>
                 {/* Mobile Content */}
                 <div className="bg-theme-primary-dark text-white px-4 py-3">
@@ -288,21 +259,21 @@ export default function Itinerary({
                         <div className="flex gap-10 align-bottom">
 
                             <p className="text-sm mb-4 leading-snug text-white">
-                                {itineraryData.guestCount} adults
+                                {itineraryData.guestCount} Adults
                             </p>
                             <p className="text-sm mb-2 leading-snug text-white font- extralight">
                                 {dateRange}
                             </p>
                         </div>
                         {itineraryData.itinerary?.length && (
-                            <div className="pills flex gap-6">
+                            <div className="pills flex gap-4">
                                 {itineraryData.itinerary.map((destination) => (
                                     <div
-                                        className="bg-theme-primary text-white rounded-4xl px-7 py-2 text-xs pointer-events-none opacity-100"
+                                        className="bg-theme-primary text-white rounded-4xl px-5 py-2 text-[9px] pointer-events-none opacity-100"
                                         key={destination.destination}
                                     >
                                         {destination.destination} ·{" "}
-                                        {destination.destinationItinerary.length - 1}N
+                                        {destination.destinationItinerary.length}N
                                     </div>
                                 ))}
                             </div>
@@ -321,7 +292,7 @@ export default function Itinerary({
                                 <span className={`${ephesis.className} font-bold`} style={{ fontSize: '5.5rem' }}> {itineraryData.customerName}  </span>
                                 <div className="flex flex-col md:flex-row gap-10 my-4 align-bottom">
                                     <span className="text-xl md:text-md mb-4 leading-snug text-white">
-                                        {itineraryData.guestCount} adults
+                                        {itineraryData.guestCount} Adults
                                     </span>
                                     <p className="text-xl md:text-md mb-4 leading-snug text-white font-extralight">
                                         {dateRange}
@@ -336,7 +307,7 @@ export default function Itinerary({
                                                 key={destination.destination}
                                             >
                                                 {destination.destination} ·{" "}
-                                                {destination.destinationItinerary.length - 1}N
+                                                {destination.destinationItinerary.length}N
                                             </div>
                                         ))}
                                     </div>
@@ -378,7 +349,7 @@ export default function Itinerary({
                                             <div className="pills flex gap-6" role="tablist" aria-label="Stay destinations">
                                                 {itineraryData.itinerary.map((destination) => (
                                                     <button
-                                                        className={`rounded-4xl px-7 py-2 text-xs transition-colors ${selectedStayDestination === destination.destination
+                                                        className={`rounded-4xl px-5 md:px-7 py-2 text-xs transition-colors ${selectedStayDestination === destination.destination
                                                             ? "bg-theme-primary text-white"
                                                             : "bg-slate-200 text-theme-primary hover:bg-slate-300"
                                                             }`}
@@ -524,7 +495,7 @@ export default function Itinerary({
                                     >
                                         <span className="text-lg">{destination.destination}</span>
                                         <small className="font-sans text-xs tracking-wide text-[#c9d3e2]">
-                                            {destination.destinationItinerary.length - 1}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
+                                            {destination.destinationItinerary.length}  {destination.destinationItinerary.length === 1 ? "NIGHT" : "NIGHTS"}
                                         </small>
                                     </div>
 
