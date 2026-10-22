@@ -23,4 +23,8 @@ model userQuery {
   message          String
   budget           String
   dates            String
+  adults           Int     @default(2)
+  children         Int     @default(0)
+  flightsBooked    Boolean @default(false)
+  availability     String  @default("Any time")
 }
