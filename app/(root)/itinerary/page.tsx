@@ -331,7 +331,7 @@ export default function Itinerary({
                 </div>
             </div>
 
-            <div className="mx-auto grid w-full px-4 md:px-0 md:w-[70%] items-start gap-10 md:gap-20 pt-4 md:pt-8 md:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="mx-auto grid w-full px-3 md:px-0 md:w-[70%] items-start gap-10 md:gap-20 pt-4 md:pt-8 md:grid-cols-[minmax(0,1fr)_340px]">
 
                 <div className="min-w-0">
                     {/* Stays Section */}
@@ -491,7 +491,7 @@ export default function Itinerary({
                             {itineraryData.itinerary.map((destination, index) => (
                                 <div key={destination.destination}>
                                     <div
-                                        className={`flex items-center justify-between rounded-t-[10px] bg-theme-primary-dark px-5 py-4 text-white md:px-12 md:py-4 ${index === 0 ? '' : 'mt-10'}`}
+                                        className={`flex items-center justify-between rounded-t-[10px] bg-theme-primary-dark px-5 py-4 text-white md:px-12 md:py-4 ${index === 0 ? '' : 'mt-5 md:mt-10'}`}
 
                                     >
                                         <span className="text-lg">{destination.destination}</span>
@@ -530,22 +530,28 @@ export default function Itinerary({
                                                             }
                                                         }}
                                                     >
-                                                        <div className="flex items-center align-between gap-1 md:gap-2" >
+                                                        <div className="flex items-center align-between gap-2 md:gap-2" >
                                                             <span
-                                                                className="grid h-[26px] w-[26px] place-items-center rounded-[7px] bg-white"
+                                                                className="h-[22px] w-[12px] bg-white"
 
                                                             >
                                                                 ✦
                                                             </span>
-                                                            <span
-                                                                className="text-md md:text-xl font-medium"
-                                                            >
-                                                                {day.title}
-                                                            </span>
+                                                            <div className="leading-5 md:leading-normal" >
+
+                                                                <p
+                                                                    className="text-md md:text-xl font-semibold md:font-medium"
+                                                                >
+                                                                    {day.title}
+                                                                </p>
+                                                                <small className="md:hidden text-xs md:ml-5" >
+                                                                    {day.day}
+                                                                </small>
+                                                            </div>
 
                                                         </div>
                                                         <div className="flex items-center gap-2" >
-                                                            <small className="text-xs ml-5" >
+                                                            <small className="hidden md:block text-xs ml-2 md:ml-5" >
                                                                 {day.day}
                                                             </small>
                                                             <svg
@@ -564,31 +570,29 @@ export default function Itinerary({
                                                         </div>
                                                     </div>
                                                     {openDayKeys.has(dayKey(destination, day, index)) && (
-                                                        <div className="ml-0 md:ml-10">
+                                                        <div className="ml-0 md:ml-10 bg-gradient-to-b from-[#edb84c]/10 to-[#f6f6f6] md:bg-none px-2 md:px-0 py-2 md:py-4">
                                                             <p
-                                                                className="my-3.5 max-w-[650px] text-sm leading-[1.7]"
+                                                                className="px-4 md:px-0 my-1.5 md:my-3.5 max-w-[650px] text-sm"
                                                             >
                                                                 {day.description}
                                                             </p>
                                                             {stay && day !== lastDay && (
-                                                                <div className="mt-2 mb-2 flex items-center gap-2 rounded-[10px] bg-slate-100 px-4 py-2 text-sm">
+                                                                <div className="mt-2 mb-2 flex items-center gap-2 rounded-[10px] bg-transparent md:bg-slate-100 border-1 border-amber-300 md:border-none px-4 py-2 text-sm leading-5 md:leading-normal">
                                                                     <span
-                                                                        className="grid h-8 w-8 place-items-center rounded-[7px]  "
+                                                                        className="grid h-8 w-8 place-items-center"
 
                                                                     >
                                                                         🏨
                                                                     </span>
                                                                     Stay at — {stay.stayName || "Selected property"}
                                                                     <small
-                                                                        className="ml-auto text-xs"
+                                                                        className="ml-auto text-xs text-right"
                                                                     >
                                                                         {stay.roomType || "Selected room"}
                                                                     </small>
                                                                 </div>
                                                             )}
 
-
-                                                            {/* <p className={` font-semibold text-slate-500`} >Experiences</p> */}
                                                             {day.activities?.map((activity) => (
 
                                                                 <div
@@ -599,7 +603,7 @@ export default function Itinerary({
                                                                     <div>
                                                                         {activity.activityType}
                                                                         {activity.activityDescription && (
-                                                                            <p className="text-xs text-slate-400 ml-2" >
+                                                                            <p className="text-xs text-black md:text-slate-400 ml-2" >
                                                                                 {"- "} {activity.activityDescription}
                                                                             </p>
                                                                         )}
