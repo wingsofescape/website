@@ -22,6 +22,7 @@ export async function submitFormData(prevState: any, formData: FormData) {
     children: formData.get("children")?.toString() || "0",
     // nested followUp JSON (optional)
     followUp: formData.get("followUp"),
+    flightsBooked: formData.get("flightsBooked")?.toString() || "No",
   };
 
   // Basic validation
@@ -68,6 +69,10 @@ export async function submitFormData(prevState: any, formData: FormData) {
         message: formFields.message,
         budget: formFields.budget,
         dates: JSON.stringify(parsedDates || []),
+        children: Number(formFields.children) || 2,
+        adults: Number(formFields.adults) || 0,
+        availability: formFields.availability,
+        flightsBooked: formFields.flightsBooked === 'Yes',
       },
     });
 
