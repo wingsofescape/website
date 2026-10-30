@@ -24,7 +24,12 @@ export default function EnquireNow() {
   // Load destinations from localStorage on client mount
   useEffect(() => {
     const stored = localStorage.getItem('destinations');
-    setDestinations(stored ? JSON.parse(stored) : []);
+    const storedDestinations = stored ? JSON.parse(stored) : [];
+    setDestinations([
+      ...storedDestinations,
+      { destinationHeading: "Japan", slug: "japan" },
+      { destinationHeading: "Europe", slug: "europe" },
+    ]);
   }, []);
 
 
