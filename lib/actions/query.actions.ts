@@ -30,11 +30,12 @@ export async function submitFormData(prevState: any, formData: FormData) {
     !formFields.firstName ||
     !formFields.lastName ||
     !formFields.email ||
-    !formFields.phone
+    !formFields.phone ||
+    !formFields.dates
   ) {
     return {
       message:
-        "Please fill in all required fields (First name, Last name, Email, Phone).",
+        "Please fill in all required fields (First name, Last name, Email, Phone, Dates).",
     };
   }
 

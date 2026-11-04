@@ -259,7 +259,7 @@ export default function Itinerary({
                         <div className="flex gap-10 align-bottom">
 
                             <p className="text-sm mb-4 leading-snug text-white">
-                                {itineraryData.guestCount} Adults
+                                {itineraryData.guestCount}
                             </p>
                             <p className="text-sm mb-2 leading-snug text-white font- extralight">
                                 {dateRange}
@@ -292,7 +292,7 @@ export default function Itinerary({
                                 <span className={`${ephesis.className} font-bold`} style={{ fontSize: '5.5rem' }}> {itineraryData.customerName}  </span>
                                 <div className="flex flex-col md:flex-row gap-10 my-4 align-bottom">
                                     <span className="text-xl md:text-md mb-4 leading-snug text-white">
-                                        {itineraryData.guestCount} Adults
+                                        {itineraryData.guestCount}
                                     </span>
                                     <p className="text-xl md:text-md mb-4 leading-snug text-white font-extralight">
                                         {dateRange}
@@ -341,7 +341,7 @@ export default function Itinerary({
                                 <div className="mb-2">
                                     <span className={`font-light text-theme-primary-light text-3xl md:text-md`} > Stays  </span>
                                 </div>
-                                {itineraryData.itinerary.length > 2 && (
+                                {itineraryData.itinerary.length > 1 && (
                                     <div
                                         className="relative"
                                     >
@@ -708,7 +708,7 @@ export default function Itinerary({
                     <div
                         className="flex justify-between py-2 text-sm text-theme-primary-light"
                     >
-                        <span>{itineraryData.guestCount} Adults</span>
+                        <span>{itineraryData.guestCount}</span>
                         <span>
                             ₹ {total}
                         </span>

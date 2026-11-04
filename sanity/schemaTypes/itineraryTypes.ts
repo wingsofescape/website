@@ -27,7 +27,7 @@ export const itineraryType = defineType({
             title: "Pay Button Link",
             type: "url",
         }),
-        defineField({ name: "guestCount", title: "Number of guests", type: "number" }),
+        defineField({ name: "guestCount", title: "Number of guests", type: "string" }),
         defineField({
             name: "destinationName",
             title: "Destination Name",
@@ -48,7 +48,6 @@ export const itineraryType = defineType({
                     type: "object",
                     fields: [
                         defineField({ name: "destination", title: "Destination", type: "string" }),
-                        // defineField({ name: "title", title: "Title", type: "string" }),
                         defineField({ name: "date", title: "Date Range", type: "string" }),
                         defineField({ name: "destinationImage", title: "Destination Image", type: "image" }),
                         defineField({
