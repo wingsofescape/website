@@ -52,6 +52,15 @@ type ItineraryDataWithTripDetails = ItineraryData & {
         exclusions?: string[];
     };
 };
+
+type ITestemonial = {
+    destinationVisited: string
+    guestImage: { asset: string }
+    guestName: string
+    guestReview: string
+}
+
+
 type ItineraryDestination = ItineraryData["itinerary"][number];
 
 const dayKey = (destination: ItineraryDestination, day: ItineraryDay, index: number) =>
@@ -89,9 +98,8 @@ export default function Itinerary({
     testemonials = [],
 }: {
     itineraryData?: ItineraryDataWithTripDetails;
-    testemonials?: any
+    testemonials?: ITestemonial[]
 }) {
-    console.log(testemonials);
 
     const whatsapp = "/logos/whatsapp.png";
     const [activeStay, setActiveStay] = useState<{
