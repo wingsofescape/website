@@ -1,6 +1,7 @@
 "use client";
 import { submitFormData } from "@/lib/actions/query.actions";
-import React, { useState, useActionState, useEffect } from "react";
+import { validateEnquiryForm } from "@/lib/validateEnquiryForm";
+import React, { useState, useActionState, useEffect, useRef } from "react";
 import Calendar from 'react-calendar';
 import '../../../app/global.css';
 import 'react-calendar/dist/Calendar.css';
@@ -20,6 +21,9 @@ const availabilities = ["Any time", "Morning", "Afternoon", "Evening"];
 
 export default function EnquireNow() {
   const [destinations, setDestinations] = useState<{ destinationHeading: string, slug: string }[]>([]);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const submissionStarted = useRef(false);
+  const [validationMessage, setValidationMessage] = useState("");
 
   // Load destinations from localStorage on client mount
   useEffect(() => {
@@ -49,7 +53,7 @@ export default function EnquireNow() {
     phone: "",
     email: "",
     // preferences
-    budget: "Select your budget *",
+    budget: "Select your budget (per pax.)",
     availability: "Any time",
     message: "",
   });
@@ -64,7 +68,35 @@ export default function EnquireNow() {
     return `${yyyy}-${mm}-${dd}`;
   };
 
-  const [state, formAction] = useActionState(submitFormData, { message: "" });
+  const [state, formAction, isPending] = useActionState(submitFormData, {
+    message: "",
+    success: false,
+  });
+
+  useEffect(() => {
+    if (state.success) {
+      setShowSuccessModal(true);
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (!isPending) {
+      submissionStarted.current = false;
+    }
+  }, [isPending]);
+
+  useEffect(() => {
+    if (!showSuccessModal) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setShowSuccessModal(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showSuccessModal]);
 
   const handleFollowUpChange = (type: keyof typeof form.followUp) => {
     setForm((prev) => ({ ...prev, followUp: { ...prev.followUp, [type]: !prev.followUp[type] } }));
@@ -74,6 +106,35 @@ export default function EnquireNow() {
     <form
       className="flex flex-col p-6 w-full md:w-1/2 mx-auto enquire-form items-left text-theme-primary-dark"
       action={formAction}
+      noValidate
+      onChange={() => {
+        if (validationMessage) {
+          setValidationMessage("");
+        }
+      }}
+      onSubmit={(event) => {
+        if (submissionStarted.current) {
+          event.preventDefault();
+          return;
+        }
+        const message = validateEnquiryForm({
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          dates: JSON.stringify(
+            form.dates.map((date) => formatDateOnly(date)),
+          ),
+          budget: form.budget,
+        });
+        if (message) {
+          event.preventDefault();
+          setValidationMessage(message);
+          return;
+        }
+        setValidationMessage("");
+        submissionStarted.current = true;
+      }}
     >
       {/* Hidden inputs for state values (keeps form action payload consistent) */}
       <input type="hidden" name="adults" value={String(form.adults)} />
@@ -181,6 +242,7 @@ export default function EnquireNow() {
           <select
             className="w-full border rounded px-3 py-2"
             name="budget"
+            required
             value={form.budget}
             onChange={(e) => setForm((p) => ({ ...p, budget: e.target.value }))}
           >
@@ -220,6 +282,7 @@ export default function EnquireNow() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
           <input
             name="firstName"
+            required
             className="border rounded px-3 py-2"
             placeholder="First name *"
             value={form.firstName}
@@ -228,6 +291,7 @@ export default function EnquireNow() {
           />
           <input
             name="lastName"
+            required
             className="border rounded px-3 py-2"
             placeholder="Last name *"
             value={form.lastName}
@@ -251,6 +315,7 @@ export default function EnquireNow() {
             </select>
             <input
               name="phone"
+              required
               className="border-t border-b border-r rounded-r px-3 py-2 flex-1"
               placeholder="Phone number *"
               value={form.phone}
@@ -261,6 +326,7 @@ export default function EnquireNow() {
           </div>
           <input
             name="email"
+            required
             className="border rounded px-3 py-2"
             placeholder="Email address *"
             value={form.email}
@@ -357,20 +423,24 @@ export default function EnquireNow() {
 
           <button
             type="submit"
-            className="text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary"
+            disabled={isPending}
+            className="inline-flex items-center gap-2 text-white font-bold px-8 py-3 rounded transition-colors bg-theme-primary enabled:hover:bg-theme-primary-light disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Submit Form
+            {isPending && (
+              <span
+                aria-hidden="true"
+                className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white"
+              />
+            )}
+            {isPending ? "Submitting..." : "Submit Form"}
           </button>
         </div>
-        {state?.message && (
+        {(validationMessage || (!isPending && state?.message)) && !state.success && (
           <div
-            className={`text-sm px-4 py-2 ${state.message.includes("successfully") ||
-              state.message.includes("Thank you")
-              ? "text-green-800"
-              : "text-red-800"
-              }`}
+            role="alert"
+            className="text-sm px-4 py-2 text-red-800"
           >
-            {state.message}
+            {validationMessage || state.message}
           </div>
         )}
         <div className="text-xs text-gray-600 max-w-lg">
@@ -379,6 +449,38 @@ export default function EnquireNow() {
         </div>
       </div>
 
+      {showSuccessModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          onClick={() => setShowSuccessModal(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="enquiry-success-title"
+            aria-describedby="enquiry-success-message"
+            className="w-full max-w-md rounded-xl bg-white p-8 text-center shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-3xl text-green-700" aria-hidden="true">
+              ✓
+            </div>
+            <h2 id="enquiry-success-title" className="mb-3 text-2xl font-bold text-theme-primary-dark">
+              Enquiry submitted
+            </h2>
+            <p id="enquiry-success-message" className="text-gray-600">
+              {state.message}
+            </p>
+            <button
+              type="button"
+              className="mt-6 rounded bg-theme-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-theme-primary-light"
+              onClick={() => setShowSuccessModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </form>
   );
 }

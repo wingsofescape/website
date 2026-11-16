@@ -19,7 +19,6 @@ export default function Reviews() {
                 SANITY_QUERY_OPTION
             );
             setReviewContent(reviews[0].heroBannerHeading.testemonials);
-            console.log(reviews[0].heroBannerHeading.testemonials);
         }
         getReviews();
     }, [])

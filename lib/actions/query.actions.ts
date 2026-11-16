@@ -3,10 +3,10 @@
 import { Resend } from 'resend';
 
 import prisma from "@/db/prisma";
+import { validateEnquiryForm } from "@/lib/validateEnquiryForm";
 // Adjust path as needed
 
 export async function submitFormData(prevState: any, formData: FormData) {
-  const resend = new Resend(process.env.RESEND_KEY);
   // Extract all form fields
   const formFields = {
     firstName: formData.get("firstName")?.toString() || "",
@@ -25,23 +25,11 @@ export async function submitFormData(prevState: any, formData: FormData) {
     flightsBooked: formData.get("flightsBooked")?.toString() || "No",
   };
 
-  // Basic validation
-  if (
-    !formFields.firstName ||
-    !formFields.lastName ||
-    !formFields.email ||
-    !formFields.phone ||
-    !formFields.dates
-  ) {
+  const validationMessage = validateEnquiryForm(formFields);
+  if (validationMessage) {
     return {
-      message:
-        "Please fill in all required fields (First name, Last name, Email, Phone, Dates).",
-    };
-  }
-
-  if (formFields.budget === "Select your budget *") {
-    return {
-      message: "Please select your budget.",
+      message: validationMessage,
+      success: false,
     };
   }
 
@@ -79,7 +67,7 @@ export async function submitFormData(prevState: any, formData: FormData) {
 
     // ensure email body contains normalized dates array
     try {
-
+      const resend = new Resend(process.env.RESEND_KEY);
       const { data, error } = await resend.emails.send({
         from: 'bookings@wingsofescape.com',
         to: 'wingsofescape@gmail.com',
@@ -100,9 +88,13 @@ export async function submitFormData(prevState: any, formData: FormData) {
     return {
       message:
         "Thank you! Your enquiry has been submitted successfully. We'll be in touch soon.",
+      success: true,
     };
   } catch (error) {
     console.error("Error saving data:", error);
-    return { message: "Failed to submit your enquiry. Please try again." };
+    return {
+      message: "Failed to submit your enquiry. Please try again.",
+      success: false,
+    };
   }
 }

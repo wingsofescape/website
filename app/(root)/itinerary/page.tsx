@@ -5,6 +5,7 @@ import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
 import { Ephesis } from "next/font/google";
+import FullPageSlider from "@/components/fullPageSlider/FullPageSlider";
 const imageUrl = (image: { asset: unknown }) => urlFor(image).width(900).url();
 
 type ItineraryActivity = {
@@ -85,9 +86,13 @@ const ephesis = Ephesis({
 
 export default function Itinerary({
     itineraryData = defaultItineraryData,
+    testemonials = [],
 }: {
     itineraryData?: ItineraryDataWithTripDetails;
+    testemonials?: any
 }) {
+    console.log(testemonials);
+
     const whatsapp = "/logos/whatsapp.png";
     const [activeStay, setActiveStay] = useState<{
         name: string;
@@ -236,7 +241,7 @@ export default function Itinerary({
     const total = itineraryData.pricing.toLocaleString("en-IN");
 
     return (
-        <div className="bg-white pb-24 font-sans text-[#12213a]">
+        <div className="bg-white pb-2 lg:pb-5 font-sans text-[#12213a]">
             <div className="lg:hidden">
                 {/* Mobile Hero Image */}
                 <div className="relative h-[7vh] md:h-80" style={{
@@ -669,7 +674,7 @@ export default function Itinerary({
                                     Inclusions
                                 </h3>
                                 <ul
-                                    className="m-0 grid list-none gap-1 md:gap-2 p-0 text-sm"
+                                    className="m-0 grid list-none gap-1 md:gap-2 p-0 text-xs md:text-sm"
                                 >
                                     {tripInclusions.map((item) => (
                                         <li className="flex gap-2 leading-6" key={item}>
@@ -685,7 +690,7 @@ export default function Itinerary({
                                 >
                                     Exclusions
                                 </h3>
-                                <ul className="m-0 grid list-none gap-1 md:gap-2 p-0 text-sm">
+                                <ul className="m-0 grid list-none gap-1 md:gap-2 p-0 text-xs md:text-sm">
                                     {tripExclusions.map((item) => (
                                         <li className="flex gap-2 leading-6" key={item}>
                                             <b className="text-[#b5545a]">×</b>
@@ -696,7 +701,6 @@ export default function Itinerary({
                             </div>
                         </div>
                     </section>
-
                 </div>
 
                 <aside
@@ -780,7 +784,8 @@ export default function Itinerary({
                     </div>
                 </aside>
             </div >
-
+            {testemonials.length && <div className="pt-10">
+                <FullPageSlider reviewContent={testemonials} /></div>}
             {activeStay && (
                 <div
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 md:p-10"

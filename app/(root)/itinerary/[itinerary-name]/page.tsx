@@ -16,7 +16,12 @@ export default async function CuratedItinerary({ params }: PageProps) {
         { cache: "no-store" },
     );
 
+    const testemonials = await sanityFetch(
+        POST_QUERY.getTestemonial,
+        { cache: "no-store" },
+    );
+
     if (!itinerary[0]) notFound();
 
-    return <Itinerary itineraryData={itinerary[0]} />;
+    return <Itinerary itineraryData={itinerary[0]} testemonials={testemonials[0].heroBannerHeading.testemonials} />;
 }

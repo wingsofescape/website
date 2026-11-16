@@ -5,7 +5,25 @@ import ws from "ws";
 
 // Sets up WebSocket connections, which enables Neon to use WebSocket communication.
 neonConfig.webSocketConstructor = ws;
-const connectionString = `${process.env.DATABASE_URL}`;
+const connectionString = process.env.DATABASE_URL?.trim();
+
+if (!connectionString) {
+  throw new Error("DATABASE_URL is not set. Configure a valid PostgreSQL connection string.");
+}
+
+let databaseUrl: URL;
+try {
+  databaseUrl = new URL(connectionString);
+} catch {
+  throw new Error("DATABASE_URL is invalid. Configure a valid PostgreSQL connection string.");
+}
+
+if (
+  !["postgres:", "postgresql:"].includes(databaseUrl.protocol) ||
+  !databaseUrl.hostname
+) {
+  throw new Error("DATABASE_URL must be a valid PostgreSQL connection string.");
+}
 
 // Creates a new connection pool using the provided connection string, allowing multiple concurrent connections.
 // const pool = new Pool({ connectionString });
